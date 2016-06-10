@@ -1,0 +1,642 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		07088AC51D0AE8A600004FB2 /* Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07088AC41D0AE8A600004FB2 /* Path.swift */; };
+		07088AC61D0AE8A600004FB2 /* Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07088AC41D0AE8A600004FB2 /* Path.swift */; };
+		0C658A9BF1FB93E239D1D3C9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CF6FFE527F83C6942F370B0 /* Cocoa.framework */; };
+		0F5759CEB84BF2765A7539BF /* PathTools.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = EB8A2302ABFAC822A9897B24 /* PathTools.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		17E1F7E25A1D41C35CEB4F78 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67E28496AB556DE9D0554A97 /* Foundation.framework */; };
+		3E2C797DB6498B50F9CB5FBB /* PathTools.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DD49210EE192148DBAB072B /* PathTools.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		434F7E8DBDF0241345880C70 /* PathTools.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4E2D3F085ABD47319CBD9E9B /* PathTools.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		A37525374C3C4EC7BB3E8CCA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CF6FFE527F83C6942F370B0 /* Cocoa.framework */; };
+		BABDE4FF2FDC08E23D1231BC /* PathTools.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DD49210EE192148DBAB072B /* PathTools.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E2F2E1A0A8E18744863E128E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67E28496AB556DE9D0554A97 /* Foundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A32614C028607458F4D9C03D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 218DA9722E70AA04CE1CE7E2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BF61B2F805E6EAE4803EFF1A;
+			remoteInfo = PathToolsMac;
+		};
+		DA6530E341A891075815218E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 218DA9722E70AA04CE1CE7E2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 265AF74D52742E81C475E0FB;
+			remoteInfo = PathTools;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A28DAAEAD5EC689A5BF5E99A /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+				434F7E8DBDF0241345880C70 /* PathTools.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B1B78DD9487EF7474D149457 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+				0F5759CEB84BF2765A7539BF /* PathTools.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		07088AC41D0AE8A600004FB2 /* Path.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Path.swift; path = PathTools/Path.swift; sourceTree = "<group>"; };
+		2DD49210EE192148DBAB072B /* PathTools.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PathTools.h; path = PathTools/PathTools.h; sourceTree = "<group>"; };
+		3CF6FFE527F83C6942F370B0 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		4E2D3F085ABD47319CBD9E9B /* PathTools.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; path = PathTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		67E28496AB556DE9D0554A97 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		7898EA31F055C6960F8172BA /* PathTools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PathTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9CD5EECB5CEE1D7C93160883 /* PathToolsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PathToolsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D03A8860D3A30A883CBE3EC /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = PathTools/Info.plist; sourceTree = "<group>"; };
+		B19749FE16B0C74D382E79F0 /* PathTools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PathTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BDA680219255972171CC975F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = PathToolsTests/Info.plist; sourceTree = "<group>"; };
+		D6E4046631662D19AF634CA2 /* PathToolsMacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PathToolsMacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB8A2302ABFAC822A9897B24 /* PathTools.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; path = PathTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		41701181D99616F2951E86F8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A37525374C3C4EC7BB3E8CCA /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		49FCC7E36D1BCFABC78EDD30 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E2F2E1A0A8E18744863E128E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9C7CA24A7D79D9676F9150FB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				17E1F7E25A1D41C35CEB4F78 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CD0EB7CECE79D4309E276765 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0C658A9BF1FB93E239D1D3C9 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		133469E3C4CD1699B566343A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BDA680219255972171CC975F /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		23D4DDB9DE2A8A418DC2235A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9D03A8860D3A30A883CBE3EC /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2524A3D044065BEA12A73E66 /* PathTools */ = {
+			isa = PBXGroup;
+			children = (
+				23D4DDB9DE2A8A418DC2235A /* Supporting Files */,
+				07088AC41D0AE8A600004FB2 /* Path.swift */,
+			);
+			name = PathTools;
+			sourceTree = "<group>";
+		};
+		333AE4DCDD3A0157354C1583 /* OS X */ = {
+			isa = PBXGroup;
+			children = (
+				3CF6FFE527F83C6942F370B0 /* Cocoa.framework */,
+			);
+			name = "OS X";
+			sourceTree = "<group>";
+		};
+		4DD81875D949427F662F704E /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				67E28496AB556DE9D0554A97 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		746C966B00551867158755BC /* PathToolsTests */ = {
+			isa = PBXGroup;
+			children = (
+				133469E3C4CD1699B566343A /* Supporting Files */,
+			);
+			name = PathToolsTests;
+			sourceTree = "<group>";
+		};
+		9B2DC7BB8911443DA50B5C4D = {
+			isa = PBXGroup;
+			children = (
+				B99C7DA1B4109BA5DD7F4967 /* Products */,
+				B2A6D35F674F655A87A1B843 /* Frameworks */,
+				2524A3D044065BEA12A73E66 /* PathTools */,
+				746C966B00551867158755BC /* PathToolsTests */,
+				2DD49210EE192148DBAB072B /* PathTools.h */,
+			);
+			sourceTree = "<group>";
+		};
+		B2A6D35F674F655A87A1B843 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4DD81875D949427F662F704E /* iOS */,
+				333AE4DCDD3A0157354C1583 /* OS X */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B99C7DA1B4109BA5DD7F4967 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7898EA31F055C6960F8172BA /* PathTools.framework */,
+				9CD5EECB5CEE1D7C93160883 /* PathToolsTests.xctest */,
+				B19749FE16B0C74D382E79F0 /* PathTools.framework */,
+				D6E4046631662D19AF634CA2 /* PathToolsMacTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		8D2B8E1B493A9A4FA7A53D0C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E2C797DB6498B50F9CB5FBB /* PathTools.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		962683DBE901D94184F45D68 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BABDE4FF2FDC08E23D1231BC /* PathTools.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		265AF74D52742E81C475E0FB /* PathTools */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 97607844991FCC3DB0C737C1 /* Build configuration list for PBXNativeTarget "PathTools" */;
+			buildPhases = (
+				66865DF72D12F5D2AC8D249D /* Sources */,
+				9C7CA24A7D79D9676F9150FB /* Frameworks */,
+				8D2B8E1B493A9A4FA7A53D0C /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PathTools;
+			productName = PathTools;
+			productReference = 7898EA31F055C6960F8172BA /* PathTools.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		803B79FD5674F6F2DFD55144 /* PathToolsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 60060FAD382CE00CA864454F /* Build configuration list for PBXNativeTarget "PathToolsTests" */;
+			buildPhases = (
+				754FD5CD53D0C5B9F589E254 /* Sources */,
+				49FCC7E36D1BCFABC78EDD30 /* Frameworks */,
+				A28DAAEAD5EC689A5BF5E99A /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				854438D4E0CA66641EB517CF /* PBXTargetDependency */,
+			);
+			name = PathToolsTests;
+			productName = PathToolsTests;
+			productReference = 9CD5EECB5CEE1D7C93160883 /* PathToolsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		BF61B2F805E6EAE4803EFF1A /* PathToolsMac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F3E655FAB6CB594D8D1EE768 /* Build configuration list for PBXNativeTarget "PathToolsMac" */;
+			buildPhases = (
+				5E003459D8D2D3565E7BF4A9 /* Sources */,
+				CD0EB7CECE79D4309E276765 /* Frameworks */,
+				962683DBE901D94184F45D68 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PathToolsMac;
+			productName = PathToolsMac;
+			productReference = B19749FE16B0C74D382E79F0 /* PathTools.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		DBC650E512F60F48E52EFBBC /* PathToolsMacTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B4684FD5060A7AFB3923FA1F /* Build configuration list for PBXNativeTarget "PathToolsMacTests" */;
+			buildPhases = (
+				7CABFF78B65F409E2C2E5BFD /* Sources */,
+				41701181D99616F2951E86F8 /* Frameworks */,
+				B1B78DD9487EF7474D149457 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				99184980BF287FA6C4DA4C46 /* PBXTargetDependency */,
+			);
+			name = PathToolsMacTests;
+			productName = PathToolsMacTests;
+			productReference = D6E4046631662D19AF634CA2 /* PathToolsMacTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		218DA9722E70AA04CE1CE7E2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+			};
+			buildConfigurationList = 1A4789D8D53320D6E2479434 /* Build configuration list for PBXProject "PathTools" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 9B2DC7BB8911443DA50B5C4D;
+			productRefGroup = B99C7DA1B4109BA5DD7F4967 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				265AF74D52742E81C475E0FB /* PathTools */,
+				803B79FD5674F6F2DFD55144 /* PathToolsTests */,
+				BF61B2F805E6EAE4803EFF1A /* PathToolsMac */,
+				DBC650E512F60F48E52EFBBC /* PathToolsMacTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5E003459D8D2D3565E7BF4A9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07088AC61D0AE8A600004FB2 /* Path.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66865DF72D12F5D2AC8D249D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07088AC51D0AE8A600004FB2 /* Path.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		754FD5CD53D0C5B9F589E254 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7CABFF78B65F409E2C2E5BFD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		854438D4E0CA66641EB517CF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = PathTools;
+			target = 265AF74D52742E81C475E0FB /* PathTools */;
+			targetProxy = DA6530E341A891075815218E /* PBXContainerItemProxy */;
+		};
+		99184980BF287FA6C4DA4C46 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = PathToolsMac;
+			target = BF61B2F805E6EAE4803EFF1A /* PathToolsMac */;
+			targetProxy = A32614C028607458F4D9C03D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		18858C17EF38F574667E98C8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = PathToolsTests/Info.plist;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		45AD2F418D1F785FB9EB8BA9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = PathTools/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = PathTools;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		6CDE8B60FAB4A1588BCF665E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = PathToolsTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		8589D0B5ACC46C346C55C2D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = PathTools/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = PathTools;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		91C4F907CE457BB7D4652EAB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = PathTools/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = PathTools;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		93F25EDE23B17CCBB072C622 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = PathToolsTests/Info.plist;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		ADB550B8654F4679CB628C46 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B57AB94186710D0ACD6C4986 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = PathTools/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = PathTools;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		BF79E6B6641F39E7A0E0738A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+			};
+			name = Debug;
+		};
+		F35BF5EF6F7FED621E043218 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = PathToolsTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1A4789D8D53320D6E2479434 /* Build configuration list for PBXProject "PathTools" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF79E6B6641F39E7A0E0738A /* Debug */,
+				ADB550B8654F4679CB628C46 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		60060FAD382CE00CA864454F /* Build configuration list for PBXNativeTarget "PathToolsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6CDE8B60FAB4A1588BCF665E /* Release */,
+				F35BF5EF6F7FED621E043218 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		97607844991FCC3DB0C737C1 /* Build configuration list for PBXNativeTarget "PathTools" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				91C4F907CE457BB7D4652EAB /* Release */,
+				45AD2F418D1F785FB9EB8BA9 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B4684FD5060A7AFB3923FA1F /* Build configuration list for PBXNativeTarget "PathToolsMacTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				93F25EDE23B17CCBB072C622 /* Release */,
+				18858C17EF38F574667E98C8 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F3E655FAB6CB594D8D1EE768 /* Build configuration list for PBXNativeTarget "PathToolsMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B57AB94186710D0ACD6C4986 /* Release */,
+				8589D0B5ACC46C346C55C2D7 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 218DA9722E70AA04CE1CE7E2 /* Project object */;
+}
