@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		07088AC51D0AE8A600004FB2 /* Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07088AC41D0AE8A600004FB2 /* Path.swift */; };
 		07088AC61D0AE8A600004FB2 /* Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07088AC41D0AE8A600004FB2 /* Path.swift */; };
+		07EC99231D0AF7C8002414A4 /* PathElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07EC99221D0AF7C8002414A4 /* PathElement.swift */; };
+		07EC99241D0AF7C8002414A4 /* PathElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07EC99221D0AF7C8002414A4 /* PathElement.swift */; };
 		0C658A9BF1FB93E239D1D3C9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CF6FFE527F83C6942F370B0 /* Cocoa.framework */; };
 		0F5759CEB84BF2765A7539BF /* PathTools.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = EB8A2302ABFAC822A9897B24 /* PathTools.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		17E1F7E25A1D41C35CEB4F78 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67E28496AB556DE9D0554A97 /* Foundation.framework */; };
@@ -61,6 +63,7 @@
 
 /* Begin PBXFileReference section */
 		07088AC41D0AE8A600004FB2 /* Path.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Path.swift; path = PathTools/Path.swift; sourceTree = "<group>"; };
+		07EC99221D0AF7C8002414A4 /* PathElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PathElement.swift; path = PathTools/PathElement.swift; sourceTree = "<group>"; };
 		2DD49210EE192148DBAB072B /* PathTools.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PathTools.h; path = PathTools/PathTools.h; sourceTree = "<group>"; };
 		3CF6FFE527F83C6942F370B0 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		4E2D3F085ABD47319CBD9E9B /* PathTools.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; path = PathTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -131,6 +134,7 @@
 			children = (
 				23D4DDB9DE2A8A418DC2235A /* Supporting Files */,
 				07088AC41D0AE8A600004FB2 /* Path.swift */,
+				07EC99221D0AF7C8002414A4 /* PathElement.swift */,
 			);
 			name = PathTools;
 			sourceTree = "<group>";
@@ -317,6 +321,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07088AC61D0AE8A600004FB2 /* Path.swift in Sources */,
+				07EC99241D0AF7C8002414A4 /* PathElement.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,6 +330,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07088AC51D0AE8A600004FB2 /* Path.swift in Sources */,
+				07EC99231D0AF7C8002414A4 /* PathElement.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
