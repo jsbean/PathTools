@@ -11,7 +11,36 @@ import QuartzCore
 public struct Path {
     
     private var elements: [PathElement] = []
-    //public lazy var cgPath: CGPathRef = { }()
+    
+    public lazy var cgPath: CGPathRef = {
+        let path = CGPathCreateMutable()
+        for element in self.elements {
+            switch element {
+            case .move(let point):
+                CGPathMoveToPoint(path, nil, point.x, point.y)
+            case .line(let point):
+                CGPathAddLineToPoint(path, nil, point.x, point.y)
+            case .quadCurve(let point, let controlPoint):
+                CGPathAddQuadCurveToPoint(
+                    path, nil,
+                    controlPoint.x, controlPoint.y,
+                    point.x, point.y
+                )
+            case .curve(let point, let controlPoint1, let controlPoint2):
+                CGPathAddCurveToPoint(
+                    path, nil,
+                    controlPoint1.x, controlPoint1.y,
+                    controlPoint2.x, controlPoint2.y,
+                    point.x, point.x
+                )
+            case .close:
+                CGPathCloseSubpath(path)
+            }
+        }
+        return path
+    }()
+    
+    public init() { }
     
     public init(_ elements: [PathElement]) {
         self.elements = elements
@@ -41,33 +70,15 @@ public struct Path {
     public mutating func close() {
         elements.append(.close)
     }
+}
+
+extension Path: CollectionType {
     
-    private func constructCGPath() -> CGPath {
-        let path = CGPathCreateMutable()
-        for element in elements {
-            switch element {
-            case .move(let point):
-                CGPathMoveToPoint(path, nil, point.x, point.y)
-            case .line(let point):
-                CGPathAddLineToPoint(path, nil, point.x, point.y)
-            case .quadCurve(let point, let controlPoint):
-                CGPathAddQuadCurveToPoint(
-                    path, nil,
-                    controlPoint.x, controlPoint.y,
-                    point.x, point.y
-                )
-            case .curve(let point, let controlPoint1, let controlPoint2):
-                CGPathAddCurveToPoint(
-                    path, nil,
-                    controlPoint1.x, controlPoint1.y,
-                    controlPoint2.x, controlPoint2.y,
-                    point.x, point.x
-                )
-            case .close:
-                CGPathCloseSubpath(path)
-            }
-        }
-        return path
+    public var startIndex: Int { return 0 }
+    public var endIndex: Int { return elements.count }
+    
+    public subscript(index: Int) -> PathElement {
+        return elements[index]
     }
 }
 

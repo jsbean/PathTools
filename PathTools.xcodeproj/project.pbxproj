@@ -11,6 +11,8 @@
 		07088AC61D0AE8A600004FB2 /* Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07088AC41D0AE8A600004FB2 /* Path.swift */; };
 		07EC99231D0AF7C8002414A4 /* PathElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07EC99221D0AF7C8002414A4 /* PathElement.swift */; };
 		07EC99241D0AF7C8002414A4 /* PathElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07EC99221D0AF7C8002414A4 /* PathElement.swift */; };
+		07EC99261D0AFC54002414A4 /* PathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07EC99251D0AFC54002414A4 /* PathTests.swift */; };
+		07EC99271D0AFC54002414A4 /* PathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07EC99251D0AFC54002414A4 /* PathTests.swift */; };
 		0C658A9BF1FB93E239D1D3C9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CF6FFE527F83C6942F370B0 /* Cocoa.framework */; };
 		0F5759CEB84BF2765A7539BF /* PathTools.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = EB8A2302ABFAC822A9897B24 /* PathTools.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		17E1F7E25A1D41C35CEB4F78 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67E28496AB556DE9D0554A97 /* Foundation.framework */; };
@@ -64,6 +66,7 @@
 /* Begin PBXFileReference section */
 		07088AC41D0AE8A600004FB2 /* Path.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Path.swift; path = PathTools/Path.swift; sourceTree = "<group>"; };
 		07EC99221D0AF7C8002414A4 /* PathElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PathElement.swift; path = PathTools/PathElement.swift; sourceTree = "<group>"; };
+		07EC99251D0AFC54002414A4 /* PathTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PathTests.swift; path = PathToolsTests/PathTests.swift; sourceTree = "<group>"; };
 		2DD49210EE192148DBAB072B /* PathTools.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PathTools.h; path = PathTools/PathTools.h; sourceTree = "<group>"; };
 		3CF6FFE527F83C6942F370B0 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		4E2D3F085ABD47319CBD9E9B /* PathTools.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; path = PathTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -159,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				133469E3C4CD1699B566343A /* Supporting Files */,
+				07EC99251D0AFC54002414A4 /* PathTests.swift */,
 			);
 			name = PathToolsTests;
 			sourceTree = "<group>";
@@ -338,6 +342,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07EC99261D0AFC54002414A4 /* PathTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,6 +350,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07EC99271D0AFC54002414A4 /* PathTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,13 +375,16 @@
 		18858C17EF38F574667E98C8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				INFOPLIST_FILE = PathToolsTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -409,9 +418,11 @@
 		6CDE8B60FAB4A1588BCF665E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				INFOPLIST_FILE = PathToolsTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -475,10 +486,12 @@
 		93F25EDE23B17CCBB072C622 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				INFOPLIST_FILE = PathToolsTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -585,12 +598,15 @@
 		F35BF5EF6F7FED621E043218 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				INFOPLIST_FILE = PathToolsTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
