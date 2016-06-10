@@ -12,7 +12,7 @@ public struct Path {
     
     private var elements: [PathElement] = []
     
-    public lazy var cgPath: CGPathRef = {
+    public var cgPath: CGPathRef {
         let path = CGPathCreateMutable()
         for element in self.elements {
             switch element {
@@ -38,9 +38,20 @@ public struct Path {
             }
         }
         return path
-    }()
+    }
     
     public init() { }
+    
+    public init(_ rectangle: CGRect) {
+        self.elements = [
+            .move(rectangle.origin),
+            .line(CGPoint(x: rectangle.maxX, y: rectangle.minY)),
+            .line(CGPoint(x: rectangle.maxX, y: rectangle.maxY)),
+            .line(CGPoint(x: rectangle.minX, y: rectangle.maxY)),
+            .close
+        ]
+    }
+    
     
     public init(_ elements: [PathElement]) {
         self.elements = elements
@@ -54,11 +65,11 @@ public struct Path {
         elements.append(.line(point))
     }
     
-    public mutating func quadCurve(to point: CGPoint, controlPoint: CGPoint) {
+    public mutating func addQuadCurve(to point: CGPoint, controlPoint: CGPoint) {
         elements.append(.quadCurve(point, controlPoint))
     }
     
-    public mutating func curve(
+    public mutating func addCurve(
         to point: CGPoint,
         controlPoint1: CGPoint,
         controlPoint2: CGPoint
@@ -69,6 +80,10 @@ public struct Path {
     
     public mutating func close() {
         elements.append(.close)
+    }
+    
+    public func addRectangle(rectangle: CGRect) {
+        
     }
 }
 
