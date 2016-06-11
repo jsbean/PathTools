@@ -10,7 +10,7 @@ import QuartzCore
 
 extension Path {
     
-    // MARK: - Tranforms
+    // MARK: - Transforms
     
     /**
      - returns: `Path` that is rotated by the given `degrees`, around the given `point`. 
