@@ -15,7 +15,7 @@ extension Path {
     /**
      - returns: `Path` with a rectangle shape defined by `rectangle`.
      */
-    public static func rectangle(rectangle: CGRect) -> Path {
+    public static func rectangle(rectangle rectangle: CGRect) -> Path {
         return Path(
             [
                 .move(rectangle.origin),

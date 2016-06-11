@@ -42,6 +42,17 @@ extension Path {
         var backToCenter = CGAffineTransformMakeTranslation(ΔX, ΔY)
         return Path(CGPathCreateCopyByTransformingPath(newPath, &backToCenter))
     }
+    
+    /**
+     - returns: `Path` translated by the given amounts.
+     */
+    public func translated(horizontallyBy tx: CGFloat = 0, verticallyBy ty: CGFloat = 0)
+        -> Path
+    {
+        var transform = CGAffineTransformIdentity
+        transform = CGAffineTransformTranslate(transform, tx, ty)
+        return Path(CGPathCreateCopyByTransformingPath(cgPath, &transform))
+    }
 
     /**
      - returns: `Path` that is mirrored over the y-axis.

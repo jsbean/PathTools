@@ -8,10 +8,23 @@
 
 import QuartzCore
 
+/**
+ Pleasant graphics API that is compatible with iOS and OSX. Wraps CGPath 
+ 
+ Exposes its path elements, which is useful for:
+    - Bézier path calculations
+    - Polygonal collision testing
+    - More to come
+ */
 public final class Path {
     
     private var elements: [PathElement] = []
     
+    /*
+     `CGPath` representation of `Path`.
+    
+     > Use this as the `path` property for a `CAShapeLayer`.
+    */
     public lazy var cgPath: CGPath? = {
         let path = CGPathCreateMutable()
         for element in self.elements {
@@ -61,22 +74,37 @@ public final class Path {
         self.elements = pathElements
     }
 
+    /**
+     Create a `Path` with an array of `PathElement` values.
+     */
     public init(_ elements: [PathElement]) {
         self.elements = elements
     }
     
+    /**
+     Move to `point`.
+     */
     public func move(to point: CGPoint) {
         elements.append(.move(point))
     }
     
+    /**
+     Add line to `point`.
+     */
     public func addLine(to point: CGPoint) {
         elements.append(.line(point))
     }
     
+    /**
+     Add curve to `point`, with a single control point.
+     */
     public func addQuadCurve(to point: CGPoint, controlPoint: CGPoint) {
         elements.append(.quadCurve(point, controlPoint))
     }
     
+    /**
+     Add curve to `point`, with two control points.
+     */
     public func addCurve(
         to point: CGPoint,
         controlPoint1: CGPoint,
@@ -86,12 +114,17 @@ public final class Path {
         elements.append(.curve(point, controlPoint1, controlPoint2))
     }
     
+    /**
+     Close path.
+     */
     public func close() {
         elements.append(.close)
     }
 }
 
 extension Path: CollectionType {
+    
+    // MARK: - CollectionType
     
     public var startIndex: Int { return 0 }
     public var endIndex: Int { return elements.count }
@@ -102,6 +135,8 @@ extension Path: CollectionType {
 }
 
 extension Path: SequenceType {
+    
+    // MARK: - SequenceType
     
     public func generate() -> AnyGenerator<PathElement> {
         var generator = elements.generate()
