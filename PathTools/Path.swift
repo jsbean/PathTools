@@ -12,7 +12,8 @@ public struct Path {
     
     private var elements: [PathElement] = []
     
-    public var cgPath: CGPathRef {
+    public var cgPath: CGMutablePathRef? {
+        
         let path = CGPathCreateMutable()
         for element in self.elements {
             switch element {
@@ -42,17 +43,18 @@ public struct Path {
     
     public init() { }
     
-    public init(_ rectangle: CGRect) {
-        self.elements = [
-            .move(rectangle.origin),
-            .line(CGPoint(x: rectangle.maxX, y: rectangle.minY)),
-            .line(CGPoint(x: rectangle.maxX, y: rectangle.maxY)),
-            .line(CGPoint(x: rectangle.minX, y: rectangle.maxY)),
-            .close
-        ]
+    public init(_ cgPath: CGPath) {
+        var pathElements: [PathElement] = []
+        withUnsafeMutablePointer(&pathElements) { elementsPointer in
+            CGPathApply(cgPath, elementsPointer) { (userInfo, nextElementPointer) in
+                let nextElement = PathElement(element: nextElementPointer.memory)
+                let elementsPointer = UnsafeMutablePointer<[PathElement]>(userInfo)
+                elementsPointer.memory.append(nextElement)
+            }
+        }
+        self.elements = pathElements
     }
-    
-    
+
     public init(_ elements: [PathElement]) {
         self.elements = elements
     }
@@ -80,10 +82,6 @@ public struct Path {
     
     public mutating func close() {
         elements.append(.close)
-    }
-    
-    public func addRectangle(rectangle: CGRect) {
-        
     }
 }
 
