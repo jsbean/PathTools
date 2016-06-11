@@ -9,7 +9,7 @@
 import QuartzCore
 
 /**
- Wrapper fro `CGPath` `PathElement.type`.
+ Wrapper for `CGPath` `PathElement.type`.
  */
 public enum PathElement {
     
