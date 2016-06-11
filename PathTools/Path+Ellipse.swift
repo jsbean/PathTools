@@ -11,12 +11,9 @@ import QuartzCore
 extension Path {
     
     /**
-     - warning: Not yet implemented!
-     
      - returns: `Path` with an ellipse shape within the given `rectangle`.
      */
     public static func ellipse(rectangle rectangle: CGRect) -> Path {
-        
-        return Path([])
+        return Path(CGPathCreateWithEllipseInRect(rectangle, nil))
     }
 }

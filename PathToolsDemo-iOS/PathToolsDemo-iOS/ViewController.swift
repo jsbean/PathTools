@@ -42,7 +42,11 @@ class ViewController: UIViewController {
 //        let arrowhead = Path.arrowhead()
 //        view.layer.addSublayer(shapeLayer(path: arrowhead))
 //        
-        let circle = Path.circle(center: CGPoint(x: 400, y: 400), radius: 40)
+        
+        let ellipse = Path.ellipse(rectangle: CGRect(x: 100, y: 100, width: 300, height: 100))
+        view.layer.addSublayer(shapeLayer(path: ellipse))
+        
+        //let circle = Path.circle(center: CGPoint(x: 400, y: 400), radius: 40)
         //let rectangle = Path.rectangle(CGRect(x: 300, y: 300, width: 200, height: 200))
         //view.layer.addSublayer(shapeLayer(path: rectangle))
         
@@ -73,7 +77,7 @@ class ViewController: UIViewController {
 //        }
 
         
-        view.layer.addSublayer(shapeLayer(path: circle, color: UIColor.redColor().CGColor))
+        //view.layer.addSublayer(shapeLayer(path: circle, color: UIColor.redColor().CGColor))
     }
     
     func shapeLayer(path path: Path, color: CGColorRef = UIColor.blackColor().CGColor)
