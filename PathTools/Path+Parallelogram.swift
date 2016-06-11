@@ -13,9 +13,9 @@ extension Path {
     // MARK: - Parallelogram
     
     /**
-     - returns: `Path` with a slanted bar.
+     - returns: `Path` of a slanted bar.
      
-     - note: The sides are always vertical. independant of the slant.
+     - note: The sides are always vertical, independant of the slope.
      
      - note: Useful for accidental components and system dividers.
      */
