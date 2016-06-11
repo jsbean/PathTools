@@ -5,7 +5,7 @@
 //  Created by James Bean on 6/11/16.
 //
 //
-import Foundation
+
 import QuartzCore
 
 extension Path {
