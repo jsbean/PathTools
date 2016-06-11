@@ -1,5 +1,5 @@
 //
-//  Path+Arrow.swift
+//  Path+Arrowhead.swift
 //  PathTools
 //
 //  Created by James Bean on 6/11/16.
@@ -10,8 +10,10 @@ import QuartzCore
 
 extension Path {
     
+    // MARK: - Arrowhead
+    
     /**
-     - warning: Not yet implemented!
+     - warning: Not yet fully implemented!
      */
     public static func arrowhead(
         tip tip: CGPoint = CGPointZero,

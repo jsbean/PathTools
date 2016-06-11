@@ -31,7 +31,7 @@ public final class Path {
                     path, nil,
                     controlPoint1.x, controlPoint1.y,
                     controlPoint2.x, controlPoint2.y,
-                    point.x, point.x
+                    point.x, point.y
                 )
             case .close:
                 CGPathCloseSubpath(path)

@@ -5,30 +5,50 @@
 //  Created by James Bean on 6/11/16.
 //
 //
-
+import Foundation
 import QuartzCore
 
 extension Path {
     
+    /**
+     - returns: `Path` with a circle shape with the given `radius` and `center`.
+     */
     public static func circle(center center: CGPoint, radius: CGFloat) -> Path {
+        
+        // distance from each point to its neighboring control points
+        let a = CGFloat(4 * (sqrt(2.0) - 1) / 3 )
+        
         return Path(
             [
+                // top
                 .move(CGPoint(x: center.x, y: center.y - radius)),
-                .quadCurve(
+                
+                // right
+                .curve(
                     CGPoint(x: center.x + radius, y: center.y),
-                    CGPoint(x: center.x + radius, y: center.y - radius)
+                    CGPoint(x: center.x + a * radius, y: center.y - radius),
+                    CGPoint(x: center.x + radius, y: center.y - a * radius)
                 ),
-                .quadCurve(
+                
+                // bottom
+                .curve(
                     CGPoint(x: center.x, y: center.y + radius),
-                    CGPoint(x: center.x + radius, y: center.y + radius)
+                    CGPoint(x: center.x + radius, y: center.y + a * radius),
+                    CGPoint(x: center.x + a * radius, y: center.y + radius)
                 ),
-                .quadCurve(
+                
+                // left
+                .curve(
                     CGPoint(x: center.x - radius, y: center.y),
-                    CGPoint(x: center.x - radius, y: center.y + radius)
+                    CGPoint(x: center.x - a * radius, y: center.y + radius),
+                    CGPoint(x: center.x - radius, y: center.y + a * radius)
                 ),
-                .quadCurve(
+                
+                // back to top
+                .curve(
                     CGPoint(x: center.x, y: center.y - radius),
-                    CGPoint(x: center.x - radius, y: center.y - radius)
+                    CGPoint(x: center.x - radius, y: center.y - a * radius),
+                    CGPoint(x: center.x - a * radius, y: center.y - radius)
                 )
             ]
         )

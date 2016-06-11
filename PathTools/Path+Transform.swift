@@ -11,8 +11,8 @@ import QuartzCore
 extension Path {
     
     /**
-     - returns: `Path` that is rotated by the given `degrees`, rotated around the given 
-     `point`. If `point` is `nil`, the center of the the bounding box is chosen.
+     - returns: `Path` that is rotated by the given `degrees`, around the given `point`. 
+     If `point` is `nil`, the center of the the bounding box is chosen.
      */
     public func rotated(by degrees: Degrees, around point: CGPoint? = nil) -> Path {
         var pointRef: CGPoint {

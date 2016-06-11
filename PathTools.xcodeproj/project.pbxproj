@@ -19,8 +19,8 @@
 		07C1F8631D0C4EA900541ED5 /* Path+Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C1F8611D0C4EA900541ED5 /* Path+Transform.swift */; };
 		07C1F8651D0C513900541ED5 /* Path+Parallelogram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C1F8641D0C513900541ED5 /* Path+Parallelogram.swift */; };
 		07C1F8661D0C513900541ED5 /* Path+Parallelogram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C1F8641D0C513900541ED5 /* Path+Parallelogram.swift */; };
-		07C1F8681D0C517400541ED5 /* Path+Arrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C1F8671D0C517400541ED5 /* Path+Arrow.swift */; };
-		07C1F8691D0C517400541ED5 /* Path+Arrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C1F8671D0C517400541ED5 /* Path+Arrow.swift */; };
+		07C1F8681D0C517400541ED5 /* Path+Arrowhead.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C1F8671D0C517400541ED5 /* Path+Arrowhead.swift */; };
+		07C1F8691D0C517400541ED5 /* Path+Arrowhead.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C1F8671D0C517400541ED5 /* Path+Arrowhead.swift */; };
 		07C1F86B1D0C537300541ED5 /* Path+BoundingBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C1F86A1D0C537300541ED5 /* Path+BoundingBox.swift */; };
 		07C1F86C1D0C537300541ED5 /* Path+BoundingBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C1F86A1D0C537300541ED5 /* Path+BoundingBox.swift */; };
 		07C1F86E1D0C53BF00541ED5 /* Degrees.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C1F86D1D0C53BF00541ED5 /* Degrees.swift */; };
@@ -88,7 +88,7 @@
 		07C1F85E1D0C4E7400541ED5 /* Path+Circle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Path+Circle.swift"; path = "PathTools/Path+Circle.swift"; sourceTree = "<group>"; };
 		07C1F8611D0C4EA900541ED5 /* Path+Transform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Path+Transform.swift"; path = "PathTools/Path+Transform.swift"; sourceTree = "<group>"; };
 		07C1F8641D0C513900541ED5 /* Path+Parallelogram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Path+Parallelogram.swift"; path = "PathTools/Path+Parallelogram.swift"; sourceTree = "<group>"; };
-		07C1F8671D0C517400541ED5 /* Path+Arrow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Path+Arrow.swift"; path = "PathTools/Path+Arrow.swift"; sourceTree = "<group>"; };
+		07C1F8671D0C517400541ED5 /* Path+Arrowhead.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Path+Arrowhead.swift"; path = "PathTools/Path+Arrowhead.swift"; sourceTree = "<group>"; };
 		07C1F86A1D0C537300541ED5 /* Path+BoundingBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Path+BoundingBox.swift"; path = "PathTools/Path+BoundingBox.swift"; sourceTree = "<group>"; };
 		07C1F86D1D0C53BF00541ED5 /* Degrees.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Degrees.swift; path = PathTools/Degrees.swift; sourceTree = "<group>"; };
 		07C1F8701D0C53DB00541ED5 /* Radians.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Radians.swift; path = PathTools/Radians.swift; sourceTree = "<group>"; };
@@ -164,13 +164,13 @@
 			children = (
 				23D4DDB9DE2A8A418DC2235A /* Supporting Files */,
 				07088AC41D0AE8A600004FB2 /* Path.swift */,
+				07C1F8611D0C4EA900541ED5 /* Path+Transform.swift */,
 				07C1F86A1D0C537300541ED5 /* Path+BoundingBox.swift */,
 				07C1F85B1D0C4E2800541ED5 /* Path+Rectangle.swift */,
 				0765472B1D0C6E08008038B5 /* Path+Triangle.swift */,
 				07C1F85E1D0C4E7400541ED5 /* Path+Circle.swift */,
-				07C1F8611D0C4EA900541ED5 /* Path+Transform.swift */,
 				07C1F8641D0C513900541ED5 /* Path+Parallelogram.swift */,
-				07C1F8671D0C517400541ED5 /* Path+Arrow.swift */,
+				07C1F8671D0C517400541ED5 /* Path+Arrowhead.swift */,
 				07C1F86D1D0C53BF00541ED5 /* Degrees.swift */,
 				07C1F8701D0C53DB00541ED5 /* Radians.swift */,
 				07EC99221D0AF7C8002414A4 /* PathElement.swift */,
@@ -368,7 +368,7 @@
 				07C1F8601D0C4E7400541ED5 /* Path+Circle.swift in Sources */,
 				07C1F8631D0C4EA900541ED5 /* Path+Transform.swift in Sources */,
 				07EC99241D0AF7C8002414A4 /* PathElement.swift in Sources */,
-				07C1F8691D0C517400541ED5 /* Path+Arrow.swift in Sources */,
+				07C1F8691D0C517400541ED5 /* Path+Arrowhead.swift in Sources */,
 				07C1F86F1D0C53BF00541ED5 /* Degrees.swift in Sources */,
 				0765472D1D0C6E08008038B5 /* Path+Triangle.swift in Sources */,
 			);
@@ -386,7 +386,7 @@
 				07C1F85F1D0C4E7400541ED5 /* Path+Circle.swift in Sources */,
 				07C1F8621D0C4EA900541ED5 /* Path+Transform.swift in Sources */,
 				07EC99231D0AF7C8002414A4 /* PathElement.swift in Sources */,
-				07C1F8681D0C517400541ED5 /* Path+Arrow.swift in Sources */,
+				07C1F8681D0C517400541ED5 /* Path+Arrowhead.swift in Sources */,
 				07C1F86E1D0C53BF00541ED5 /* Degrees.swift in Sources */,
 				0765472C1D0C6E08008038B5 /* Path+Triangle.swift in Sources */,
 			);

@@ -10,6 +10,8 @@ import QuartzCore
 
 extension Path {
     
+    // MARK: - Parallelogram
+    
     /**
      - returns: `Path` with a slanted bar.
      

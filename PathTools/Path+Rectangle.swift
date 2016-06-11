@@ -10,6 +10,11 @@ import QuartzCore
 
 extension Path {
     
+    // MARK: - Rectangle
+    
+    /**
+     - returns: `Path` with a rectangle shape defined by `rectangle`.
+     */
     public static func rectangle(rectangle: CGRect) -> Path {
         return Path(
             [
