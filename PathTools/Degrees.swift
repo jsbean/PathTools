@@ -14,13 +14,13 @@ public typealias Degrees = CGFloat
 /**
  - TODO: Refactor as inits to and from degrees / radians
  */
-public func DEGREES_TO_RADIANS(degrees: CGFloat) -> CGFloat {
+internal func DEGREES_TO_RADIANS(degrees: CGFloat) -> CGFloat {
     return degrees / 180.0 * CGFloat(M_PI)
 }
 
 /**
  - TODO: Refactor as inits to and from degrees / radians
  */
-public func RADIANS_TO_DEGREES(radians: CGFloat) -> CGFloat {
+internal func RADIANS_TO_DEGREES(radians: CGFloat) -> CGFloat {
     return radians * (180.0 / CGFloat(M_PI))
 }
