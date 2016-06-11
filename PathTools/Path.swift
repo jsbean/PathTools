@@ -8,12 +8,11 @@
 
 import QuartzCore
 
-public struct Path {
+public final class Path {
     
     private var elements: [PathElement] = []
     
-    public var cgPath: CGMutablePathRef? {
-        
+    public lazy var cgPath: CGPath? = {
         let path = CGPathCreateMutable()
         for element in self.elements {
             switch element {
@@ -38,12 +37,18 @@ public struct Path {
                 CGPathCloseSubpath(path)
             }
         }
-        return path
-    }
+        return CGPathCreateCopy(path)
+    }()
     
+    /**
+     Create an empty `Path`.
+     */
     public init() { }
     
-    public init(_ cgPath: CGPath) {
+    /**
+     Create a `Path` with a `CGPath`.
+     */
+    public init(_ cgPath: CGPath?) {
         var pathElements: [PathElement] = []
         withUnsafeMutablePointer(&pathElements) { elementsPointer in
             CGPathApply(cgPath, elementsPointer) { (userInfo, nextElementPointer) in
@@ -52,6 +57,7 @@ public struct Path {
                 elementsPointer.memory.append(nextElement)
             }
         }
+        self.cgPath = cgPath
         self.elements = pathElements
     }
 
@@ -59,19 +65,19 @@ public struct Path {
         self.elements = elements
     }
     
-    public mutating func move(to point: CGPoint) {
+    public func move(to point: CGPoint) {
         elements.append(.move(point))
     }
     
-    public mutating func addLine(to point: CGPoint) {
+    public func addLine(to point: CGPoint) {
         elements.append(.line(point))
     }
     
-    public mutating func addQuadCurve(to point: CGPoint, controlPoint: CGPoint) {
+    public func addQuadCurve(to point: CGPoint, controlPoint: CGPoint) {
         elements.append(.quadCurve(point, controlPoint))
     }
     
-    public mutating func addCurve(
+    public func addCurve(
         to point: CGPoint,
         controlPoint1: CGPoint,
         controlPoint2: CGPoint
@@ -80,7 +86,7 @@ public struct Path {
         elements.append(.curve(point, controlPoint1, controlPoint2))
     }
     
-    public mutating func close() {
+    public func close() {
         elements.append(.close)
     }
 }

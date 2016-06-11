@@ -11,39 +11,42 @@ import QuartzCore
 extension Path {
     
     /**
-     - warning: Not yet implemented!
+     - returns: `Path` that is rotated by the given `degrees`.
      */
-    public func rotated(by degrees: CGFloat) -> Path {
-        fatalError()
-
-        //CGPathCreateCopyByTransformingPath(cgPath, <#T##transform: UnsafePointer<CGAffineTransform>##UnsafePointer<CGAffineTransform>#>)
-        
-        // use internal bounding box ?
-//        let bounds = CGPathGetBoundingBox(cgPath)
-//        let center = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds))
-//        let toOrigin = CGAffineTransformMakeTranslation(-center.x, -center.y)
-//        
-//        let rotation = CGAffineTransformMakeRotation(CGFloat(DEGREES_TO_RADIANS(degrees)))
-//        let fromOrigin = CGAffineTransformMakeTranslation(center.x, center.y)
-//        
-//
-//        self.applyTransform(toOrigin)
-//        self.applyTransform(rotation)
-//        self.applyTransform(fromOrigin)
+    public func rotated(by degrees: Degrees) -> Path {
+        let bounds = CGPathGetBoundingBox(cgPath)
+        let center = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds))
+        var transform = CGAffineTransformIdentity
+        transform = CGAffineTransformTranslate(transform, center.x, center.y)
+        transform = CGAffineTransformRotate(transform, DEGREES_TO_RADIANS(degrees))
+        transform = CGAffineTransformTranslate(transform, -center.x, -center.y)
+        return Path(CGPathCreateCopyByTransformingPath(cgPath, &transform)!)
     }
     
     /**
-     - warning: Not yet implemented!
+     - returns: `Path` that is scaled by the given `amount`.
      */
     public func scaled(by amount: CGFloat) -> Path {
-        fatalError()
+        var scale = CGAffineTransformMakeScale(amount, amount)
+        let beforeBounds = CGPathGetBoundingBox(cgPath)
+        let beforeCenter = CGPointMake(CGRectGetMidX(beforeBounds), CGRectGetMidY(beforeBounds))
+        let newPath = CGPathCreateCopyByTransformingPath(cgPath, &scale)
+        let afterBounds = CGPathGetBoundingBox(cgPath)
+        let afterCenter = CGPointMake(CGRectGetMidX(afterBounds), CGRectGetMidY(afterBounds))
+        let ΔY: CGFloat = -(afterCenter.y - beforeCenter.y)
+        let ΔX: CGFloat = -(afterCenter.x - beforeCenter.x)
+        var backToCenter = CGAffineTransformMakeTranslation(ΔX, ΔY)
+        return Path(CGPathCreateCopyByTransformingPath(newPath, &backToCenter))
     }
 
     /**
-     - warning: Not yet implemented!
+     - returns: `Path` that is mirrored over the y-axis.
      */
     public func mirroredVertical() -> Path {
-        fatalError()
+        var transform = CGAffineTransformIdentity
+        transform = CGAffineTransformMakeScale(-1, 1)
+        transform = CGAffineTransformMakeTranslation(CGPathGetBoundingBox(cgPath).width, 0)
+        return Path(CGPathCreateCopyByTransformingPath(cgPath, &transform))
     }
     
     /**

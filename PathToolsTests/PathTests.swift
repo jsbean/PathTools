@@ -16,13 +16,13 @@ class PathTests: XCTestCase {
     }
     
     func testMoveTo() {
-        var path = Path()
+        let path = Path()
         path.move(to: CGPointZero)
         XCTAssertEqual(path.count, 1)
     }
     
     func testMoveToLineTo() {
-        var path = Path()
+        let path = Path()
         path.move(to: CGPointZero)
         path.addLine(to: CGPointZero)
         XCTAssertEqual(path.count, 2)
@@ -37,6 +37,34 @@ class PathTests: XCTestCase {
         let rect = CGRect(origin: CGPointZero, size: CGSizeZero)
         let _ = Path.rectangle(rect)
     }
+    
+    func testPerformanceThousandsOfPathsFromCGPath() {
+        self.measureBlock {
+            (0 ..< 1000).forEach { _ in
+                let cgPath = CGPathCreateMutable()
+                CGPathAddRect(cgPath, nil, CGRect(x: 0, y: 0, width: 100, height: 100))
+                let _ = Path(cgPath)
+            }
+        }
+    }
+    
+    func testPerformanceScaled() {
+        self.measureBlock {
+            (0 ..< 1000).forEach { _ in
+                let path = Path.rectangle(CGRect(x: 0, y: 0, width: 100, height: 100))
+                let _ = path.scaled(by: 0.5)
+            }
+        }
+    }
+    
+//    func testPerformanceRotated() {
+//        self.measureBlock {
+//            (0 ..< 100_000).forEach { _ in
+//                let path = Path.rectangle(CGRect(x: 0, y: 0, width: 100, height: 100))
+//                let rotated = path.rotated(by: 180)
+//            }
+//        }
+//    }
     
 //    func testPerformanceThousandsCGPathRects() {
 //        self.measureBlock {
