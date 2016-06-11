@@ -10,6 +10,8 @@ import Foundation
 
 extension Path {
     
+    // MARK: - Triangle
+    
     /**
      - warning: Not yet implemented!
      */

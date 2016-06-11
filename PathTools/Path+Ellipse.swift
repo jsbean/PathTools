@@ -10,6 +10,8 @@ import QuartzCore
 
 extension Path {
     
+    // MARK: - Ellipse
+    
     /**
      - returns: `Path` with an ellipse shape within the given `rectangle`.
      */

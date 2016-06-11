@@ -10,6 +10,8 @@ import QuartzCore
 
 extension Path {
     
+    // MARK: - Circle
+    
     /**
      - returns: `Path` with a circle shape with the given `radius` and `center`.
      */

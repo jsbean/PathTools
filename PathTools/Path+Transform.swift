@@ -10,6 +10,8 @@ import QuartzCore
 
 extension Path {
     
+    // MARK: - Tranforms
+    
     /**
      - returns: `Path` that is rotated by the given `degrees`, around the given `point`. 
      If `point` is `nil`, the center of the the bounding box is chosen.
