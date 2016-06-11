@@ -7,3 +7,4 @@ Swift wrapper for CGPath for iOS and OSX graphics applications
 - [Bezier path approximation of circle](http://spencermortensen.com/articles/bezier-circle/)
 - [More bezier approximation of circle](http://math.stackexchange.com/questions/873224/calculate-control-points-of-cubic-bezier-curve-approximating-a-part-of-a-circle)
 - [comp.graphics faqs](http://apodeline.free.fr/FAQ/CGAFAQ/CGAFAQ.html)
+- [Bezier info](http://pomax.github.io/bezierinfo/)
