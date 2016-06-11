@@ -11,15 +11,19 @@ import QuartzCore
 extension Path {
     
     /**
-     - returns: `Path` that is rotated by the given `degrees`.
+     - returns: `Path` that is rotated by the given `degrees`, rotated around the given 
+     `point`. If `point` is `nil`, the center of the the bounding box is chosen.
      */
-    public func rotated(by degrees: Degrees) -> Path {
-        let bounds = CGPathGetBoundingBox(cgPath)
-        let center = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds))
+    public func rotated(by degrees: Degrees, around point: CGPoint? = nil) -> Path {
+        var pointRef: CGPoint {
+            if let point = point { return point }
+            let bounds = CGPathGetBoundingBox(cgPath)
+            return CGPoint(x: bounds.midX, y: bounds.midY)
+        }
         var transform = CGAffineTransformIdentity
-        transform = CGAffineTransformTranslate(transform, center.x, center.y)
+        transform = CGAffineTransformTranslate(transform, pointRef.x, pointRef.y)
         transform = CGAffineTransformRotate(transform, DEGREES_TO_RADIANS(degrees))
-        transform = CGAffineTransformTranslate(transform, -center.x, -center.y)
+        transform = CGAffineTransformTranslate(transform, -pointRef.x, -pointRef.y)
         return Path(CGPathCreateCopyByTransformingPath(cgPath, &transform)!)
     }
     

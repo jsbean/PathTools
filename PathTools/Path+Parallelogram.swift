@@ -13,6 +13,8 @@ extension Path {
     /**
      - returns: `Path` with a slanted bar.
      
+     - note: The sides are always vertical. independant of the slant.
+     
      - note: Useful for accidental components and system dividers.
      */
     public static func parallelogram(

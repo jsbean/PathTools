@@ -14,9 +14,22 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var rectanglePath = Path.rectangle(CGRect(x: 400, y: 400, width: 100, height: 100))
-        rectanglePath = rectanglePath.rotated(by: 45)
-        view.layer.addSublayer(shapeLayer(path: rectanglePath))
+        let rectanglePath = Path.rectangle(CGRect(x: 400, y: 400, width: 100, height: 100))
+        view.layer.addSublayer(
+            shapeLayer(path: rectanglePath, color: UIColor.redColor().CGColor)
+        )
+        
+        let centerRotatedRectanglePath = rectanglePath.rotated(by: 45)
+        view.layer.addSublayer(
+            shapeLayer(path: centerRotatedRectanglePath, color: UIColor.greenColor().CGColor)
+        )
+        
+        let topLeftRotatedRectanglePath = rectanglePath.rotated(by: 45,
+            around: CGPoint(x: 400, y: 400)
+        )
+        view.layer.addSublayer(
+            shapeLayer(path: topLeftRotatedRectanglePath, color: UIColor.blueColor().CGColor)
+        )
         
         let p = Path.parallelogram(
             center: CGPoint(x: 100, y: 100),
@@ -25,12 +38,17 @@ class ViewController: UIViewController {
             slope: 0.25
         )
         view.layer.addSublayer(shapeLayer(path: p))
+        
+        let arrowhead = Path.arrowhead()
+        view.layer.addSublayer(shapeLayer(path: arrowhead))
     }
     
-    func shapeLayer(path path: Path) -> CAShapeLayer {
+    func shapeLayer(path path: Path, color: CGColorRef = UIColor.blackColor().CGColor)
+        -> CAShapeLayer
+    {
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = path.cgPath
-        shapeLayer.fillColor = UIColor.blackColor().CGColor
+        shapeLayer.fillColor = color
         return shapeLayer
     }
 
