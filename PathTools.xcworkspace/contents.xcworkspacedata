@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:PathToolsDemo-OSX/PathToolsDemo-OSX.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:PathToolsDemo-iOS/PathToolsDemo-iOS.xcodeproj">
    </FileRef>
    <FileRef

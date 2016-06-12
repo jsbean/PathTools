@@ -1,0 +1,302 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		073BFBFC1D0D956700137563 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073BFBFB1D0D956700137563 /* AppDelegate.swift */; };
+		073BFBFE1D0D956700137563 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073BFBFD1D0D956700137563 /* ViewController.swift */; };
+		073BFC001D0D956700137563 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 073BFBFF1D0D956700137563 /* Assets.xcassets */; };
+		073BFC031D0D956700137563 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 073BFC011D0D956700137563 /* Main.storyboard */; };
+		073BFC0B1D0D95A000137563 /* PathTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 073BFC0A1D0D95A000137563 /* PathTools.framework */; };
+		073BFC0C1D0D95A000137563 /* PathTools.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 073BFC0A1D0D95A000137563 /* PathTools.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		073BFC0D1D0D95A000137563 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 8;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				073BFC0C1D0D95A000137563 /* PathTools.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		073BFBF81D0D956700137563 /* PathToolsDemo-OSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PathToolsDemo-OSX.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		073BFBFB1D0D956700137563 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		073BFBFD1D0D956700137563 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		073BFBFF1D0D956700137563 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		073BFC021D0D956700137563 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		073BFC041D0D956700137563 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		073BFC0A1D0D95A000137563 /* PathTools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = PathTools.framework; path = "/Users/BEAN/Library/Developer/Xcode/DerivedData/PathTools-exiptlsljlwrsydfktecjnuspwmo/Build/Products/Debug/PathTools.framework"; sourceTree = "<absolute>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		073BFBF51D0D956700137563 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				073BFC0B1D0D95A000137563 /* PathTools.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		073BFBEF1D0D956700137563 = {
+			isa = PBXGroup;
+			children = (
+				073BFC0A1D0D95A000137563 /* PathTools.framework */,
+				073BFBFA1D0D956700137563 /* PathToolsDemo-OSX */,
+				073BFBF91D0D956700137563 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		073BFBF91D0D956700137563 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				073BFBF81D0D956700137563 /* PathToolsDemo-OSX.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		073BFBFA1D0D956700137563 /* PathToolsDemo-OSX */ = {
+			isa = PBXGroup;
+			children = (
+				073BFBFB1D0D956700137563 /* AppDelegate.swift */,
+				073BFBFD1D0D956700137563 /* ViewController.swift */,
+				073BFBFF1D0D956700137563 /* Assets.xcassets */,
+				073BFC011D0D956700137563 /* Main.storyboard */,
+				073BFC041D0D956700137563 /* Info.plist */,
+			);
+			path = "PathToolsDemo-OSX";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		073BFBF71D0D956700137563 /* PathToolsDemo-OSX */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 073BFC071D0D956700137563 /* Build configuration list for PBXNativeTarget "PathToolsDemo-OSX" */;
+			buildPhases = (
+				073BFBF41D0D956700137563 /* Sources */,
+				073BFBF51D0D956700137563 /* Frameworks */,
+				073BFBF61D0D956700137563 /* Resources */,
+				073BFC0D1D0D95A000137563 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "PathToolsDemo-OSX";
+			productName = "PathToolsDemo-OSX";
+			productReference = 073BFBF81D0D956700137563 /* PathToolsDemo-OSX.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		073BFBF01D0D956700137563 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "James Bean";
+				TargetAttributes = {
+					073BFBF71D0D956700137563 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 073BFBF31D0D956700137563 /* Build configuration list for PBXProject "PathToolsDemo-OSX" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 073BFBEF1D0D956700137563;
+			productRefGroup = 073BFBF91D0D956700137563 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				073BFBF71D0D956700137563 /* PathToolsDemo-OSX */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		073BFBF61D0D956700137563 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				073BFC001D0D956700137563 /* Assets.xcassets in Resources */,
+				073BFC031D0D956700137563 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		073BFBF41D0D956700137563 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				073BFBFE1D0D956700137563 /* ViewController.swift in Sources */,
+				073BFBFC1D0D956700137563 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		073BFC011D0D956700137563 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				073BFC021D0D956700137563 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		073BFC051D0D956700137563 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		073BFC061D0D956700137563 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		073BFC081D0D956700137563 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "PathToolsDemo-OSX/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bean.PathToolsDemo-OSX";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		073BFC091D0D956700137563 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "PathToolsDemo-OSX/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bean.PathToolsDemo-OSX";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		073BFBF31D0D956700137563 /* Build configuration list for PBXProject "PathToolsDemo-OSX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				073BFC051D0D956700137563 /* Debug */,
+				073BFC061D0D956700137563 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		073BFC071D0D956700137563 /* Build configuration list for PBXNativeTarget "PathToolsDemo-OSX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				073BFC081D0D956700137563 /* Debug */,
+				073BFC091D0D956700137563 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 073BFBF01D0D956700137563 /* Project object */;
+}
