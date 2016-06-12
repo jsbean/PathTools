@@ -35,7 +35,19 @@ class PathTests: XCTestCase {
     
     func testInitWithCGRect() {
         let rect = CGRect(origin: CGPointZero, size: CGSizeZero)
-        let _ = Path.rectangle(rect)
+        let _ = Path.rectangle(rectangle: rect)
+    }
+    
+    func testFluentInterface() {
+        let _ = Path()
+            .move(to: CGPoint.zero)
+            .addLine(to: CGPoint.zero)
+            .addQuadCurve(to: CGPoint.zero, controlPoint: CGPoint.zero)
+            .addCurve(
+                to: CGPoint.zero,
+                controlPoint1: CGPoint.zero,
+                controlPoint2: CGPoint.zero
+            )
     }
     
     func testPerformanceThousandsOfPathsFromCGPath() {
@@ -51,7 +63,7 @@ class PathTests: XCTestCase {
     func testPerformanceScaled() {
         self.measureBlock {
             (0 ..< 1000).forEach { _ in
-                let path = Path.rectangle(CGRect(x: 0, y: 0, width: 100, height: 100))
+                let path = Path.rectangle(rectangle: CGRect(x: 0, y: 0, width: 100, height: 100))
                 let _ = path.scaled(by: 0.5)
             }
         }
