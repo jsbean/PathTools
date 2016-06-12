@@ -50,6 +50,22 @@ class PathTests: XCTestCase {
             )
     }
     
+    func testPerformanceFluentInterface() {
+        self.measureBlock {
+            (0 ..< 1000).forEach { _ in
+                let _ = Path()
+                    .move(to: CGPoint.zero)
+                    .addLine(to: CGPoint.zero)
+                    .addQuadCurve(to: CGPoint.zero, controlPoint: CGPoint.zero)
+                    .addCurve(
+                        to: CGPoint.zero,
+                        controlPoint1: CGPoint.zero,
+                        controlPoint2: CGPoint.zero
+                )
+            }
+        }
+    }
+    
     func testPerformanceThousandsOfPathsFromCGPath() {
         self.measureBlock {
             (0 ..< 1000).forEach { _ in
