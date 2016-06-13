@@ -16,15 +16,21 @@ class ViewController: UIViewController {
         
         let square = Path.rectangle(rectangle: CGRect(x: 50, y: 100, width: 100, height: 100))
         let rect = Path.rectangle(rectangle: CGRect(x: 200, y: 100, width: 200, height: 100))
-        let circle = Path.circle(center: CGPoint(x: 500, y: 150), radius: 50)
-        let ellipse = Path.ellipse(rectangle: CGRect(x: 600, y: 100, width: 200, height: 100))
         
-        let shapes = [square, rect, circle, ellipse]
+        square.append(rect)
         
-        shapes.forEach { view.layer.addSublayer(shapeLayer(path: $0)) }
-        shapes.map { $0.rotated(by: 45) }
-            .map { $0.translated(verticallyBy: 200) }
-            .forEach { view.layer.addSublayer(shapeLayer(path: $0)) }
+        view.layer.addSublayer(shapeLayer(path: square))
+        
+        
+//        let circle = Path.circle(center: CGPoint(x: 500, y: 150), radius: 50)
+//        let ellipse = Path.ellipse(rectangle: CGRect(x: 600, y: 100, width: 200, height: 100))
+//        
+//        let shapes = [square, rect, circle, ellipse]
+//        
+//        shapes.forEach { view.layer.addSublayer(shapeLayer(path: $0)) }
+//        shapes.map { $0.rotated(by: 45) }
+//            .map { $0.translated(verticallyBy: 200) }
+//            .forEach { view.layer.addSublayer(shapeLayer(path: $0)) }
     }
     
     func shapeLayer(path path: Path, color: CGColorRef = UIColor.blackColor().CGColor)

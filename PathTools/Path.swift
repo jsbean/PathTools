@@ -89,6 +89,8 @@ public final class Path {
     
     /**
      Move to `point`.
+     
+     - returns: `self`.
      */
     public func move(to point: CGPoint) -> Path {
         elements.append(.move(point))
@@ -97,6 +99,8 @@ public final class Path {
     
     /**
      Add line to `point`.
+     
+     - returns: `self`.
      */
     public func addLine(to point: CGPoint) -> Path {
         elements.append(.line(point))
@@ -105,6 +109,8 @@ public final class Path {
     
     /**
      Add curve to `point`, with a single control point.
+     
+     - returns: `self`.
      */
     public func addQuadCurve(to point: CGPoint, controlPoint: CGPoint) -> Path {
         elements.append(.quadCurve(point, controlPoint))
@@ -113,6 +119,8 @@ public final class Path {
     
     /**
      Add curve to `point`, with two control points.
+     
+     - returns: `self`.
      */
     public func addCurve(
         to point: CGPoint,
@@ -126,11 +134,32 @@ public final class Path {
     
     /**
      Close path.
+     
+     - returns: `self`.
      */
     public func close() -> Path {
         elements.append(.close)
         return self
     }
+    
+    /**
+     Append the elements of another `Path` to this one.
+     
+     - parameter path: <#path description#>
+     
+     - returns: `self`.
+     */
+    public func append(path: Path) -> Path {
+        elements.appendContentsOf(path.elements)
+        return self
+    }
+}
+
+/**
+ - returns: `Path` with elements of two paths.
+ */
+public func + (lhs: Path, rhs: Path) -> Path {
+    return Path(lhs.elements + rhs.elements)
 }
 
 extension Path: CollectionType {
