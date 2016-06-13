@@ -16,14 +16,11 @@ extension Path {
      - returns: `Path` with a rectangle shape defined by `rectangle`.
      */
     public static func rectangle(rectangle rectangle: CGRect) -> Path {
-        return Path(
-            [
-                .move(rectangle.origin),
-                .line(CGPoint(x: rectangle.maxX, y: rectangle.minY)),
-                .line(CGPoint(x: rectangle.maxX, y: rectangle.maxY)),
-                .line(CGPoint(x: rectangle.minX, y: rectangle.maxY)),
-                .close
-            ]
-        )
+        return Path()
+            .move(to: rectangle.origin)
+            .addLine(to: CGPoint(x: rectangle.maxX, y: rectangle.minY))
+            .addLine(to: CGPoint(x: rectangle.maxX, y: rectangle.maxY))
+            .addLine(to: CGPoint(x: rectangle.minX, y: rectangle.maxY))
+            .close()
     }
 }
