@@ -27,7 +27,7 @@ public final class Path {
     
      > Use this as the `path` property for a `CAShapeLayer`.
     */
-    public lazy var cgPath: CGPath? = {
+    public lazy var cgPath: CGPath = {
         let path = CGPathCreateMutable()
         for element in self.elements {
             switch element {
@@ -52,7 +52,7 @@ public final class Path {
                 CGPathCloseSubpath(path)
             }
         }
-        return CGPathCreateCopy(path)
+        return CGPathCreateCopy(path)!
     }()
     
     // MARK: - Initializers
@@ -74,7 +74,7 @@ public final class Path {
                 elementsPointer.memory.append(nextElement)
             }
         }
-        self.cgPath = cgPath
+        self.cgPath = cgPath!
         self.elements = pathElements
     }
 
@@ -144,9 +144,6 @@ public final class Path {
     
     /**
      Append the elements of another `Path` to this one.
-     
-     - parameter path: <#path description#>
-     
      - returns: `self`.
      */
     public func append(path: Path) -> Path {
@@ -156,7 +153,7 @@ public final class Path {
 }
 
 /**
- - returns: `Path` with elements of two paths.
+ - returns: New `Path` with elements of two paths.
  */
 public func + (lhs: Path, rhs: Path) -> Path {
     return Path(lhs.elements + rhs.elements)
