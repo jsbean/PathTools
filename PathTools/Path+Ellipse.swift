@@ -15,8 +15,8 @@ extension Path {
     /**
      - returns: `Path` with an ellipse shape within the given `rectangle`.
      */
-    public static func ellipse(rectangle rectangle: CGRect) -> Path {
-        return Path(CGPathCreateWithEllipseInRect(rectangle, nil))
+    public static func ellipse(rectangle: CGRect) -> Path {
+        return Path(CGPath(ellipseIn: rectangle, transform: nil))
     }
     
     // TODO: static func ellipse(center, width, height) -> Path

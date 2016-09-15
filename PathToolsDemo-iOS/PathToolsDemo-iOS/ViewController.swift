@@ -33,14 +33,14 @@ class ViewController: UIViewController {
 //            .forEach { view.layer.addSublayer(shapeLayer(path: $0)) }
     }
     
-    func shapeLayer(path path: Path, color: CGColorRef = UIColor.blackColor().CGColor)
+    func shapeLayer(path: Path, color: CGColor = UIColor.black.cgColor)
         -> CAShapeLayer
     {
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = path.cgPath
         shapeLayer.lineWidth = 1
-        shapeLayer.strokeColor = UIColor.darkGrayColor().CGColor
-        shapeLayer.fillColor = UIColor.lightGrayColor().CGColor
+        shapeLayer.strokeColor = UIColor.darkGray.cgColor
+        shapeLayer.fillColor = UIColor.lightGray.cgColor
         return shapeLayer
     }
 

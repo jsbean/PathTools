@@ -16,7 +16,7 @@ extension Path {
      - warning: Not yet fully implemented!
      */
     public static func arrowhead(
-        tip tip: CGPoint = CGPointZero,
+        tip: CGPoint = CGPoint.zero,
         height: CGFloat = 100,
         width: CGFloat = 25,
         barbProportion: CGFloat = 0.25,

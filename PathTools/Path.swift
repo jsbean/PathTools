@@ -18,7 +18,7 @@ import QuartzCore
  */
 public final class Path {
     
-    private var elements: [PathElement] = []
+    fileprivate var elements: [PathElement] = []
     
     // MARK: - Instance Properties
     
@@ -28,31 +28,22 @@ public final class Path {
      > Use this as the `path` property for a `CAShapeLayer`.
     */
     public lazy var cgPath: CGPath = {
-        let path = CGPathCreateMutable()
+        let path = CGMutablePath()
         for element in self.elements {
             switch element {
             case .move(let point):
-                CGPathMoveToPoint(path, nil, point.x, point.y)
+                path.move(to: point)
             case .line(let point):
-                CGPathAddLineToPoint(path, nil, point.x, point.y)
+                path.addLine(to: point)
             case .quadCurve(let point, let controlPoint):
-                CGPathAddQuadCurveToPoint(
-                    path, nil,
-                    controlPoint.x, controlPoint.y,
-                    point.x, point.y
-                )
+                path.addQuadCurve(to: point, control: controlPoint)
             case .curve(let point, let controlPoint1, let controlPoint2):
-                CGPathAddCurveToPoint(
-                    path, nil,
-                    controlPoint1.x, controlPoint1.y,
-                    controlPoint2.x, controlPoint2.y,
-                    point.x, point.y
-                )
+                path.addCurve(to: point, control1: controlPoint1, control2: controlPoint2)
             case .close:
-                CGPathCloseSubpath(path)
+                path.closeSubpath()
             }
         }
-        return CGPathCreateCopy(path)!
+        return path.copy()!
     }()
     
     // MARK: - Initializers
@@ -67,11 +58,11 @@ public final class Path {
      */
     public init(_ cgPath: CGPath?) {
         var pathElements: [PathElement] = []
-        withUnsafeMutablePointer(&pathElements) { elementsPointer in
-            CGPathApply(cgPath, elementsPointer) { (userInfo, nextElementPointer) in
-                let nextElement = PathElement(element: nextElementPointer.memory)
-                let elementsPointer = UnsafeMutablePointer<[PathElement]>(userInfo)
-                elementsPointer.memory.append(nextElement)
+        withUnsafeMutablePointer(to: &pathElements) { elementsPointer in
+            cgPath?.apply(info: elementsPointer) { (userInfo, nextElementPointer) in
+                let nextElement = PathElement(element: nextElementPointer.pointee)
+                let elementsPointer = userInfo!.assumingMemoryBound(to: [PathElement].self)
+                elementsPointer.pointee.append(nextElement)
             }
         }
         self.cgPath = cgPath!
@@ -146,8 +137,8 @@ public final class Path {
      Append the elements of another `Path` to this one.
      - returns: `self`.
      */
-    public func append(path: Path) -> Path {
-        elements.appendContentsOf(path.elements)
+    public func append(_ path: Path) -> Path {
+        elements.append(contentsOf: path.elements)
         return self
     }
 }
@@ -159,24 +150,29 @@ public func + (lhs: Path, rhs: Path) -> Path {
     return Path(lhs.elements + rhs.elements)
 }
 
-extension Path: CollectionType {
+extension Path: Collection {
     
     // MARK: - CollectionType
     
     public var startIndex: Int { return 0 }
     public var endIndex: Int { return elements.count }
     
+    public func index(after i: Int) -> Int {
+        guard i != endIndex else { fatalError("Cannot increment endIndex") }
+        return i + 1
+    }
+    
     public subscript(index: Int) -> PathElement {
         return elements[index]
     }
 }
 
-extension Path: SequenceType {
+extension Path: Sequence {
     
     // MARK: - SequenceType
     
-    public func generate() -> AnyGenerator<PathElement> {
-        var generator = elements.generate()
-        return AnyGenerator { generator.next() }
+    public func makeIterator() -> AnyIterator<PathElement> {
+        var generator = elements.makeIterator()
+        return AnyIterator { generator.next() }
     }
 }

@@ -43,15 +43,15 @@ public enum PathElement {
      */
     public init(element: CGPathElement) {
         switch element.type {
-        case .MoveToPoint:
+        case .moveToPoint:
             self = .move(element.points[0])
-        case .AddLineToPoint:
+        case .addLineToPoint:
             self = .line(element.points[0])
-        case .AddQuadCurveToPoint:
+        case .addQuadCurveToPoint:
             self = .quadCurve(element.points[0], element.points[1])
-        case .AddCurveToPoint:
+        case .addCurveToPoint:
             self = .curve(element.points[0], element.points[1], element.points[2])
-        case .CloseSubpath:
+        case .closeSubpath:
             self = .close
         }
     }

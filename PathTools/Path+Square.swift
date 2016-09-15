@@ -12,7 +12,7 @@ extension Path {
     
     // MARK: - Square
     
-    public static func square(center center: CGPoint, width: CGFloat) -> Path {
+    public static func square(center: CGPoint, width: CGFloat) -> Path {
         let origin = CGPoint(x: center.x - 0.5 * width, y: center.y - 0.5 * width)
         return Path()
             .move(to: origin)

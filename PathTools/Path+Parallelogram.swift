@@ -20,7 +20,7 @@ extension Path {
      - note: Useful for accidental components and system dividers.
      */
     public static func parallelogram(
-        center center: CGPoint,
+        center: CGPoint,
         height: CGFloat,
         width: CGFloat,
         slope: CGFloat
@@ -37,10 +37,10 @@ extension Path {
         
         return Path(
              [
-                .move(CGPointMake(left, y_topLeft)),
-                .line(CGPointMake(right, y_topRight)),
-                .line(CGPointMake(right, y_bottomRight)),
-                .line(CGPointMake(left, y_bottomLeft)),
+                .move(CGPoint(x: left, y: y_topLeft)),
+                .line(CGPoint(x: right, y: y_topRight)),
+                .line(CGPoint(x: right, y: y_bottomRight)),
+                .line(CGPoint(x: left, y: y_bottomLeft)),
                 .close
             ]
         )
