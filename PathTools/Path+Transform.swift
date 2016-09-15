@@ -19,30 +19,30 @@ extension Path {
     public func rotated(by degrees: Degrees, around point: CGPoint? = nil) -> Path {
         var pointRef: CGPoint {
             if let point = point { return point }
-            let bounds = CGPathGetBoundingBox(cgPath)
+            let bounds = cgPath.boundingBox
             return CGPoint(x: bounds.midX, y: bounds.midY)
         }
-        var transform = CGAffineTransformIdentity
-        transform = CGAffineTransformTranslate(transform, pointRef.x, pointRef.y)
-        transform = CGAffineTransformRotate(transform, DEGREES_TO_RADIANS(degrees))
-        transform = CGAffineTransformTranslate(transform, -pointRef.x, -pointRef.y)
-        return Path(CGPathCreateCopyByTransformingPath(cgPath, &transform)!)
+        var transform = CGAffineTransform.identity
+        transform = transform.translatedBy(x: pointRef.x, y: pointRef.y)
+        transform = transform.rotated(by: DEGREES_TO_RADIANS(degrees))
+        transform = transform.translatedBy(x: -pointRef.x, y: -pointRef.y)
+        return Path(cgPath.copy(using: &transform)!)
     }
     
     /**
      - returns: `Path` that is scaled by the given `amount`.
      */
     public func scaled(by amount: CGFloat) -> Path {
-        var scale = CGAffineTransformMakeScale(amount, amount)
-        let beforeBounds = CGPathGetBoundingBox(cgPath)
-        let beforeCenter = CGPointMake(CGRectGetMidX(beforeBounds), CGRectGetMidY(beforeBounds))
-        let newPath = CGPathCreateCopyByTransformingPath(cgPath, &scale)
-        let afterBounds = CGPathGetBoundingBox(cgPath)
-        let afterCenter = CGPointMake(CGRectGetMidX(afterBounds), CGRectGetMidY(afterBounds))
+        var scale = CGAffineTransform(scaleX: amount, y: amount)
+        let beforeBounds = cgPath.boundingBox
+        let beforeCenter = CGPoint(x: beforeBounds.midX, y: beforeBounds.midY)
+        let newPath = cgPath.copy(using: &scale)
+        let afterBounds = cgPath.boundingBox
+        let afterCenter = CGPoint(x: afterBounds.midX, y: afterBounds.midY)
         let ΔY: CGFloat = -(afterCenter.y - beforeCenter.y)
         let ΔX: CGFloat = -(afterCenter.x - beforeCenter.x)
-        var backToCenter = CGAffineTransformMakeTranslation(ΔX, ΔY)
-        return Path(CGPathCreateCopyByTransformingPath(newPath, &backToCenter))
+        var backToCenter = CGAffineTransform(translationX: ΔX, y: ΔY)
+        return Path(newPath!.copy(using: &backToCenter))
     }
     
     /**
@@ -51,19 +51,19 @@ extension Path {
     public func translated(horizontallyBy tx: CGFloat = 0, verticallyBy ty: CGFloat = 0)
         -> Path
     {
-        var transform = CGAffineTransformIdentity
-        transform = CGAffineTransformTranslate(transform, tx, ty)
-        return Path(CGPathCreateCopyByTransformingPath(cgPath, &transform))
+        var transform = CGAffineTransform.identity
+        transform = transform.translatedBy(x: tx, y: ty)
+        return Path(cgPath.copy(using: &transform))
     }
 
     /**
      - returns: `Path` that is mirrored over the y-axis.
      */
     public func mirroredVertical() -> Path {
-        var transform = CGAffineTransformIdentity
-        transform = CGAffineTransformMakeScale(-1, 1)
-        transform = CGAffineTransformMakeTranslation(CGPathGetBoundingBox(cgPath).width, 0)
-        return Path(CGPathCreateCopyByTransformingPath(cgPath, &transform))
+        var transform = CGAffineTransform.identity
+        transform = CGAffineTransform(scaleX: -1, y: 1)
+        transform = CGAffineTransform(translationX: cgPath.boundingBox.width, y: 0)
+        return Path(cgPath.copy(using: &transform))
     }
     
     /**

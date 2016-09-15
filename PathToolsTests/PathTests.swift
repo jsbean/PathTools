@@ -17,14 +17,14 @@ class PathTests: XCTestCase {
     
     func testMoveTo() {
         let path = Path()
-        path.move(to: CGPointZero)
+        path.move(to: CGPoint.zero)
         XCTAssertEqual(path.count, 1)
     }
     
     func testMoveToLineTo() {
         let path = Path()
-        path.move(to: CGPointZero)
-        path.addLine(to: CGPointZero)
+        path.move(to: CGPoint.zero)
+        path.addLine(to: CGPoint.zero)
         XCTAssertEqual(path.count, 2)
     }
     
@@ -34,7 +34,7 @@ class PathTests: XCTestCase {
     }
     
     func testInitWithCGRect() {
-        let rect = CGRect(origin: CGPointZero, size: CGSizeZero)
+        let rect = CGRect(origin: CGPoint.zero, size: CGSize.zero)
         let _ = Path.rectangle(rectangle: rect)
     }
     
@@ -51,7 +51,7 @@ class PathTests: XCTestCase {
     }
     
     func testPerformanceFluentInterface() {
-        self.measureBlock {
+        self.measure {
             (0 ..< 1000).forEach { _ in
                 let _ = Path()
                     .move(to: CGPoint.zero)
@@ -67,17 +67,17 @@ class PathTests: XCTestCase {
     }
     
     func testPerformanceThousandsOfPathsFromCGPath() {
-        self.measureBlock {
+        self.measure {
             (0 ..< 1000).forEach { _ in
-                let cgPath = CGPathCreateMutable()
-                CGPathAddRect(cgPath, nil, CGRect(x: 0, y: 0, width: 100, height: 100))
+                let cgPath = CGMutablePath()
+                cgPath.addRect(CGRect(x: 0, y: 0, width: 100, height: 100))
                 let _ = Path(cgPath)
             }
         }
     }
     
     func testPerformanceScaled() {
-        self.measureBlock {
+        self.measure {
             (0 ..< 1000).forEach { _ in
                 let path = Path.rectangle(rectangle: CGRect(x: 0, y: 0, width: 100, height: 100))
                 let _ = path.scaled(by: 0.5)
