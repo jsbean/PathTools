@@ -17,14 +17,14 @@ class PathTests: XCTestCase {
     
     func testMoveTo() {
         let path = Path()
-        path.move(to: CGPoint.zero)
+            .move(to: CGPoint.zero)
         XCTAssertEqual(path.count, 1)
     }
     
     func testMoveToLineTo() {
         let path = Path()
-        path.move(to: CGPoint.zero)
-        path.addLine(to: CGPoint.zero)
+            .move(to: CGPoint.zero)
+            .addLine(to: CGPoint.zero)
         XCTAssertEqual(path.count, 2)
     }
     
