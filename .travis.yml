@@ -1,10 +1,12 @@
 language: objective-c
-osx_image: xcode7.3
-xcode_project: PathTools.xcodeproj
-xcode_scheme: PathToolsMac
-xcode_sdk: macosx10.9
-before_script:
-	- carthage bootstrap
+osx_image: xcode8
+env:
+  matrix:
+    - DESTINATION="platform=iOS Simulator,OS=10.0,name=iPad Pro (12.9 inch)"
+
+before_script: carthage update
+
+script: xcodebuild test -project PathTools.xcodeproj -scheme PathTools -destination "${DESTINATION}" TOOLCHAINS=swift
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
