@@ -5,3 +5,6 @@ xcode_scheme: PathToolsMac
 xcode_sdk: macosx10.9
 before_script:
 	- carthage bootstrap
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
