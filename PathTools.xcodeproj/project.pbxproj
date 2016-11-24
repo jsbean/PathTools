@@ -13,6 +13,14 @@
 		07305A351D0F3F7F006E4085 /* Path+Square.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07305A331D0F3F7F006E4085 /* Path+Square.swift */; };
 		0765472F1D0C861C008038B5 /* Path+Ellipse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0765472E1D0C861C008038B5 /* Path+Ellipse.swift */; };
 		076547301D0C861C008038B5 /* Path+Ellipse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0765472E1D0C861C008038B5 /* Path+Ellipse.swift */; };
+		078590421DE7624300FF1645 /* BezierCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078590411DE7624300FF1645 /* BezierCurve.swift */; };
+		078590431DE7624300FF1645 /* BezierCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078590411DE7624300FF1645 /* BezierCurve.swift */; };
+		078590451DE7625D00FF1645 /* LinearBezierCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078590441DE7625D00FF1645 /* LinearBezierCurve.swift */; };
+		078590461DE7625D00FF1645 /* LinearBezierCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078590441DE7625D00FF1645 /* LinearBezierCurve.swift */; };
+		078590481DE7626A00FF1645 /* QuadraticBezierCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078590471DE7626A00FF1645 /* QuadraticBezierCurve.swift */; };
+		078590491DE7626A00FF1645 /* QuadraticBezierCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078590471DE7626A00FF1645 /* QuadraticBezierCurve.swift */; };
+		0785904B1DE7627800FF1645 /* CubicBezierCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0785904A1DE7627800FF1645 /* CubicBezierCurve.swift */; };
+		0785904C1DE7627800FF1645 /* CubicBezierCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0785904A1DE7627800FF1645 /* CubicBezierCurve.swift */; };
 		07C1F85C1D0C4E2800541ED5 /* Path+Rectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C1F85B1D0C4E2800541ED5 /* Path+Rectangle.swift */; };
 		07C1F85D1D0C4E2800541ED5 /* Path+Rectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C1F85B1D0C4E2800541ED5 /* Path+Rectangle.swift */; };
 		07C1F85F1D0C4E7400541ED5 /* Path+Circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C1F85E1D0C4E7400541ED5 /* Path+Circle.swift */; };
@@ -87,6 +95,10 @@
 		07088AC41D0AE8A600004FB2 /* Path.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Path.swift; path = PathTools/Path.swift; sourceTree = "<group>"; };
 		07305A331D0F3F7F006E4085 /* Path+Square.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Path+Square.swift"; path = "PathTools/Path+Square.swift"; sourceTree = "<group>"; };
 		0765472E1D0C861C008038B5 /* Path+Ellipse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Path+Ellipse.swift"; path = "PathTools/Path+Ellipse.swift"; sourceTree = "<group>"; };
+		078590411DE7624300FF1645 /* BezierCurve.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BezierCurve.swift; path = PathTools/BezierCurve.swift; sourceTree = "<group>"; };
+		078590441DE7625D00FF1645 /* LinearBezierCurve.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LinearBezierCurve.swift; path = PathTools/LinearBezierCurve.swift; sourceTree = "<group>"; };
+		078590471DE7626A00FF1645 /* QuadraticBezierCurve.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuadraticBezierCurve.swift; path = PathTools/QuadraticBezierCurve.swift; sourceTree = "<group>"; };
+		0785904A1DE7627800FF1645 /* CubicBezierCurve.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CubicBezierCurve.swift; path = PathTools/CubicBezierCurve.swift; sourceTree = "<group>"; };
 		07C1F85B1D0C4E2800541ED5 /* Path+Rectangle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Path+Rectangle.swift"; path = "PathTools/Path+Rectangle.swift"; sourceTree = "<group>"; };
 		07C1F85E1D0C4E7400541ED5 /* Path+Circle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Path+Circle.swift"; path = "PathTools/Path+Circle.swift"; sourceTree = "<group>"; };
 		07C1F8611D0C4EA900541ED5 /* Path+Transform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Path+Transform.swift"; path = "PathTools/Path+Transform.swift"; sourceTree = "<group>"; };
@@ -146,6 +158,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		078590401DE761D100FF1645 /* BezierCurve */ = {
+			isa = PBXGroup;
+			children = (
+				078590411DE7624300FF1645 /* BezierCurve.swift */,
+				078590441DE7625D00FF1645 /* LinearBezierCurve.swift */,
+				078590471DE7626A00FF1645 /* QuadraticBezierCurve.swift */,
+				0785904A1DE7627800FF1645 /* CubicBezierCurve.swift */,
+			);
+			name = BezierCurve;
+			sourceTree = "<group>";
+		};
 		133469E3C4CD1699B566343A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -166,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				23D4DDB9DE2A8A418DC2235A /* Supporting Files */,
+				078590401DE761D100FF1645 /* BezierCurve */,
 				07088AC41D0AE8A600004FB2 /* Path.swift */,
 				07305A331D0F3F7F006E4085 /* Path+Square.swift */,
 				07C1F8611D0C4EA900541ED5 /* Path+Transform.swift */,
@@ -370,6 +394,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07C1F8721D0C53DB00541ED5 /* Radians.swift in Sources */,
+				078590431DE7624300FF1645 /* BezierCurve.swift in Sources */,
 				07C1F86C1D0C537300541ED5 /* Path+BoundingBox.swift in Sources */,
 				07C1F8661D0C513900541ED5 /* Path+Parallelogram.swift in Sources */,
 				076547301D0C861C008038B5 /* Path+Ellipse.swift in Sources */,
@@ -377,8 +402,11 @@
 				07088AC61D0AE8A600004FB2 /* Path.swift in Sources */,
 				07C1F85D1D0C4E2800541ED5 /* Path+Rectangle.swift in Sources */,
 				07C1F8601D0C4E7400541ED5 /* Path+Circle.swift in Sources */,
+				078590461DE7625D00FF1645 /* LinearBezierCurve.swift in Sources */,
 				07C1F8631D0C4EA900541ED5 /* Path+Transform.swift in Sources */,
 				07EC99241D0AF7C8002414A4 /* PathElement.swift in Sources */,
+				078590491DE7626A00FF1645 /* QuadraticBezierCurve.swift in Sources */,
+				0785904C1DE7627800FF1645 /* CubicBezierCurve.swift in Sources */,
 				07C1F8691D0C517400541ED5 /* Path+Arrowhead.swift in Sources */,
 				07C1F86F1D0C53BF00541ED5 /* Degrees.swift in Sources */,
 			);
@@ -389,6 +417,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07C1F8711D0C53DB00541ED5 /* Radians.swift in Sources */,
+				078590421DE7624300FF1645 /* BezierCurve.swift in Sources */,
 				07C1F86B1D0C537300541ED5 /* Path+BoundingBox.swift in Sources */,
 				07C1F8651D0C513900541ED5 /* Path+Parallelogram.swift in Sources */,
 				0765472F1D0C861C008038B5 /* Path+Ellipse.swift in Sources */,
@@ -396,8 +425,11 @@
 				07088AC51D0AE8A600004FB2 /* Path.swift in Sources */,
 				07C1F85C1D0C4E2800541ED5 /* Path+Rectangle.swift in Sources */,
 				07C1F85F1D0C4E7400541ED5 /* Path+Circle.swift in Sources */,
+				078590451DE7625D00FF1645 /* LinearBezierCurve.swift in Sources */,
 				07C1F8621D0C4EA900541ED5 /* Path+Transform.swift in Sources */,
 				07EC99231D0AF7C8002414A4 /* PathElement.swift in Sources */,
+				078590481DE7626A00FF1645 /* QuadraticBezierCurve.swift in Sources */,
+				0785904B1DE7627800FF1645 /* CubicBezierCurve.swift in Sources */,
 				07C1F8681D0C517400541ED5 /* Path+Arrowhead.swift in Sources */,
 				07C1F86E1D0C53BF00541ED5 /* Degrees.swift in Sources */,
 			);
