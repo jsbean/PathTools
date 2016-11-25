@@ -20,10 +20,10 @@ public struct LinearBezierCurve: BezierCurve {
     }
     
     public func ys(x: CGFloat) -> Set<CGFloat> {
+        let verticalOffset = start.y
+        let height = end.y - start.y
         let horizontalOffset = x - start.x
         let width = end.x - start.x
-        let height = end.y - start.y
-        let verticalOffset = start.y
         let y = verticalOffset + (horizontalOffset / width) * height
         return Set([y])
     }
