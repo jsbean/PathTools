@@ -43,12 +43,16 @@
 		07EC99271D0AFC54002414A4 /* PathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07EC99251D0AFC54002414A4 /* PathTests.swift */; };
 		0C658A9BF1FB93E239D1D3C9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CF6FFE527F83C6942F370B0 /* Cocoa.framework */; };
 		0F5759CEB84BF2765A7539BF /* PathTools.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = EB8A2302ABFAC822A9897B24 /* PathTools.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		125DBE391C5E58D93BC015FB /* ArithmeticTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A967E7C09032FD6CBF0DA0A2 /* ArithmeticTools.framework */; };
 		17E1F7E25A1D41C35CEB4F78 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67E28496AB556DE9D0554A97 /* Foundation.framework */; };
 		3E2C797DB6498B50F9CB5FBB /* PathTools.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DD49210EE192148DBAB072B /* PathTools.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		434F7E8DBDF0241345880C70 /* PathTools.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4E2D3F085ABD47319CBD9E9B /* PathTools.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		8EACE836FE5D3AB086A1221A /* ArrayTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B95C89679A5FABE7B9C351D /* ArrayTools.framework */; };
 		A37525374C3C4EC7BB3E8CCA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CF6FFE527F83C6942F370B0 /* Cocoa.framework */; };
 		BABDE4FF2FDC08E23D1231BC /* PathTools.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DD49210EE192148DBAB072B /* PathTools.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D0D8C3E130795FCA5963FBEA /* ArrayTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6C8404B5C7FEFA4F7DA7486 /* ArrayTools.framework */; };
 		E2F2E1A0A8E18744863E128E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67E28496AB556DE9D0554A97 /* Foundation.framework */; };
+		EE0236868B1334A5C3297850 /* ArithmeticTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDE304502912B5F9B663A46B /* ArithmeticTools.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,11 +117,15 @@
 		3CF6FFE527F83C6942F370B0 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		4E2D3F085ABD47319CBD9E9B /* PathTools.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; path = PathTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		67E28496AB556DE9D0554A97 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		6B95C89679A5FABE7B9C351D /* ArrayTools.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ArrayTools.framework; path = Carthage/Build/Mac/ArrayTools.framework; sourceTree = "<group>"; };
 		7898EA31F055C6960F8172BA /* PathTools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PathTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CD5EECB5CEE1D7C93160883 /* PathToolsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PathToolsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D03A8860D3A30A883CBE3EC /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = PathTools/Info.plist; sourceTree = "<group>"; };
+		A6C8404B5C7FEFA4F7DA7486 /* ArrayTools.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ArrayTools.framework; path = Carthage/Build/iOS/ArrayTools.framework; sourceTree = "<group>"; };
+		A967E7C09032FD6CBF0DA0A2 /* ArithmeticTools.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ArithmeticTools.framework; path = Carthage/Build/iOS/ArithmeticTools.framework; sourceTree = "<group>"; };
 		B19749FE16B0C74D382E79F0 /* PathTools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PathTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDA680219255972171CC975F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = PathToolsTests/Info.plist; sourceTree = "<group>"; };
+		CDE304502912B5F9B663A46B /* ArithmeticTools.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ArithmeticTools.framework; path = Carthage/Build/Mac/ArithmeticTools.framework; sourceTree = "<group>"; };
 		D6E4046631662D19AF634CA2 /* PathToolsMacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PathToolsMacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB8A2302ABFAC822A9897B24 /* PathTools.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; path = PathTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -144,6 +152,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				17E1F7E25A1D41C35CEB4F78 /* Foundation.framework in Frameworks */,
+				125DBE391C5E58D93BC015FB /* ArithmeticTools.framework in Frameworks */,
+				D0D8C3E130795FCA5963FBEA /* ArrayTools.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,6 +162,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C658A9BF1FB93E239D1D3C9 /* Cocoa.framework in Frameworks */,
+				EE0236868B1334A5C3297850 /* ArithmeticTools.framework in Frameworks */,
+				8EACE836FE5D3AB086A1221A /* ArrayTools.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,6 +222,8 @@
 			isa = PBXGroup;
 			children = (
 				3CF6FFE527F83C6942F370B0 /* Cocoa.framework */,
+				CDE304502912B5F9B663A46B /* ArithmeticTools.framework */,
+				6B95C89679A5FABE7B9C351D /* ArrayTools.framework */,
 			);
 			name = "OS X";
 			sourceTree = "<group>";
@@ -218,6 +232,8 @@
 			isa = PBXGroup;
 			children = (
 				67E28496AB556DE9D0554A97 /* Foundation.framework */,
+				A967E7C09032FD6CBF0DA0A2 /* ArithmeticTools.framework */,
+				A6C8404B5C7FEFA4F7DA7486 /* ArrayTools.framework */,
 			);
 			name = iOS;
 			sourceTree = "<group>";
@@ -308,6 +324,7 @@
 				754FD5CD53D0C5B9F589E254 /* Sources */,
 				49FCC7E36D1BCFABC78EDD30 /* Frameworks */,
 				A28DAAEAD5EC689A5BF5E99A /* CopyFiles */,
+				0785904D1DE7747400FF1645 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -343,6 +360,7 @@
 				7CABFF78B65F409E2C2E5BFD /* Sources */,
 				41701181D99616F2951E86F8 /* Frameworks */,
 				B1B78DD9487EF7474D149457 /* CopyFiles */,
+				0785904E1DE7749700FF1645 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -387,6 +405,39 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0785904D1DE7747400FF1645 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/ArithmeticTools.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/ArrayTools.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+		0785904E1DE7749700FF1645 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/Mac/ArithmeticTools.framework",
+				"$(SRCROOT)/Carthage/Build/Mac/ArrayTools.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5E003459D8D2D3565E7BF4A9 /* Sources */ = {
@@ -500,6 +551,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/Carthage/Build/iOS";
 				INFOPLIST_FILE = PathTools/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -546,6 +598,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/Carthage/Build/Mac";
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = PathTools/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -576,6 +629,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/Carthage/Build/iOS";
 				INFOPLIST_FILE = PathTools/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -660,6 +714,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/Carthage/Build/Mac";
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = PathTools/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";

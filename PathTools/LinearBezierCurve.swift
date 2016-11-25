@@ -30,6 +30,5 @@ public struct LinearBezierCurve: BezierCurve {
     
     public func x(y: CGFloat) -> CGFloat {
         fatalError("Not yet implemented!")
-        return 0
     }
 }
