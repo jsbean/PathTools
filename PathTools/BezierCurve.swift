@@ -17,7 +17,7 @@ public protocol BezierCurve {
     var end: CGPoint { get }
     
     /// - returns: All y-values for a given `x`.
-    func ys(x: CGFloat) -> [CGFloat]
+    func ys(x: CGFloat) -> Set<CGFloat>
     
     /// - returns: The x-value for a given `y`.
     func x(y: CGFloat) -> CGFloat

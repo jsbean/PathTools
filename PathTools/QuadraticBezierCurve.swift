@@ -25,7 +25,7 @@ public struct QuadraticBezierCurve: BezierCurve {
     
     let controlPoint: CGPoint
     
-    public func ys(x: CGFloat) -> [CGFloat] {
+    public func ys(x: CGFloat) -> Set<CGFloat> {
         
         guard contains(x: x) else {
             return []
@@ -42,23 +42,9 @@ public struct QuadraticBezierCurve: BezierCurve {
 
         let c = coefficients.a.x - x
         let b = coefficients.b.x
-        var a = coefficients.c.x
-        var d = pow(b, 2) - (4 * a * c)
+        let a = coefficients.c.x
         
-        guard d >= 0 else {
-            return []
-        }
-        
-        d = sqrt(d)
-        a = 1 / (a + a)
-        
-        // two potential values for t
-        let t0 = (d - b) * a
-        let t1 = (-b - d) * a
-        
-        return [t0, t1]
-            .flatMap(y)
-            .filter { $0 >= 0 && $0 <= 1 }
+        return quadratic(a,b,c)
     }
     
     public func x(y: CGFloat) -> CGFloat {

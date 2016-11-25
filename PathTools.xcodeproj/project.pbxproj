@@ -21,6 +21,10 @@
 		078590491DE7626A00FF1645 /* QuadraticBezierCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078590471DE7626A00FF1645 /* QuadraticBezierCurve.swift */; };
 		0785904B1DE7627800FF1645 /* CubicBezierCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0785904A1DE7627800FF1645 /* CubicBezierCurve.swift */; };
 		0785904C1DE7627800FF1645 /* CubicBezierCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0785904A1DE7627800FF1645 /* CubicBezierCurve.swift */; };
+		078590511DE7FB8900FF1645 /* Quadratic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078590501DE7FB8900FF1645 /* Quadratic.swift */; };
+		078590521DE7FB8900FF1645 /* Quadratic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078590501DE7FB8900FF1645 /* Quadratic.swift */; };
+		078590541DE7FBC400FF1645 /* QuadraticTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078590531DE7FBC400FF1645 /* QuadraticTests.swift */; };
+		078590551DE7FBC400FF1645 /* QuadraticTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078590531DE7FBC400FF1645 /* QuadraticTests.swift */; };
 		07C1F85C1D0C4E2800541ED5 /* Path+Rectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C1F85B1D0C4E2800541ED5 /* Path+Rectangle.swift */; };
 		07C1F85D1D0C4E2800541ED5 /* Path+Rectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C1F85B1D0C4E2800541ED5 /* Path+Rectangle.swift */; };
 		07C1F85F1D0C4E7400541ED5 /* Path+Circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C1F85E1D0C4E7400541ED5 /* Path+Circle.swift */; };
@@ -103,6 +107,8 @@
 		078590441DE7625D00FF1645 /* LinearBezierCurve.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LinearBezierCurve.swift; path = PathTools/LinearBezierCurve.swift; sourceTree = "<group>"; };
 		078590471DE7626A00FF1645 /* QuadraticBezierCurve.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuadraticBezierCurve.swift; path = PathTools/QuadraticBezierCurve.swift; sourceTree = "<group>"; };
 		0785904A1DE7627800FF1645 /* CubicBezierCurve.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CubicBezierCurve.swift; path = PathTools/CubicBezierCurve.swift; sourceTree = "<group>"; };
+		078590501DE7FB8900FF1645 /* Quadratic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Quadratic.swift; path = PathTools/Quadratic.swift; sourceTree = "<group>"; };
+		078590531DE7FBC400FF1645 /* QuadraticTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuadraticTests.swift; path = PathToolsTests/QuadraticTests.swift; sourceTree = "<group>"; };
 		07C1F85B1D0C4E2800541ED5 /* Path+Rectangle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Path+Rectangle.swift"; path = "PathTools/Path+Rectangle.swift"; sourceTree = "<group>"; };
 		07C1F85E1D0C4E7400541ED5 /* Path+Circle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Path+Circle.swift"; path = "PathTools/Path+Circle.swift"; sourceTree = "<group>"; };
 		07C1F8611D0C4EA900541ED5 /* Path+Transform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Path+Transform.swift"; path = "PathTools/Path+Transform.swift"; sourceTree = "<group>"; };
@@ -181,6 +187,14 @@
 			name = BezierCurve;
 			sourceTree = "<group>";
 		};
+		0785904F1DE7FB7600FF1645 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				078590501DE7FB8900FF1645 /* Quadratic.swift */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
 		133469E3C4CD1699B566343A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -202,6 +216,7 @@
 			children = (
 				23D4DDB9DE2A8A418DC2235A /* Supporting Files */,
 				078590401DE761D100FF1645 /* BezierCurve */,
+				0785904F1DE7FB7600FF1645 /* Utilities */,
 				07088AC41D0AE8A600004FB2 /* Path.swift */,
 				07305A331D0F3F7F006E4085 /* Path+Square.swift */,
 				07C1F8611D0C4EA900541ED5 /* Path+Transform.swift */,
@@ -243,6 +258,7 @@
 			children = (
 				133469E3C4CD1699B566343A /* Supporting Files */,
 				07EC99251D0AFC54002414A4 /* PathTests.swift */,
+				078590531DE7FBC400FF1645 /* QuadraticTests.swift */,
 			);
 			name = PathToolsTests;
 			sourceTree = "<group>";
@@ -445,6 +461,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07C1F8721D0C53DB00541ED5 /* Radians.swift in Sources */,
+				078590521DE7FB8900FF1645 /* Quadratic.swift in Sources */,
 				078590431DE7624300FF1645 /* BezierCurve.swift in Sources */,
 				07C1F86C1D0C537300541ED5 /* Path+BoundingBox.swift in Sources */,
 				07C1F8661D0C513900541ED5 /* Path+Parallelogram.swift in Sources */,
@@ -468,6 +485,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07C1F8711D0C53DB00541ED5 /* Radians.swift in Sources */,
+				078590511DE7FB8900FF1645 /* Quadratic.swift in Sources */,
 				078590421DE7624300FF1645 /* BezierCurve.swift in Sources */,
 				07C1F86B1D0C537300541ED5 /* Path+BoundingBox.swift in Sources */,
 				07C1F8651D0C513900541ED5 /* Path+Parallelogram.swift in Sources */,
@@ -490,6 +508,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				078590541DE7FBC400FF1645 /* QuadraticTests.swift in Sources */,
 				07EC99261D0AFC54002414A4 /* PathTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -498,6 +517,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				078590551DE7FBC400FF1645 /* QuadraticTests.swift in Sources */,
 				07EC99271D0AFC54002414A4 /* PathTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -19,13 +19,13 @@ public struct LinearBezierCurve: BezierCurve {
         self.end = end
     }
     
-    public func ys(x: CGFloat) -> [CGFloat] {
+    public func ys(x: CGFloat) -> Set<CGFloat> {
         let horizontalOffset = (x - start.x)
         let width = (end.x - start.x)
         let height = end.y - start.y
         let verticalOffset = start.y
         let y = verticalOffset + (horizontalOffset / width) * height
-        return [y]
+        return Set([y])
     }
     
     public func x(y: CGFloat) -> CGFloat {
