@@ -10,7 +10,7 @@ import QuartzCore
 
 // TODO: Move to `ArithmeticType`.
 
-/// - returns: Two possible answers, if `descriminant > 0`. Returns an empty set if the 
+/// - returns: Two possible answers, if `discriminant > 0`. Returns an empty set if the 
 ///     discriminant is empty, and the solution would therefore be complex.
 public func quadratic(_ a: CGFloat, _ b: CGFloat, _ c: CGFloat) -> Set<CGFloat> {
     
