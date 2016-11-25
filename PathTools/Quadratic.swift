@@ -16,10 +16,11 @@ public func quadratic(_ a: CGFloat, _ b: CGFloat, _ c: CGFloat) -> Set<CGFloat> 
     
     let discriminant = pow(b,2) - 4 * a * c
     
-    guard discriminant > 0 else { return Set() }
+    guard discriminant > 0 else {
+        return Set()
+    }
 
-    let plusBranch = (-b + sqrt(discriminant)) / (2 * a)
-    let minusBranch = (-b - sqrt(discriminant)) / (2 * a)
-    
-    return Set([plusBranch, minusBranch])
+    return Set(
+        [1, -1].map { sign in (-b + sign * sqrt(discriminant)) / (2 * a) }
+    )
 }
