@@ -39,11 +39,11 @@ public struct QuadraticBezierCurve: BezierCurve {
             )
         )
 
-        let c = Float(coefficients.a.x - x)
-        let b = Float(coefficients.b.x)
-        let a = Float(coefficients.c.x)
+        let c = coefficients.a.x - x
+        let b = coefficients.b.x
+        let a = coefficients.c.x
         
-        return Set(quadratic(a, b, c).map { Double($0) })
+        return quadratic(a, b, c)
     }
     
     public func x(y: Double) -> Double {

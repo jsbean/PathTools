@@ -45,7 +45,6 @@
 		07EC99271D0AFC54002414A4 /* PathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07EC99251D0AFC54002414A4 /* PathTests.swift */; };
 		0C658A9BF1FB93E239D1D3C9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CF6FFE527F83C6942F370B0 /* Cocoa.framework */; };
 		0F5759CEB84BF2765A7539BF /* PathTools.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = EB8A2302ABFAC822A9897B24 /* PathTools.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		125DBE391C5E58D93BC015FB /* ArithmeticTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A967E7C09032FD6CBF0DA0A2 /* ArithmeticTools.framework */; };
 		17E1F7E25A1D41C35CEB4F78 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67E28496AB556DE9D0554A97 /* Foundation.framework */; };
 		3E2C797DB6498B50F9CB5FBB /* PathTools.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DD49210EE192148DBAB072B /* PathTools.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		434F7E8DBDF0241345880C70 /* PathTools.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4E2D3F085ABD47319CBD9E9B /* PathTools.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -117,12 +116,9 @@
 		3CF6FFE527F83C6942F370B0 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		4E2D3F085ABD47319CBD9E9B /* PathTools.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; path = PathTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		67E28496AB556DE9D0554A97 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		6B95C89679A5FABE7B9C351D /* ArrayTools.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ArrayTools.framework; path = Carthage/Build/Mac/ArrayTools.framework; sourceTree = "<group>"; };
 		7898EA31F055C6960F8172BA /* PathTools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PathTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CD5EECB5CEE1D7C93160883 /* PathTools iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PathTools iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D03A8860D3A30A883CBE3EC /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = PathTools/Info.plist; sourceTree = "<group>"; };
-		A6C8404B5C7FEFA4F7DA7486 /* ArrayTools.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ArrayTools.framework; path = Carthage/Build/iOS/ArrayTools.framework; sourceTree = "<group>"; };
-		A967E7C09032FD6CBF0DA0A2 /* ArithmeticTools.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ArithmeticTools.framework; path = Carthage/Build/iOS/ArithmeticTools.framework; sourceTree = "<group>"; };
 		B19749FE16B0C74D382E79F0 /* PathTools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PathTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDA680219255972171CC975F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = PathToolsTests/Info.plist; sourceTree = "<group>"; };
 		D6E4046631662D19AF634CA2 /* PathTools macOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PathTools macOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -151,7 +147,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				17E1F7E25A1D41C35CEB4F78 /* Foundation.framework in Frameworks */,
-				125DBE391C5E58D93BC015FB /* ArithmeticTools.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,7 +214,6 @@
 			isa = PBXGroup;
 			children = (
 				3CF6FFE527F83C6942F370B0 /* Cocoa.framework */,
-				6B95C89679A5FABE7B9C351D /* ArrayTools.framework */,
 			);
 			name = "OS X";
 			sourceTree = "<group>";
@@ -228,8 +222,6 @@
 			isa = PBXGroup;
 			children = (
 				67E28496AB556DE9D0554A97 /* Foundation.framework */,
-				A967E7C09032FD6CBF0DA0A2 /* ArithmeticTools.framework */,
-				A6C8404B5C7FEFA4F7DA7486 /* ArrayTools.framework */,
 			);
 			name = iOS;
 			sourceTree = "<group>";
