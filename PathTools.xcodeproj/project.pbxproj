@@ -51,12 +51,9 @@
 		17E1F7E25A1D41C35CEB4F78 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67E28496AB556DE9D0554A97 /* Foundation.framework */; };
 		3E2C797DB6498B50F9CB5FBB /* PathTools.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DD49210EE192148DBAB072B /* PathTools.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		434F7E8DBDF0241345880C70 /* PathTools.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4E2D3F085ABD47319CBD9E9B /* PathTools.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		8EACE836FE5D3AB086A1221A /* ArrayTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B95C89679A5FABE7B9C351D /* ArrayTools.framework */; };
 		A37525374C3C4EC7BB3E8CCA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CF6FFE527F83C6942F370B0 /* Cocoa.framework */; };
 		BABDE4FF2FDC08E23D1231BC /* PathTools.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DD49210EE192148DBAB072B /* PathTools.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D0D8C3E130795FCA5963FBEA /* ArrayTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6C8404B5C7FEFA4F7DA7486 /* ArrayTools.framework */; };
 		E2F2E1A0A8E18744863E128E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67E28496AB556DE9D0554A97 /* Foundation.framework */; };
-		EE0236868B1334A5C3297850 /* ArithmeticTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDE304502912B5F9B663A46B /* ArithmeticTools.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -158,7 +155,6 @@
 			files = (
 				17E1F7E25A1D41C35CEB4F78 /* Foundation.framework in Frameworks */,
 				125DBE391C5E58D93BC015FB /* ArithmeticTools.framework in Frameworks */,
-				D0D8C3E130795FCA5963FBEA /* ArrayTools.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,8 +163,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C658A9BF1FB93E239D1D3C9 /* Cocoa.framework in Frameworks */,
-				EE0236868B1334A5C3297850 /* ArithmeticTools.framework in Frameworks */,
-				8EACE836FE5D3AB086A1221A /* ArrayTools.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,7 +230,6 @@
 			isa = PBXGroup;
 			children = (
 				3CF6FFE527F83C6942F370B0 /* Cocoa.framework */,
-				CDE304502912B5F9B663A46B /* ArithmeticTools.framework */,
 				6B95C89679A5FABE7B9C351D /* ArrayTools.framework */,
 			);
 			name = "OS X";
@@ -429,7 +422,7 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/ArithmeticTools.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/ArrayTools.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Collections.framework",
 			);
 			outputPaths = (
 			);
@@ -443,8 +436,8 @@
 			files = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/Mac/ArithmeticTools.framework",
-				"$(SRCROOT)/Carthage/Build/Mac/ArrayTools.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/ArithmeticTools.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Collections.framework",
 			);
 			outputPaths = (
 			);
@@ -546,8 +539,9 @@
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/Carthage/Build/Mac";
 				INFOPLIST_FILE = PathToolsTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks $(SRCROOT)/Carthage/Build/Mac";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -573,7 +567,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/Carthage/Build/iOS";
 				INFOPLIST_FILE = PathTools/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bean.PathTools;
@@ -594,9 +588,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/Carthage/Build/iOS";
 				INFOPLIST_FILE = PathToolsTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(SRCROOT)/Carthage/Build/iOS";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -651,7 +646,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/Carthage/Build/iOS";
 				INFOPLIST_FILE = PathTools/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bean.PathTools;
@@ -673,8 +668,9 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/Carthage/Build/Mac";
 				INFOPLIST_FILE = PathToolsTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks $(SRCROOT)/Carthage/Build/Mac";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -797,9 +793,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/Carthage/Build/iOS";
 				INFOPLIST_FILE = PathToolsTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(SRCROOT)/Carthage/Build/iOS";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
