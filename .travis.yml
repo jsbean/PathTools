@@ -1,7 +1,21 @@
 language: objective-c
-osx_image: xcode7.3
-xcode_project: PathTools.xcodeproj
-xcode_scheme: PathToolsMac
-xcode_sdk: macosx10.9
-before_script:
-	- carthage bootstrap
+osx_image: xcode8.2
+env:
+  matrix:
+    - DESTINATION="platform=iOS Simulator,OS=9.3,name=iPad 2"
+      SCHEME="PathTools iOS"
+    - DESTINATION="platform=iOS Simulator,OS=10.0,name=iPad Pro (12.9 inch)"
+      SCHEME="PathTools iOS"
+    - DESTINATION="platform=OS X"
+      SCHEME="PathTools macOS"
+
+before_script: if [ -f ./Cartfile ]; then carthage update; fi;
+
+script: travis_retry xcodebuild test
+  -project PathTools.xcodeproj
+  -scheme "${SCHEME}"
+  -destination "${DESTINATION}"
+  TOOLCHAINS=swift
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
