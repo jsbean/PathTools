@@ -6,20 +6,18 @@
 //
 //
 
-import QuartzCore
-
 // Straight line
 public struct LinearBezierCurve: BezierCurve {
     
-    public let start: CGPoint
-    public let end: CGPoint
+    public let start: Point
+    public let end: Point
     
-    public init(start: CGPoint, end: CGPoint) {
+    public init(start: Point, end: Point) {
         self.start = start
         self.end = end
     }
     
-    public func ys(x: CGFloat) -> Set<CGFloat> {
+    public func ys(x: Double) -> Set<Double> {
         let verticalOffset = start.y
         let height = end.y - start.y
         let horizontalOffset = x - start.x
@@ -28,7 +26,7 @@ public struct LinearBezierCurve: BezierCurve {
         return Set([y])
     }
     
-    public func x(y: CGFloat) -> CGFloat {
+    public func x(y: Double) -> Double {
         fatalError("Not yet implemented!")
     }
 }

@@ -6,26 +6,25 @@
 //
 //
 
+import Foundation
 import ArithmeticTools
-import QuartzCore
 
 public struct QuadraticBezierCurve: BezierCurve {
     
     private struct CoefficientCollection {
         
-        typealias Coefficient = (x: CGFloat, y: CGFloat)
+        typealias Coefficient = (x: Double, y: Double)
         
         // TODO: make better names
         let a, b, c: Coefficient
     }
     
-    public let start: CGPoint
+    public let start: Point
+    public let end: Point
     
-    public let end: CGPoint
+    let controlPoint: Point
     
-    let controlPoint: CGPoint
-    
-    public func ys(x: CGFloat) -> Set<CGFloat> {
+    public func ys(x: Double) -> Set<Double> {
         
         guard contains(x: x) else {
             return []
@@ -40,30 +39,30 @@ public struct QuadraticBezierCurve: BezierCurve {
             )
         )
 
-        let c = coefficients.a.x - x
-        let b = coefficients.b.x
-        let a = coefficients.c.x
+        let c = Float(coefficients.a.x - x)
+        let b = Float(coefficients.b.x)
+        let a = Float(coefficients.c.x)
         
-        return quadratic(a,b,c)
+        return Set(quadratic(a, b, c).map { Double($0) })
     }
     
-    public func x(y: CGFloat) -> CGFloat {
-        return 0
+    public func x(y: Double) -> Double {
+        fatalError("Not yet implemented!")
     }
     
-    func contains(x: CGFloat) -> Bool {
+    func contains(x: Double) -> Bool {
         let (min, max) = ordered(start.y, end.y)
         return x >= min && x <= max
     }
     
-    func contains(y: CGFloat) -> Bool {
+    func contains(y: Double) -> Bool {
         let (min, max) = ordered(start.x, end.x)
         return y >= min && y <= max
     }
     
     // `t` is between `0.0 ... 1.0`
     // TODO: Break out into individual `let`s
-    func x(t: CGFloat) -> CGFloat {
+    func x(t: Double) -> Double {
         let complement = 1 - t
         let x = (
             pow(complement, 2) * start.x +
@@ -75,7 +74,7 @@ public struct QuadraticBezierCurve: BezierCurve {
     
     // `t` is between `0.0 ... 1.0`
     // TODO: Break out into individual `let`s
-    func y(t: CGFloat) -> CGFloat {
+    func y(t: Double) -> Double {
         let complement = 1 - t
         let y = (pow(complement, 2) * start.y) +
             (2 * complement * t * controlPoint.y) +

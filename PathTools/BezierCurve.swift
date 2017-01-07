@@ -6,19 +6,17 @@
 //
 //
 
-import QuartzCore
-
 public protocol BezierCurve {
  
     /// Start point of Bézier curve.
-    var start: CGPoint { get }
+    var start: Point { get }
     
     /// End point of Bézier curve.
-    var end: CGPoint { get }
+    var end: Point { get }
     
     /// - returns: All y-values for a given `x`.
-    func ys(x: CGFloat) -> Set<CGFloat>
+    func ys(x: Double) -> Set<Double>
     
     /// - returns: The x-value for a given `y`.
-    func x(y: CGFloat) -> CGFloat
+    func x(y: Double) -> Double
 }
