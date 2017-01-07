@@ -13,6 +13,18 @@
 		07305A351D0F3F7F006E4085 /* Path+Square.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07305A331D0F3F7F006E4085 /* Path+Square.swift */; };
 		0765472F1D0C861C008038B5 /* Path+Ellipse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0765472E1D0C861C008038B5 /* Path+Ellipse.swift */; };
 		076547301D0C861C008038B5 /* Path+Ellipse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0765472E1D0C861C008038B5 /* Path+Ellipse.swift */; };
+		078590421DE7624300FF1645 /* BezierCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078590411DE7624300FF1645 /* BezierCurve.swift */; };
+		078590431DE7624300FF1645 /* BezierCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078590411DE7624300FF1645 /* BezierCurve.swift */; };
+		078590451DE7625D00FF1645 /* LinearBezierCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078590441DE7625D00FF1645 /* LinearBezierCurve.swift */; };
+		078590461DE7625D00FF1645 /* LinearBezierCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078590441DE7625D00FF1645 /* LinearBezierCurve.swift */; };
+		078590481DE7626A00FF1645 /* QuadraticBezierCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078590471DE7626A00FF1645 /* QuadraticBezierCurve.swift */; };
+		078590491DE7626A00FF1645 /* QuadraticBezierCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078590471DE7626A00FF1645 /* QuadraticBezierCurve.swift */; };
+		0785904B1DE7627800FF1645 /* CubicBezierCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0785904A1DE7627800FF1645 /* CubicBezierCurve.swift */; };
+		0785904C1DE7627800FF1645 /* CubicBezierCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0785904A1DE7627800FF1645 /* CubicBezierCurve.swift */; };
+		078590511DE7FB8900FF1645 /* Quadratic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078590501DE7FB8900FF1645 /* Quadratic.swift */; };
+		078590521DE7FB8900FF1645 /* Quadratic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078590501DE7FB8900FF1645 /* Quadratic.swift */; };
+		078590541DE7FBC400FF1645 /* QuadraticTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078590531DE7FBC400FF1645 /* QuadraticTests.swift */; };
+		078590551DE7FBC400FF1645 /* QuadraticTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078590531DE7FBC400FF1645 /* QuadraticTests.swift */; };
 		07C1F85C1D0C4E2800541ED5 /* Path+Rectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C1F85B1D0C4E2800541ED5 /* Path+Rectangle.swift */; };
 		07C1F85D1D0C4E2800541ED5 /* Path+Rectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C1F85B1D0C4E2800541ED5 /* Path+Rectangle.swift */; };
 		07C1F85F1D0C4E7400541ED5 /* Path+Circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C1F85E1D0C4E7400541ED5 /* Path+Circle.swift */; };
@@ -35,12 +47,16 @@
 		07EC99271D0AFC54002414A4 /* PathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07EC99251D0AFC54002414A4 /* PathTests.swift */; };
 		0C658A9BF1FB93E239D1D3C9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CF6FFE527F83C6942F370B0 /* Cocoa.framework */; };
 		0F5759CEB84BF2765A7539BF /* PathTools.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = EB8A2302ABFAC822A9897B24 /* PathTools.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		125DBE391C5E58D93BC015FB /* ArithmeticTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A967E7C09032FD6CBF0DA0A2 /* ArithmeticTools.framework */; };
 		17E1F7E25A1D41C35CEB4F78 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67E28496AB556DE9D0554A97 /* Foundation.framework */; };
 		3E2C797DB6498B50F9CB5FBB /* PathTools.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DD49210EE192148DBAB072B /* PathTools.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		434F7E8DBDF0241345880C70 /* PathTools.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4E2D3F085ABD47319CBD9E9B /* PathTools.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		8EACE836FE5D3AB086A1221A /* ArrayTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B95C89679A5FABE7B9C351D /* ArrayTools.framework */; };
 		A37525374C3C4EC7BB3E8CCA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CF6FFE527F83C6942F370B0 /* Cocoa.framework */; };
 		BABDE4FF2FDC08E23D1231BC /* PathTools.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DD49210EE192148DBAB072B /* PathTools.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D0D8C3E130795FCA5963FBEA /* ArrayTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6C8404B5C7FEFA4F7DA7486 /* ArrayTools.framework */; };
 		E2F2E1A0A8E18744863E128E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67E28496AB556DE9D0554A97 /* Foundation.framework */; };
+		EE0236868B1334A5C3297850 /* ArithmeticTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDE304502912B5F9B663A46B /* ArithmeticTools.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +103,12 @@
 		07088AC41D0AE8A600004FB2 /* Path.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Path.swift; path = PathTools/Path.swift; sourceTree = "<group>"; };
 		07305A331D0F3F7F006E4085 /* Path+Square.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Path+Square.swift"; path = "PathTools/Path+Square.swift"; sourceTree = "<group>"; };
 		0765472E1D0C861C008038B5 /* Path+Ellipse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Path+Ellipse.swift"; path = "PathTools/Path+Ellipse.swift"; sourceTree = "<group>"; };
+		078590411DE7624300FF1645 /* BezierCurve.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BezierCurve.swift; path = PathTools/BezierCurve.swift; sourceTree = "<group>"; };
+		078590441DE7625D00FF1645 /* LinearBezierCurve.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LinearBezierCurve.swift; path = PathTools/LinearBezierCurve.swift; sourceTree = "<group>"; };
+		078590471DE7626A00FF1645 /* QuadraticBezierCurve.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuadraticBezierCurve.swift; path = PathTools/QuadraticBezierCurve.swift; sourceTree = "<group>"; };
+		0785904A1DE7627800FF1645 /* CubicBezierCurve.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CubicBezierCurve.swift; path = PathTools/CubicBezierCurve.swift; sourceTree = "<group>"; };
+		078590501DE7FB8900FF1645 /* Quadratic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Quadratic.swift; path = PathTools/Quadratic.swift; sourceTree = "<group>"; };
+		078590531DE7FBC400FF1645 /* QuadraticTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuadraticTests.swift; path = PathToolsTests/QuadraticTests.swift; sourceTree = "<group>"; };
 		07C1F85B1D0C4E2800541ED5 /* Path+Rectangle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Path+Rectangle.swift"; path = "PathTools/Path+Rectangle.swift"; sourceTree = "<group>"; };
 		07C1F85E1D0C4E7400541ED5 /* Path+Circle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Path+Circle.swift"; path = "PathTools/Path+Circle.swift"; sourceTree = "<group>"; };
 		07C1F8611D0C4EA900541ED5 /* Path+Transform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Path+Transform.swift"; path = "PathTools/Path+Transform.swift"; sourceTree = "<group>"; };
@@ -101,9 +123,12 @@
 		3CF6FFE527F83C6942F370B0 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		4E2D3F085ABD47319CBD9E9B /* PathTools.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; path = PathTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		67E28496AB556DE9D0554A97 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		6B95C89679A5FABE7B9C351D /* ArrayTools.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ArrayTools.framework; path = Carthage/Build/Mac/ArrayTools.framework; sourceTree = "<group>"; };
 		7898EA31F055C6960F8172BA /* PathTools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PathTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CD5EECB5CEE1D7C93160883 /* PathTools iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PathTools iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D03A8860D3A30A883CBE3EC /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = PathTools/Info.plist; sourceTree = "<group>"; };
+		A6C8404B5C7FEFA4F7DA7486 /* ArrayTools.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ArrayTools.framework; path = Carthage/Build/iOS/ArrayTools.framework; sourceTree = "<group>"; };
+		A967E7C09032FD6CBF0DA0A2 /* ArithmeticTools.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ArithmeticTools.framework; path = Carthage/Build/iOS/ArithmeticTools.framework; sourceTree = "<group>"; };
 		B19749FE16B0C74D382E79F0 /* PathTools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PathTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDA680219255972171CC975F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = PathToolsTests/Info.plist; sourceTree = "<group>"; };
 		D6E4046631662D19AF634CA2 /* PathTools macOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PathTools macOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,6 +157,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				17E1F7E25A1D41C35CEB4F78 /* Foundation.framework in Frameworks */,
+				125DBE391C5E58D93BC015FB /* ArithmeticTools.framework in Frameworks */,
+				D0D8C3E130795FCA5963FBEA /* ArrayTools.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,12 +167,33 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C658A9BF1FB93E239D1D3C9 /* Cocoa.framework in Frameworks */,
+				EE0236868B1334A5C3297850 /* ArithmeticTools.framework in Frameworks */,
+				8EACE836FE5D3AB086A1221A /* ArrayTools.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		078590401DE761D100FF1645 /* BezierCurve */ = {
+			isa = PBXGroup;
+			children = (
+				078590411DE7624300FF1645 /* BezierCurve.swift */,
+				078590441DE7625D00FF1645 /* LinearBezierCurve.swift */,
+				078590471DE7626A00FF1645 /* QuadraticBezierCurve.swift */,
+				0785904A1DE7627800FF1645 /* CubicBezierCurve.swift */,
+			);
+			name = BezierCurve;
+			sourceTree = "<group>";
+		};
+		0785904F1DE7FB7600FF1645 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				078590501DE7FB8900FF1645 /* Quadratic.swift */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
 		133469E3C4CD1699B566343A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -166,6 +214,8 @@
 			isa = PBXGroup;
 			children = (
 				23D4DDB9DE2A8A418DC2235A /* Supporting Files */,
+				078590401DE761D100FF1645 /* BezierCurve */,
+				0785904F1DE7FB7600FF1645 /* Utilities */,
 				07088AC41D0AE8A600004FB2 /* Path.swift */,
 				07305A331D0F3F7F006E4085 /* Path+Square.swift */,
 				07C1F8611D0C4EA900541ED5 /* Path+Transform.swift */,
@@ -186,6 +236,8 @@
 			isa = PBXGroup;
 			children = (
 				3CF6FFE527F83C6942F370B0 /* Cocoa.framework */,
+				CDE304502912B5F9B663A46B /* ArithmeticTools.framework */,
+				6B95C89679A5FABE7B9C351D /* ArrayTools.framework */,
 			);
 			name = "OS X";
 			sourceTree = "<group>";
@@ -194,6 +246,8 @@
 			isa = PBXGroup;
 			children = (
 				67E28496AB556DE9D0554A97 /* Foundation.framework */,
+				A967E7C09032FD6CBF0DA0A2 /* ArithmeticTools.framework */,
+				A6C8404B5C7FEFA4F7DA7486 /* ArrayTools.framework */,
 			);
 			name = iOS;
 			sourceTree = "<group>";
@@ -203,6 +257,7 @@
 			children = (
 				133469E3C4CD1699B566343A /* Supporting Files */,
 				07EC99251D0AFC54002414A4 /* PathTests.swift */,
+				078590531DE7FBC400FF1645 /* QuadraticTests.swift */,
 			);
 			name = PathToolsTests;
 			sourceTree = "<group>";
@@ -284,6 +339,7 @@
 				754FD5CD53D0C5B9F589E254 /* Sources */,
 				49FCC7E36D1BCFABC78EDD30 /* Frameworks */,
 				A28DAAEAD5EC689A5BF5E99A /* CopyFiles */,
+				0785904D1DE7747400FF1645 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -319,6 +375,7 @@
 				7CABFF78B65F409E2C2E5BFD /* Sources */,
 				41701181D99616F2951E86F8 /* Frameworks */,
 				B1B78DD9487EF7474D149457 /* CopyFiles */,
+				0785904E1DE7749700FF1645 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -364,12 +421,47 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0785904D1DE7747400FF1645 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/ArithmeticTools.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/ArrayTools.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+		0785904E1DE7749700FF1645 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/Mac/ArithmeticTools.framework",
+				"$(SRCROOT)/Carthage/Build/Mac/ArrayTools.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		5E003459D8D2D3565E7BF4A9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				07C1F8721D0C53DB00541ED5 /* Radians.swift in Sources */,
+				078590521DE7FB8900FF1645 /* Quadratic.swift in Sources */,
+				078590431DE7624300FF1645 /* BezierCurve.swift in Sources */,
 				07C1F86C1D0C537300541ED5 /* Path+BoundingBox.swift in Sources */,
 				07C1F8661D0C513900541ED5 /* Path+Parallelogram.swift in Sources */,
 				076547301D0C861C008038B5 /* Path+Ellipse.swift in Sources */,
@@ -377,8 +469,11 @@
 				07088AC61D0AE8A600004FB2 /* Path.swift in Sources */,
 				07C1F85D1D0C4E2800541ED5 /* Path+Rectangle.swift in Sources */,
 				07C1F8601D0C4E7400541ED5 /* Path+Circle.swift in Sources */,
+				078590461DE7625D00FF1645 /* LinearBezierCurve.swift in Sources */,
 				07C1F8631D0C4EA900541ED5 /* Path+Transform.swift in Sources */,
 				07EC99241D0AF7C8002414A4 /* PathElement.swift in Sources */,
+				078590491DE7626A00FF1645 /* QuadraticBezierCurve.swift in Sources */,
+				0785904C1DE7627800FF1645 /* CubicBezierCurve.swift in Sources */,
 				07C1F8691D0C517400541ED5 /* Path+Arrowhead.swift in Sources */,
 				07C1F86F1D0C53BF00541ED5 /* Degrees.swift in Sources */,
 			);
@@ -389,6 +484,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				07C1F8711D0C53DB00541ED5 /* Radians.swift in Sources */,
+				078590511DE7FB8900FF1645 /* Quadratic.swift in Sources */,
+				078590421DE7624300FF1645 /* BezierCurve.swift in Sources */,
 				07C1F86B1D0C537300541ED5 /* Path+BoundingBox.swift in Sources */,
 				07C1F8651D0C513900541ED5 /* Path+Parallelogram.swift in Sources */,
 				0765472F1D0C861C008038B5 /* Path+Ellipse.swift in Sources */,
@@ -396,8 +493,11 @@
 				07088AC51D0AE8A600004FB2 /* Path.swift in Sources */,
 				07C1F85C1D0C4E2800541ED5 /* Path+Rectangle.swift in Sources */,
 				07C1F85F1D0C4E7400541ED5 /* Path+Circle.swift in Sources */,
+				078590451DE7625D00FF1645 /* LinearBezierCurve.swift in Sources */,
 				07C1F8621D0C4EA900541ED5 /* Path+Transform.swift in Sources */,
 				07EC99231D0AF7C8002414A4 /* PathElement.swift in Sources */,
+				078590481DE7626A00FF1645 /* QuadraticBezierCurve.swift in Sources */,
+				0785904B1DE7627800FF1645 /* CubicBezierCurve.swift in Sources */,
 				07C1F8681D0C517400541ED5 /* Path+Arrowhead.swift in Sources */,
 				07C1F86E1D0C53BF00541ED5 /* Degrees.swift in Sources */,
 			);
@@ -407,6 +507,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				078590541DE7FBC400FF1645 /* QuadraticTests.swift in Sources */,
 				07EC99261D0AFC54002414A4 /* PathTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -415,6 +516,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				078590551DE7FBC400FF1645 /* QuadraticTests.swift in Sources */,
 				07EC99271D0AFC54002414A4 /* PathTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -468,6 +570,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/Carthage/Build/iOS";
 				INFOPLIST_FILE = PathTools/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -514,6 +617,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/Carthage/Build/Mac";
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = PathTools/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -544,6 +648,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/Carthage/Build/iOS";
 				INFOPLIST_FILE = PathTools/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -628,6 +733,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/Carthage/Build/Mac";
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = PathTools/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
