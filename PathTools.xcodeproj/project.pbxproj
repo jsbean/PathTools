@@ -105,11 +105,11 @@
 		4E2D3F085ABD47319CBD9E9B /* PathTools.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; path = PathTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		67E28496AB556DE9D0554A97 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		7898EA31F055C6960F8172BA /* PathTools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PathTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9CD5EECB5CEE1D7C93160883 /* PathToolsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PathToolsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9CD5EECB5CEE1D7C93160883 /* PathTools iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PathTools iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D03A8860D3A30A883CBE3EC /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = PathTools/Info.plist; sourceTree = "<group>"; };
 		B19749FE16B0C74D382E79F0 /* PathTools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PathTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDA680219255972171CC975F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = PathToolsTests/Info.plist; sourceTree = "<group>"; };
-		D6E4046631662D19AF634CA2 /* PathToolsMacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PathToolsMacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6E4046631662D19AF634CA2 /* PathTools macOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PathTools macOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB8A2302ABFAC822A9897B24 /* PathTools.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; path = PathTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -235,9 +235,9 @@
 			isa = PBXGroup;
 			children = (
 				7898EA31F055C6960F8172BA /* PathTools.framework */,
-				9CD5EECB5CEE1D7C93160883 /* PathToolsTests.xctest */,
+				9CD5EECB5CEE1D7C93160883 /* PathTools iOS Tests.xctest */,
 				B19749FE16B0C74D382E79F0 /* PathTools.framework */,
-				D6E4046631662D19AF634CA2 /* PathToolsMacTests.xctest */,
+				D6E4046631662D19AF634CA2 /* PathTools macOS Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -264,9 +264,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		265AF74D52742E81C475E0FB /* PathTools */ = {
+		265AF74D52742E81C475E0FB /* PathTools iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 97607844991FCC3DB0C737C1 /* Build configuration list for PBXNativeTarget "PathTools" */;
+			buildConfigurationList = 97607844991FCC3DB0C737C1 /* Build configuration list for PBXNativeTarget "PathTools iOS" */;
 			buildPhases = (
 				66865DF72D12F5D2AC8D249D /* Sources */,
 				9C7CA24A7D79D9676F9150FB /* Frameworks */,
@@ -276,14 +276,14 @@
 			);
 			dependencies = (
 			);
-			name = PathTools;
+			name = "PathTools iOS";
 			productName = PathTools;
 			productReference = 7898EA31F055C6960F8172BA /* PathTools.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		803B79FD5674F6F2DFD55144 /* PathToolsTests */ = {
+		803B79FD5674F6F2DFD55144 /* PathTools iOS Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 60060FAD382CE00CA864454F /* Build configuration list for PBXNativeTarget "PathToolsTests" */;
+			buildConfigurationList = 60060FAD382CE00CA864454F /* Build configuration list for PBXNativeTarget "PathTools iOS Tests" */;
 			buildPhases = (
 				754FD5CD53D0C5B9F589E254 /* Sources */,
 				49FCC7E36D1BCFABC78EDD30 /* Frameworks */,
@@ -294,14 +294,14 @@
 			dependencies = (
 				854438D4E0CA66641EB517CF /* PBXTargetDependency */,
 			);
-			name = PathToolsTests;
+			name = "PathTools iOS Tests";
 			productName = PathToolsTests;
-			productReference = 9CD5EECB5CEE1D7C93160883 /* PathToolsTests.xctest */;
+			productReference = 9CD5EECB5CEE1D7C93160883 /* PathTools iOS Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		BF61B2F805E6EAE4803EFF1A /* PathToolsMac */ = {
+		BF61B2F805E6EAE4803EFF1A /* PathTools macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F3E655FAB6CB594D8D1EE768 /* Build configuration list for PBXNativeTarget "PathToolsMac" */;
+			buildConfigurationList = F3E655FAB6CB594D8D1EE768 /* Build configuration list for PBXNativeTarget "PathTools macOS" */;
 			buildPhases = (
 				5E003459D8D2D3565E7BF4A9 /* Sources */,
 				CD0EB7CECE79D4309E276765 /* Frameworks */,
@@ -311,14 +311,14 @@
 			);
 			dependencies = (
 			);
-			name = PathToolsMac;
+			name = "PathTools macOS";
 			productName = PathToolsMac;
 			productReference = B19749FE16B0C74D382E79F0 /* PathTools.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		DBC650E512F60F48E52EFBBC /* PathToolsMacTests */ = {
+		DBC650E512F60F48E52EFBBC /* PathTools macOS Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B4684FD5060A7AFB3923FA1F /* Build configuration list for PBXNativeTarget "PathToolsMacTests" */;
+			buildConfigurationList = B4684FD5060A7AFB3923FA1F /* Build configuration list for PBXNativeTarget "PathTools macOS Tests" */;
 			buildPhases = (
 				7CABFF78B65F409E2C2E5BFD /* Sources */,
 				41701181D99616F2951E86F8 /* Frameworks */,
@@ -329,9 +329,9 @@
 			dependencies = (
 				99184980BF287FA6C4DA4C46 /* PBXTargetDependency */,
 			);
-			name = PathToolsMacTests;
+			name = "PathTools macOS Tests";
 			productName = PathToolsMacTests;
-			productReference = D6E4046631662D19AF634CA2 /* PathToolsMacTests.xctest */;
+			productReference = D6E4046631662D19AF634CA2 /* PathTools macOS Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -360,10 +360,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				265AF74D52742E81C475E0FB /* PathTools */,
-				803B79FD5674F6F2DFD55144 /* PathToolsTests */,
-				BF61B2F805E6EAE4803EFF1A /* PathToolsMac */,
-				DBC650E512F60F48E52EFBBC /* PathToolsMacTests */,
+				265AF74D52742E81C475E0FB /* PathTools iOS */,
+				803B79FD5674F6F2DFD55144 /* PathTools iOS Tests */,
+				BF61B2F805E6EAE4803EFF1A /* PathTools macOS */,
+				DBC650E512F60F48E52EFBBC /* PathTools macOS Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -431,13 +431,13 @@
 		854438D4E0CA66641EB517CF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = PathTools;
-			target = 265AF74D52742E81C475E0FB /* PathTools */;
+			target = 265AF74D52742E81C475E0FB /* PathTools iOS */;
 			targetProxy = DA6530E341A891075815218E /* PBXContainerItemProxy */;
 		};
 		99184980BF287FA6C4DA4C46 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = PathToolsMac;
-			target = BF61B2F805E6EAE4803EFF1A /* PathToolsMac */;
+			target = BF61B2F805E6EAE4803EFF1A /* PathTools macOS */;
 			targetProxy = A32614C028607458F4D9C03D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -720,7 +720,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		60060FAD382CE00CA864454F /* Build configuration list for PBXNativeTarget "PathToolsTests" */ = {
+		60060FAD382CE00CA864454F /* Build configuration list for PBXNativeTarget "PathTools iOS Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6CDE8B60FAB4A1588BCF665E /* Release */,
@@ -729,7 +729,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		97607844991FCC3DB0C737C1 /* Build configuration list for PBXNativeTarget "PathTools" */ = {
+		97607844991FCC3DB0C737C1 /* Build configuration list for PBXNativeTarget "PathTools iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				91C4F907CE457BB7D4652EAB /* Release */,
@@ -738,7 +738,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B4684FD5060A7AFB3923FA1F /* Build configuration list for PBXNativeTarget "PathToolsMacTests" */ = {
+		B4684FD5060A7AFB3923FA1F /* Build configuration list for PBXNativeTarget "PathTools macOS Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				93F25EDE23B17CCBB072C622 /* Release */,
@@ -747,7 +747,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F3E655FAB6CB594D8D1EE768 /* Build configuration list for PBXNativeTarget "PathToolsMac" */ = {
+		F3E655FAB6CB594D8D1EE768 /* Build configuration list for PBXNativeTarget "PathTools macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B57AB94186710D0ACD6C4986 /* Release */,

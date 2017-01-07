@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "BF61B2F805E6EAE4803EFF1A"
                BuildableName = "PathTools.framework"
-               BlueprintName = "PathToolsMac"
+               BlueprintName = "PathTools macOS"
                ReferencedContainer = "container:PathTools.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -29,8 +29,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DBC650E512F60F48E52EFBBC"
-               BuildableName = "PathToolsMacTests.xctest"
-               BlueprintName = "PathToolsMacTests"
+               BuildableName = "PathTools macOS Tests.xctest"
+               BlueprintName = "PathTools macOS Tests"
                ReferencedContainer = "container:PathTools.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -48,8 +48,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DBC650E512F60F48E52EFBBC"
-               BuildableName = "PathToolsMacTests.xctest"
-               BlueprintName = "PathToolsMacTests"
+               BuildableName = "PathTools macOS Tests.xctest"
+               BlueprintName = "PathTools macOS Tests"
                ReferencedContainer = "container:PathTools.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -72,7 +72,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BF61B2F805E6EAE4803EFF1A"
             BuildableName = "PathTools.framework"
-            BlueprintName = "PathToolsMac"
+            BlueprintName = "PathTools macOS"
             ReferencedContainer = "container:PathTools.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
