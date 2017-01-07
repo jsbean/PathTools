@@ -17,11 +17,13 @@ extension Path {
      If `point` is `nil`, the center of the the bounding box is chosen.
      */
     public func rotated(by degrees: Degrees, around point: CGPoint? = nil) -> Path {
+        
         var pointRef: CGPoint {
             if let point = point { return point }
             let bounds = cgPath.boundingBox
             return CGPoint(x: bounds.midX, y: bounds.midY)
         }
+        
         var transform = CGAffineTransform.identity
         transform = transform.translatedBy(x: pointRef.x, y: pointRef.y)
         transform = transform.rotated(by: DEGREES_TO_RADIANS(degrees))
