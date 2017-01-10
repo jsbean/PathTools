@@ -20,7 +20,7 @@ public struct Point {
     }
 }
 
-extension Point {
+extension Point: Equatable {
     
     // MARK: - `Equatable`
     
