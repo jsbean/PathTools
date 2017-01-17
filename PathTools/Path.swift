@@ -7,6 +7,7 @@
 //
 
 import QuartzCore
+import Collections
 
 /**
  Pleasant graphics API that is compatible with iOS and OSX. Wraps CGPath.
@@ -48,9 +49,7 @@ public final class Path {
     
     // MARK: - Initializers
     
-    /**
-     Create an empty `Path`.
-     */
+    /// Create an empty `Path`.
     public init() { }
     
     /**
@@ -69,50 +68,44 @@ public final class Path {
         self.elements = pathElements
     }
 
-    /**
-     Create a `Path` with an array of `PathElement` values.
-     */
+    /// Create a `Path` with an array of `PathElement` values.
     public init(_ elements: [PathElement]) {
         self.elements = elements
     }
     
     // MARK: - Instance Methods
     
-    /**
-     Move to `point`.
-     
-     - returns: `self`.
-     */
+    /// Move to `point`.
+    ///
+    /// - returns: `self`
+    @discardableResult
     public func move(to point: CGPoint) -> Path {
         elements.append(.move(point))
         return self
     }
     
-    /**
-     Add line to `point`.
-     
-     - returns: `self`.
-     */
+    /// Add line to `point`.
+    ///
+    /// - returns: `self`.
+    @discardableResult
     public func addLine(to point: CGPoint) -> Path {
         elements.append(.line(point))
         return self
     }
     
-    /**
-     Add curve to `point`, with a single control point.
-     
-     - returns: `self`.
-     */
+    /// Add curve to `point`, with a single control point.
+    ///
+    /// - returns: `self`.
+    @discardableResult
     public func addQuadCurve(to point: CGPoint, controlPoint: CGPoint) -> Path {
         elements.append(.quadCurve(point, controlPoint))
         return self
     }
-    
-    /**
-     Add curve to `point`, with two control points.
-     
-     - returns: `self`.
-     */
+
+    /// Add curve to `point`, with two control points.
+    ///
+    /// - returns: `self`.
+    @discardableResult
     public func addCurve(
         to point: CGPoint,
         controlPoint1: CGPoint,
@@ -123,56 +116,35 @@ public final class Path {
         return self
     }
     
-    /**
-     Close path.
-     
-     - returns: `self`.
-     */
+    /// Close path.
+    ///
+    /// - returns: `self`.
+    @discardableResult
     public func close() -> Path {
         elements.append(.close)
         return self
     }
     
-    /**
-     Append the elements of another `Path` to this one.
-     - returns: `self`.
-     */
+    /// Append the elements of another `Path` to this one.
+    ///
+    /// - returns: `self`.
+    @discardableResult
     public func append(_ path: Path) -> Path {
         elements.append(contentsOf: path.elements)
         return self
     }
 }
 
-/**
- - returns: New `Path` with elements of two paths.
- */
+/// - returns: New `Path` with elements of two paths.
 public func + (lhs: Path, rhs: Path) -> Path {
     return Path(lhs.elements + rhs.elements)
 }
 
-extension Path: Collection {
-    
-    // MARK: - CollectionType
-    
-    public var startIndex: Int { return 0 }
-    public var endIndex: Int { return elements.count }
-    
-    public func index(after i: Int) -> Int {
-        guard i != endIndex else { fatalError("Cannot increment endIndex") }
-        return i + 1
-    }
-    
-    public subscript(index: Int) -> PathElement {
-        return elements[index]
-    }
-}
+extension Path: AnyCollectionWrapping {
 
-extension Path: Sequence {
+    // MARK: - `AnyCollectionWrapping`
     
-    // MARK: - SequenceType
-    
-    public func makeIterator() -> AnyIterator<PathElement> {
-        var generator = elements.makeIterator()
-        return AnyIterator { generator.next() }
+    public var collection: AnyCollection<PathElement> {
+        return AnyCollection(elements)
     }
 }
