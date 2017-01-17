@@ -12,10 +12,10 @@ extension Path {
     
     // MARK: - Transforms
     
-    /**
-     - returns: `Path` that is rotated by the given `degrees`, around the given `point`. 
-     If `point` is `nil`, the center of the the bounding box is chosen.
-     */
+    
+    /// - returns: `Path` that is rotated by the given `degrees`, around the given `point`.
+    ///
+    /// - note: If `point` is `nil`, the center of the the bounding box is chosen.
     public func rotated(by degrees: Degrees, around point: CGPoint? = nil) -> Path {
         
         var pointRef: CGPoint {
@@ -31,9 +31,9 @@ extension Path {
         return Path(cgPath.copy(using: &transform)!)
     }
     
-    /**
-     - returns: `Path` that is scaled by the given `amount`.
-     */
+    /// - returns: `Path` that is scaled by the given `amount`.
+    ///
+    /// - TODO: Do this without copies!
     public func scaled(by amount: CGFloat) -> Path {
         var scale = CGAffineTransform(scaleX: amount, y: amount)
         let beforeBounds = cgPath.boundingBox
@@ -47,9 +47,7 @@ extension Path {
         return Path(newPath!.copy(using: &backToCenter))
     }
     
-    /**
-     - returns: `Path` translated by the given amounts.
-     */
+    /// - returns: `Path` translated by the given amounts.
     public func translated(horizontallyBy tx: CGFloat = 0, verticallyBy ty: CGFloat = 0)
         -> Path
     {
@@ -58,9 +56,7 @@ extension Path {
         return Path(cgPath.copy(using: &transform))
     }
 
-    /**
-     - returns: `Path` that is mirrored over the y-axis.
-     */
+    /// - returns: `Path` that is mirrored over the y-axis.
     public func mirroredVertical() -> Path {
         var transform = CGAffineTransform.identity
         transform = CGAffineTransform(scaleX: -1, y: 1)
@@ -68,9 +64,7 @@ extension Path {
         return Path(cgPath.copy(using: &transform))
     }
     
-    /**
-     - warning: Not yet implemented!
-     */
+    /// - warning: Not yet implemented!
     public func mirroredHorizontal() -> Path {
         fatalError()
     }
