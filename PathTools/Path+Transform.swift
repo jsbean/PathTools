@@ -19,7 +19,12 @@ extension Path {
     public func rotated(by degrees: Degrees, around point: CGPoint? = nil) -> Path {
         
         var pointRef: CGPoint {
-            if let point = point { return point }
+            
+            // use nil coalescing ??
+            if let point = point {
+                return point
+            }
+            
             let bounds = cgPath.boundingBox
             return CGPoint(x: bounds.midX, y: bounds.midY)
         }
