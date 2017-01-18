@@ -8,51 +8,42 @@
 
 import QuartzCore
 
-/**
- Wrapper for `CGPath` `PathElement.type`.
- */
+/// Wrapper for `CGPath` `PathElement.type`.
+///
+/// - TODO: Generalize to `Double`
 public enum PathElement {
     
-    /**
-     Move to point.
-     */
+    /// Move to point.
     case move(CGPoint)
-    
-    /**
-     Add line to point.
-     */
+
+    /// Add line to point.
     case line(CGPoint)
-    
-    /**
-     Add quadratic bézier curve to point, with control point.
-     */
+
+    /// Add quadratic bézier curve to point, with control point.
     case quadCurve(CGPoint, CGPoint)
     
-    /**
-     Add cubic bézier curve to point, with two control points.
-     */
+    /// Add cubic bézier curve to point, with two control points.
     case curve(CGPoint, CGPoint, CGPoint)
     
-    /**
-     Close subpath.
-     */
+    /// Close subpath.
     case close
+}
+
+extension PathElement: CustomStringConvertible {
     
-    /**
-     Create a `PathElement` with a `CGPathElement`.
-     */
-    public init(element: CGPathElement) {
-        switch element.type {
-        case .moveToPoint:
-            self = .move(element.points[0])
-        case .addLineToPoint:
-            self = .line(element.points[0])
-        case .addQuadCurveToPoint:
-            self = .quadCurve(element.points[0], element.points[1])
-        case .addCurveToPoint:
-            self = .curve(element.points[0], element.points[1], element.points[2])
-        case .closeSubpath:
-            self = .close
+    public var description: String {
+        
+        switch self {        
+        case .move(let point):
+            return "move \(point.x),\(point.y)"
+        case .line(let point):
+            return "  -> \(point.x),\(point.y)"
+        case .quadCurve(let point, let controlPoint):
+            return "  ~> \(point.x),\(point.y) via \(controlPoint.x),\(controlPoint.y)"
+        case .curve(let point, let controlPoint1, let controlPoint2):
+            return "  ~> \(point.x),\(point.y) via \(controlPoint1.x),\(controlPoint1.y) & \(controlPoint2.x),\(controlPoint2.y)"
+        case .close:
+            return "close"
         }
     }
 }

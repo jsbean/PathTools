@@ -148,3 +148,12 @@ extension Path: AnyCollectionWrapping {
         return AnyCollection(elements)
     }
 }
+
+extension Path: CustomStringConvertible {
+    
+    // MARK: - `CustomStringConvertible`
+    
+    public var description: String {
+        return elements.map { "\($0)" }.joined(separator: "\n")
+    }
+}
