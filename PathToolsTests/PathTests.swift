@@ -38,53 +38,68 @@ class PathTests: XCTestCase {
         let _ = Path.rectangle(rectangle: rect)
     }
     
-    func testFluentInterface() {
-        let _ = Path()
-            .move(to: CGPoint.zero)
-            .addLine(to: CGPoint.zero)
-            .addQuadCurve(to: CGPoint.zero, controlPoint: CGPoint.zero)
+    func testCustomStringConvertible() {
+        
+        let path = Path()
+            .move(to: CGPoint(x: 100, y: 100))
+            .addLine(to: CGPoint(x: 200, y: 200))
+            .addQuadCurve(to: CGPoint(x: 300, y: 0), controlPoint: CGPoint(x: 200, y: 100))
             .addCurve(
-                to: CGPoint.zero,
-                controlPoint1: CGPoint.zero,
-                controlPoint2: CGPoint.zero
+                to: CGPoint(x: 200, y: 150),
+                controlPoint1: CGPoint(x: 400, y: 200),
+                controlPoint2: CGPoint(x: 100, y: 200)
             )
+        
+        print(path)
     }
     
-    func testPerformanceFluentInterface() {
-        self.measure {
-            (0 ..< 1000).forEach { _ in
-                let _ = Path()
-                    .move(to: CGPoint.zero)
-                    .addLine(to: CGPoint.zero)
-                    .addQuadCurve(to: CGPoint.zero, controlPoint: CGPoint.zero)
-                    .addCurve(
-                        to: CGPoint.zero,
-                        controlPoint1: CGPoint.zero,
-                        controlPoint2: CGPoint.zero
-                )
-            }
-        }
-    }
-    
-    func testPerformanceThousandsOfPathsFromCGPath() {
-        self.measure {
-            (0 ..< 1000).forEach { _ in
-                let cgPath = CGMutablePath()
-                cgPath.addRect(CGRect(x: 0, y: 0, width: 100, height: 100))
-                let _ = Path(cgPath)
-            }
-        }
-    }
-    
-    func testPerformanceScaled() {
-        self.measure {
-            (0 ..< 1000).forEach { _ in
-                let path = Path.rectangle(rectangle: CGRect(x: 0, y: 0, width: 100, height: 100))
-                let _ = path.scaled(by: 0.5)
-            }
-        }
-    }
-    
+//    func testFluentInterface() {
+//        let _ = Path()
+//            .move(to: CGPoint.zero)
+//            .addLine(to: CGPoint.zero)
+//            .addQuadCurve(to: CGPoint.zero, controlPoint: CGPoint.zero)
+//            .addCurve(
+//                to: CGPoint.zero,
+//                controlPoint1: CGPoint.zero,
+//                controlPoint2: CGPoint.zero
+//            )
+//    }
+//    
+//    func testPerformanceFluentInterface() {
+//        self.measure {
+//            (0 ..< 1000).forEach { _ in
+//                let _ = Path()
+//                    .move(to: CGPoint.zero)
+//                    .addLine(to: CGPoint.zero)
+//                    .addQuadCurve(to: CGPoint.zero, controlPoint: CGPoint.zero)
+//                    .addCurve(
+//                        to: CGPoint.zero,
+//                        controlPoint1: CGPoint.zero,
+//                        controlPoint2: CGPoint.zero
+//                )
+//            }
+//        }
+//    }
+//    
+//    func testPerformanceThousandsOfPathsFromCGPath() {
+//        self.measure {
+//            (0 ..< 1000).forEach { _ in
+//                let cgPath = CGMutablePath()
+//                cgPath.addRect(CGRect(x: 0, y: 0, width: 100, height: 100))
+//                let _ = Path(cgPath)
+//            }
+//        }
+//    }
+//    
+//    func testPerformanceScaled() {
+//        self.measure {
+//            (0 ..< 1000).forEach { _ in
+//                let path = Path.rectangle(rectangle: CGRect(x: 0, y: 0, width: 100, height: 100))
+//                let _ = path.scaled(by: 0.5)
+//            }
+//        }
+//    }
+//    
 //    func testPerformanceRotated() {
 //        self.measureBlock {
 //            (0 ..< 100_000).forEach { _ in
