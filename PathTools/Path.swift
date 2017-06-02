@@ -52,9 +52,7 @@ public final class Path {
     /// Create an empty `Path`.
     public init() { }
     
-    /**
-     Create a `Path` with a `CGPath`.
-     */
+    /// Creates a `Path` with a `CGPath`.
     public init(_ cgPath: CGPath?) {
         var pathElements: [PathElement] = []
         withUnsafeMutablePointer(to: &pathElements) { elementsPointer in
