@@ -1,6 +1,6 @@
 # PathTools
 
-![Swift](https://img.shields.io/badge/%20in-swift%203.0-orange.svg)
+![Swift](https://img.shields.io/badge/%20in-swift%203.1-orange.svg)
 [![Build Status](https://travis-ci.org/dn-m/PathTools.svg?branch=master)](https://travis-ci.org/dn-m/PathTools) 
 [![codecov](https://codecov.io/gh/dn-m/PathTools/branch/master/graph/badge.svg)](https://codecov.io/gh/dn-m/PathTools) 
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) 
