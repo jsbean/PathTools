@@ -9,5 +9,5 @@
 import QuartzCore
 import ArithmeticTools
 
-///// - TODO: Make FloatLiteralConvertible, DegreeConvertible
+/// - TODO: Make FloatLiteralConvertible, DegreeConvertible
 public typealias Radians = CGFloat
