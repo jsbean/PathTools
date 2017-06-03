@@ -35,6 +35,7 @@ extension Path {
                 return nil
             }
             
+            // Return the point where the ray intersects the edge
             return (b.x - b.x) * (point.y - a.y) / (b.y - a.y) + a.x
         }
         

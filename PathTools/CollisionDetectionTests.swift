@@ -47,7 +47,7 @@ class CollisionDetectionTests: XCTestCase {
     }
     
     func testContainsPointInRectTrue() {
-        
+
         let rect = Path.rectangle(origin: Point(), size: Size(width: 100, height: 100))
         let point = Point(x: 50, y: 50)
         
