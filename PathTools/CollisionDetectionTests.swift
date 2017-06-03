@@ -61,4 +61,20 @@ class CollisionDetectionTests: XCTestCase {
         
         XCTAssertFalse(rect.contains(point))
     }
+    
+    func testYsAtXRect() {
+        
+        let rect = Path.rectangle(origin: Point(), size: Size(width: 100, height: 100))
+        let expected: Set<Double> = [0,100]
+        
+        XCTAssertEqual(expected, rect.ys(at: 25))
+    }
+    
+    func testXsAtYRect() {
+        
+        let rect = Path.rectangle(origin: Point(), size: Size(width: 100, height: 100))
+        let expected: Set<Double> = [0,100]
+        
+        XCTAssertEqual(expected, rect.xs(at: 75))
+    }
 }
