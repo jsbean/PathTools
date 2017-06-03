@@ -16,7 +16,7 @@ extension Path {
     public static func circle(center: Point, radius: Double) -> Path {
         
         // distance from each point to its neighboring control points
-        let a = Double(4 * (sqrt(2.0) - 1) / 3)
+        let a = 4 * (sqrt(2.0) - 1) / 3
         
         let elements: [PathElement] = [
             // top
