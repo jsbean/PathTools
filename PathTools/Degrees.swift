@@ -11,17 +11,10 @@ import QuartzCore
 /// - TODO: Make FloatLiteralConvertible, RadianConvertible
 public typealias Degrees = CGFloat
 
-/**
- - TODO: Refactor as inits to and from degrees / radians
- */
-internal func DEGREES_TO_RADIANS(_ degrees: CGFloat) -> CGFloat {
+internal func radians(from degrees: Degrees) -> Radians {
     return degrees / 180.0 * .pi
 }
 
-/**
- - TODO: Refactor as inits to and from degrees / radians
- */
-internal func RADIANS_TO_DEGREES(_ radians: CGFloat) -> CGFloat {
+internal func degrees(from radians: Radians) -> Degrees {
     return radians * (180.0 / .pi)
 }
-

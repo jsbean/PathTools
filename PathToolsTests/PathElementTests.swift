@@ -13,9 +13,9 @@ class PathElementTests: XCTestCase {
 
     func testCustomStringConvertible() {
         let element = PathElement.curve(
-            CGPoint(x: 100, y: 100),
-            CGPoint(x: 150, y: 150),
-            CGPoint(x: 400, y: 0)
+            Point(x: 100, y: 100),
+            Point(x: 150, y: 150),
+            Point(x: 400, y: 0)
         )
         print(element)
     }

@@ -6,12 +6,12 @@
 //
 //
 
-import Foundation
+import QuartzCore
 
 extension Path {
     
     /// - warning: Not yet implemented!
     public var boundingBox: Path {
-        fatalError()
+        return Path.rectangle(Rectangle(cgPath.boundingBoxOfPath))
     }
 }

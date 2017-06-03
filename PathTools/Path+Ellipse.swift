@@ -11,13 +11,9 @@ import QuartzCore
 extension Path {
     
     // MARK: - Ellipse
-    
-    /**
-     - returns: `Path` with an ellipse shape within the given `rectangle`.
-     */
-    public static func ellipse(rectangle: CGRect) -> Path {
-        return Path(CGPath(ellipseIn: rectangle, transform: nil))
+
+    /// - returns: `Path` with an ellipse shape within the given `rectangle`.
+    public static func ellipse(in rect: Rectangle) -> Path {
+        return Path(CGPath(ellipseIn: CGRect(rect), transform: nil))
     }
-    
-    // TODO: static func ellipse(center, width, height) -> Path
 }

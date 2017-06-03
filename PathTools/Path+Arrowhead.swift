@@ -6,29 +6,24 @@
 //
 //
 
-import QuartzCore
-
 extension Path {
     
     // MARK: - Arrowhead
-    
-    /**
-     - warning: Not yet fully implemented!
-     */
+
     public static func arrowhead(
-        tip: CGPoint = CGPoint.zero,
-        height: CGFloat = 100,
-        width: CGFloat = 25,
-        barbProportion: CGFloat = 0.25,
+        tip: Point = Point(),
+        height: Double = 100,
+        width: Double = 25,
+        barbProportion: Double = 0.25,
         rotation: Degrees = 0
     ) -> Path
     {
         let path = Path(
             [
-                .move(CGPoint(x: 0.5 * width, y: 0)),
-                .line(CGPoint(x: width, y: height)),
-                .line(CGPoint(x: 0.5 * width, y: height - (barbProportion * height))),
-                .line(CGPoint(x: 0, y: height)),
+                .move(Point(x: 0.5 * width, y: 0)),
+                .line(Point(x: width, y: height)),
+                .line(Point(x: 0.5 * width, y: height - (barbProportion * height))),
+                .line(Point(x: 0, y: height)),
                 .close
             ]
         )

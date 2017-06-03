@@ -6,15 +6,17 @@
 //
 //
 
+import ArithmeticTools
+
 /// Representation of a point.
 ///
-/// - TODO: Consider making generic over `SignedNumber`.
+/// - TODO: Consider making `Monoid`.
 public struct Point {
     
     public let x: Double
     public let y: Double
     
-    public init(x: Double, y: Double) {
+    public init(x: Double = 0, y: Double = 0) {
         self.x = x
         self.y = y
     }

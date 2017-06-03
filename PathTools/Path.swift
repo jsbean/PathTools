@@ -9,63 +9,18 @@
 import QuartzCore
 import Collections
 
-/**
- Pleasant graphics API that is compatible with iOS and OSX. Wraps CGPath.
- 
- Exposes CGPath path elements, which is useful for:
-    
- - Bézier path calculations
- - Polygonal collision testing
- */
-public final class Path {
-    
-    fileprivate var elements: [PathElement] = []
+/// Pleasant graphics API that is compatible with iOS and OSX.
+public class Path {
     
     // MARK: - Instance Properties
     
-    /*
-     `CGPath` representation of `Path`.
-    
-     > Use this as the `path` property for a `CAShapeLayer`.
-    */
-    public lazy var cgPath: CGPath = {
-        let path = CGMutablePath()
-        for element in self.elements {
-            switch element {
-            case .move(let point):
-                path.move(to: point)
-            case .line(let point):
-                path.addLine(to: point)
-            case .quadCurve(let point, let controlPoint):
-                path.addQuadCurve(to: point, control: controlPoint)
-            case .curve(let point, let controlPoint1, let controlPoint2):
-                path.addCurve(to: point, control1: controlPoint1, control2: controlPoint2)
-            case .close:
-                path.closeSubpath()
-            }
-        }
-        return path.copy()!
-    }()
-    
+    internal var elements: [PathElement] = []
+        
     // MARK: - Initializers
     
-    /// Create an empty `Path`.
+    /// Creates an empty `Path`.
     public init() { }
     
-    /// Creates a `Path` with a `CGPath`.
-    public init(_ cgPath: CGPath?) {
-        var pathElements: [PathElement] = []
-        withUnsafeMutablePointer(to: &pathElements) { elementsPointer in
-            cgPath?.apply(info: elementsPointer) { (userInfo, nextElementPointer) in
-                let nextElement = PathElement(element: nextElementPointer.pointee)
-                let elementsPointer = userInfo!.assumingMemoryBound(to: [PathElement].self)
-                elementsPointer.pointee.append(nextElement)
-            }
-        }
-        self.cgPath = cgPath!
-        self.elements = pathElements
-    }
-
     /// Create a `Path` with an array of `PathElement` values.
     public init(_ elements: [PathElement]) {
         self.elements = elements
@@ -77,7 +32,7 @@ public final class Path {
     ///
     /// - returns: `self`
     @discardableResult
-    public func move(to point: CGPoint) -> Path {
+    public func move(to point: Point) -> Path {
         elements.append(.move(point))
         return self
     }
@@ -86,7 +41,7 @@ public final class Path {
     ///
     /// - returns: `self`.
     @discardableResult
-    public func addLine(to point: CGPoint) -> Path {
+    public func addLine(to point: Point) -> Path {
         elements.append(.line(point))
         return self
     }
@@ -95,7 +50,7 @@ public final class Path {
     ///
     /// - returns: `self`.
     @discardableResult
-    public func addQuadCurve(to point: CGPoint, controlPoint: CGPoint) -> Path {
+    public func addQuadCurve(to point: Point, controlPoint: Point) -> Path {
         elements.append(.quadCurve(point, controlPoint))
         return self
     }
@@ -105,9 +60,9 @@ public final class Path {
     /// - returns: `self`.
     @discardableResult
     public func addCurve(
-        to point: CGPoint,
-        controlPoint1: CGPoint,
-        controlPoint2: CGPoint
+        to point: Point,
+        controlPoint1: Point,
+        controlPoint2: Point
     ) -> Path
     {
         elements.append(.curve(point, controlPoint1, controlPoint2))

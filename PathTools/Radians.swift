@@ -7,7 +7,6 @@
 //
 
 import QuartzCore
-import ArithmeticTools
 
 /// - TODO: Make FloatLiteralConvertible, DegreeConvertible
 public typealias Radians = CGFloat
