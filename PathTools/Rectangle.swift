@@ -15,31 +15,38 @@ public struct Rectangle {
     
     public static let zero = Rectangle()
     
+    /// Minimum X value.
     public var minX: Double {
         return (size.width < 0) ? origin.x + size.width : origin.x
     }
     
+    /// Horizontal midpoint.
     public var midX: Double {
         return origin.x + (size.width / 2.0)
     }
     
+    /// Maximum X value.
     public var maxX: Double {
         return (size.width < 0) ? origin.x : origin.x + size.width
     }
     
+    /// Minimum Y value.
     public var minY: Double {
         return (size.height < 0) ? origin.y + size.height : origin.y
     }
     
+    /// Vertical midpoint.
     public var midY: Double {
         return origin.y + (size.height / 2.0)
     }
     
+    /// Maximum Y value.
     public var maxY: Double {
         return (size.height < 0) ? origin.y : origin.y + size.height
     }
     
-    /// - Returns: whether a rectangle has zero width or height, or is a null rectangle.
+    /// - Returns: `true` if the `height` or `width` properties of `size` are `0`. Otherwise,
+    /// false.
     public var isEmpty: Bool {
         return size.width == 0 || size.height == 0
     }
@@ -66,6 +73,7 @@ public struct Rectangle {
 
     // MARK: - Instance Methods
     
+    /// - Returns: `true` if the given `point` is contained herein. Otherwise, `false`.
     public func contains(_ point: Point) -> Bool {
         return (point.x >= minX && point.x <= maxX) && (point.y >= minY && point.y <= maxY)
     }
@@ -75,6 +83,7 @@ extension Rectangle: Equatable {
     
     // MARK: - Equatable
     
+    /// - Returns: `true` if values are equivalent. Otherwise, `false`.
     public static func == (lhs: Rectangle, rhs: Rectangle) -> Bool {
         return lhs.origin == rhs.origin && lhs.size == rhs.size
     }
