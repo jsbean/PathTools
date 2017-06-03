@@ -27,7 +27,11 @@ extension Path {
                 .close
             ]
         )
-        if rotation == 0 { return path }
+        
+        if rotation == 0 {
+            return path
+        }
+        
         return path.rotated(by: rotation)
     }
 }

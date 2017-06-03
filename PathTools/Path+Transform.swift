@@ -67,6 +67,7 @@ extension Path {
         fatalError()
     }
 }
+
 //
 //public func mirror() {
 //    let mirrorOverXOrigin = CGAffineTransformMakeScale(-1, 1)
