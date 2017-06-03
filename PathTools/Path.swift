@@ -14,6 +14,20 @@ public class Path {
     
     // MARK: - Instance Properties
     
+    public var edges: [(Point, Point)] {
+        
+        guard !isEmpty else {
+            return []
+        }
+        
+        return vertices.indices.map { index in
+            let a = vertices[index]
+            let b = index == vertices.endIndex - 1 ? vertices[0] : vertices[index + 1]
+            return (a,b)
+        }
+        
+    }
+    
     public var vertices: [Point] {
         return elements.flatMap { element in
             switch element {

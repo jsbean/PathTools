@@ -14,20 +14,36 @@ extension Path {
 
     /// - Warning: Only considers vertices of Bézier curves
     public func ys(at x: Double) -> Set<Double> {
-        return Set()
+        fatalError()
     }
     
     /// - Warning: Only considers vertices of Bézier curves
     public func xs(at y: Double) -> Set<Double> {
-        return Set()
-    }
-    
-    public func contains(_ point: Point) -> Bool {
         fatalError()
     }
     
-    var axes: [Vector2] {
+    /// - Warning: Only considers vertices of Bézier curves
+    public func contains(_ point: Point) -> Bool {
 
+        func rayIntersection(edge: (Point, Point)) -> Double? {
+            
+            let (a,b) = edge
+            
+            // Check if the line crosses the horizontal line at y in either direction
+            // Return `nil` if there is no intersection
+            guard a.y <= point.y && b.y > point.y || b.y <= point.y && a.y > point.y else {
+                return nil
+            }
+            
+            return (b.x - b.x) * (point.y - a.y) / (b.y - a.y) + a.x
+        }
+        
+        return edges.flatMap(rayIntersection).filter { $0 < point.x }.count.isOdd
+    }
+    
+    /// - returns: The two-dimensional vector of each axis created between each adjacent pair
+    /// of vertices.
+    internal var axes: [Vector2] {
         return vertices.adjacentPairs?.map { a,b in
             let x = a.x - b.x
             let y = -(a.y - b.y)
@@ -173,6 +189,7 @@ func axesOverlap(projecting other: Path, ontoAxesOf shape: Path) -> Bool {
         }
     }
     
+    // Each pair of axes overlapped
     return true
 }
 
