@@ -7,6 +7,7 @@
 //
 
 import Darwin
+import Collections
 import ArithmeticTools
 
 extension Path {
@@ -21,107 +22,26 @@ extension Path {
         return Set()
     }
     
-    struct Vector2 {
-        
-        var length: Double {
-            return hypot(x * x, y * y)
-        }
-        
-        let x: Double
-        let y: Double
+    var axes: [Vector2] {
+
+        return vertices.adjacentPairs?.map { a,b in
+            let x = a.x - b.x
+            let y = -(a.y - b.y)
+            return Vector2(x: x, y: y)
+        } ?? []
     }
     
-    /// - Warning: Discards Bézier curves
+    /// - Warning: Assumes `Path` values are polygons, discarding Bézier control points
     /// - Warning: Assumes polygon is convex
     public func intersects(_ other: Path) -> Bool {
         
-        
-        // For each path, get each of its axes:
-        // Project the other path onto these axes (line from m):
-        //
-        
-//        var vertsax: [CGFloat] = []
-//        var vertsay: [CGFloat] = []
-//        for point in vertices { vertsax.append(point.x); vertsay.append(point.y) }
-//        var vertsbx: [CGFloat] = []
-//        var vertsby: [CGFloat] = []
-//        for point in polygon.vertices { vertsbx.append(point.x); vertsby.append(point.y) }
-        
-        let vertsax = vertices.map { $0.x }
-        let vertsay = vertices.map { $0.y }
-        let vertsbx = other.vertices.map { $0.x }
-        let vertsby = other.vertices.map { $0.y }
-        
-        let len_a: Int = vertsax.count
-        let len_b: Int = vertsbx.count
-
-        // LOOP THROUGH AXES OF SHAPE A
-        for j in 0..<len_a - 1 {
-            let i = j + 1
-            var vx = vertsax[j] - vertsax[i]
-            var vy = -(vertsay[j] - vertsay[i])
-            let len = sqrt(vx * vx + vy * vy)
-            vx /= len
-            vy /= len
-            
-            // PROJECT SHAPE A
-            var max0 = vertsax[0] * vx + vertsay[0] * vy
-            var min0 = max0
-            for k in 1..<len_a {
-                let proj_a = vertsax[k] * vx + vertsay[k] * vy
-                if proj_a > max0 { max0 = proj_a }
-                else if proj_a < min0 { min0 = proj_a }
-            }
-            
-            // PROJECT SHAPE B
-            var max1 = vertsbx[0] * vx + vertsby[0] * vy
-            var min1 = max1
-            for k in 1..<len_b {
-                let proj_b = vertsbx[k] * vx + vertsby[k] * vy
-                if proj_b > max1 { max1 = proj_b }
-                else if proj_b < min1 { min1 = proj_b }
-            }
-            
-            // TEST FOR GAPS
-            if !axesOverlap(a0: min0, a1: max0, b0: min1, b1: max1) { return false }
+        guard !(isEmpty || other.isEmpty) else {
+            return false
         }
         
-        // LOOP THROUGH AXES OF SHAPE B
-        for j in 0..<len_b - 1 {
-            let i = j + 1
-            var vx = vertsbx[j] - vertsbx[i]
-            var vy = -(vertsby[j] - vertsby[i])
-            let len = sqrt(vx * vx + vy * vy)
-            vx /= len
-            vy /= len
-            
-            // PROJECT SHAPE A
-            var max0 = vertsax[0] * vx + vertsay[0] * vy
-            var min0 = max0
-            for k in 1..<len_a {
-                let proj_a = vertsax[k] * vx + vertsay[k] * vy
-                if proj_a > max0 { max0 = proj_a }
-                else if proj_a < min0 { min0 = proj_a }
-            }
-            
-            // PROJECT SHAPE B
-            var max1 = vertsbx[0] * vx + vertsby[0] * vy
-            var min1 = max1
-            for k in 1..<len_b {
-                let proj_b = vertsbx[k] * vx + vertsby[k] * vy
-                if proj_b > max1 { max1 = proj_b }
-                else if proj_b < min1 { min1 = proj_b }
-            }
-            
-            // TEST FOR GAPS
-            if !axesOverlap(a0: min0, a1: max0, b0: min1, b1: max1) { return false }
-        }
-        return true
+        return doIntersect(a: self, b: other)
     }
     
-    private func axesOverlap(a0: Double, a1: Double, b0: Double, b1: Double) -> Bool {
-        return !(a0 > b1 || b0 > a1)
-    }
     
     /*
     public func containsPoint(point: CGPoint) -> Bool {
@@ -299,4 +219,36 @@ extension CALayer {
     }
 }
  */
+}
+
+
+
+func project(_ shape: Path, onto axis: Vector2) -> (min: Double, max: Double) {
+    
+    let length = axis.length
+    
+    let values = shape.vertices.map { vertex in
+        vertex.x * (axis.x / length) + vertex.y * (axis.y / length)
+    }
+    
+    return (values.min()!, values.max()!)
+}
+
+func axesOverlapProjecting(_ other: Path, ontoAxesOf shape: Path) -> Bool {
+    for axis in shape.axes {
+        let shapeValues = project(shape, onto: axis)
+        let otherValues = project(other, onto: axis)
+        if !axesOverlap(a: shapeValues, b: otherValues) {
+            return false
+        }
+    }
+    return true
+}
+
+func doIntersect(a: Path, b: Path) -> Bool {
+    return axesOverlapProjecting(a, ontoAxesOf: b) && axesOverlapProjecting(b, ontoAxesOf: a)
+}
+
+func axesOverlap(a: (min: Double, max: Double), b: (min: Double, max: Double)) -> Bool {
+    return !(a.min > b.max || b.min > a.max)
 }
