@@ -46,12 +46,8 @@ extension Path {
     }
     
     /// - returns: `Path` translated by the given amounts.
-    public func translated(horizontallyBy tx: CGFloat = 0, verticallyBy ty: CGFloat = 0)
-        -> Path
-    {
-        var transform = CGAffineTransform.identity
-        transform = transform.translatedBy(x: tx, y: ty)
-        return Path(cgPath.copy(using: &transform))
+    public func translatedBy(x: Double = 0, y: Double = 0) -> Path {
+        return Path(elements.map { $0.translatedBy(x: x, y: y) })
     }
 
     /// - returns: `Path` that is mirrored over the y-axis.

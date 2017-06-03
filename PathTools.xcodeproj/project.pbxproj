@@ -21,6 +21,8 @@
 		0701A88E1EE310A500900B3F /* Rectangle+CGRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0701A88C1EE310A500900B3F /* Rectangle+CGRect.swift */; };
 		0701A8901EE310D000900B3F /* Size+CGSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0701A88F1EE310D000900B3F /* Size+CGSize.swift */; };
 		0701A8911EE310D000900B3F /* Size+CGSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0701A88F1EE310D000900B3F /* Size+CGSize.swift */; };
+		0701A8931EE3237A00900B3F /* Path+CollisionDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0701A8921EE3237A00900B3F /* Path+CollisionDetection.swift */; };
+		0701A8941EE3237A00900B3F /* Path+CollisionDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0701A8921EE3237A00900B3F /* Path+CollisionDetection.swift */; };
 		07088AC51D0AE8A600004FB2 /* Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07088AC41D0AE8A600004FB2 /* Path.swift */; };
 		07088AC61D0AE8A600004FB2 /* Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07088AC41D0AE8A600004FB2 /* Path.swift */; };
 		07305A341D0F3F7F006E4085 /* Path+Square.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07305A331D0F3F7F006E4085 /* Path+Square.swift */; };
@@ -119,6 +121,7 @@
 		0701A8891EE3104F00900B3F /* Point+CGPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Point+CGPoint.swift"; path = "PathTools/Point+CGPoint.swift"; sourceTree = "<group>"; };
 		0701A88C1EE310A500900B3F /* Rectangle+CGRect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Rectangle+CGRect.swift"; path = "PathTools/Rectangle+CGRect.swift"; sourceTree = "<group>"; };
 		0701A88F1EE310D000900B3F /* Size+CGSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Size+CGSize.swift"; path = "PathTools/Size+CGSize.swift"; sourceTree = "<group>"; };
+		0701A8921EE3237A00900B3F /* Path+CollisionDetection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Path+CollisionDetection.swift"; path = "PathTools/Path+CollisionDetection.swift"; sourceTree = "<group>"; };
 		07088AC41D0AE8A600004FB2 /* Path.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Path.swift; path = PathTools/Path.swift; sourceTree = "<group>"; };
 		07305A331D0F3F7F006E4085 /* Path+Square.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Path+Square.swift"; path = "PathTools/Path+Square.swift"; sourceTree = "<group>"; };
 		0759A4771E3015B000E2E40C /* PathElement+CGPathElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PathElement+CGPathElement.swift"; path = "PathTools/PathElement+CGPathElement.swift"; sourceTree = "<group>"; };
@@ -193,6 +196,7 @@
 			children = (
 				0701A8791EE3055D00900B3F /* PathElement */,
 				07088AC41D0AE8A600004FB2 /* Path.swift */,
+				0701A8921EE3237A00900B3F /* Path+CollisionDetection.swift */,
 				0701A87A1EE305F400900B3F /* Path+CGPath.swift */,
 				07305A331D0F3F7F006E4085 /* Path+Square.swift */,
 				07C1F8611D0C4EA900541ED5 /* Path+Transform.swift */,
@@ -499,6 +503,7 @@
 				07C1F86C1D0C537300541ED5 /* Path+BoundingBox.swift in Sources */,
 				0759A4791E3015B000E2E40C /* PathElement+CGPathElement.swift in Sources */,
 				07C1F8661D0C513900541ED5 /* Path+Parallelogram.swift in Sources */,
+				0701A8941EE3237A00900B3F /* Path+CollisionDetection.swift in Sources */,
 				076547301D0C861C008038B5 /* Path+Ellipse.swift in Sources */,
 				07305A351D0F3F7F006E4085 /* Path+Square.swift in Sources */,
 				07088AC61D0AE8A600004FB2 /* Path.swift in Sources */,
@@ -530,6 +535,7 @@
 				07C1F86B1D0C537300541ED5 /* Path+BoundingBox.swift in Sources */,
 				0759A4781E3015B000E2E40C /* PathElement+CGPathElement.swift in Sources */,
 				07C1F8651D0C513900541ED5 /* Path+Parallelogram.swift in Sources */,
+				0701A8931EE3237A00900B3F /* Path+CollisionDetection.swift in Sources */,
 				0765472F1D0C861C008038B5 /* Path+Ellipse.swift in Sources */,
 				07305A341D0F3F7F006E4085 /* Path+Square.swift in Sources */,
 				07088AC51D0AE8A600004FB2 /* Path.swift in Sources */,

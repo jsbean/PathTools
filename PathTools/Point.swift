@@ -20,6 +20,10 @@ public struct Point {
         self.x = x
         self.y = y
     }
+    
+    public func translatedBy(x: Double, y: Double) -> Point {
+        return Point(x: self.x + x, y: self.y + y)
+    }
 }
 
 extension Point: Equatable {
