@@ -28,7 +28,10 @@ extension Path {
     {
         let left: Double = center.x - 0.5 * width
         let right: Double = left + width
-        func y(at x: Double) -> Double { return center.y - slope * (x - 0.5 * width) }
+        
+        func y(at x: Double) -> Double {
+            return center.y - slope * (x - 0.5 * width)
+        }
         
         let y_topLeft: Double = y(at: left) - 0.5 * height
         let y_topRight: Double = y(at: right) - 0.5 * height
