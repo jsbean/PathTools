@@ -6,53 +6,55 @@
 //
 //
 
+import Darwin
 import ArithmeticTools
 
 extension Path {
-    
-    /// - Warning: Discards Bézier curves
-    /// - Warning: Assumes polygon is convex
-    public func intersects(_ path: Path) -> Bool {
-        return false
-    }
-    
+
+    /// - Warning: Only considers vertices of Bézier curves
     public func ys(at x: Double) -> Set<Double> {
         return Set()
     }
     
+    /// - Warning: Only considers vertices of Bézier curves
     public func xs(at y: Double) -> Set<Double> {
         return Set()
     }
     
-    /*
- public var description: String { get { return getDescription() } }
-    
-    public var vertices: [CGPoint] = []
-    public var path: UIBezierPath { get { return makePath() } }
-    
-    public var maxY: CGFloat? { get { return getMaxY() } }
-    public var minY: CGFloat? { get { return getMinY() } }
-    public var midY: CGFloat? { get { return getMidY() } }
-    public var maxX: CGFloat? { get { return getMaxX() } }
-    public var minX: CGFloat? { get { return getMinX() } }
-    public var midX: CGFloat? { get { return getMidX() } }
-    
-    init() { }
-    
-    init(vertices: [CGPoint]) {
-        self.vertices = vertices
+    struct Vector2 {
+        
+        var length: Double {
+            return hypot(x * x, y * y)
+        }
+        
+        let x: Double
+        let y: Double
     }
     
-    public func collidesWithPolygon(polygon: Polygon) -> Bool {
-        var vertsax: [CGFloat] = []
-        var vertsay: [CGFloat] = []
-        for point in vertices { vertsax.append(point.x); vertsay.append(point.y) }
-        var vertsbx: [CGFloat] = []
-        var vertsby: [CGFloat] = []
-        for point in polygon.vertices { vertsbx.append(point.x); vertsby.append(point.y) }
+    /// - Warning: Discards Bézier curves
+    /// - Warning: Assumes polygon is convex
+    public func intersects(_ other: Path) -> Bool {
+        
+        
+        // For each path, get each of its axes:
+        // Project the other path onto these axes (line from m):
+        //
+        
+//        var vertsax: [CGFloat] = []
+//        var vertsay: [CGFloat] = []
+//        for point in vertices { vertsax.append(point.x); vertsay.append(point.y) }
+//        var vertsbx: [CGFloat] = []
+//        var vertsby: [CGFloat] = []
+//        for point in polygon.vertices { vertsbx.append(point.x); vertsby.append(point.y) }
+        
+        let vertsax = vertices.map { $0.x }
+        let vertsay = vertices.map { $0.y }
+        let vertsbx = other.vertices.map { $0.x }
+        let vertsby = other.vertices.map { $0.y }
+        
         let len_a: Int = vertsax.count
         let len_b: Int = vertsbx.count
-        
+
         // LOOP THROUGH AXES OF SHAPE A
         for j in 0..<len_a - 1 {
             let i = j + 1
@@ -117,11 +119,11 @@ extension Path {
         return true
     }
     
-    public func axesOverlap(a0 a0: CGFloat, a1: CGFloat, b0: CGFloat, b1: CGFloat) -> Bool {
+    private func axesOverlap(a0: Double, a1: Double, b0: Double, b1: Double) -> Bool {
         return !(a0 > b1 || b0 > a1)
     }
     
-    
+    /*
     public func containsPoint(point: CGPoint) -> Bool {
         var pointIsInside: Bool = false
         var index0: Int = 0
@@ -212,16 +214,6 @@ extension Path {
         if direction == .North { values.sortInPlace { $0 < $1 } }
         else { values.sortInPlace { $0 > $1 } }
         return values.first
-    }
-    
-    internal func makePath() -> UIBezierPath {
-        let path: UIBezierPath = UIBezierPath()
-        for (index, vertex) in vertices.enumerate() {
-            if index == 0 { path.moveToPoint(vertex) }
-            else { path.addLineToPoint(vertex) }
-        }
-        path.closePath()
-        return path
     }
     
     internal func getMaxY() -> CGFloat? {

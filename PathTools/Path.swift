@@ -27,6 +27,12 @@ public class Path {
         }
     }
     
+    /// - Returns: `true` if there are no non-`.close` elements contained herein. Otherwise,
+    /// `false`.
+    public var isEmpty: Bool {
+        return vertices.isEmpty
+    }
+    
     internal var elements: [PathElement] = []
         
     // MARK: - Initializers
@@ -112,6 +118,13 @@ extension Path: AnyCollectionWrapping {
     
     public var collection: AnyCollection<PathElement> {
         return AnyCollection(elements)
+    }
+}
+
+extension Path: Equatable {
+    
+    public static func == (lhs: Path, rhs: Path) -> Bool {
+        return lhs.elements == rhs.elements
     }
 }
 
