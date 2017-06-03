@@ -9,6 +9,9 @@
 import Darwin
 
 /// Two-dimensional Vector
+///
+/// - TODO: Move to dn-m/ArithmeticTools
+///
 public struct Vector2 {
     
     // MARK: - Instance Properties
