@@ -22,6 +22,10 @@ extension Path {
         return Set()
     }
     
+    public func contains(_ point: Point) -> Bool {
+        fatalError()
+    }
+    
     var axes: [Vector2] {
 
         return vertices.adjacentPairs?.map { a,b in
@@ -136,93 +140,12 @@ extension Path {
         return values.first
     }
     
-    internal func getMaxY() -> CGFloat? {
-        if vertices.count == 0 { return nil }
-        var maxY: CGFloat?
-        for vertex in vertices {
-            if maxY == nil { maxY = vertex.y }
-            else if vertex.y > maxY { maxY = vertex.y }
-        }
-        return maxY
-    }
-    
-    internal func getMinY() -> CGFloat? {
-        if vertices.count == 0 { return nil }
-        var minY: CGFloat?
-        for vertex in vertices {
-            if minY == nil { minY = vertex.y }
-            else if vertex.y < minY { minY = vertex.y }
-        }
-        return minY
-    }
-    
-    internal func getMidY() -> CGFloat? {
-        if vertices.count == 0 { return nil }
-        return (minY! + maxY!) / 2
-    }
-    
-    internal func getMaxX() -> CGFloat? {
-        if vertices.count == 0 { return nil }
-        var maxX: CGFloat?
-        for vertex in vertices {
-            if maxX == nil { maxX = vertex.x }
-            else if vertex.x > maxX { maxX = vertex.x }
-        }
-        return maxX
-    }
-    internal func getMinX() -> CGFloat? {
-        if vertices.count == 0 { return nil }
-        var minX: CGFloat?
-        for vertex in vertices {
-            if minX == nil { minX = vertex.x }
-            else if vertex.x < minX { minX = vertex.x }
-        }
-        return minX
-    }
-    
-    internal func getMidX() -> CGFloat? {
-        if vertices.count == 0 { return nil }
-        return (minX! + maxX!) / 2
-    }
+*/
 }
 
-extension CALayer {
-    
-    public func convertY(y: CGFloat, fromLayer otherLayer: CALayer) -> CGFloat {
-        let oldPoint: CGPoint = CGPointMake(0, y)
-        let newPoint: CGPoint = convertPoint(oldPoint, fromLayer: otherLayer)
-        return newPoint.y
-    }
-    
-    public func convertX(x: CGFloat, fromLayer otherLayer: CALayer) -> CGFloat {
-        let oldPoint: CGPoint = CGPointMake(x, 0)
-        let newPoint: CGPoint = convertPoint(oldPoint, fromLayer: otherLayer)
-        return newPoint.x
-    }
-    
-    public func convertPolygon(polygon: Polygon, fromLayer otherLayer: CALayer) -> Polygon {
-        var newVertices: [CGPoint] = []
-        for vertex in polygon.vertices {
-            let newPoint: CGPoint = self.convertPoint(vertex, fromLayer: otherLayer)
-            newVertices.append(newPoint)
-        }
-        return Polygon(vertices: newVertices)
-    }
-    
-    public func convertPolygon(polygon: Polygon, toLayer otherLayer: CALayer) -> Polygon {
-        var newVertices: [CGPoint] = []
-        for vertex in polygon.vertices {
-            let newPoint: CGPoint = self.convertPoint(vertex, toLayer: otherLayer)
-            newVertices.append(newPoint)
-        }
-        return Polygon(vertices: newVertices)
-    }
-}
- */
-}
+// MARK: Collision Detection: Separating Axis Theorem
 
-
-
+/// - Returns: The `min` and `max` values of the given `shape` projected on the given `axis`.
 func project(_ shape: Path, onto axis: Vector2) -> (min: Double, max: Double) {
     
     let length = axis.length
@@ -234,21 +157,35 @@ func project(_ shape: Path, onto axis: Vector2) -> (min: Double, max: Double) {
     return (values.min()!, values.max()!)
 }
 
-func axesOverlapProjecting(_ other: Path, ontoAxesOf shape: Path) -> Bool {
+/// - Returns: `true` if there are any overlaps of the values of either shape value projected
+/// onto the axes of the given `shape`. Otherwise, `false`.
+func axesOverlap(projecting other: Path, ontoAxesOf shape: Path) -> Bool {
+    
+    // Project `shape` and `other` onto each axis of `shape`.
     for axis in shape.axes {
+        
         let shapeValues = project(shape, onto: axis)
         let otherValues = project(other, onto: axis)
+        
+        // If we ever see light between two shapes, we short-circuit to `false`
         if !axesOverlap(a: shapeValues, b: otherValues) {
             return false
         }
     }
+    
     return true
 }
 
+/// - Returns: `true` if the axes of either shape overlap with those of the other. Otherwise,
+/// `false`.
 func doIntersect(a: Path, b: Path) -> Bool {
-    return axesOverlapProjecting(a, ontoAxesOf: b) && axesOverlapProjecting(b, ontoAxesOf: a)
+    return (
+        axesOverlap(projecting: a, ontoAxesOf: b) &&
+        axesOverlap(projecting: b, ontoAxesOf: a)
+    )
 }
 
+/// - Returns: `true` if there is any overlap between the two given ranges. Otherwise, `false`.
 func axesOverlap(a: (min: Double, max: Double), b: (min: Double, max: Double)) -> Bool {
     return !(a.min > b.max || b.min > a.max)
 }
