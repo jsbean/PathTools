@@ -14,13 +14,17 @@ extension PathElement {
     public init(element: CGPathElement) {
         switch element.type {
         case .moveToPoint:
-            self = .move(element.points[0])
+            self = .move(Point(element.points[0]))
         case .addLineToPoint:
-            self = .line(element.points[0])
+            self = .line(Point(element.points[0]))
         case .addQuadCurveToPoint:
-            self = .quadCurve(element.points[0], element.points[1])
+            self = .quadCurve(Point(element.points[0]), Point(element.points[1]))
         case .addCurveToPoint:
-            self = .curve(element.points[0], element.points[1], element.points[2])
+            self = .curve(
+                Point(element.points[0]),
+                Point(element.points[1]),
+                Point(element.points[2])
+            )
         case .closeSubpath:
             self = .close
         }

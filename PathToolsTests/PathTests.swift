@@ -17,14 +17,14 @@ class PathTests: XCTestCase {
     
     func testMoveTo() {
         let path = Path()
-            .move(to: CGPoint.zero)
+            .move(to: Point())
         XCTAssertEqual(path.count, 1)
     }
     
     func testMoveToLineTo() {
         let path = Path()
-            .move(to: CGPoint.zero)
-            .addLine(to: CGPoint.zero)
+            .move(to: Point())
+            .addLine(to: Point())
         XCTAssertEqual(path.count, 2)
     }
     
@@ -34,20 +34,20 @@ class PathTests: XCTestCase {
     }
     
     func testInitWithCGRect() {
-        let rect = CGRect(origin: CGPoint.zero, size: CGSize.zero)
-        let _ = Path.rectangle(rectangle: rect)
+        let rect = Rectangle(origin: Point(), size: Size())
+        let _ = Path.rectangle(rect)
     }
     
     func testCustomStringConvertible() {
         
         let path = Path()
-            .move(to: CGPoint(x: 100, y: 100))
-            .addLine(to: CGPoint(x: 200, y: 200))
-            .addQuadCurve(to: CGPoint(x: 300, y: 0), controlPoint: CGPoint(x: 200, y: 100))
+            .move(to: Point(x: 100, y: 100))
+            .addLine(to: Point(x: 200, y: 200))
+            .addQuadCurve(to: Point(x: 300, y: 0), controlPoint: Point(x: 200, y: 100))
             .addCurve(
-                to: CGPoint(x: 200, y: 150),
-                controlPoint1: CGPoint(x: 400, y: 200),
-                controlPoint2: CGPoint(x: 100, y: 200)
+                to: Point(x: 200, y: 150),
+                controlPoint1: Point(x: 400, y: 200),
+                controlPoint2: Point(x: 100, y: 200)
             )
         
         print(path)

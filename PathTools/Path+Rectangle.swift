@@ -12,15 +12,13 @@ extension Path {
     
     // MARK: - Rectangle
     
-    /**
-     - returns: `Path` with a rectangle shape defined by `rectangle`.
-     */
-    public static func rectangle(rectangle: CGRect) -> Path {
+    /// - returns: `Path` with a rectangle shape defined by `rectangle`.
+    public static func rectangle(_ rect: Rectangle) -> Path {
         return Path()
-            .move(to: rectangle.origin)
-            .addLine(to: CGPoint(x: rectangle.maxX, y: rectangle.minY))
-            .addLine(to: CGPoint(x: rectangle.maxX, y: rectangle.maxY))
-            .addLine(to: CGPoint(x: rectangle.minX, y: rectangle.maxY))
+            .move(to: rect.origin)
+            .addLine(to: Point(x: rect.maxX, y: rect.minY))
+            .addLine(to: Point(x: rect.maxX, y: rect.maxY))
+            .addLine(to: Point(x: rect.minX, y: rect.maxY))
             .close()
     }
 }

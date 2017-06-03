@@ -14,16 +14,16 @@ import QuartzCore
 public enum PathElement {
     
     /// Move to point.
-    case move(CGPoint)
+    case move(Point)
 
     /// Add line to point.
-    case line(CGPoint)
+    case line(Point)
 
     /// Add quadratic bézier curve to point, with control point.
-    case quadCurve(CGPoint, CGPoint)
+    case quadCurve(Point, Point)
     
     /// Add cubic bézier curve to point, with two control points.
-    case curve(CGPoint, CGPoint, CGPoint)
+    case curve(Point, Point, Point)
     
     /// Close subpath.
     case close

@@ -12,7 +12,6 @@ extension Path {
     
     // MARK: - Transforms
     
-    
     /// - returns: `Path` that is rotated by the given `degrees`, around the given `point`.
     ///
     /// - note: If `point` is `nil`, the center of the the bounding box is chosen.
@@ -25,7 +24,7 @@ extension Path {
         
         var transform = CGAffineTransform.identity
         transform = transform.translatedBy(x: pointRef.x, y: pointRef.y)
-        transform = transform.rotated(by: DEGREES_TO_RADIANS(degrees))
+        transform = transform.rotated(by: radians(from: degrees))
         transform = transform.translatedBy(x: -pointRef.x, y: -pointRef.y)
         return Path(cgPath.copy(using: &transform)!)
     }
