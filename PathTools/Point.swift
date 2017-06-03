@@ -6,6 +6,7 @@
 //
 //
 
+import Darwin
 import ArithmeticTools
 
 /// Representation of a point.
@@ -19,6 +20,14 @@ public struct Point {
     public init(x: Double = 0, y: Double = 0) {
         self.x = x
         self.y = y
+    }
+    
+    public func distance(to other: Point) -> Double {
+        return hypot(other.x - self.x, other.y - self.y)
+    }
+    
+    public func translatedBy(x: Double, y: Double) -> Point {
+        return Point(x: self.x + x, y: self.y + y)
     }
 }
 

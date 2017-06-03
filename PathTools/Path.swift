@@ -6,13 +6,32 @@
 //
 //
 
-import QuartzCore
 import Collections
+import ArithmeticTools
 
 /// Pleasant graphics API that is compatible with iOS and OSX.
 public class Path {
     
     // MARK: - Instance Properties
+    
+    public var vertices: [Point] {
+        return elements.flatMap { element in
+            switch element {
+            case .move(let point), .line(let point):
+                return point
+            case .curve(let point, _, _), .quadCurve(let point, _):
+                return point
+            case .close:
+                return nil
+            }
+        }
+    }
+    
+    /// - Returns: `true` if there are no non-`.close` elements contained herein. Otherwise,
+    /// `false`.
+    public var isEmpty: Bool {
+        return vertices.isEmpty
+    }
     
     internal var elements: [PathElement] = []
         
@@ -99,6 +118,13 @@ extension Path: AnyCollectionWrapping {
     
     public var collection: AnyCollection<PathElement> {
         return AnyCollection(elements)
+    }
+}
+
+extension Path: Equatable {
+    
+    public static func == (lhs: Path, rhs: Path) -> Bool {
+        return lhs.elements == rhs.elements
     }
 }
 
