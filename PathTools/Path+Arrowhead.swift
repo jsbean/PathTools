@@ -6,8 +6,6 @@
 //
 //
 
-import QuartzCore
-
 extension Path {
     
     // MARK: - Arrowhead

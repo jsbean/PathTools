@@ -6,10 +6,7 @@
 //
 //
 
-import QuartzCore
-
-/// Wrapper for `CGPath` `PathElement.type`.
-///
+/// Element within a `Path`.
 /// - TODO: Generalize to `Double`
 public enum PathElement {
     

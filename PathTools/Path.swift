@@ -9,22 +9,12 @@
 import QuartzCore
 import Collections
 
-/// Pleasant graphics API that is compatible with iOS and OSX. Wraps CGPath.
-///
-/// Exposes CGPath path elements, which is useful for:
-///
-/// - Bézier path calculations
-/// - Polygonal collision testing
-///
-/// - TODO: Use non-Quartz primitives
-///
+/// Pleasant graphics API that is compatible with iOS and OSX.
 public class Path {
-    
-    internal var elements: [PathElement] = []
     
     // MARK: - Instance Properties
     
-    
+    internal var elements: [PathElement] = []
         
     // MARK: - Initializers
     
