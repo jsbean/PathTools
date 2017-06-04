@@ -35,6 +35,8 @@
 		0759A4791E3015B000E2E40C /* PathElement+CGPathElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0759A4771E3015B000E2E40C /* PathElement+CGPathElement.swift */; };
 		0759A47B1E3015F100E2E40C /* PathElementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0759A47A1E3015F100E2E40C /* PathElementTests.swift */; };
 		0759A47C1E3015F100E2E40C /* PathElementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0759A47A1E3015F100E2E40C /* PathElementTests.swift */; };
+		07600F9B1EE47B410049E8B2 /* Path+CAShapeLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07600F9A1EE47B410049E8B2 /* Path+CAShapeLayer.swift */; };
+		07600F9C1EE47B410049E8B2 /* Path+CAShapeLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07600F9A1EE47B410049E8B2 /* Path+CAShapeLayer.swift */; };
 		0765472F1D0C861C008038B5 /* Path+Ellipse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0765472E1D0C861C008038B5 /* Path+Ellipse.swift */; };
 		076547301D0C861C008038B5 /* Path+Ellipse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0765472E1D0C861C008038B5 /* Path+Ellipse.swift */; };
 		078590421DE7624300FF1645 /* BezierCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078590411DE7624300FF1645 /* BezierCurve.swift */; };
@@ -132,6 +134,7 @@
 		07305A331D0F3F7F006E4085 /* Path+Square.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Path+Square.swift"; path = "PathTools/Path+Square.swift"; sourceTree = "<group>"; };
 		0759A4771E3015B000E2E40C /* PathElement+CGPathElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PathElement+CGPathElement.swift"; path = "PathTools/PathElement+CGPathElement.swift"; sourceTree = "<group>"; };
 		0759A47A1E3015F100E2E40C /* PathElementTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PathElementTests.swift; path = PathToolsTests/PathElementTests.swift; sourceTree = "<group>"; };
+		07600F9A1EE47B410049E8B2 /* Path+CAShapeLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Path+CAShapeLayer.swift"; path = "PathTools/Path+CAShapeLayer.swift"; sourceTree = "<group>"; };
 		0765472E1D0C861C008038B5 /* Path+Ellipse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Path+Ellipse.swift"; path = "PathTools/Path+Ellipse.swift"; sourceTree = "<group>"; };
 		078590411DE7624300FF1645 /* BezierCurve.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BezierCurve.swift; path = PathTools/BezierCurve.swift; sourceTree = "<group>"; };
 		078590441DE7625D00FF1645 /* LinearBezierCurve.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LinearBezierCurve.swift; path = PathTools/LinearBezierCurve.swift; sourceTree = "<group>"; };
@@ -200,10 +203,9 @@
 		0701A8781EE3055700900B3F /* Path */ = {
 			isa = PBXGroup;
 			children = (
-				0701A8791EE3055D00900B3F /* PathElement */,
+				07EC99221D0AF7C8002414A4 /* PathElement.swift */,
 				07088AC41D0AE8A600004FB2 /* Path.swift */,
 				0701A8921EE3237A00900B3F /* Path+CollisionDetection.swift */,
-				0701A87A1EE305F400900B3F /* Path+CGPath.swift */,
 				07305A331D0F3F7F006E4085 /* Path+Square.swift */,
 				07C1F8611D0C4EA900541ED5 /* Path+Transform.swift */,
 				07C1F86A1D0C537300541ED5 /* Path+BoundingBox.swift */,
@@ -216,29 +218,30 @@
 			name = Path;
 			sourceTree = "<group>";
 		};
-		0701A8791EE3055D00900B3F /* PathElement */ = {
-			isa = PBXGroup;
-			children = (
-				0759A4771E3015B000E2E40C /* PathElement+CGPathElement.swift */,
-				07EC99221D0AF7C8002414A4 /* PathElement.swift */,
-			);
-			name = PathElement;
-			sourceTree = "<group>";
-		};
 		0701A87D1EE3065B00900B3F /* Primitives */ = {
 			isa = PBXGroup;
 			children = (
 				07C1F86D1D0C53BF00541ED5 /* Degrees.swift */,
 				07C1F8701D0C53DB00541ED5 /* Radians.swift */,
 				0799D9711E2181C500516ADF /* Point.swift */,
-				0701A8891EE3104F00900B3F /* Point+CGPoint.swift */,
 				0701A87E1EE3069100900B3F /* Rectangle.swift */,
-				0701A88C1EE310A500900B3F /* Rectangle+CGRect.swift */,
 				0701A8811EE307CF00900B3F /* Size.swift */,
-				0701A88F1EE310D000900B3F /* Size+CGSize.swift */,
 				0701A8A31EE345F000900B3F /* Vector2.swift */,
 			);
 			name = Primitives;
+			sourceTree = "<group>";
+		};
+		07600F991EE47AE80049E8B2 /* CoreGraphics */ = {
+			isa = PBXGroup;
+			children = (
+				0701A8891EE3104F00900B3F /* Point+CGPoint.swift */,
+				0701A88C1EE310A500900B3F /* Rectangle+CGRect.swift */,
+				0701A88F1EE310D000900B3F /* Size+CGSize.swift */,
+				0759A4771E3015B000E2E40C /* PathElement+CGPathElement.swift */,
+				0701A87A1EE305F400900B3F /* Path+CGPath.swift */,
+				07600F9A1EE47B410049E8B2 /* Path+CAShapeLayer.swift */,
+			);
+			name = CoreGraphics;
 			sourceTree = "<group>";
 		};
 		078590401DE761D100FF1645 /* BezierCurve */ = {
@@ -272,6 +275,7 @@
 			isa = PBXGroup;
 			children = (
 				23D4DDB9DE2A8A418DC2235A /* Supporting Files */,
+				07600F991EE47AE80049E8B2 /* CoreGraphics */,
 				0701A87D1EE3065B00900B3F /* Primitives */,
 				0701A8781EE3055700900B3F /* Path */,
 				078590401DE761D100FF1645 /* BezierCurve */,
@@ -523,6 +527,7 @@
 				0701A8911EE310D000900B3F /* Size+CGSize.swift in Sources */,
 				0701A8A51EE345F000900B3F /* Vector2.swift in Sources */,
 				07C1F8631D0C4EA900541ED5 /* Path+Transform.swift in Sources */,
+				07600F9C1EE47B410049E8B2 /* Path+CAShapeLayer.swift in Sources */,
 				07EC99241D0AF7C8002414A4 /* PathElement.swift in Sources */,
 				0701A8801EE3069100900B3F /* Rectangle.swift in Sources */,
 				0701A88E1EE310A500900B3F /* Rectangle+CGRect.swift in Sources */,
@@ -556,6 +561,7 @@
 				0701A8901EE310D000900B3F /* Size+CGSize.swift in Sources */,
 				0701A8A41EE345F000900B3F /* Vector2.swift in Sources */,
 				07C1F8621D0C4EA900541ED5 /* Path+Transform.swift in Sources */,
+				07600F9B1EE47B410049E8B2 /* Path+CAShapeLayer.swift in Sources */,
 				07EC99231D0AF7C8002414A4 /* PathElement.swift in Sources */,
 				0701A87F1EE3069100900B3F /* Rectangle.swift in Sources */,
 				0701A88D1EE310A500900B3F /* Rectangle+CGRect.swift in Sources */,

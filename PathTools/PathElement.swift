@@ -7,7 +7,6 @@
 //
 
 /// Element within a `Path`.
-/// - TODO: Generalize to `Double`
 public enum PathElement {
     
     var point: Point? {
