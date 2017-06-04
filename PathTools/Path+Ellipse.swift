@@ -14,6 +14,10 @@ extension Path {
 
     /// - returns: `Path` with an ellipse shape within the given `rectangle`.
     public static func ellipse(in rect: Rectangle) -> Path {
-        return Path(CGPath(ellipseIn: CGRect(rect), transform: nil))
+        let cgPath = CGPath(ellipseIn: CGRect(rect), transform: nil)
+        print("cg path: \(cgPath)")
+        let path = Path(cgPath)
+        print("path: \(path)")
+        return path
     }
 }

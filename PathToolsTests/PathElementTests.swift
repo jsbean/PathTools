@@ -19,4 +19,46 @@ class PathElementTests: XCTestCase {
         )
         print(element)
     }
+    
+    func testCurve() {
+        
+        #if os(iOS)
+            let bezierPath = UIBezierPath()
+            bezierPath.move(to: .zero)
+            bezierPath.addCurve(
+                to: CGPoint(x: 1, y: 1),
+                controlPoint1: CGPoint(x: 0.5, y: 0),
+                controlPoint2: CGPoint(x: 1, y: 0.5)
+            )
+            let cgPath = bezierPath.cgPath
+            let result = Path(cgPath)
+            let expected = Path()
+                .move(to: Point())
+                .addCurve(
+                    to: Point(x: 1, y: 1),
+                    controlPoint1: Point(x: 0.5, y: 0),
+                    controlPoint2: Point(x: 1, y: 0.5)
+                )
+            
+            XCTAssertEqual(result, expected)
+            
+        #endif
+    }
+    
+    func testQuadCurve() {
+        
+        #if os(iOS)
+            let bezierPath = UIBezierPath()
+            bezierPath.move(to: .zero)
+            bezierPath.addQuadCurve(to: CGPoint(x: 1, y: 1), controlPoint: CGPoint(x: 1, y: 0))
+            let cgPath = bezierPath.cgPath
+            let result = Path(cgPath)
+            let expected = Path()
+                .move(to: Point())
+                .addQuadCurve(to: Point(x: 1, y: 1), controlPoint: Point(x: 1, y: 0))
+            
+            XCTAssertEqual(result, expected)
+            
+        #endif
+    }
 }

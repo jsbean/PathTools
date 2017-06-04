@@ -22,14 +22,14 @@ extension PathElement {
             self = .line(Point(element.points[0]))
             
         case .addQuadCurveToPoint:
-            self = .quadCurve(Point(element.points[0]), Point(element.points[1]))
+            self = .quadCurve(Point(element.points[1]), Point(element.points[0]))
             
         case .addCurveToPoint:
             
             self = .curve(
+                Point(element.points[2]),
                 Point(element.points[0]),
-                Point(element.points[1]),
-                Point(element.points[2])
+                Point(element.points[1])
             )
             
         case .closeSubpath:
