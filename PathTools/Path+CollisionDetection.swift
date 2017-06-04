@@ -10,16 +10,6 @@ import Darwin
 import Collections
 import ArithmeticTools
 
-/// - TODO: Move to dn-m/Collections 
-extension Set {
-    
-    mutating func insert(contentsOf other: Set) {
-        for el in other {
-            insert(el)
-        }
-    }
-}
-
 extension Path {
 
     /// - Returns: A `Set` of all of the y-values at the given `x`.
@@ -37,7 +27,7 @@ extension Path {
 
             if x >= a.x && x <= b.x {
                 if (b.x - a.x) == 0 {
-                    result.insert(contentsOf: [a.y, b.y])
+                    result.formUnion([a.y, b.y])
                 } else {
                     let y = (x - a.x) * (b.y - a.y) / (b.x - a.x) + b.y
                     result.insert(y)
@@ -63,7 +53,7 @@ extension Path {
             
             if y >= a.y && y <= b.y {
                 if (b.y - a.y) == 0 {
-                    result.insert(contentsOf: [a.x, b.x])
+                    result.formUnion([a.y, b.y])
                 } else {
                     let y = (y - a.y) * (b.x - a.x) / (b.y - a.y) + b.x
                     result.insert(y)
