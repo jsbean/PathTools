@@ -37,8 +37,23 @@ class PolygonTests: XCTestCase {
         XCTAssertFalse(polygon.isConvex)
     }
     
-    func testConvexityTrue() {
+    func testSquareConvexityTrue() {
         let polygon = Polygon(Path.rectangle(x: 0, y: 0, width: 100, height: 100))!
+        XCTAssert(polygon.isConvex)
+    }
+    
+    func testPentagonConvexityTrue() {
+        
+        let polygon = Polygon(
+            vertices: [
+                Point(x: 5, y: -5),
+                Point(x: 10, y: 5),
+                Point(x: 0, y: 10),
+                Point(x: -10, y: 5),
+                Point(x: -5, y: -5)
+            ]
+        )
+        
         XCTAssert(polygon.isConvex)
     }
 }

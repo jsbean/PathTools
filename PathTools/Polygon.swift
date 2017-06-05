@@ -45,19 +45,11 @@ public class Polygon: Path {
     /// - Returns: `true` if `Polygon` is convex. Otherwise, `false`.
     public var isConvex: Bool {
         
-        func direction(_ p: Point, _ u: Point, _ v: Point) -> Double {
-            return u.x * v.y - u.y * v.x + v.x * p.y - v.y * p.x
-        }
-        
-        let (first, rest) = adjacentTriplets.map(direction).destructured!
-        
-        for dir in rest {
-            if dir.sign != first.sign {
-                return false
-            }
+        func zCrossProduct(_ a: Point, _ b: Point, _ c: Point) -> Double {
+            return (a.x - b.x) * (b.y - c.y) - (a.y - b.y) * (b.x - c.x)
         }
 
-        return true
+        return adjacentTriplets.map(zCrossProduct).map { $0.sign }.isHomogeneous
     }
     
     // MARK: - Initializers
