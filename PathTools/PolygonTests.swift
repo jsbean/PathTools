@@ -21,4 +21,12 @@ class PolygonTests: XCTestCase {
             .close()
         XCTAssertEqual(polygon, expected)
     }
+    
+    func testConvexityTrue() {
+        
+    }
+    
+    func testConvexityFalse() {
+        
+    }
 }

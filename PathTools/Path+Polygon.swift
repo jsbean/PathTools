@@ -10,6 +10,10 @@ import Collections
 
 public class Polygon: Path {
     
+    public var isConvex: Bool {
+        fatalError()
+    }
+    
     public init(vertices: [Point]) {
         
         guard vertices.count >= 3 else {
