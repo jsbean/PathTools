@@ -9,42 +9,14 @@
 import Collections
 import ArithmeticTools
 
-/// Pleasant graphics API that is compatible with iOS and OSX.
 public class Path {
     
     // MARK: - Instance Properties
     
-    public var edges: [(Point, Point)] {
-        
-        guard !isEmpty else {
-            return []
-        }
-        
-        return vertices.indices.map { index in
-            let a = vertices[index]
-            let b = index == vertices.endIndex - 1 ? vertices[0] : vertices[index + 1]
-            return (a,b)
-        }
-        
-    }
-    
-    public var vertices: [Point] {
-        return elements.flatMap { element in
-            switch element {
-            case .move(let point), .line(let point):
-                return point
-            case .curve(let point, _, _), .quadCurve(let point, _):
-                return point
-            case .close:
-                return nil
-            }
-        }
-    }
-    
     /// - Returns: `true` if there are no non-`.close` elements contained herein. Otherwise,
     /// `false`.
     public var isEmpty: Bool {
-        return vertices.isEmpty
+        return elements.filter { $0 != .close }.isEmpty
     }
     
     internal var elements: [PathElement] = []

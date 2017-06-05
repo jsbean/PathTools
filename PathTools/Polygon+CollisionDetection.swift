@@ -1,5 +1,5 @@
 //
-//  Path+CollisionDetection.swift
+//  Polygon+CollisionDetection.swift
 //  PathTools
 //
 //  Created by James Bean on 6/3/17.
@@ -10,12 +10,9 @@ import Darwin
 import Collections
 import ArithmeticTools
 
-extension Path {
+extension Polygon {
 
     /// - Returns: A `Set` of all of the y-values at the given `x`.
-    ///
-    /// - Warning: Only considers vertices of Bézier curves
-    ///
     public func ys(at x: Double) -> Set<Double> {
         
         var result: Set<Double> = []
@@ -39,9 +36,6 @@ extension Path {
     }
     
     /// - Returns: A `Set` of all of the x-values at the given `y`.
-    ///
-    /// - Warning: Only considers vertices of Bézier curves
-    ///
     public func xs(at y: Double) -> Set<Double> {
 
         var result: Set<Double> = []
@@ -65,9 +59,6 @@ extension Path {
     }
     
     /// - Returns: `true` if a `Path` contains the given `point`.
-    ///
-    /// - Warning: Only considers vertices of Bézier curves
-    ///
     public func contains(_ point: Point) -> Bool {
 
         func rayIntersection(edge: (Point, Point)) -> Double? {
@@ -91,16 +82,14 @@ extension Path {
     /// - returns: The two-dimensional vector of each axis created between each adjacent pair
     /// of vertices.
     internal var axes: [Vector2] {
-        return vertices.adjacentPairs?.map { a,b in
+        return vertices.adjacentPairs().map { a,b in
             let x = a.x - b.x
             let y = -(a.y - b.y)
             return Vector2(x: x, y: y)
-        } ?? []
+        }
     }
     
-    /// - Warning: Assumes `Path` values are polygons, discarding Bézier control points
-    /// - Warning: Assumes polygon is convex
-    public func intersects(_ other: Path) -> Bool {
+    public func intersects(_ other: Polygon) -> Bool {
         
         guard !(isEmpty || other.isEmpty) else {
             return false
@@ -113,7 +102,7 @@ extension Path {
 // MARK: Collision Detection: Separating Axis Theorem
 
 /// - Returns: The `min` and `max` values of the given `shape` projected on the given `axis`.
-func project(_ shape: Path, onto axis: Vector2) -> (min: Double, max: Double) {
+func project(_ shape: Polygon, onto axis: Vector2) -> (min: Double, max: Double) {
     
     let length = axis.length
     
@@ -126,7 +115,7 @@ func project(_ shape: Path, onto axis: Vector2) -> (min: Double, max: Double) {
 
 /// - Returns: `true` if there are any overlaps of the values of either shape value projected
 /// onto the axes of the given `shape`. Otherwise, `false`.
-func axesOverlap(projecting other: Path, ontoAxesOf shape: Path) -> Bool {
+func axesOverlap(projecting other: Polygon, ontoAxesOf shape: Polygon) -> Bool {
     
     // Project `shape` and `other` onto each axis of `shape`.
     for axis in shape.axes {
@@ -146,7 +135,7 @@ func axesOverlap(projecting other: Path, ontoAxesOf shape: Path) -> Bool {
 
 /// - Returns: `true` if the axes of either shape overlap with those of the other. Otherwise,
 /// `false`.
-func doIntersect(a: Path, b: Path) -> Bool {
+func doIntersect(a: Polygon, b: Polygon) -> Bool {
     return (
         axesOverlap(projecting: a, ontoAxesOf: b) &&
         axesOverlap(projecting: b, ontoAxesOf: a)
