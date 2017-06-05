@@ -13,7 +13,6 @@ class EllipseTests: XCTestCase {
     
     func testEllipse() {
         let rect = Rectangle(x: 0, y: 0, width: 50, height: 100)
-        let ellipse = Path.ellipse(in: rect)
-        
+        _ = Path.ellipse(in: rect)
     }
 }

@@ -45,6 +45,10 @@
 		07600F9F1EE489E90049E8B2 /* EllipseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07600F9D1EE489E90049E8B2 /* EllipseTests.swift */; };
 		0765472F1D0C861C008038B5 /* Path+Ellipse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0765472E1D0C861C008038B5 /* Path+Ellipse.swift */; };
 		076547301D0C861C008038B5 /* Path+Ellipse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0765472E1D0C861C008038B5 /* Path+Ellipse.swift */; };
+		076BD5931EE5AB760064B6E4 /* Polygon+Triangulate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076BD5921EE5AB760064B6E4 /* Polygon+Triangulate.swift */; };
+		076BD5941EE5AB760064B6E4 /* Polygon+Triangulate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076BD5921EE5AB760064B6E4 /* Polygon+Triangulate.swift */; };
+		076BD5961EE5B63F0064B6E4 /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076BD5951EE5B63F0064B6E4 /* Triangle.swift */; };
+		076BD5971EE5B63F0064B6E4 /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076BD5951EE5B63F0064B6E4 /* Triangle.swift */; };
 		078590421DE7624300FF1645 /* BezierCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078590411DE7624300FF1645 /* BezierCurve.swift */; };
 		078590431DE7624300FF1645 /* BezierCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078590411DE7624300FF1645 /* BezierCurve.swift */; };
 		078590451DE7625D00FF1645 /* LinearBezierCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078590441DE7625D00FF1645 /* LinearBezierCurve.swift */; };
@@ -145,6 +149,8 @@
 		07600F9A1EE47B410049E8B2 /* Path+CAShapeLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Path+CAShapeLayer.swift"; path = "PathTools/Path+CAShapeLayer.swift"; sourceTree = "<group>"; };
 		07600F9D1EE489E90049E8B2 /* EllipseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EllipseTests.swift; path = PathTools/EllipseTests.swift; sourceTree = "<group>"; };
 		0765472E1D0C861C008038B5 /* Path+Ellipse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Path+Ellipse.swift"; path = "PathTools/Path+Ellipse.swift"; sourceTree = "<group>"; };
+		076BD5921EE5AB760064B6E4 /* Polygon+Triangulate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Polygon+Triangulate.swift"; path = "PathTools/Polygon+Triangulate.swift"; sourceTree = "<group>"; };
+		076BD5951EE5B63F0064B6E4 /* Triangle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Triangle.swift; path = PathTools/Triangle.swift; sourceTree = "<group>"; };
 		078590411DE7624300FF1645 /* BezierCurve.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BezierCurve.swift; path = PathTools/BezierCurve.swift; sourceTree = "<group>"; };
 		078590441DE7625D00FF1645 /* LinearBezierCurve.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LinearBezierCurve.swift; path = PathTools/LinearBezierCurve.swift; sourceTree = "<group>"; };
 		078590471DE7626A00FF1645 /* QuadraticBezierCurve.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuadraticBezierCurve.swift; path = PathTools/QuadraticBezierCurve.swift; sourceTree = "<group>"; };
@@ -215,6 +221,8 @@
 				07EC99221D0AF7C8002414A4 /* PathElement.swift */,
 				07088AC41D0AE8A600004FB2 /* Path.swift */,
 				0741EE581EE578A50002769D /* Polygon.swift */,
+				076BD5951EE5B63F0064B6E4 /* Triangle.swift */,
+				076BD5921EE5AB760064B6E4 /* Polygon+Triangulate.swift */,
 				0701A8921EE3237A00900B3F /* Polygon+CollisionDetection.swift */,
 				07305A331D0F3F7F006E4085 /* Path+Square.swift */,
 				07C1F8611D0C4EA900541ED5 /* Path+Transform.swift */,
@@ -532,6 +540,7 @@
 				07305A351D0F3F7F006E4085 /* Path+Square.swift in Sources */,
 				07088AC61D0AE8A600004FB2 /* Path.swift in Sources */,
 				0799D9731E2181C500516ADF /* Point.swift in Sources */,
+				076BD5941EE5AB760064B6E4 /* Polygon+Triangulate.swift in Sources */,
 				07C1F85D1D0C4E2800541ED5 /* Path+Rectangle.swift in Sources */,
 				07C1F8601D0C4E7400541ED5 /* Path+Circle.swift in Sources */,
 				0701A87C1EE305F400900B3F /* Path+CGPath.swift in Sources */,
@@ -546,6 +555,7 @@
 				0701A88E1EE310A500900B3F /* Rectangle+CGRect.swift in Sources */,
 				078590491DE7626A00FF1645 /* QuadraticBezierCurve.swift in Sources */,
 				0785904C1DE7627800FF1645 /* CubicBezierCurve.swift in Sources */,
+				076BD5971EE5B63F0064B6E4 /* Triangle.swift in Sources */,
 				07C1F8691D0C517400541ED5 /* Path+Arrowhead.swift in Sources */,
 				07C1F86F1D0C53BF00541ED5 /* Degrees.swift in Sources */,
 			);
@@ -567,6 +577,7 @@
 				07305A341D0F3F7F006E4085 /* Path+Square.swift in Sources */,
 				07088AC51D0AE8A600004FB2 /* Path.swift in Sources */,
 				0799D9721E2181C500516ADF /* Point.swift in Sources */,
+				076BD5931EE5AB760064B6E4 /* Polygon+Triangulate.swift in Sources */,
 				07C1F85C1D0C4E2800541ED5 /* Path+Rectangle.swift in Sources */,
 				07C1F85F1D0C4E7400541ED5 /* Path+Circle.swift in Sources */,
 				0701A87B1EE305F400900B3F /* Path+CGPath.swift in Sources */,
@@ -581,6 +592,7 @@
 				0701A88D1EE310A500900B3F /* Rectangle+CGRect.swift in Sources */,
 				078590481DE7626A00FF1645 /* QuadraticBezierCurve.swift in Sources */,
 				0785904B1DE7627800FF1645 /* CubicBezierCurve.swift in Sources */,
+				076BD5961EE5B63F0064B6E4 /* Triangle.swift in Sources */,
 				07C1F8681D0C517400541ED5 /* Path+Arrowhead.swift in Sources */,
 				07C1F86E1D0C53BF00541ED5 /* Degrees.swift in Sources */,
 			);

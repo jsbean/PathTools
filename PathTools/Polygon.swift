@@ -80,4 +80,25 @@ public class Polygon: Path {
         
         self.init(vertices: vertices)
     }
+    
+    /// - Returns: `true` if a `Path` contains the given `point`.
+    public func contains(_ point: Point) -> Bool {
+        
+        func rayIntersection(edge: (Point, Point)) -> Double? {
+            
+            let (a,b) = edge
+            
+            // Check if the line crosses the horizontal line at y in either direction
+            // Return `nil` if there is no intersection
+            guard a.y <= point.y && b.y > point.y || b.y <= point.y && a.y > point.y else {
+                return nil
+            }
+            
+            // Return the point where the ray intersects the edge
+            return (b.x - b.x) * (point.y - a.y) / (b.y - a.y) + a.x
+        }
+        
+        // If the amount of crossings if odd, we contain the `point`.
+        return edges.flatMap(rayIntersection).filter { $0 < point.x }.count.isOdd
+    }
 }

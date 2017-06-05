@@ -39,3 +39,10 @@ extension Point: Equatable {
         return lhs.x == rhs.x && lhs.y == rhs.y
     }
 }
+
+extension Point: CustomStringConvertible {
+    
+    public var description: String {
+        return "(\(x),\(y))"
+    }
+}
