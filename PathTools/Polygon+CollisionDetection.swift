@@ -13,10 +13,6 @@ import ArithmeticTools
 extension Polygon {
 
     /// - Returns: A `Set` of all of the y-values at the given `x`.
-    ///
-    /// - Warning: Only considers vertices of Bézier curves
-    /// - TODO: Use `Polygon`.
-    ///
     public func ys(at x: Double) -> Set<Double> {
         
         var result: Set<Double> = []
@@ -40,10 +36,6 @@ extension Polygon {
     }
     
     /// - Returns: A `Set` of all of the x-values at the given `y`.
-    ///
-    /// - Warning: Only considers vertices of Bézier curves
-    /// - TODO: Use `Polygon`.
-    ///
     public func xs(at y: Double) -> Set<Double> {
 
         var result: Set<Double> = []
@@ -67,10 +59,6 @@ extension Polygon {
     }
     
     /// - Returns: `true` if a `Path` contains the given `point`.
-    ///
-    /// - Warning: Only considers vertices of Bézier curves
-    /// - TODO: Use `Polygon`.
-    ///
     public func contains(_ point: Point) -> Bool {
 
         func rayIntersection(edge: (Point, Point)) -> Double? {
@@ -90,7 +78,7 @@ extension Polygon {
         // If the amount of crossings if odd, we contain the `point`.
         return edges.flatMap(rayIntersection).filter { $0 < point.x }.count.isOdd
     }
-//    
+    
     /// - returns: The two-dimensional vector of each axis created between each adjacent pair
     /// of vertices.
     internal var axes: [Vector2] {
@@ -101,8 +89,6 @@ extension Polygon {
         }
     }
     
-    /// - Warning: Assumes `Path` values are polygons, discarding Bézier control points
-    /// - Warning: Assumes polygon is convex
     public func intersects(_ other: Polygon) -> Bool {
         
         guard !(isEmpty || other.isEmpty) else {
