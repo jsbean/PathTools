@@ -22,11 +22,23 @@ class PolygonTests: XCTestCase {
         XCTAssertEqual(polygon, expected)
     }
     
-    func testConvexityTrue() {
-        
-    }
-    
     func testConvexityFalse() {
         
+        let polygon = Polygon(
+            vertices: [
+                Point(x: 10, y: 0),
+                Point(x: 11, y: 20),
+                Point(x: -3, y: 10),
+                Point(x: -15, y: 20),
+                Point(x: -15, y: 8)
+            ]
+        )
+        
+        XCTAssertFalse(polygon.isConvex)
+    }
+    
+    func testConvexityTrue() {
+        let polygon = Polygon(Path.rectangle(x: 0, y: 0, width: 100, height: 100))!
+        XCTAssert(polygon.isConvex)
     }
 }

@@ -1,5 +1,5 @@
 //
-//  Path+Polygon.swift
+//  Polygon.swift
 //  PathTools
 //
 //  Created by James Bean on 6/5/17.
@@ -7,10 +7,21 @@
 //
 
 import Collections
+import ArithmeticTools
 
 public class Polygon: Path {
     
     // MARK: - Instance Properties
+    
+    /// - TODO: Move to `dn-m/Collections`.
+    public var adjacentTriplets: [(Point, Point, Point)] {
+        return (0 ..< vertices.count).map { i in
+            let a = vertices[i]
+            let b = vertices[(i + 1) % vertices.count]
+            let c = vertices[(i + 2) % vertices.count]
+            return (a,b,c)
+        }
+    }
     
     /// - Returns: Edges of `Polygon`.
     public var edges: [(Point, Point)] {
@@ -18,8 +29,8 @@ public class Polygon: Path {
     }
     
     /// - Returns: All vertices of `Polygon`.
-    public var vertices: [Point] {
-        return elements.flatMap { element in
+    public lazy var vertices: [Point] = {
+        return self.elements.flatMap { element in
             switch element {
             case .move(let point), .line(let point):
                 return point
@@ -29,11 +40,24 @@ public class Polygon: Path {
                 fatalError("There is way that there could be curves here!")
             }
         }
-    }
+    }()
     
     /// - Returns: `true` if `Polygon` is convex. Otherwise, `false`.
     public var isConvex: Bool {
-        fatalError()
+        
+        func direction(_ p: Point, _ u: Point, _ v: Point) -> Double {
+            return u.x * v.y - u.y * v.x + v.x * p.y - v.y * p.x
+        }
+        
+        let (first, rest) = adjacentTriplets.map(direction).destructured!
+        
+        for dir in rest {
+            if dir.sign != first.sign {
+                return false
+            }
+        }
+
+        return true
     }
     
     // MARK: - Initializers
