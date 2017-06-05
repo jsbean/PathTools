@@ -9,7 +9,6 @@
 import Collections
 import ArithmeticTools
 
-/// Pleasant graphics API that is compatible with iOS and OSX.
 public class Path {
     
     // MARK: - Instance Properties

@@ -31,6 +31,10 @@
 		07088AC61D0AE8A600004FB2 /* Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07088AC41D0AE8A600004FB2 /* Path.swift */; };
 		07305A341D0F3F7F006E4085 /* Path+Square.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07305A331D0F3F7F006E4085 /* Path+Square.swift */; };
 		07305A351D0F3F7F006E4085 /* Path+Square.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07305A331D0F3F7F006E4085 /* Path+Square.swift */; };
+		0741EE591EE578A50002769D /* Path+Polygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0741EE581EE578A50002769D /* Path+Polygon.swift */; };
+		0741EE5A1EE578A50002769D /* Path+Polygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0741EE581EE578A50002769D /* Path+Polygon.swift */; };
+		0741EE5C1EE579F30002769D /* PolygonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0741EE5B1EE579F30002769D /* PolygonTests.swift */; };
+		0741EE5D1EE579F30002769D /* PolygonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0741EE5B1EE579F30002769D /* PolygonTests.swift */; };
 		0759A4781E3015B000E2E40C /* PathElement+CGPathElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0759A4771E3015B000E2E40C /* PathElement+CGPathElement.swift */; };
 		0759A4791E3015B000E2E40C /* PathElement+CGPathElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0759A4771E3015B000E2E40C /* PathElement+CGPathElement.swift */; };
 		0759A47B1E3015F100E2E40C /* PathElementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0759A47A1E3015F100E2E40C /* PathElementTests.swift */; };
@@ -134,6 +138,8 @@
 		0701A8A31EE345F000900B3F /* Vector2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Vector2.swift; path = PathTools/Vector2.swift; sourceTree = "<group>"; };
 		07088AC41D0AE8A600004FB2 /* Path.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Path.swift; path = PathTools/Path.swift; sourceTree = "<group>"; };
 		07305A331D0F3F7F006E4085 /* Path+Square.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Path+Square.swift"; path = "PathTools/Path+Square.swift"; sourceTree = "<group>"; };
+		0741EE581EE578A50002769D /* Path+Polygon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Path+Polygon.swift"; path = "PathTools/Path+Polygon.swift"; sourceTree = "<group>"; };
+		0741EE5B1EE579F30002769D /* PolygonTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PolygonTests.swift; path = PathTools/PolygonTests.swift; sourceTree = "<group>"; };
 		0759A4771E3015B000E2E40C /* PathElement+CGPathElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PathElement+CGPathElement.swift"; path = "PathTools/PathElement+CGPathElement.swift"; sourceTree = "<group>"; };
 		0759A47A1E3015F100E2E40C /* PathElementTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PathElementTests.swift; path = PathToolsTests/PathElementTests.swift; sourceTree = "<group>"; };
 		07600F9A1EE47B410049E8B2 /* Path+CAShapeLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Path+CAShapeLayer.swift"; path = "PathTools/Path+CAShapeLayer.swift"; sourceTree = "<group>"; };
@@ -208,6 +214,7 @@
 			children = (
 				07EC99221D0AF7C8002414A4 /* PathElement.swift */,
 				07088AC41D0AE8A600004FB2 /* Path.swift */,
+				0741EE581EE578A50002769D /* Path+Polygon.swift */,
 				0701A8921EE3237A00900B3F /* Path+CollisionDetection.swift */,
 				07305A331D0F3F7F006E4085 /* Path+Square.swift */,
 				07C1F8611D0C4EA900541ED5 /* Path+Transform.swift */,
@@ -307,6 +314,7 @@
 			children = (
 				133469E3C4CD1699B566343A /* Supporting Files */,
 				07EC99251D0AFC54002414A4 /* PathTests.swift */,
+				0741EE5B1EE579F30002769D /* PolygonTests.swift */,
 				07600F9D1EE489E90049E8B2 /* EllipseTests.swift */,
 				0759A47A1E3015F100E2E40C /* PathElementTests.swift */,
 				0701A8951EE3352600900B3F /* CollisionDetectionTests.swift */,
@@ -529,6 +537,7 @@
 				0701A87C1EE305F400900B3F /* Path+CGPath.swift in Sources */,
 				078590461DE7625D00FF1645 /* LinearBezierCurve.swift in Sources */,
 				0701A8911EE310D000900B3F /* Size+CGSize.swift in Sources */,
+				0741EE5A1EE578A50002769D /* Path+Polygon.swift in Sources */,
 				0701A8A51EE345F000900B3F /* Vector2.swift in Sources */,
 				07C1F8631D0C4EA900541ED5 /* Path+Transform.swift in Sources */,
 				07600F9C1EE47B410049E8B2 /* Path+CAShapeLayer.swift in Sources */,
@@ -563,6 +572,7 @@
 				0701A87B1EE305F400900B3F /* Path+CGPath.swift in Sources */,
 				078590451DE7625D00FF1645 /* LinearBezierCurve.swift in Sources */,
 				0701A8901EE310D000900B3F /* Size+CGSize.swift in Sources */,
+				0741EE591EE578A50002769D /* Path+Polygon.swift in Sources */,
 				0701A8A41EE345F000900B3F /* Vector2.swift in Sources */,
 				07C1F8621D0C4EA900541ED5 /* Path+Transform.swift in Sources */,
 				07600F9B1EE47B410049E8B2 /* Path+CAShapeLayer.swift in Sources */,
@@ -580,6 +590,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0741EE5C1EE579F30002769D /* PolygonTests.swift in Sources */,
 				07EC99261D0AFC54002414A4 /* PathTests.swift in Sources */,
 				0759A47B1E3015F100E2E40C /* PathElementTests.swift in Sources */,
 				07600F9E1EE489E90049E8B2 /* EllipseTests.swift in Sources */,
@@ -592,6 +603,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0741EE5D1EE579F30002769D /* PolygonTests.swift in Sources */,
 				07EC99271D0AFC54002414A4 /* PathTests.swift in Sources */,
 				0759A47C1E3015F100E2E40C /* PathElementTests.swift in Sources */,
 				07600F9F1EE489E90049E8B2 /* EllipseTests.swift in Sources */,
