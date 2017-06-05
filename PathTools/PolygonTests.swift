@@ -118,11 +118,8 @@ class PolygonTests: XCTestCase {
         let house = Polygon(vertices: [(0,15),(-5,10),(-5,0),(5,0),(5,10)].map(Point.init))
         let triangulated = house.triangulated
         let expected = [
-            // 5,10 0,15, -5,10
             Triangle([(5,10),(0,15),(-5,10)].map(Point.init)),
-            // 5,10, -5,10, -5,0
             Triangle([(5,10),(-5,10),(-5,0)].map(Point.init)),
-            // 5,10, -5,0, 5,0
             Triangle([(5,10),(-5,0),(5,0)].map(Point.init))
         ]
         XCTAssertEqual(triangulated, expected)
