@@ -104,15 +104,6 @@ public struct Polygon: PolygonProtocol {
     public init(vertices: [Point]) {
         self.vertices = vertices
     }
-    
-    // TEMP:
-    public func xs(at y: Double) -> Set<Double> {
-        fatalError("Not yet implemented!")
-    }
-    
-    public func ys(at x: Double) -> Set<Double> {
-        fatalError("Not yet implemented!")
-    }
 }
 
 extension Polygon: Equatable {
