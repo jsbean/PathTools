@@ -59,6 +59,8 @@
 		0785904C1DE7627800FF1645 /* CubicBezierCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0785904A1DE7627800FF1645 /* CubicBezierCurve.swift */; };
 		0799D9721E2181C500516ADF /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0799D9711E2181C500516ADF /* Point.swift */; };
 		0799D9731E2181C500516ADF /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0799D9711E2181C500516ADF /* Point.swift */; };
+		07B8DFC11EE6ADAD00BBB814 /* CircularArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B8DFC01EE6ADAD00BBB814 /* CircularArrayTests.swift */; };
+		07B8DFC21EE6ADAD00BBB814 /* CircularArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B8DFC01EE6ADAD00BBB814 /* CircularArrayTests.swift */; };
 		07C1F85C1D0C4E2800541ED5 /* Path+Rectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C1F85B1D0C4E2800541ED5 /* Path+Rectangle.swift */; };
 		07C1F85D1D0C4E2800541ED5 /* Path+Rectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C1F85B1D0C4E2800541ED5 /* Path+Rectangle.swift */; };
 		07C1F85F1D0C4E7400541ED5 /* Path+Circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C1F85E1D0C4E7400541ED5 /* Path+Circle.swift */; };
@@ -156,6 +158,7 @@
 		078590471DE7626A00FF1645 /* QuadraticBezierCurve.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuadraticBezierCurve.swift; path = PathTools/QuadraticBezierCurve.swift; sourceTree = "<group>"; };
 		0785904A1DE7627800FF1645 /* CubicBezierCurve.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CubicBezierCurve.swift; path = PathTools/CubicBezierCurve.swift; sourceTree = "<group>"; };
 		0799D9711E2181C500516ADF /* Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Point.swift; path = PathTools/Point.swift; sourceTree = "<group>"; };
+		07B8DFC01EE6ADAD00BBB814 /* CircularArrayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularArrayTests.swift; path = PathToolsTests/CircularArrayTests.swift; sourceTree = "<group>"; };
 		07C1F85B1D0C4E2800541ED5 /* Path+Rectangle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Path+Rectangle.swift"; path = "PathTools/Path+Rectangle.swift"; sourceTree = "<group>"; };
 		07C1F85E1D0C4E7400541ED5 /* Path+Circle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Path+Circle.swift"; path = "PathTools/Path+Circle.swift"; sourceTree = "<group>"; };
 		07C1F8611D0C4EA900541ED5 /* Path+Transform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Path+Transform.swift"; path = "PathTools/Path+Transform.swift"; sourceTree = "<group>"; };
@@ -327,6 +330,7 @@
 				0759A47A1E3015F100E2E40C /* PathElementTests.swift */,
 				0701A8951EE3352600900B3F /* CollisionDetectionTests.swift */,
 				0701A8A01EE3376800900B3F /* TransformTests.swift */,
+				07B8DFC01EE6ADAD00BBB814 /* CircularArrayTests.swift */,
 			);
 			name = PathToolsTests;
 			sourceTree = "<group>";
@@ -605,6 +609,7 @@
 				0741EE5C1EE579F30002769D /* PolygonTests.swift in Sources */,
 				07EC99261D0AFC54002414A4 /* PathTests.swift in Sources */,
 				0759A47B1E3015F100E2E40C /* PathElementTests.swift in Sources */,
+				07B8DFC11EE6ADAD00BBB814 /* CircularArrayTests.swift in Sources */,
 				07600F9E1EE489E90049E8B2 /* EllipseTests.swift in Sources */,
 				0701A8A11EE3376800900B3F /* TransformTests.swift in Sources */,
 				0701A89B1EE3355800900B3F /* CollisionDetectionTests.swift in Sources */,
@@ -618,6 +623,7 @@
 				0741EE5D1EE579F30002769D /* PolygonTests.swift in Sources */,
 				07EC99271D0AFC54002414A4 /* PathTests.swift in Sources */,
 				0759A47C1E3015F100E2E40C /* PathElementTests.swift in Sources */,
+				07B8DFC21EE6ADAD00BBB814 /* CircularArrayTests.swift in Sources */,
 				07600F9F1EE489E90049E8B2 /* EllipseTests.swift in Sources */,
 				0701A8A21EE3376800900B3F /* TransformTests.swift in Sources */,
 				0701A89C1EE3355800900B3F /* CollisionDetectionTests.swift in Sources */,

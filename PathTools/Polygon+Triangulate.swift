@@ -11,10 +11,10 @@ import ArithmeticTools
 
 extension Array {
     
-    /// - TODO: Move to `ArithmeticTools`
-    subscript (circular index: Int) -> Element {
-        return self[mod(index,count)]
-    }
+//    /// - TODO: Move to `ArithmeticTools`
+//    subscript (circular index: Int) -> Element {
+//        return self[mod(index,count)]
+//    }
     
     /// - TODO: Move to `Collections`.
     func removing(at index: Int) -> [Element] {
@@ -23,23 +23,62 @@ extension Array {
         return copy
     }
     
-    /// - TODO: Move to `Collections` within `RingBuffer` or sim.
-    ///
-    /// - Warning: This feels terrible
-    subscript (circularAfter first: Int, upTo second: Int) -> [Element] {
+//    /// - TODO: Move to `Collections` within `RingBuffer` or sim.
+//    ///
+//    /// - Warning: This feels terrible
+//    subscript (circularAfter first: Int, upTo second: Int) -> [Element] {
+//        
+//        guard first != second else {
+//            fatalError("Can't do this shit")
+//        }
+//        
+//        if second > first {
+//            return Array(self[first + 1 ..< second])
+//        } else {
+//            
+//            let back = first + 1 < endIndex ? Array(self[first + 1 ..< endIndex]) : []
+//            let front = Array(self[0 ..< second])
+//            return back + front
+//        }
+//    }
+    
+    public var circular: CircularArray<Element> {
+        return CircularArray(self)
+    }
+}
+
+public struct CircularArray<Element> {
+    
+    internal var storage: Array<Element>
+    
+    public init(_ storage: Array<Element>) {
+        self.storage = storage
+    }
+    
+    func circularIndex(_ index: Int) -> Int {
+        return mod(index, storage.count)
+    }
+    
+    public subscript (circular index: Int) -> Element {
+        return storage[circularIndex(index)]
+    }
+    
+    public subscript (from start: Int, through end: Int) -> [Element] {
         
-        guard first != second else {
-            fatalError("Can't do this shit")
+        let start = circularIndex(start)
+        let end = circularIndex(end)
+        
+        if start > end {
+            let back = storage[start..<storage.count]
+            let front = storage[0...end]
+            return Array(back + front)
         }
         
-        if second > first {
-            return Array(self[first + 1 ..< second])
-        } else {
-            
-            let back = first + 1 < endIndex ? Array(self[first + 1 ..< endIndex]) : []
-            let front = Array(self[0 ..< second])
-            return back + front
-        }
+        return Array(storage[start...end])
+    }
+    
+    public subscript (after start: Int, upTo end: Int) -> [Element] {
+        return self[from: start + 1, through: end - 1]
     }
 }
 
@@ -88,24 +127,15 @@ extension Polygon {
         /// - There are no remaining vertices contained within its area.
         ///
         func ear(at index: Int, of vertices: [Point]) -> Triangle? {
-            
-            let prev = vertices[circular: index - 1]
-            let cur = vertices[index]
-            let next = vertices[circular: index + 1]
 
-            let triangle = Triangle(vertices: (prev,cur,next))
+            let triangle = Triangle(vertices.circular[from: index - 1, through: index + 1])
 
             // An ear must be convex, given the order of traversal.
             guard triangle.isConvex(order: .counterClockwise) else {
                 return nil
             }
             
-            // If we are convex, we can't have any remaining points contained inside us!
-            // TODO: Refactor with a `RingBuffer` type
-            let remaining = vertices[
-                circularAfter: mod(index + 1, vertices.count),
-                upTo: mod(index - 1, vertices.count)
-            ]
+            let remaining = vertices.circular[after: index + 1, upTo: index - 1]
             
             guard !triangle.contains(anyOf: remaining) else {
                 return nil
@@ -124,13 +154,8 @@ extension Polygon {
         {
 
             // Base case: If there are only three vertices left, we have the last triangle!
-            guard vertices.count > 3 else {
-                
-                let prev = vertices[2]
-                let cur = vertices[0]
-                let next = vertices[1]
-                
-                return ears + Triangle(vertices: (prev,cur,next))
+            guard vertices.count > 3 else {  
+                return ears + Triangle(vertices.circular[from: index - 1, through: index + 1])
             }
             
             // If no ear found at current index, continue on to the next vertex.
