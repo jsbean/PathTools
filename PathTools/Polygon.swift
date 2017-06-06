@@ -34,7 +34,7 @@ public struct Polygon: PolygonProtocol {
             // Create a circular view of the data for wrapping over endIndex
             let vertices = vertices.circular
             
-            // Triangle that we want to check
+            // Triangle that may be an ear. We don't know yet.
             let triangle = Triangle(vertices: vertices[from: index - 1, through: index + 1])
             
             // An ear must be convex, given the order of traversal.
@@ -42,6 +42,7 @@ public struct Polygon: PolygonProtocol {
                 return nil
             }
             
+            // An ear must not have any remaining vertices within its area.
             let remaining = vertices[after: index + 1, upTo: index - 1]
             guard !triangle.contains(anyOf: remaining) else {
                 return nil
