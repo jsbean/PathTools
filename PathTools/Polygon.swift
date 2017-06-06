@@ -9,96 +9,115 @@
 import Collections
 import ArithmeticTools
 
-public class Polygon: Path {
+/// No guarantees of sementics of Convex / Concave
+public struct Polygon: PolygonProtocol {
     
-    // MARK: - Instance Properties
-    
-    /// - TODO: Move to `dn-m/Collections`.
-    public var adjacentTriplets: [(Point, Point, Point)] {
-        return (0 ..< vertices.count).map { i in
-            let a = vertices[i]
-            let b = vertices[(i + 1) % vertices.count]
-            let c = vertices[(i + 2) % vertices.count]
-            return (a,b,c)
-        }
+    public var collisionDetectable: ConvexPolygonContainer {
+        return isConvex
+            ? ConvexPolygonContainer(ConvexPolygon(vertices: vertices))
+            : ConvexPolygonContainer(triangulated)
     }
     
-    /// - Returns: Edges of `Polygon`.
-    public var edges: [(Point, Point)] {
-        return vertices.adjacentPairs(wrapped: true)
-    }
-    
-    /// - Returns: All vertices of `Polygon`.
-    public lazy var vertices: [Point] = {
-        return self.elements.flatMap { element in
-            switch element {
-            case .move(let point), .line(let point):
-                return point
-            case .close:
+    /// Triangulate counter-clockwise `Polygon`.
+    public var triangulated: [Triangle] {
+        
+        // Uses Ear Clipping method to split `Polygon` into array of `Triangle` values.
+        
+        /// - Returns: A triangle, if valid for snipping. Otherwise, `nil`.
+        ///
+        /// A triangle valid for snipping satisfies two requirements:
+        /// - It is convex, given the order of traversal.
+        /// - There are no remaining vertices contained within its area.
+        ///
+        func ear(at index: Int, of vertices: [Point]) -> Triangle? {
+
+            // Create a circular view of the data for wrapping over endIndex
+            let vertices = vertices.circular
+            
+            // Triangle that we want to check
+            let triangle = Triangle(vertices: vertices[from: index - 1, through: index + 1])
+            
+            // An ear must be convex, given the order of traversal.
+            guard triangle.isConvex(rotation: .counterClockwise) else {
                 return nil
-            default:
-                fatalError("There is way that there could be curves here!")
             }
+            
+            let remaining = vertices[after: index + 1, upTo: index - 1]
+            guard !triangle.contains(anyOf: remaining) else {
+                return nil
+            }
+            
+            return triangle
         }
-    }()
+        
+        /// Attempts to clip off an ear at the given `index`, from the given `vertices`.
+        /// If we are able to do so, we snip off the tip, and drop the ear into `ears`.
+        /// Otherwise, we move on to the next vertex.
+        ///
+        /// - Returns: Array of `Triangle` values that cover the same area as `Polygon`.
+        func clipEar(at index: Int, from vertices: [Point], into ears: [Triangle])
+            -> [Triangle]
+        {
+            
+            // Base case: If there are only three vertices left, we have the last triangle!
+            guard vertices.count > 3 else {
+                return ears + Triangle(
+                    vertices: vertices.circular[from: index - 1, through: index + 1]
+                )
+            }
+            
+            // If no ear found at current index, continue on to the next vertex.
+            guard let ear = ear(at: index, of: vertices) else {
+                return clipEar(at: index + 1, from: vertices, into: ears)
+            }
+            
+            // Snip off tip, and proceed.
+            return clipEar(at: index, from: vertices.removing(at: index), into: ears + ear)
+        }
+        
+        return clipEar(at: 0, from: counterClockwise.vertices, into: [])
+    }
+    
+    public var clockwise: Polygon {
+        return rotation == .clockwise
+            ? self
+            : Polygon(vertices: self.vertices.reversed())
+    }
+    
+    public var counterClockwise: Polygon {
+        return rotation == .counterClockwise
+            ? self
+            : Polygon(vertices: self.vertices.reversed())
+    }
     
     /// - Returns: `true` if `Polygon` is convex. Otherwise, `false`.
-    public var isConvex: Bool {
-        
-        func zCrossProduct(_ a: Point, _ b: Point, _ c: Point) -> Double {
-            return (a.x - b.x) * (b.y - c.y) - (a.y - b.y) * (b.x - c.x)
+    internal var isConvex: Bool {
+        let signs: [FloatingPointSign] = triangles.map {
+            let (p1, center, p2) = ($0.vertices[0], $0.vertices[1], $0.vertices[2])
+            return zCrossProduct(p1: p1, center: center, p2: p2).sign
         }
-
-        return adjacentTriplets.map(zCrossProduct).map { $0.sign }.isHomogeneous
+        return signs.isHomogeneous
     }
     
-    // MARK: - Initializers
+    public let vertices: [Point]
     
-    /// Creates a `Polygon` with the given `vertices`.
-    ///
-    /// - Warning: Will crash if given less than vertices.
     public init(vertices: [Point]) {
-        
-        guard vertices.count >= 3 else {
-            fatalError("Cannot create a polygon without at least three vertices!")
-        }
-        
-        let (first, rest) = vertices.destructured!
-        super.init([.move(first)] + rest.map { .line($0) } + PathElement.close)
+        self.vertices = vertices
     }
     
-    /// Creates a `Polygon` with the given `path`.
-    ///
-    /// - Returns: `nil` if there are less than three vertices.
-    public convenience init?(_ path: Path) {
-        
-        let vertices = path.elements.flatMap { $0.point }
-        
-        guard vertices.count >= 3 else {
-            return nil
-        }
-        
-        self.init(vertices: vertices)
+    // TEMP:
+    public func xs(at y: Double) -> Set<Double> {
+        fatalError("Not yet implemented!")
     }
     
-    /// - Returns: `true` if a `Path` contains the given `point`.
-    public func contains(_ point: Point) -> Bool {
-        
-        func rayIntersection(edge: (Point, Point)) -> Double? {
-            
-            let (a,b) = edge
-            
-            // Check if the line crosses the horizontal line at y in either direction
-            // Return `nil` if there is no intersection
-            guard a.y <= point.y && b.y > point.y || b.y <= point.y && a.y > point.y else {
-                return nil
-            }
-            
-            // Return the point where the ray intersects the edge
-            return (b.x - b.x) * (point.y - a.y) / (b.y - a.y) + a.x
-        }
-        
-        // If the amount of crossings if odd, we contain the `point`.
-        return edges.flatMap(rayIntersection).filter { $0 < point.x }.count.isOdd
+    public func ys(at x: Double) -> Set<Double> {
+        fatalError("Not yet implemented!")
+    }
+}
+
+extension Polygon: Equatable {
+    
+    public static func == (lhs: Polygon, rhs: Polygon) -> Bool {
+        return lhs.vertices == rhs.vertices
     }
 }

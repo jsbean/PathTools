@@ -24,7 +24,7 @@ extension Path {
         
         var transform = CGAffineTransform.identity
         transform = transform.translatedBy(x: pointRef.x, y: pointRef.y)
-        transform = transform.rotated(by: radians(from: degrees))
+        transform = transform.rotated(by: CGFloat(makeRadians(from: degrees)))
         transform = transform.translatedBy(x: -pointRef.x, y: -pointRef.y)
         return Path(cgPath.copy(using: &transform)!)
     }

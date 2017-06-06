@@ -81,4 +81,8 @@ public struct QuadraticBezierCurve: BezierCurve {
             (pow(t, 2) * end.y)
         return y
     }
+    
+    public func simplified(accuracy: Double) -> [Point] {
+        fatalError("Not yet implemented!")
+    }
 }

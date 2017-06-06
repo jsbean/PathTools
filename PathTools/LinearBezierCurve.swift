@@ -29,4 +29,10 @@ public struct LinearBezierCurve: BezierCurve {
     public func x(y: Double) -> Double {
         fatalError("Not yet implemented!")
     }
+    
+    public func simplified(accuracy: Double) -> [Point] {
+        fatalError("Not yet implemented!")
+    }
 }
+
+

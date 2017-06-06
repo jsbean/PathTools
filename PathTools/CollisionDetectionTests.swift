@@ -18,8 +18,7 @@ class CollisionDetectionTests: XCTestCase {
         let a = Polygon(rect)!
         let b = Polygon(rect)!
         
-        XCTAssert(a.intersects(b))
-        XCTAssert(b.intersects(a))
+        XCTAssert(collision(a,b))
     }
     
     func testRectsSeparatedAboveIntersectingFalse() {
@@ -32,8 +31,7 @@ class CollisionDetectionTests: XCTestCase {
             )
         )!
         
-        XCTAssertFalse(a.intersects(b))
-        XCTAssertFalse(b.intersects(a))
+        XCTAssertFalse(collision(a,b))
     }
     
     func testRectangleDiamondSeparatedIntersectingFalse() {
@@ -48,8 +46,7 @@ class CollisionDetectionTests: XCTestCase {
                 .close()
         )!
         
-        XCTAssertFalse(a.intersects(b))
-        XCTAssertFalse(b.intersects(a))
+        XCTAssertFalse(collision(a,b))
     }
     
     func testContainsPointInRectTrue() {
@@ -74,25 +71,25 @@ class CollisionDetectionTests: XCTestCase {
         XCTAssertFalse(rect.contains(point))
     }
     
-    func testYsAtXRect() {
-        
-        let rect = Polygon(
-            Path.rectangle(origin: Point(), size: Size(width: 100, height: 100))
-        )!
-        
-        let expected: Set<Double> = [0,100]
-        
-        XCTAssertEqual(expected, rect.ys(at: 25))
-    }
-    
-    func testXsAtYRect() {
-        
-        let rect = Polygon(
-            Path.rectangle(origin: Point(), size: Size(width: 100, height: 100))
-        )!
-        
-        let expected: Set<Double> = [0,100]
-        
-        XCTAssertEqual(expected, rect.xs(at: 75))
-    }
+//    func testYsAtXRect() {
+//        
+//        let rect = Polygon(
+//            Path.rectangle(origin: Point(), size: Size(width: 100, height: 100))
+//        )!
+//        
+//        let expected: Set<Double> = [0,100]
+//        
+//        XCTAssertEqual(expected, rect.ys(at: 25))
+//    }
+//    
+//    func testXsAtYRect() {
+//        
+//        let rect = Polygon(
+//            Path.rectangle(origin: Point(), size: Size(width: 100, height: 100))
+//        )!
+//        
+//        let expected: Set<Double> = [0,100]
+//        
+//        XCTAssertEqual(expected, rect.xs(at: 75))
+//    }
 }

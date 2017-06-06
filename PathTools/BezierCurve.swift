@@ -19,4 +19,6 @@ public protocol BezierCurve {
     
     /// - returns: The x-value for a given `y`.
     func x(y: Double) -> Double
+    
+    func simplified(accuracy: Double) -> [Point]
 }

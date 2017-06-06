@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import PathTools
+@testable import PathTools
 
 class PolygonTests: XCTestCase {
     
@@ -19,7 +19,7 @@ class PolygonTests: XCTestCase {
             .addLine(to: points[1])
             .addLine(to: points[2])
             .close()
-        XCTAssertEqual(polygon, expected)
+        XCTAssertEqual(polygon.vertices, expected.elements.flatMap { $0.point })
     }
     
     // MARK: - Convexity
@@ -58,7 +58,7 @@ class PolygonTests: XCTestCase {
         
         XCTAssert(polygon.isConvex)
     }
-    
+
     // MARK: - Triangulation
     
     func testTriangleContainsPointTrue() {
@@ -72,33 +72,35 @@ class PolygonTests: XCTestCase {
         let point = Point(x: 7.5, y: 7.5)
         XCTAssertFalse(triangle.contains(point))
     }
-    
+
     func testPolygonOrderClockwise() {
         let polygon = Polygon(vertices: [(0,10),(10,0),(0,-10),(-10,0)].map(Point.init))
-        XCTAssertEqual(polygon.order, .clockwise)
+        XCTAssertEqual(polygon.rotation, .clockwise)
     }
     
     func testPolygonOrderCounterClockwise() {
         let polygon = Polygon(vertices: [(-10,0),(0,-10),(10,0),(0,10)].map(Point.init))
-        XCTAssertEqual(polygon.order, .counterClockwise)
+        XCTAssertEqual(polygon.rotation, .counterClockwise)
     }
     
     func testVertexConvexTrue() {
         // < = convex, when points arranged counterclockwise
         let triangle = Triangle(Point(x: 0, y: 10), Point(x: -10, y: 0), Point(x: 0, y: -10))
-        XCTAssert(triangle.isConvex(order: .counterClockwise))
-        XCTAssertFalse(triangle.isConvex(order: .clockwise))
+        XCTAssert(triangle.isConvex(rotation: .counterClockwise))
+        XCTAssertFalse(triangle.isConvex(rotation: .clockwise))
     }
     
     func testVertexConvexFalse() {
         // > = concave, when points arranged counterclockwise
         let triangle = Triangle(Point(x: 0, y: 10), Point(x: 10, y: 0), Point(x: 0, y: -10))
-        XCTAssertFalse(triangle.isConvex(order: .counterClockwise))
-        XCTAssert(triangle.isConvex(order: .clockwise))
+        XCTAssertFalse(triangle.isConvex(rotation: .counterClockwise))
+        XCTAssert(triangle.isConvex(rotation: .clockwise))
     }
     
     func testTriangleEqualToTriangulatedSelf() {
-        let triangle = Triangle(Point(x: 0, y: 10), Point(x: 0, y: 0), Point(x: 10, y: 0))
+        let triangle = Polygon(
+            vertices: [Point(x: 0, y: 10), Point(x: 0, y: 0), Point(x: 10, y: 0)]
+        )
         let triangulated = triangle.triangulated
         let expected = [Triangle(Point(x: 10, y: 0), Point(x: 0, y: 10), Point(x: 0, y: 0))]
         XCTAssertEqual(triangulated, expected)
@@ -113,20 +115,31 @@ class PolygonTests: XCTestCase {
         ]
         XCTAssertEqual(triangulated, expected)
     }
-    
+
     func testHouseTriangulated() {
         let house = Polygon(vertices: [(0,15),(-5,10),(-5,0),(5,0),(5,10)].map(Point.init))
         let triangulated = house.triangulated
         let expected = [
-            Triangle([(5,10),(0,15),(-5,10)].map(Point.init)),
-            Triangle([(5,10),(-5,10),(-5,0)].map(Point.init)),
-            Triangle([(5,10),(-5,0),(5,0)].map(Point.init))
+            Triangle(vertices: [(5,10),(0,15),(-5,10)].map(Point.init)),
+            Triangle(vertices: [(5,10),(-5,10),(-5,0)].map(Point.init)),
+            Triangle(vertices: [(5,10),(-5,0),(5,0)].map(Point.init))
         ]
         XCTAssertEqual(triangulated, expected)
     }
     
     func testBlockCTriangulated() {
         let points = [(2,3),(0,3),(0,0),(2,0),(2,1),(1,1),(1,2),(2,2)].map(Point.init)
+        let blockC = Polygon(vertices: points)
+        let triangulated = blockC.triangulated
+        XCTAssertEqual(triangulated.count, 6)
+    }
+    
+    func testBlockCTriangulatedClockwise() {
+        
+        let points = [(2,3),(0,3),(0,0),(2,0),(2,1),(1,1),(1,2),(2,2)]
+            .reversed()
+            .map(Point.init)
+        
         let blockC = Polygon(vertices: points)
         let triangulated = blockC.triangulated
         XCTAssertEqual(triangulated.count, 6)
