@@ -14,6 +14,7 @@ public protocol PolygonProtocol: Shape {
     
     // MARK: - Instance Properties
     
+    /// Circular collection of vertices comprising `PolygonProtocol`.
     var vertices: VertexCollection { get }
     
     /// Lines between each adjacent pair of vertices.
@@ -22,22 +23,26 @@ public protocol PolygonProtocol: Shape {
     /// Triangles constructed of each adjacent triple of vertices.
     var triangles: [Triangle] { get }
 
-    /// The
+    /// The angles of each of the triangles constructed of adjacent triples of vertices.
     var angles: [Angle] { get }
     
     /// Rotation order of vertices.
     var rotation: Rotation { get }
     
+    /// PolyBezier path constructed from `PolygonProtocol`-conforming type.
     var path: Path { get }
     
+    /// `ConvexPolygonContainer` created for testing collisions.
     var collisionDetectable: ConvexPolygonContainer { get }
     
     // MARK: - Initializers
     
+    /// Create a `PolygonProtocol`-conforming type with the given sequence of `vertices`.
     init <S: Sequence> (vertices: S) where S.Iterator.Element == Point
     
     // MARK: - Instance Methods
     
+    /// - Returns: `true` if a `PolygonProtocol` contains the given `point`.
     func contains(_ point: Point) -> Bool
 }
 
@@ -89,11 +94,7 @@ extension PolygonProtocol {
         return Path(first + rest + last)
     }
     
-    // MARK: - Collision Detection
-    
-    /// - Returns: `true` if a `Path` contains the given `point`.
-    ///
-    /// - Note: Valid for convex and concave polygons!
+    /// - Returns: `true` if a `PolygonProtocol` contains the given `point`.
     public func contains(_ point: Point) -> Bool {
         
         func rayIntersection(edge: Line) -> Double? {
@@ -114,6 +115,7 @@ extension PolygonProtocol {
         return edges.flatMap(rayIntersection).filter { $0 < point.x }.count.isOdd
     }
     
+    /// - Returns: `true` if a `PolygonProtocol` contains any of the the given `points`.
     public func contains(anyOf points: [Point]) -> Bool {
         for point in points where contains(point) {
             return true
