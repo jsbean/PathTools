@@ -19,7 +19,8 @@ public protocol PolygonProtocol: Shape {
     var angles: [Angle] { get }
     var path: Path { get }
     var collisionDetectable: ConvexPolygonContainer { get }
-    var vertices: [Point] { get }
+    
+    var vertices: CircularArray<Point> { get }
     
     // MARK: - Initializers
     
@@ -35,7 +36,7 @@ extension PolygonProtocol {
     /// - returns: Array of the line values comprising the faces of the `PolygonProtocol`-
     /// conforming type.
     public var faces: [Line] {
-        let vertices = self.vertices.circular
+        let vertices = self.vertices
         return vertices.indices.map { index in
             Line(points: vertices[from: index, through: index + 1])
         }
@@ -58,7 +59,7 @@ extension PolygonProtocol {
     
     /// - Returns: Array of triangles created with each adjacent triple of vertices.
     public var triangles: [Triangle] {
-        let vertices = self.vertices.circular
+        let vertices = self.vertices
         return vertices.indices.map { index in
             Triangle(vertices: vertices[from: index - 1, through: index + 1])
         }
