@@ -34,10 +34,7 @@ public struct Polygon: PolygonProtocol {
         /// - It is convex, given the order of traversal.
         /// - There are no remaining vertices contained within its area.
         ///
-        func ear(at index: Int, of vertices: [Point]) -> Triangle? {
-
-            // Create a circular view of the data allowing the wrapping over its end.
-            let vertices = vertices.circular
+        func ear(at index: Int, of vertices: CircularArray<Point>) -> Triangle? {
             
             // Triangle that may be an ear. We don't know yet.
             let triangle = Triangle(vertices: vertices[from: index - 1, through: index + 1])
@@ -63,13 +60,13 @@ public struct Polygon: PolygonProtocol {
         ///
         /// - Returns: Array of `Triangle` values that cover the same area as `Polygon`.
         ///
-        func clipEar(at index: Int, from vertices: [Point], into ears: [Triangle])
+        func clipEar(at index: Int, from vertices: CircularArray<Point>, into ears: [Triangle])
             -> [Triangle]
         {
             
             // Base case: If there are only three vertices left, we have the last triangle!
             guard vertices.count > 3 else {
-                let ear = Triangle(vertices: vertices.circular[from: index - 1, through: index + 1])
+                let ear = Triangle(vertices: vertices[from: index - 1, through: index + 1])
                 return ears + ear
             }
             
@@ -82,7 +79,9 @@ public struct Polygon: PolygonProtocol {
             return clipEar(at: index, from: vertices.removing(at: index), into: ears + ear)
         }
         
-        return clipEar(at: 0, from: counterClockwise.vertices, into: [])
+        /// Ensure that the vertices are ordered in a counter-clockwise fasion.
+        /// Traverse a circular view of the vertices to allow the wrapping around its end.
+        return clipEar(at: 0, from: counterClockwise.vertices.circular, into: [])
     }
     
     /// View of `Polygon` in which the vertices are ordered in a clockwise fashion.
