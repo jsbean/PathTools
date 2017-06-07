@@ -363,14 +363,14 @@
 			isa = PBXGroup;
 			children = (
 				133469E3C4CD1699B566343A /* Supporting Files */,
-				07EC99251D0AFC54002414A4 /* PathTests.swift */,
 				071EF2B51EE8192200C0116B /* AngleTests.swift */,
 				07B8DFD41EE6EE5900BBB814 /* LineTests.swift */,
-				07600F9D1EE489E90049E8B2 /* EllipseTests.swift */,
 				07B8DFFB1EE7338800BBB814 /* PolygonTests.swift */,
-				0759A47A1E3015F100E2E40C /* PathElementTests.swift */,
 				0701A8951EE3352600900B3F /* CollisionDetectionTests.swift */,
+				0759A47A1E3015F100E2E40C /* PathElementTests.swift */,
 				0701A8A01EE3376800900B3F /* TransformTests.swift */,
+				07600F9D1EE489E90049E8B2 /* EllipseTests.swift */,
+				07EC99251D0AFC54002414A4 /* PathTests.swift */,
 			);
 			name = PathToolsTests;
 			sourceTree = "<group>";
