@@ -42,7 +42,7 @@ class PolygonTests: XCTestCase {
     }
     
     func testSquareConvexityTrue() {
-        let polygon = Polygon(Path.rectangle(x: 0, y: 0, width: 100, height: 100))!
+        let polygon = Polygon(Rectangle(x: 0, y: 0, width: 100, height: 100))
         XCTAssert(polygon.isConvex)
     }
     

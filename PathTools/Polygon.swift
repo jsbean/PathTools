@@ -112,6 +112,11 @@ public struct Polygon: PolygonProtocol {
     public init <S: Sequence> (vertices: S) where S.Iterator.Element == Point {
         self.vertices = VertexCollection(vertices)
     }
+    
+    /// Create a unconstrained `Polygon` from any `PolygonProtocol`-conforming type.
+    public init(_ polygon: PolygonProtocol) {
+        self.vertices = polygon.vertices
+    }
 }
 
 extension Polygon: Equatable {
