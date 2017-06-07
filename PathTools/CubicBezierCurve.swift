@@ -6,6 +6,8 @@
 //
 //
 
+import GeometryTools
+
 public struct CubicBezierCurve: BezierCurve {
     
     public let start: Point

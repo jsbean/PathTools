@@ -6,6 +6,8 @@
 //
 //
 
+import GeometryTools
+
 extension Path {
     
     // MARK: - Rectangle

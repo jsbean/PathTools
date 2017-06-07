@@ -8,6 +8,7 @@
 
 import Foundation
 import ArithmeticTools
+import GeometryTools
 
 public struct QuadraticBezierCurve: BezierCurve {
     

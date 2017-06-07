@@ -6,6 +6,8 @@
 //
 //
 
+import GeometryTools
+
 /// Element within a `Path`.
 public enum PathElement {
     

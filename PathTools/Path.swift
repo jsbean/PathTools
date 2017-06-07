@@ -8,6 +8,7 @@
 
 import Collections
 import ArithmeticTools
+import GeometryTools
 
 public class Path {
     

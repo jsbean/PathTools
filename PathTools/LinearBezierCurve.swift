@@ -6,6 +6,8 @@
 //
 //
 
+import GeometryTools
+
 // Straight line
 public struct LinearBezierCurve: BezierCurve {
     

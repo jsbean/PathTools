@@ -6,6 +6,8 @@
 //
 //
 
+import GeometryTools
+
 public protocol BezierCurve {
  
     /// Start point of Bézier curve.

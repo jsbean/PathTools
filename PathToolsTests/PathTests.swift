@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import GeometryTools
 @testable import PathTools
 
 class PathTests: XCTestCase {
