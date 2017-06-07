@@ -74,6 +74,3 @@ func project(_ shape: ConvexPolygonProtocol, onto axis: Vector2)
     
     return (values.min()!, values.max()!)
 }
-
-
-
