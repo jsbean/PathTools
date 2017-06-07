@@ -13,14 +13,24 @@ import ArithmeticTools
 public protocol PolygonProtocol: Shape {
     
     // MARK: - Instance Properties
-    var rotation: Rotation { get }
-    var triangles: [Triangle] { get }
-    var faces: [Line] { get }
-    var angles: [Angle] { get }
-    var path: Path { get }
-    var collisionDetectable: ConvexPolygonContainer { get }
     
     var vertices: VertexCollection { get }
+    
+    /// Lines between each adjacent pair of vertices.
+    var edges: [Line] { get }
+    
+    /// Triangles constructed of each adjacent triple of vertices.
+    var triangles: [Triangle] { get }
+
+    /// The
+    var angles: [Angle] { get }
+    
+    /// Rotation order of vertices.
+    var rotation: Rotation { get }
+    
+    var path: Path { get }
+    
+    var collisionDetectable: ConvexPolygonContainer { get }
     
     // MARK: - Initializers
     
@@ -33,9 +43,9 @@ public protocol PolygonProtocol: Shape {
 
 extension PolygonProtocol {
 
-    /// - returns: Array of the line values comprising the faces of the `PolygonProtocol`-
+    /// - returns: Array of the line values comprising the edges of the `PolygonProtocol`-
     /// conforming type.
-    public var faces: [Line] {
+    public var edges: [Line] {
         let vertices = self.vertices
         return vertices.indices.map { index in
             Line(points: vertices[from: index, through: index + 1])
@@ -45,12 +55,12 @@ extension PolygonProtocol {
     /// - Returns: The two-dimensional vector of each axis created between each adjacent pair
     /// of vertices.
     internal var axes: [Vector2] {
-        return faces.map { $0.vector }
+        return edges.map { $0.vector }
     }
     
     /// - Returns: Whether vertices are arranged clockwise / counterclockwise.
     public var rotation: Rotation {
-        let sum = faces.reduce(Double(0)) { accum, cur in
+        let sum = edges.reduce(Double(0)) { accum, cur in
             let (a,b) = (cur.start, cur.end)
             return accum + (b.x - a.x) * (b.y + a.y)
         }
@@ -101,7 +111,7 @@ extension PolygonProtocol {
         }
         
         // If the amount of crossings is odd, we contain the `point`. Otherwise, we don't.
-        return faces.flatMap(rayIntersection).filter { $0 < point.x }.count.isOdd
+        return edges.flatMap(rayIntersection).filter { $0 < point.x }.count.isOdd
     }
     
     public func contains(anyOf points: [Point]) -> Bool {
@@ -116,10 +126,10 @@ extension PolygonProtocol {
         
         var result: Set<Double> = []
         
-        for face in faces {
+        for edge in edges {
             
             // Ensure that points are ordered in increasing order re: x values.
-            let (a,b, _) = swapped(face.start, face.end) { face.start.x > face.end.x }
+            let (a,b, _) = swapped(edge.start, edge.end) { edge.start.x > edge.end.x }
             
             if x >= a.x && x <= b.x {
                 if (b.x - a.x) == 0 {
@@ -139,10 +149,10 @@ extension PolygonProtocol {
         
         var result: Set<Double> = []
         
-        for face in faces {
+        for edge in edges {
             
             // Ensure that points are ordered in increasing order re: x values.
-            let (a,b, _) = swapped(face.start,face.end) { face.start.y > face.end.y }
+            let (a,b, _) = swapped(edge.start,edge.end) { edge.start.y > edge.end.y }
             
             if y >= a.y && y <= b.y {
                 if (b.y - a.y) == 0 {
