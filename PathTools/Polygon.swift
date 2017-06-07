@@ -25,7 +25,8 @@ public struct Polygon: PolygonProtocol {
     
     /// Triangulate counter-clockwise `Polygon`.
     ///
-    /// - Note: Uses Ear Clipping method to split `Polygon` into array of `Triangle` values.
+    /// - Note: Uses Ear Clipping method to split concave polygon into array of `Triangle` 
+    /// values.
     internal var triangulated: [Triangle] {
         
         /// - Returns: A triangle, if valid for clipping. Otherwise, `nil`.
@@ -46,8 +47,7 @@ public struct Polygon: PolygonProtocol {
             
             // For the triangle to be an ear, it must not have any remaining vertices within 
             // its area.
-            let remaining = vertices[after: index + 1, upTo: index - 1]
-            guard !triangle.contains(anyOf: remaining) else {
+            guard !triangle.contains(anyOf: vertices[after: index + 1, upTo: index - 1]) else {
                 return nil
             }
             
