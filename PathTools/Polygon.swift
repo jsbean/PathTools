@@ -29,29 +29,33 @@ public struct Polygon: PolygonProtocol {
     /// values.
     internal var triangulated: [Triangle] {
         
-        /// - Returns: A triangle, if valid for clipping. Otherwise, `nil`.
+        /// - Returns: `true` if the given `triangle` is valid for clipping off.
         ///
-        /// A triangle valid for cipping satisfies two requirements:
+        /// A triangle is valid for cipping if it satisfies two requirements:
         /// - It is convex, given the order of traversal.
         /// - There are no remaining vertices contained within its area.
         ///
-        func ear(at index: Int, of vertices: VertexCollection) -> Triangle? {
-            
-            // Triangle that may be an ear. We don't know yet.
-            let triangle = Triangle(vertices: vertices[from: index - 1, through: index + 1])
+        func isEar(_ triangle: Triangle, remainingVertices: [Point]) -> Bool {
             
             // For the triangle to be an ear, it must be convex, given the order of traversal.
             guard triangle.isConvex(rotation: .counterClockwise) else {
-                return nil
+                return false
             }
             
-            // For the triangle to be an ear, it must not have any remaining vertices within 
+            // For the triangle to be an ear, it must not have any remaining vertices within
             // its area.
-            guard !triangle.contains(anyOf: vertices[after: index + 1, upTo: index - 1]) else {
-                return nil
+            guard !triangle.contains(anyOf: remainingVertices) else {
+                return false
             }
             
-            return triangle
+            return true
+        }
+        
+        /// - Returns: A triangle, if valid for clipping. Otherwise, `nil`.
+        func ear(at index: Int, of vertices: VertexCollection) -> Triangle? {
+            let triangle = Triangle(vertices: vertices[from: index - 1, through: index + 1])
+            let remainingVertices = vertices[after: index + 1, upTo: index - 1]
+            return isEar(triangle, remainingVertices: remainingVertices) ? triangle : nil
         }
         
         /// Attempts to clip off an ear at the given `index`, from the given `vertices`.
