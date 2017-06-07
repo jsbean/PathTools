@@ -9,6 +9,7 @@
 import Collections
 import ArithmeticTools
 
+/// Interface for polygonal shapes.
 public protocol PolygonProtocol: Shape {
     
     // MARK: - Instance Properties
@@ -21,9 +22,11 @@ public protocol PolygonProtocol: Shape {
     var vertices: [Point] { get }
     
     // MARK: - Initializers
+    
     init(vertices: [Point])
     
     // MARK: - Instance Methods
+    
     func contains(_ point: Point) -> Bool
 }
 

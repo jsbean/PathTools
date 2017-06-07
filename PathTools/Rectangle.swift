@@ -9,12 +9,24 @@
 import ArithmeticTools
 
 /// A structure that contains the location and dimensions of a rectangle.
-public struct Rectangle {
+public struct Rectangle: ConvexPolygonProtocol {
+    
+    // MARK: - Type Properties
+    
+    /// `Rectangle` with `origin` and `size` values of zero.
+    public static let zero = Rectangle()
     
     // MARK: - Instance Properties
     
-    public static let zero = Rectangle()
-    
+    /// Vertices comprising `Rectangle`.
+    public var vertices: [Point] {
+        let topLeft = Point(x: minX, y: maxY)
+        let bottomLeft = Point(x: minX, y: minY)
+        let bottomRight = Point(x: maxX, y: minY)
+        let topRight = Point(x: maxX, y: maxY)
+        return [topLeft, bottomLeft, bottomRight, topRight]
+    }
+
     /// Minimum X value.
     public var minX: Double {
         return (size.width < 0) ? origin.x + size.width : origin.x
@@ -69,6 +81,47 @@ public struct Rectangle {
     public init(x: Double, y: Double, width: Double, height: Double) {
         self.origin = Point(x: x, y: y)
         self.size = Size(width: width, height: height)
+    }
+    
+    /// Creates a `Rectangle` with the given `vertices`.
+    ///
+    /// - Warning: Will crash if given invalid vertices.
+    ///
+    public init(vertices: [Point]) {
+        try! self.init(Polygon(vertices: vertices))
+    }
+    
+    /// Creates a `Rectangle` with the given `polygon`.
+    ///
+    /// - Throws: `PolygonError` if the given `polygon` is not rectangular.
+    ///
+    public init(_ polygon: Polygon) throws {
+        
+        guard polygon.vertices.count == 4 else {
+            
+            throw PolygonError.invalidVertices(
+                polygon.vertices,
+                Rectangle.self,
+                "A Rectangle must have four vertices!"
+            )
+        }
+        
+        guard polygon.angles.allSatisfy({ $0 == Angle(degrees: 90) }) else {
+            
+            throw PolygonError.invalidVertices(
+                polygon.vertices,
+                Rectangle.self,
+                "A Rectangle must have only right angles!"
+            )
+        }
+        
+        // FIXME: Use less expensive method!
+        let minX = polygon.vertices.map { $0.x }.min()!
+        let maxX = polygon.vertices.map { $0.x }.max()!
+        let minY = polygon.vertices.map { $0.y }.min()!
+        let maxY = polygon.vertices.map { $0.y }.max()!
+        
+        self.init(x: minX, y: minY, width: maxX - maxX, height: maxY - minY)
     }
 
     // MARK: - Instance Methods

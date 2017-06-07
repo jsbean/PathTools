@@ -27,6 +27,10 @@
 		0701A8A51EE345F000900B3F /* Vector2+Points.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0701A8A31EE345F000900B3F /* Vector2+Points.swift */; };
 		07088AC51D0AE8A600004FB2 /* Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07088AC41D0AE8A600004FB2 /* Path.swift */; };
 		07088AC61D0AE8A600004FB2 /* Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07088AC41D0AE8A600004FB2 /* Path.swift */; };
+		071EF2B61EE8192200C0116B /* AngleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071EF2B51EE8192200C0116B /* AngleTests.swift */; };
+		071EF2B71EE8192200C0116B /* AngleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071EF2B51EE8192200C0116B /* AngleTests.swift */; };
+		071EF2B91EE81BD600C0116B /* PolygonError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071EF2B81EE81BD600C0116B /* PolygonError.swift */; };
+		071EF2BA1EE81BD600C0116B /* PolygonError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071EF2B81EE81BD600C0116B /* PolygonError.swift */; };
 		07305A341D0F3F7F006E4085 /* Path+Square.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07305A331D0F3F7F006E4085 /* Path+Square.swift */; };
 		07305A351D0F3F7F006E4085 /* Path+Square.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07305A331D0F3F7F006E4085 /* Path+Square.swift */; };
 		0741EE591EE578A50002769D /* Polygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0741EE581EE578A50002769D /* Polygon.swift */; };
@@ -156,6 +160,8 @@
 		0701A8A01EE3376800900B3F /* TransformTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TransformTests.swift; path = PathToolsTests/TransformTests.swift; sourceTree = "<group>"; };
 		0701A8A31EE345F000900B3F /* Vector2+Points.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Vector2+Points.swift"; path = "PathTools/Vector2+Points.swift"; sourceTree = "<group>"; };
 		07088AC41D0AE8A600004FB2 /* Path.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Path.swift; path = PathTools/Path.swift; sourceTree = "<group>"; };
+		071EF2B51EE8192200C0116B /* AngleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AngleTests.swift; path = PathToolsTests/AngleTests.swift; sourceTree = "<group>"; };
+		071EF2B81EE81BD600C0116B /* PolygonError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PolygonError.swift; path = PathTools/PolygonError.swift; sourceTree = "<group>"; };
 		07305A331D0F3F7F006E4085 /* Path+Square.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Path+Square.swift"; path = "PathTools/Path+Square.swift"; sourceTree = "<group>"; };
 		0741EE581EE578A50002769D /* Polygon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Polygon.swift; path = PathTools/Polygon.swift; sourceTree = "<group>"; };
 		0759A4771E3015B000E2E40C /* PathElement+CGPathElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PathElement+CGPathElement.swift"; path = "PathTools/PathElement+CGPathElement.swift"; sourceTree = "<group>"; };
@@ -243,6 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				07B8DFDD1EE7074600BBB814 /* Shape.swift */,
+				071EF2B81EE81BD600C0116B /* PolygonError.swift */,
 				07B8DFE61EE7148500BBB814 /* PolygonProtocol.swift */,
 				0741EE581EE578A50002769D /* Polygon.swift */,
 				07B8DFF51EE71C3700BBB814 /* Polygon+Path.swift */,
@@ -353,6 +360,7 @@
 			children = (
 				133469E3C4CD1699B566343A /* Supporting Files */,
 				07EC99251D0AFC54002414A4 /* PathTests.swift */,
+				071EF2B51EE8192200C0116B /* AngleTests.swift */,
 				07B8DFD41EE6EE5900BBB814 /* LineTests.swift */,
 				07600F9D1EE489E90049E8B2 /* EllipseTests.swift */,
 				07B8DFFB1EE7338800BBB814 /* PolygonTests.swift */,
@@ -577,6 +585,7 @@
 				07B8DFE81EE7148500BBB814 /* PolygonProtocol.swift in Sources */,
 				0799D9731E2181C500516ADF /* Point.swift in Sources */,
 				07C1F85D1D0C4E2800541ED5 /* Path+Rectangle.swift in Sources */,
+				071EF2BA1EE81BD600C0116B /* PolygonError.swift in Sources */,
 				07B8DFEB1EE7151E00BBB814 /* Rotation.swift in Sources */,
 				07C1F8601D0C4E7400541ED5 /* Path+Circle.swift in Sources */,
 				0701A87C1EE305F400900B3F /* Path+CGPath.swift in Sources */,
@@ -621,6 +630,7 @@
 				07B8DFE71EE7148500BBB814 /* PolygonProtocol.swift in Sources */,
 				0799D9721E2181C500516ADF /* Point.swift in Sources */,
 				07C1F85C1D0C4E2800541ED5 /* Path+Rectangle.swift in Sources */,
+				071EF2B91EE81BD600C0116B /* PolygonError.swift in Sources */,
 				07B8DFEA1EE7151E00BBB814 /* Rotation.swift in Sources */,
 				07C1F85F1D0C4E7400541ED5 /* Path+Circle.swift in Sources */,
 				0701A87B1EE305F400900B3F /* Path+CGPath.swift in Sources */,
@@ -653,6 +663,7 @@
 				07B8DFD51EE6EE5900BBB814 /* LineTests.swift in Sources */,
 				0759A47B1E3015F100E2E40C /* PathElementTests.swift in Sources */,
 				07600F9E1EE489E90049E8B2 /* EllipseTests.swift in Sources */,
+				071EF2B61EE8192200C0116B /* AngleTests.swift in Sources */,
 				0701A8A11EE3376800900B3F /* TransformTests.swift in Sources */,
 				0701A89B1EE3355800900B3F /* CollisionDetectionTests.swift in Sources */,
 			);
@@ -667,6 +678,7 @@
 				07B8DFD61EE6EE5900BBB814 /* LineTests.swift in Sources */,
 				0759A47C1E3015F100E2E40C /* PathElementTests.swift in Sources */,
 				07600F9F1EE489E90049E8B2 /* EllipseTests.swift in Sources */,
+				071EF2B71EE8192200C0116B /* AngleTests.swift in Sources */,
 				0701A8A21EE3376800900B3F /* TransformTests.swift in Sources */,
 				0701A89C1EE3355800900B3F /* CollisionDetectionTests.swift in Sources */,
 			);

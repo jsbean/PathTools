@@ -9,9 +9,14 @@
 import Collections
 import ArithmeticTools
 
-/// No guarantees of sementics of Convex / Concave
+/// Polgonal shape containing at least three vertices.
 public struct Polygon: PolygonProtocol {
     
+    /// - Returns: `ConvexPolygonContainer` that can be used for collision detection.
+    ///
+    /// - Note: In the case that this `Polygon` is convex, the `ConvexPolygonContainer` is
+    /// initialized with it. In the case the this `Polygon` is concave, it is broken up into
+    /// the minimum number of triangles through an Ear Clipping method.
     public var collisionDetectable: ConvexPolygonContainer {
         return isConvex
             ? ConvexPolygonContainer(ConvexPolygon(vertices: vertices))
@@ -19,30 +24,31 @@ public struct Polygon: PolygonProtocol {
     }
     
     /// Triangulate counter-clockwise `Polygon`.
-    public var triangulated: [Triangle] {
+    ///
+    /// - Note: Uses Ear Clipping method to split `Polygon` into array of `Triangle` values.
+    internal var triangulated: [Triangle] {
         
-        // Uses Ear Clipping method to split `Polygon` into array of `Triangle` values.
-        
-        /// - Returns: A triangle, if valid for snipping. Otherwise, `nil`.
+        /// - Returns: A triangle, if valid for clipping. Otherwise, `nil`.
         ///
-        /// A triangle valid for snipping satisfies two requirements:
+        /// A triangle valid for cipping satisfies two requirements:
         /// - It is convex, given the order of traversal.
         /// - There are no remaining vertices contained within its area.
         ///
         func ear(at index: Int, of vertices: [Point]) -> Triangle? {
 
-            // Create a circular view of the data for wrapping over endIndex
+            // Create a circular view of the data allowing the wrapping over its end.
             let vertices = vertices.circular
             
             // Triangle that may be an ear. We don't know yet.
             let triangle = Triangle(vertices: vertices[from: index - 1, through: index + 1])
             
-            // An ear must be convex, given the order of traversal.
+            // For the triangle to be an ear, it must be convex, given the order of traversal.
             guard triangle.isConvex(rotation: .counterClockwise) else {
                 return nil
             }
             
-            // An ear must not have any remaining vertices within its area.
+            // For the triangle to be an ear, it must not have any remaining vertices within 
+            // its area.
             let remaining = vertices[after: index + 1, upTo: index - 1]
             guard !triangle.contains(anyOf: remaining) else {
                 return nil
@@ -56,15 +62,15 @@ public struct Polygon: PolygonProtocol {
         /// Otherwise, we move on to the next vertex.
         ///
         /// - Returns: Array of `Triangle` values that cover the same area as `Polygon`.
+        ///
         func clipEar(at index: Int, from vertices: [Point], into ears: [Triangle])
             -> [Triangle]
         {
             
             // Base case: If there are only three vertices left, we have the last triangle!
             guard vertices.count > 3 else {
-                return ears + Triangle(
-                    vertices: vertices.circular[from: index - 1, through: index + 1]
-                )
+                let ear = Triangle(vertices: vertices.circular[from: index - 1, through: index + 1])
+                return ears + ear
             }
             
             // If no ear found at current index, continue on to the next vertex.
@@ -79,16 +85,14 @@ public struct Polygon: PolygonProtocol {
         return clipEar(at: 0, from: counterClockwise.vertices, into: [])
     }
     
-    public var clockwise: Polygon {
-        return rotation == .clockwise
-            ? self
-            : Polygon(vertices: self.vertices.reversed())
+    /// View of `Polygon` in which the vertices are ordered in a clockwise fashion.
+    internal var clockwise: Polygon {
+        return rotation == .clockwise ? self : Polygon(vertices: vertices.reversed())
     }
     
-    public var counterClockwise: Polygon {
-        return rotation == .counterClockwise
-            ? self
-            : Polygon(vertices: self.vertices.reversed())
+    /// View of `Polygon` in which the vertices are ordered in a counter-clockwise fashion.
+    internal var counterClockwise: Polygon {
+        return rotation == .counterClockwise ? self : Polygon(vertices: vertices.reversed())
     }
     
     /// - Returns: `true` if `Polygon` is convex. Otherwise, `false`.
@@ -100,8 +104,12 @@ public struct Polygon: PolygonProtocol {
         return signs.isHomogeneous
     }
     
+    /// Vertices contained herein.
     public let vertices: [Point]
     
+    // MARK: - Initializers
+    
+    /// Creates a `Polygon` with the given `vertices`.
     public init(vertices: [Point]) {
         self.vertices = vertices
     }
@@ -109,6 +117,9 @@ public struct Polygon: PolygonProtocol {
 
 extension Polygon: Equatable {
     
+    // MARK: Equatable
+    
+    /// - Returns: `true` if the vertices of each `Polygon` are equivalent.
     public static func == (lhs: Polygon, rhs: Polygon) -> Bool {
         return lhs.vertices == rhs.vertices
     }

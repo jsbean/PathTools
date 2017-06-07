@@ -15,7 +15,7 @@ extension Path {
         height: Double = 100,
         width: Double = 25,
         barbProportion: Double = 0.25,
-        rotation: Degrees = 0
+        rotation: Angle = .zero
     ) -> Path
     {
         let path = Path(
@@ -28,7 +28,7 @@ extension Path {
             ]
         )
         
-        if rotation == 0 {
+        if rotation == .zero {
             return path
         }
         
