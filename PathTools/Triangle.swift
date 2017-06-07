@@ -27,12 +27,12 @@ public struct Triangle: ConvexPolygonProtocol {
     public let vertices: VertexCollection
     
     public init(_ a: Point, _ b: Point, _ c: Point) {
-        self.vertices = CircularArray([a,b,c])
+        self.vertices = [a,b,c]
     }
     
     public init <S: Sequence> (vertices: S) where S.Iterator.Element == Point {
         
-        let vertices = CircularArray(vertices)
+        let vertices = VertexCollection(vertices)
         
         guard vertices.count == 3 else {
             fatalError("A triangle must have three vertices!")

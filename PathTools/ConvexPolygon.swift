@@ -16,7 +16,7 @@ public struct ConvexPolygon: ConvexPolygonProtocol {
     
     public init <S: Sequence> (vertices: S) where S.Iterator.Element == Point {
         
-        let vertices = CircularArray(vertices)
+        let vertices = VertexCollection(vertices)
         
         guard isConvex(vertexCollection: vertices) else {
             fatalError("Cannot create a ConvexPolygon with a concave vertex collection")

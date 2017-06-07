@@ -25,7 +25,7 @@ public struct Rectangle: ConvexPolygonProtocol {
         let bottomLeft = Point(x: minX, y: minY)
         let bottomRight = Point(x: maxX, y: minY)
         let topRight = Point(x: maxX, y: maxY)
-        return CircularArray([topLeft, bottomLeft, bottomRight, topRight])
+        return VertexCollection([topLeft, bottomLeft, bottomRight, topRight])
     }
 
     /// Minimum X value.
@@ -89,7 +89,7 @@ public struct Rectangle: ConvexPolygonProtocol {
     /// - Warning: Will crash if given invalid vertices.
     ///
     public init <S: Sequence> (vertices: S) where S.Iterator.Element == Point {
-        try! self.init(Polygon(vertices: CircularArray(vertices)))
+        try! self.init(Polygon(vertices: VertexCollection(vertices)))
     }
     
     /// Creates a `Rectangle` with the given `polygon`.

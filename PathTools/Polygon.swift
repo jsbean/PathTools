@@ -110,7 +110,7 @@ public struct Polygon: PolygonProtocol {
     
     /// Creates a `Polygon` with the given `vertices`.
     public init <S: Sequence> (vertices: S) where S.Iterator.Element == Point {
-        self.vertices = CircularArray(vertices)
+        self.vertices = VertexCollection(vertices)
     }
 }
 
