@@ -33,6 +33,8 @@
 		071EF2BA1EE81BD600C0116B /* PolygonError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071EF2B81EE81BD600C0116B /* PolygonError.swift */; };
 		071EF2BC1EE82F1F00C0116B /* VertexCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071EF2BB1EE82F1F00C0116B /* VertexCollection.swift */; };
 		071EF2BD1EE82F1F00C0116B /* VertexCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071EF2BB1EE82F1F00C0116B /* VertexCollection.swift */; };
+		071EF2BF1EE870DD00C0116B /* CollisionDetectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071EF2BE1EE870DD00C0116B /* CollisionDetectable.swift */; };
+		071EF2C01EE870DD00C0116B /* CollisionDetectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071EF2BE1EE870DD00C0116B /* CollisionDetectable.swift */; };
 		07305A341D0F3F7F006E4085 /* Path+Square.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07305A331D0F3F7F006E4085 /* Path+Square.swift */; };
 		07305A351D0F3F7F006E4085 /* Path+Square.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07305A331D0F3F7F006E4085 /* Path+Square.swift */; };
 		0741EE591EE578A50002769D /* Polygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0741EE581EE578A50002769D /* Polygon.swift */; };
@@ -163,6 +165,7 @@
 		071EF2B51EE8192200C0116B /* AngleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AngleTests.swift; path = PathToolsTests/AngleTests.swift; sourceTree = "<group>"; };
 		071EF2B81EE81BD600C0116B /* PolygonError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PolygonError.swift; path = PathTools/PolygonError.swift; sourceTree = "<group>"; };
 		071EF2BB1EE82F1F00C0116B /* VertexCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VertexCollection.swift; path = PathTools/VertexCollection.swift; sourceTree = "<group>"; };
+		071EF2BE1EE870DD00C0116B /* CollisionDetectable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollisionDetectable.swift; path = PathTools/CollisionDetectable.swift; sourceTree = "<group>"; };
 		07305A331D0F3F7F006E4085 /* Path+Square.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Path+Square.swift"; path = "PathTools/Path+Square.swift"; sourceTree = "<group>"; };
 		0741EE581EE578A50002769D /* Polygon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Polygon.swift; path = PathTools/Polygon.swift; sourceTree = "<group>"; };
 		0759A4771E3015B000E2E40C /* PathElement+CGPathElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PathElement+CGPathElement.swift"; path = "PathTools/PathElement+CGPathElement.swift"; sourceTree = "<group>"; };
@@ -283,6 +286,7 @@
 				0701A8811EE307CF00900B3F /* Size.swift */,
 				0701A8A31EE345F000900B3F /* Vector2+Points.swift */,
 				07B8DFE91EE7151E00BBB814 /* Rotation.swift */,
+				071EF2BE1EE870DD00C0116B /* CollisionDetectable.swift */,
 			);
 			name = Primitives;
 			sourceTree = "<group>";
@@ -570,6 +574,7 @@
 			files = (
 				0701A88B1EE3104F00900B3F /* Point+CGPoint.swift in Sources */,
 				0701A8831EE307CF00900B3F /* Size.swift in Sources */,
+				071EF2C01EE870DD00C0116B /* CollisionDetectable.swift in Sources */,
 				07B8DFF41EE718A700BBB814 /* CollisionDetection.swift in Sources */,
 				078590431DE7624300FF1645 /* BezierCurve.swift in Sources */,
 				07C1F86C1D0C537300541ED5 /* Path+BoundingBox.swift in Sources */,
@@ -615,6 +620,7 @@
 			files = (
 				0701A88A1EE3104F00900B3F /* Point+CGPoint.swift in Sources */,
 				0701A8821EE307CF00900B3F /* Size.swift in Sources */,
+				071EF2BF1EE870DD00C0116B /* CollisionDetectable.swift in Sources */,
 				07B8DFF31EE718A700BBB814 /* CollisionDetection.swift in Sources */,
 				078590421DE7624300FF1645 /* BezierCurve.swift in Sources */,
 				07C1F86B1D0C537300541ED5 /* Path+BoundingBox.swift in Sources */,

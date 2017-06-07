@@ -9,6 +9,15 @@
 /// Element within a `Path`.
 public enum PathElement {
     
+    var isVertex: Bool {
+        switch self {
+        case .move, .line:
+            return true
+        default:
+            return false
+        }
+    }
+    
     var point: Point? {
         switch self {
         case .move(let point), .line(let point):
