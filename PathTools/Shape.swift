@@ -8,7 +8,5 @@
 
 /// Shape.
 public protocol Shape: CollisionDetectable {
-    var collisionDetectable: ConvexPolygonContainer { get }
-    func ys(at x: Double) -> Set<Double>
-    func xs(at y: Double) -> Set<Double>
+    
 }
