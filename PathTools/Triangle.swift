@@ -7,6 +7,7 @@
 //
 
 import Darwin
+import Collections
 
 public struct Triangle: ConvexPolygonProtocol {
     
@@ -23,13 +24,15 @@ public struct Triangle: ConvexPolygonProtocol {
         return Angle(radians: acos((a + b - c) / sqrt(4 * a * b)))
     }
     
-    public let vertices: [Point]
+    public let vertices: VertexCollection
     
     public init(_ a: Point, _ b: Point, _ c: Point) {
-        self.vertices = [a,b,c]
+        self.vertices = CircularArray([a,b,c])
     }
     
-    public init(vertices: [Point]) {
+    public init <S: Sequence> (vertices: S) where S.Iterator.Element == Point {
+        
+        let vertices = CircularArray(vertices)
         
         guard vertices.count == 3 else {
             fatalError("A triangle must have three vertices!")

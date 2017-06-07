@@ -6,15 +6,17 @@
 //
 //
 
+import Collections
 import ArithmeticTools
 
-
-/// Concrete ConvexPolygon
+/// Concrete ConvexPolygon.
 public struct ConvexPolygon: ConvexPolygonProtocol {
 
-    public let vertices: [Point]
+    public let vertices: VertexCollection
     
-    public init(vertices: [Point]) {
+    public init <S: Sequence> (vertices: S) where S.Iterator.Element == Point {
+        
+        let vertices = CircularArray(vertices)
         
         guard isConvex(vertexCollection: vertices) else {
             fatalError("Cannot create a ConvexPolygon with a concave vertex collection")
@@ -24,13 +26,12 @@ public struct ConvexPolygon: ConvexPolygonProtocol {
     }
 }
 
-
 public func zCrossProduct(p1: Point, center: Point, p2: Point) -> Double {
     return (p1.x - center.x) * (center.y - p2.y) - (p1.y - center.y) * (center.x - p2.x)
 }
 
-public func isConvex(vertexCollection: [Point]) -> Bool {
-    let vertices = vertexCollection.circular
+public func isConvex(vertexCollection: VertexCollection) -> Bool {
+    let vertices = vertexCollection
     return vertices.indices
         .lazy
         .map { index in vertices[from: index - 1, through: index + 1] }

@@ -20,11 +20,11 @@ public protocol PolygonProtocol: Shape {
     var path: Path { get }
     var collisionDetectable: ConvexPolygonContainer { get }
     
-    var vertices: CircularArray<Point> { get }
+    var vertices: VertexCollection { get }
     
     // MARK: - Initializers
     
-    init(vertices: [Point])
+    init <S: Sequence> (vertices: S) where S.Iterator.Element == Point
     
     // MARK: - Instance Methods
     

@@ -6,6 +6,7 @@
 //
 //
 
+import Collections
 import ArithmeticTools
 
 /// A structure that contains the location and dimensions of a rectangle.
@@ -19,12 +20,12 @@ public struct Rectangle: ConvexPolygonProtocol {
     // MARK: - Instance Properties
     
     /// Vertices comprising `Rectangle`.
-    public var vertices: [Point] {
+    public var vertices: VertexCollection {
         let topLeft = Point(x: minX, y: maxY)
         let bottomLeft = Point(x: minX, y: minY)
         let bottomRight = Point(x: maxX, y: minY)
         let topRight = Point(x: maxX, y: maxY)
-        return [topLeft, bottomLeft, bottomRight, topRight]
+        return CircularArray([topLeft, bottomLeft, bottomRight, topRight])
     }
 
     /// Minimum X value.
@@ -87,8 +88,8 @@ public struct Rectangle: ConvexPolygonProtocol {
     ///
     /// - Warning: Will crash if given invalid vertices.
     ///
-    public init(vertices: [Point]) {
-        try! self.init(Polygon(vertices: vertices))
+    public init <S: Sequence> (vertices: S) where S.Iterator.Element == Point {
+        try! self.init(Polygon(vertices: CircularArray(vertices)))
     }
     
     /// Creates a `Rectangle` with the given `polygon`.

@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import Collections
 @testable import PathTools
 
 class PolygonTests: XCTestCase {
@@ -19,7 +20,8 @@ class PolygonTests: XCTestCase {
             .addLine(to: points[1])
             .addLine(to: points[2])
             .close()
-        XCTAssertEqual(polygon.vertices, expected.elements.flatMap { $0.point })
+        zip(polygon.vertices, VertexCollection(expected.elements.flatMap { $0.point }))
+            .forEach { XCTAssertEqual($0, $1) }
     }
     
     // MARK: - Convexity

@@ -34,7 +34,7 @@ public struct Polygon: PolygonProtocol {
         /// - It is convex, given the order of traversal.
         /// - There are no remaining vertices contained within its area.
         ///
-        func ear(at index: Int, of vertices: CircularArray<Point>) -> Triangle? {
+        func ear(at index: Int, of vertices: VertexCollection) -> Triangle? {
             
             // Triangle that may be an ear. We don't know yet.
             let triangle = Triangle(vertices: vertices[from: index - 1, through: index + 1])
@@ -60,7 +60,7 @@ public struct Polygon: PolygonProtocol {
         ///
         /// - Returns: Array of `Triangle` values that cover the same area as `Polygon`.
         ///
-        func clipEar(at index: Int, from vertices: CircularArray<Point>, into ears: [Triangle])
+        func clipEar(at index: Int, from vertices: VertexCollection, into ears: [Triangle])
             -> [Triangle]
         {
             
@@ -81,7 +81,7 @@ public struct Polygon: PolygonProtocol {
         
         /// Ensure that the vertices are ordered in a counter-clockwise fasion.
         /// Traverse a circular view of the vertices to allow the wrapping around its end.
-        return clipEar(at: 0, from: counterClockwise.vertices.circular, into: [])
+        return clipEar(at: 0, from: counterClockwise.vertices, into: [])
     }
     
     /// View of `Polygon` in which the vertices are ordered in a clockwise fashion.
@@ -104,13 +104,13 @@ public struct Polygon: PolygonProtocol {
     }
     
     /// Vertices contained herein.
-    public let vertices: [Point]
+    public let vertices: VertexCollection
     
     // MARK: - Initializers
     
     /// Creates a `Polygon` with the given `vertices`.
-    public init(vertices: [Point]) {
-        self.vertices = vertices
+    public init <S: Sequence> (vertices: S) where S.Iterator.Element == Point {
+        self.vertices = CircularArray(vertices)
     }
 }
 
