@@ -17,18 +17,6 @@ public protocol PolygonProtocol: Shape {
     /// Circular collection of vertices comprising `PolygonProtocol`.
     var vertices: VertexCollection { get }
     
-    /// Lines between each adjacent pair of vertices.
-    var edges: [Line] { get }
-    
-    /// Triangles constructed of each adjacent triple of vertices.
-    var triangles: [Triangle] { get }
-
-    /// The angles of each of the triangles constructed of adjacent triples of vertices.
-    var angles: [Angle] { get }
-    
-    /// Rotation order of vertices.
-    var rotation: Rotation { get }
-    
     /// PolyBezier path constructed from `PolygonProtocol`-conforming type.
     var path: Path { get }
     
@@ -51,41 +39,31 @@ extension PolygonProtocol {
     /// - returns: Array of the line values comprising the edges of the `PolygonProtocol`-
     /// conforming type.
     public var edges: [Line] {
-        let vertices = self.vertices
-        return vertices.indices.map { index in
-            Line(points: vertices[from: index, through: index + 1])
-        }
+        return vertices.edges
     }
     
     /// - Returns: The two-dimensional vector of each axis created between each adjacent pair
     /// of vertices.
     internal var axes: [Vector2] {
-        return edges.map { $0.vector }
+        return vertices.axes
     }
     
     /// - Returns: Whether vertices are arranged clockwise / counterclockwise.
     public var rotation: Rotation {
-        let sum = edges.reduce(Double(0)) { accum, cur in
-            let (a,b) = (cur.start, cur.end)
-            return accum + (b.x - a.x) * (b.y + a.y)
-        }
-        return sum > 0 ? .clockwise : .counterClockwise
+        return vertices.rotation
     }
     
     /// - Returns: Array of triangles created with each adjacent triple of vertices.
     public var triangles: [Triangle] {
-        let vertices = self.vertices
-        return vertices.indices.map { index in
-            Triangle(vertices: vertices[from: index - 1, through: index + 1])
-        }
+        return vertices.triangles
     }
     
     /// - Returns: Array of the angles.
     public var angles: [Angle] {
-        return triangles.map { $0.angle }
+        return vertices.angles
     }
     
-    /// - Returns: `Path` representation. 
+    /// - Returns: `Path` representation of `PolygonProtocol`-conforming type. 
     public var path: Path {
         let (head, tail) = vertices.destructured!
         let first: PathElement = .move(head)

@@ -100,11 +100,7 @@ public struct Polygon: PolygonProtocol {
     
     /// - Returns: `true` if `Polygon` is convex. Otherwise, `false`.
     internal var isConvex: Bool {
-        let signs: [FloatingPointSign] = triangles.map {
-            let (p1, center, p2) = ($0.vertices[0], $0.vertices[1], $0.vertices[2])
-            return zCrossProduct(p1: p1, center: center, p2: p2).sign
-        }
-        return signs.isHomogeneous
+        return vertices.formConvexPolygon
     }
     
     /// Vertices contained herein.

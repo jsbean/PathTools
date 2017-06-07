@@ -12,30 +12,24 @@ import ArithmeticTools
 /// Concrete ConvexPolygon.
 public struct ConvexPolygon: ConvexPolygonProtocol {
 
+    // MARK: - Instance Properties
+    
+    /// Vertices contained herein.
     public let vertices: VertexCollection
     
+    // MARK: - Initializers
+    
+    /// Creates a `ConvexPolygon` with the given sequence of `vertices.
+    ///
+    /// - Warning: Will crash if the given `vertices` form a concave polygon!
     public init <S: Sequence> (vertices: S) where S.Iterator.Element == Point {
         
         let vertices = VertexCollection(vertices)
         
-        guard isConvex(vertexCollection: vertices) else {
+        guard vertices.formConvexPolygon else {
             fatalError("Cannot create a ConvexPolygon with a concave vertex collection")
         }
         
         self.vertices = vertices
     }
-}
-
-public func zCrossProduct(p1: Point, center: Point, p2: Point) -> Double {
-    return (p1.x - center.x) * (center.y - p2.y) - (p1.y - center.y) * (center.x - p2.x)
-}
-
-public func isConvex(vertexCollection: VertexCollection) -> Bool {
-    let vertices = vertexCollection
-    return vertices.indices
-        .lazy
-        .map { index in vertices[from: index - 1, through: index + 1] }
-        .map { zCrossProduct(p1: $0[0], center: $0[1], p2: $0[2]) }
-        .map { $0.sign }
-        .isHomogeneous
 }

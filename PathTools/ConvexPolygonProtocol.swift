@@ -13,6 +13,8 @@ public protocol ConvexPolygonProtocol: PolygonProtocol { }
 
 extension ConvexPolygonProtocol {
     
+    /// - Returns: `ConvexPolygonContainer` containing only this `ConvexPolygonProtocol`-
+    /// conforming type.
     public var collisionDetectable: ConvexPolygonContainer {
         return ConvexPolygonContainer(self)
     }

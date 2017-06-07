@@ -6,7 +6,5 @@
 //
 //
 
-/// Shape.
-public protocol Shape: CollisionDetectable {
-    
-}
+/// Geometrical shape.
+public protocol Shape: CollisionDetectable { }
