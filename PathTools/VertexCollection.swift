@@ -8,4 +8,5 @@
 
 import Collections
 
+/// Circular collection of `Point` values.
 public typealias VertexCollection = CircularArray<Point>
