@@ -16,11 +16,15 @@ public protocol BezierCurve {
     /// End point of Bézier curve.
     var end: Point { get }
     
+    func x(t: Double) -> Double
+    
+    func y(t: Double) -> Double
+    
     /// - returns: All y-values for a given `x`.
     func ys(x: Double) -> Set<Double>
     
     /// - returns: The x-value for a given `y`.
-    func x(y: Double) -> Double
+    func xs(y: Double) -> Double
     
     func simplified(accuracy: Double) -> [Point]
 }

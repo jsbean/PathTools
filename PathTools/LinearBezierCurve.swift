@@ -19,6 +19,14 @@ public struct LinearBezierCurve: BezierCurve {
         self.end = end
     }
     
+    public func y(t: Double) -> Double {
+        fatalError()
+    }
+    
+    public func x(t: Double) -> Double {
+        fatalError()
+    }
+    
     public func ys(x: Double) -> Set<Double> {
         let verticalOffset = start.y
         let height = end.y - start.y
@@ -28,7 +36,7 @@ public struct LinearBezierCurve: BezierCurve {
         return Set([y])
     }
     
-    public func x(y: Double) -> Double {
+    public func xs(y: Double) -> Double {
         fatalError("Not yet implemented!")
     }
     

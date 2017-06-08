@@ -16,29 +16,70 @@ public struct QuadraticBezierCurve: BezierCurve {
         
         typealias Coefficient = (x: Double, y: Double)
         
-        // TODO: make better names
-        let a, b, c: Coefficient
+        let a: Coefficient
+        let b: Coefficient
+        let c: Coefficient
+        
+        public init(start: Point, end: Point, controlPoint: Point) {
+            self.a = (x: start.x, y: start.y)
+            self.b = (x: 2.0 * (controlPoint.x - start.x), y: 2.0 * (controlPoint.y - start.y))
+            self.c = (
+                start.x - (2.0 * controlPoint.x) + end.x,
+                start.y - (2.0 * controlPoint.y) + end.y
+            )
+        }
     }
     
+    private let coefficients: CoefficientCollection
+    
+    // MARK: - Instance Properties
+    
+    /// Start.
     public let start: Point
+    
+    /// End.
     public let end: Point
     
-    let controlPoint: Point
+    /// Control point.
+    public let controlPoint: Point
+    
+    // MARK: - Initializers
+    
+    public init(start: Point, end: Point, controlPoint: Point) {
+        self.start = start
+        self.end = end
+        self.controlPoint = controlPoint
+        self.coefficients = CoefficientCollection(
+            start: start,
+            end: end,
+            controlPoint: controlPoint
+        )
+    }
+    
+    public func point(t: Double) -> Point {
+        return Point(x: x(t: t), y: y(t: t))
+    }
+    
+    // `t` is between `0.0 ... 1.0`
+    // TODO: Break out into individual `let`s
+    public func x(t: Double) -> Double {
+        // (1-t)^2 p0 + 2(1-t) * t * p1 + t^2 * p2
+        let (p0,p1,p2) = (start, controlPoint, end)
+        return pow(1-t, 2) * p0.x + 2 * (1-t) * t * p1.x + pow(t,2) * p2.x
+    }
+    
+    // `t` is between `0.0 ... 1.0`
+    public func y(t: Double) -> Double {
+        // (1-t)^2 p0 + 2(1-t) * t * p1 + t^2 * p2
+        let (p0,p1,p2) = (start, controlPoint, end)
+        return pow(1-t, 2) * p0.y + 2 * (1-t) * t * p1.y + pow(t,2) * p2.y
+    }
     
     public func ys(x: Double) -> Set<Double> {
         
         guard contains(x: x) else {
             return []
         }
-        
-        let coefficients = CoefficientCollection(
-            a: (start.x, start.y),
-            b: (2.0 * (controlPoint.x - start.x), 2.0 * (controlPoint.y - start.y)),
-            c: (
-                start.x - (2.0 * controlPoint.x) + end.x,
-                start.y - (2.0 * controlPoint.y) + end.y
-            )
-        )
 
         let c = coefficients.a.x - x
         let b = coefficients.b.x
@@ -47,7 +88,7 @@ public struct QuadraticBezierCurve: BezierCurve {
         return quadratic(a, b, c)
     }
     
-    public func x(y: Double) -> Double {
+    public func xs(y: Double) -> Double {
         fatalError("Not yet implemented!")
     }
     
@@ -61,27 +102,7 @@ public struct QuadraticBezierCurve: BezierCurve {
         return y >= min && y <= max
     }
     
-    // `t` is between `0.0 ... 1.0`
-    // TODO: Break out into individual `let`s
-    func x(t: Double) -> Double {
-        let complement = 1 - t
-        let x = (
-            pow(complement, 2) * start.x +
-            2 * complement * t * controlPoint.x +
-            pow(t, 2) * end.x
-        )
-        return x
-    }
-    
-    // `t` is between `0.0 ... 1.0`
-    // TODO: Break out into individual `let`s
-    func y(t: Double) -> Double {
-        let complement = 1 - t
-        let y = (pow(complement, 2) * start.y) +
-            (2 * complement * t * controlPoint.y) +
-            (pow(t, 2) * end.y)
-        return y
-    }
+
     
     public func simplified(accuracy: Double) -> [Point] {
         fatalError("Not yet implemented!")
