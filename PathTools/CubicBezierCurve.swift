@@ -346,7 +346,6 @@ public struct CubicBezierCurve: BezierCurve {
 /**
  * @version 1.0
  */
-import QuartzCore
 
 public class SimpleRoot {
     

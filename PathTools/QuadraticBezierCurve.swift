@@ -20,7 +20,7 @@ public struct QuadraticBezierCurve: BezierCurve {
         let b: Coefficient
         let c: Coefficient
         
-        public init(start: Point, end: Point, controlPoint: Point) {
+        fileprivate init(start: Point, end: Point, controlPoint: Point) {
             
             self.c = (
                 x: start.x,
@@ -59,6 +59,7 @@ public struct QuadraticBezierCurve: BezierCurve {
     
     private let coefficients: CoefficientCollection
     
+    /// - Returns: The `t` value at the point of the minimum `x` value.
     public var tAtMinX: Double {
         
         let denominator = start.x - 2 * control.x + end.x
@@ -69,9 +70,9 @@ public struct QuadraticBezierCurve: BezierCurve {
         }
         
         var t: Double = 0
-        var minX: Double = start.x
+        var minX = start.x
         
-        if end.x <  minX {
+        if end.x < minX {
             t = 1
             minX = end.x
         }
@@ -85,6 +86,7 @@ public struct QuadraticBezierCurve: BezierCurve {
         return t
     }
     
+    /// - Returns: The `t` value at the point of the maximum `x` value.
     public var tAtMaxX: Double {
         
         let denominator = start.x - 2 * control.x + end.x
@@ -111,6 +113,7 @@ public struct QuadraticBezierCurve: BezierCurve {
         return t
     }
     
+    /// - Returns: The `t` value at the point of the minimum `y` value.
     public var tAtMinY: Double {
         
         let denominator = start.y - 2 * control.y + end.y
@@ -136,6 +139,7 @@ public struct QuadraticBezierCurve: BezierCurve {
         return t
     }
     
+    /// - Returns: The `t` value at the point of the maximum `y` value.
     public var tAtMaxY: Double {
         
         let denominator = start.y - 2 * control.y + end.y
