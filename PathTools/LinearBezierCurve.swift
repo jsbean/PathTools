@@ -36,7 +36,7 @@ public struct LinearBezierCurve: BezierCurve {
         return Set([y])
     }
     
-    public func xs(y: Double) -> Double {
+    public func xs(y: Double) -> Set<Double> {
         fatalError("Not yet implemented!")
     }
     

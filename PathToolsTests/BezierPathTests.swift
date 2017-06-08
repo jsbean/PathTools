@@ -17,7 +17,7 @@ class BezierPathTests: XCTestCase {
         let linear = QuadraticBezierCurve(
             start: Point(),
             end: Point(x: 1, y: 1),
-            controlPoint: Point(x: 0.5, y: 0.5)
+            control: Point(x: 0.5, y: 0.5)
         )
     
         stride(from: Double(0), to: 1, by: 0.01).forEach { t in
@@ -25,27 +25,85 @@ class BezierPathTests: XCTestCase {
         }
     }
     
-    // FIXME: Add assertions!
-    func testSimpleQuadraticPointAtT() {
+    // MARK: - Quadratic
+    
+    public func testTAtMinX() {
         
-        let easeIn = QuadraticBezierCurve(
-            start: Point(),
-            end: Point(x: 1, y: 1),
-            controlPoint: Point(x: 1, y: 0)
+        let slopeDown = QuadraticBezierCurve(
+            start: Point(x: 0, y: 1),
+            end: Point(x: 1, y: 0),
+            control: Point(x: 0, y: 0)
+        )
+        
+        XCTAssertEqual(slopeDown.tAtMinX, 0)
+    }
+    
+    public func testTAtMaxX() {
+        
+        let slopeDown = QuadraticBezierCurve(
+            start: Point(x: 0, y: 1),
+            end: Point(x: 1, y: 0),
+            control: Point(x: 0, y: 0)
+        )
+        
+        XCTAssertEqual(slopeDown.tAtMaxX, 1)
+    }
+    
+    public func testTAtMinY() {
+        
+        let slopeDown = QuadraticBezierCurve(
+            start: Point(x: 0, y: 1),
+            end: Point(x: 1, y: 0),
+            control: Point(x: 0, y: 0)
+        )
+        
+        XCTAssertEqual(slopeDown.tAtMinY, 1)
+    }
+    
+    public func testTAtMaxY() {
+        
+        let slopeDown = QuadraticBezierCurve(
+            start: Point(x: 0, y: 1),
+            end: Point(x: 1, y: 0),
+            control: Point(x: 0, y: 0)
+        )
+        
+        XCTAssertEqual(slopeDown.tAtMaxY, 0)
+    }
+    
+    public func testYsAtX() {
+
+        let slopeDown = QuadraticBezierCurve(
+            start: Point(x: 0, y: 1),
+            end: Point(x: 1, y: 0),
+            control: Point(x: 0, y: 0)
         )
         
         stride(from: Double(0), to: 1, by: 0.1).forEach { t in
-            print("ease in [\(t)] \(easeIn.point(t: t))")
+            
+            let point = slopeDown.point(t: t)
+            let ys = slopeDown.ys(x: point.x)
+            
+            XCTAssertEqual(ys.count, 1)
+            XCTAssertEqualWithAccuracy(ys.first!, point.y, accuracy: 0.0000001)
         }
+    }
+    
+    public func testXsAtY() {
         
-        let easeOut = QuadraticBezierCurve(
-            start: Point(),
-            end: Point(x: 1, y: 1),
-            controlPoint: Point(x: 0, y: 1)
+        let slopeDown = QuadraticBezierCurve(
+            start: Point(x: 0, y: 1),
+            end: Point(x: 1, y: 0),
+            control: Point(x: 0, y: 0)
         )
         
         stride(from: Double(0), to: 1, by: 0.1).forEach { t in
-            print("ease out [\(t)] \(easeOut.point(t: t))")
+            
+            let point = slopeDown.point(t: t)
+            let xs = slopeDown.xs(y: point.y)
+            
+            XCTAssertEqual(xs.count, 1)
+            XCTAssertEqualWithAccuracy(xs.first!, point.x, accuracy: 0.0000001)
         }
     }
 }
