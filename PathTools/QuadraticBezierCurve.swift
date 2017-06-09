@@ -21,7 +21,7 @@ public struct QuadraticBezierCurve: BezierCurve {
         case vertical, horizontal
     }
     
-    public typealias Bound = (Extremum, Axis)
+    public typealias Bound = (extremum: Extremum, axis: Axis)
 
     private struct Solver {
         
@@ -68,147 +68,7 @@ public struct QuadraticBezierCurve: BezierCurve {
     
     private let solver: Solver
     
-    
 
-    private func initialT(on axis: Axis) -> Double {
-        
-        func denominator(on axis: Axis) -> Double {
-            switch axis {
-            case .horizontal:
-                return start.x - 2 * control.x + end.x
-            case .vertical:
-                return start.y - 2 * control.y + end.y
-            }
-        }
-        
-        func numerator(on axis: Axis) -> Double {
-            switch axis {
-            case .horizontal:
-                return start.x - control.x
-            case .vertical:
-                return start.y - control.y
-            }
-        }
-        
-        let n = numerator(on: axis)
-        let d = denominator(on: axis)
-        return abs(d) > 0.0000001 ? n / d : 0
-    }
-    
-    private func startValue(on axis: Axis) -> Double {
-        switch axis {
-        case .horizontal:
-            return start.x
-        case .vertical:
-            return start.y
-        }
-    }
-    
-    private func endValue(on axis: Axis) -> Double {
-        switch axis {
-        case .horizontal:
-            return start.x
-        case .vertical:
-            return start.y
-        }
-    }
-    
-    func tAndPotentialValue(start: Double, end: Double, compare: (Double, Double) -> Bool)
-        -> (t: Double, value: Double)
-    {
-        return compare(end,start) ? (t: 1, value: end) : (t: 0, value: start)
-    }
-    
-    /// - Returns: The `t` value at the point of the minimum `x` value.
-    private var tAtMinX: Double {
-
-        let initT = initialT(on: .horizontal)
-        let startVal = startValue(on: .horizontal)
-        let endVal = endValue(on: .horizontal)
-        let (t, potentialVal) = tAndPotentialValue(start: startVal, end: endVal, compare: <)
-        
-        // if init is in (0,1) && x[t] < initialValue: return initialT
-        // otherwise, return 1/0
-        if initT > 0 && initT < 1 && point(t: initT).x < potentialVal {
-            return initT
-        }
-        
-        // Either returns:
-        // - 0: initialValue >= end.x, initT is NOT in (0,1), t[x] >= initialVlue
-        // - 1: initialValue >= end.x, initT is NOT in (0,1)
-        // - other:
-
-        
-        return t
-    }
-    
-    /// - Returns: The `t` value at the point of the maximum `x` value.
-    private var tAtMaxX: Double {
-        
-        let initT = initialT(on: .horizontal)
-        var maxX = startValue(on: .horizontal)
-        var t: Double = 0
-        
-        if end.x > maxX {
-            t = 1
-            maxX = end.x
-        }
-        
-        if initT > 0 && initT < 1 {
-            if point(t: initT).x > maxX {
-                t = initT
-            }
-        }
-        
-        return t
-    }
-    
-    /// - Returns: The `t` value at the point of the minimum `y` value.
-    private var tAtMinY: Double {
-       
-        let initT = initialT(on: .vertical)
-        
-        
-        var minY = startValue(on: .vertical)
-        var t: Double = 0
-        
-        
-        
-        if end.y < minY {
-            t = 1
-            minY = end.y
-        }
-        
-        if initT > 0 && initT < 1 {
-            if point(t: initT).y < minY {
-                t = initT
-            }
-        }
-        
-        return t
-    }
-    
-    /// - Returns: The `t` value at the point of the maximum `y` value.
-    private var tAtMaxY: Double {
-        
-        let initT = initialT(on: .vertical)
-        
-        var t: Double = 0
-        var maxY = startValue(on: .vertical)
-        
-        if end.y > maxY {
-            t = 1
-            maxY = end.y
-        }
-        
-        if initT > 0 && initT < 1 {
-            if point(t: initT).y > maxY {
-                t = initT
-            }
-        }
-        
-        return t
-    }
     
     // MARK: - Instance Properties
     
@@ -257,8 +117,8 @@ public struct QuadraticBezierCurve: BezierCurve {
     /// - Returns: The vertical positions for the given `x` value.
     public func ys(x: Double) -> Set<Double> {
     
-        let xMin = point(t: tAtMinX).x
-        let xMax = point(t: tAtMaxX).x
+        let xMin = point(t: t(at: (.min, .horizontal))).x
+        let xMax = point(t: t(at: (.max, .horizontal))).x
 
         guard (xMin...xMax).contains(x) else {
             return []
@@ -271,8 +131,8 @@ public struct QuadraticBezierCurve: BezierCurve {
     /// - Returns: The horizontal positions for the given `y` value.
     public func xs(y: Double) -> Set<Double> {
         
-        let yMin = point(t: tAtMinY).y
-        let yMax = point(t: tAtMaxY).y
+        let yMin = point(t: t(at: (.min, .vertical))).y
+        let yMax = point(t: t(at: (.max, .vertical))).y
         
         guard (yMin...yMax).contains(y) else {
             return []
@@ -282,18 +142,80 @@ public struct QuadraticBezierCurve: BezierCurve {
         return Set(ts.map(point).map { $0.x })
     }
     
+    private func initialT(for extremum: Extremum, on axis: Axis) -> Double {
+        
+        func denominator(on axis: Axis) -> Double {
+            // Use ternary
+            switch axis {
+            case .horizontal:
+                return start.x - 2 * control.x + end.x
+            case .vertical:
+                return start.y - 2 * control.y + end.y
+            }
+        }
+        
+        func numerator(on axis: Axis) -> Double {
+            // Use ternary
+            switch axis {
+            case .horizontal:
+                return start.x - control.x
+            case .vertical:
+                return start.y - control.y
+            }
+        }
+        
+        let n = numerator(on: axis)
+        let d = denominator(on: axis)
+        return abs(d) > 0.0000001 ? n / d : 0
+    }
+    
+    private func startValue(on axis: Axis) -> Double {
+        switch axis {
+        case .horizontal:
+            return start.x
+        case .vertical:
+            return start.y
+        }
+    }
+    
+    private func endValue(on axis: Axis) -> Double {
+        switch axis {
+        case .horizontal:
+            return end.x
+        case .vertical:
+            return end.y
+        }
+    }
+    
+    func tAndCompareValue(start: Double, end: Double, for extremum: Extremum)
+        -> (t: Double, value: Double)
+    {
+        let compare: (Double, Double) -> Bool = extremum == .min ? (<) : (>)
+        return compare(end, start) ? (t: 1, value: end) : (t: 0, value: start)
+    }
+    
+    func isValid(t: Double, given value: Double, on axis: Axis, for extremum: Extremum)
+        -> Bool
+    {
+        let compare: (Double, Double) -> Bool = extremum == .min ? (<) : (>)
+        switch axis {
+        case .horizontal:
+            return compare(point(t: t).x, value)
+        case .vertical:
+            return compare(point(t: t).y, value)
+        }
+    }
+    
     /// - returns: The `t` value at the given `bound`.
     public  func t(at bound: Bound) -> Double {
-        switch bound {
-        case (.min, .horizontal):
-            return tAtMinX
-        case (.max, .horizontal):
-            return tAtMaxX
-        case (.min, .vertical):
-            return tAtMinY
-        case (.max, .vertical):
-            return tAtMaxY
-        }
+        let (extremum, axis) = bound
+        let initT = initialT(for: extremum, on: axis)
+        let startVal = startValue(on: axis)
+        let endVal = endValue(on: axis)
+        let (t, compareVal) = tAndCompareValue(start: startVal, end: endVal, for: extremum)
+        let valid = isValid(t: initT, given: compareVal, on: axis, for: extremum)
+        return (initT > 0 && initT < 1) && valid ? initT : t
+        
     }
 
     public func simplified(accuracy: Double) -> [Point] {
