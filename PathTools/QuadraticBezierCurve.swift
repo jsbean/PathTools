@@ -95,15 +95,6 @@ public struct QuadraticBezierCurve: BezierCurve {
         return abs(d) > 0.0000001 ? n / d : 0
     }
     
-//    private func initialValue(on axis: Axis) -> Double {
-//        switch axis {
-//        case .horizontal:
-//            return start.x
-//        case .vertical:
-//            return start.y
-//        }
-//    }
-    
     private func startValue(on axis: Axis) -> Double {
         switch axis {
         case .horizontal:
