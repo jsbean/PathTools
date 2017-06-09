@@ -14,6 +14,7 @@ public struct QuadraticBezierCurve: BezierCurve {
     
     private struct Solver {
         
+        /// Coefficients.
         let a,b,c: Point
         
         /// Creates a `QuadraticBezierCurve.Solver` with the given `start`, `end`, and 
@@ -24,20 +25,14 @@ public struct QuadraticBezierCurve: BezierCurve {
             self.c = start
         }
 
+        /// - Returns: All of the `t` values for the given `x`.
         func ts(x: Double) -> Set<Double> {
             return quadratic(a.x, b.x, c.x - x)
         }
         
+        /// - Returns: All of the `t` values for the given `y`.
         func ts(y: Double) -> Set<Double> {
             return quadratic(a.y, b.y, c.y - y)
-        }
-
-        func xs(y: Double) -> Set<Double> {
-            return quadratic(a.y, b.y, c.y - y)
-        }
-        
-        func ys(x: Double) -> Set<Double> {
-            return quadratic(a.x, b.x, c.x - x)
         }
     }
     
