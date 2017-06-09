@@ -12,7 +12,7 @@ import GeometryTools
 
 public struct QuadraticBezierCurve: BezierCurve {
     
-    private struct CoefficientCollection {
+    private struct Solver {
         
         typealias Coefficient = (x: Double, y: Double)
         
@@ -22,9 +22,9 @@ public struct QuadraticBezierCurve: BezierCurve {
         
         fileprivate init(start: Point, end: Point, controlPoint: Point) {
             
-            self.c = (
-                x: start.x,
-                y: start.y
+            self.a = (
+                x: start.x - 2 * controlPoint.x + end.x,
+                y: start.y - 2 * controlPoint.y + end.y
             )
             
             self.b = (
@@ -32,20 +32,18 @@ public struct QuadraticBezierCurve: BezierCurve {
                 y: 2 * (controlPoint.y - start.y)
             )
             
-            self.a = (
-                x: start.x - 2 * controlPoint.x + end.x,
-                y: start.y - 2 * controlPoint.y + end.y
+            self.c = (
+                x: start.x,
+                y: start.y
             )
         }
 
         func ts(x: Double) -> Set<Double> {
-            let (a,b,c) = (self.a.x, self.b.x, self.c.x - x)
-            return quadratic(a,b,c)
+            return quadratic(a.x, b.x, c.x - x)
         }
         
         func ts(y: Double) -> Set<Double> {
-            let (a,b,c) = (self.a.y, self.b.y, self.c.y - y)
-            return quadratic(a,b,c)
+            return quadratic(a.y, b.y, c.y - y)
         }
 
         func xs(y: Double) -> Set<Double> {
@@ -57,7 +55,7 @@ public struct QuadraticBezierCurve: BezierCurve {
         }
     }
     
-    private let coefficients: CoefficientCollection
+    private let solver: Solver
     
     /// - Returns: The `t` value at the point of the minimum `x` value.
     public var tAtMinX: Double {
@@ -184,7 +182,7 @@ public struct QuadraticBezierCurve: BezierCurve {
         self.start = start
         self.end = end
         self.control = control
-        self.coefficients = CoefficientCollection(
+        self.solver = Solver(
             start: start,
             end: end,
             controlPoint: control
@@ -220,7 +218,7 @@ public struct QuadraticBezierCurve: BezierCurve {
             return []
         }
         
-        let ts = coefficients.ts(x: x)
+        let ts = solver.ts(x: x)
         return Set(ts.map(point).map { $0.y })
     }
     
@@ -234,7 +232,7 @@ public struct QuadraticBezierCurve: BezierCurve {
             return []
         }
         
-        let ts = coefficients.ts(y: y)
+        let ts = solver.ts(y: y)
         return Set(ts.map(point).map { $0.x })
     }
 
