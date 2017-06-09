@@ -10,18 +10,6 @@ import Darwin
 import ArithmeticTools
 import GeometryTools
 
-public enum Extremum {
-    case max
-    case min
-}
-
-public enum Axis {
-    case vertical
-    case horizontal
-}
-
-public typealias Bound = (extremum: Extremum, axis: Axis)
-
 public struct QuadraticBezierCurve: BezierCurve {
     
     private struct Solver {
@@ -158,45 +146,6 @@ public struct QuadraticBezierCurve: BezierCurve {
     public func simplified(accuracy: Double) -> [Point] {
         fatalError("Not yet implemented!")
     }
-}
-
-/// - TODO: Move up to `dn-m/GeometryTools`.
-extension Point {
-
-    /// - TODO: Move up to `dn-m/GeometryTools`.
-    public static func + (lhs: Point, rhs: Point) -> Point {
-        return Point(x: lhs.x + rhs.x, y: lhs.y + rhs.y)
-    }
-    
-    /// - TODO: Move up to `dn-m/GeometryTools`.
-    public static func - (lhs: Point, rhs: Point) -> Point {
-        return Point(x: lhs.x - rhs.x, y: lhs.y - rhs.y)
-    }
-    
-    /// - TODO: Move up to `dn-m/GeometryTools`.
-    public subscript (axis: Axis) -> Double {
-        return axis == .horizontal ? x : y
-    }
-}
-
-/// - TODO: Move up to `dn-m/GeometryTools`.
-func * (point: Point, multiplier: Double) -> Point {
-    return Point(x: point.x * multiplier, y: point.y * multiplier)
-}
-
-/// - TODO: Move up to `dn-m/GeometryTools`.
-func * (multiplicand: Double, point: Point) -> Point {
-    return Point(x: point.x * multiplicand, y: point.y * multiplicand)
-}
-
-/// - TODO: Move up to `dn-m/GeometryTools`.
-func / (point: Point, multiplier: Double) -> Point {
-    return Point(x: point.x / multiplier, y: point.y / multiplier)
-}
-
-/// - TODO: Move up to `dn-m/GeometryTools`.
-func / (multiplicand: Double, point: Point) -> Point {
-    return Point(x: point.x / multiplicand, y: point.y / multiplicand)
 }
 
 /// - returns: A `Set` of 0, 1, or 2 x-intercepts for the given coefficients.
