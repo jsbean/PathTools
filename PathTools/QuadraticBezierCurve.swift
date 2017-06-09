@@ -12,6 +12,13 @@ import GeometryTools
 
 public struct QuadraticBezierCurve: BezierCurve {
     
+    public enum Bound {
+        case minX
+        case maxX
+        case minY
+        case maxY
+    }
+    
     private struct Solver {
         
         typealias Coefficient = (x: Double, y: Double)
@@ -57,36 +64,39 @@ public struct QuadraticBezierCurve: BezierCurve {
     
     private let solver: Solver
     
-    public enum Bound {
-        case minX
-        case maxX
-        case minY
-        case maxY
+    private enum Axis {
+        case vertical, horizontal
     }
-    
-    /// - returns: The `t` value at the given `bound`.
-    public  func t(at bound: Bound) -> Double {
-        switch bound {
-        case .minX:
-            return tAtMinX
-        case .maxX:
-            return tAtMaxX
-        case .minY:
-            return tAtMinY
-        case .maxY:
-            return tAtMaxY
+
+    private func initialT(on axis: Axis) -> Double {
+        
+        func denominator(on axis: Axis) -> Double {
+            switch axis {
+            case .horizontal:
+                return start.x - 2 * control.x + end.x
+            case .vertical:
+                return start.y - 2 * control.y + end.y
+            }
         }
+        
+        func numerator(on axis: Axis) -> Double {
+            switch axis {
+            case .horizontal:
+                return start.x - control.x
+            case .vertical:
+                return start.y - control.y
+            }
+        }
+        
+        let n = numerator(on: axis)
+        let d = denominator(on: axis)
+        return abs(d) > 0.0000001 ? n / d : 0
     }
     
     /// - Returns: The `t` value at the point of the minimum `x` value.
     private var tAtMinX: Double {
-        
-        let denominator = start.x - 2 * control.x + end.x
-        var initialT: Double = 0
-        
-        if abs(denominator) > 0.0000001 {
-            initialT = (start.x - control.x) / denominator
-        }
+
+        let initT = initialT(on: .horizontal)
         
         var t: Double = 0
         var minX = start.x
@@ -96,9 +106,9 @@ public struct QuadraticBezierCurve: BezierCurve {
             minX = end.x
         }
         
-        if initialT > 0 && initialT < 1 {
-            if point(t: initialT).x < minX {
-                t = initialT
+        if initT > 0 && initT < 1 {
+            if point(t: initT).x < minX {
+                t = initT
             }
         }
         
@@ -108,12 +118,7 @@ public struct QuadraticBezierCurve: BezierCurve {
     /// - Returns: The `t` value at the point of the maximum `x` value.
     private var tAtMaxX: Double {
         
-        let denominator = start.x - 2 * control.x + end.x
-        var initialT: Double = 0
-        
-        if abs(denominator) > 0.0000001 {
-            initialT = (start.x - control.x) / denominator
-        }
+        let initT = initialT(on: .horizontal)
         
         var t: Double = 0
         var maxX = start.x
@@ -123,9 +128,9 @@ public struct QuadraticBezierCurve: BezierCurve {
             maxX = end.x
         }
         
-        if initialT > 0 && initialT < 1 {
-            if point(t: initialT).x > maxX {
-                t = initialT
+        if initT > 0 && initT < 1 {
+            if point(t: initT).x > maxX {
+                t = initT
             }
         }
         
@@ -134,12 +139,8 @@ public struct QuadraticBezierCurve: BezierCurve {
     
     /// - Returns: The `t` value at the point of the minimum `y` value.
     private var tAtMinY: Double {
-        
-        let denominator = start.y - 2 * control.y + end.y
-        var initialT: Double = 0
-        if abs(denominator) > 0.0000001 {
-            initialT = (start.y - control.y) / denominator
-        }
+       
+        let initT = initialT(on: .vertical)
         
         var t: Double = 0
         var minY = start.y
@@ -149,9 +150,9 @@ public struct QuadraticBezierCurve: BezierCurve {
             minY = end.y
         }
         
-        if initialT > 0 && initialT < 1 {
-            if point(t: initialT).y < minY {
-                t = initialT
+        if initT > 0 && initT < 1 {
+            if point(t: initT).y < minY {
+                t = initT
             }
         }
         
@@ -161,12 +162,7 @@ public struct QuadraticBezierCurve: BezierCurve {
     /// - Returns: The `t` value at the point of the maximum `y` value.
     private var tAtMaxY: Double {
         
-        let denominator = start.y - 2 * control.y + end.y
-        var initialT: Double = 0
-        
-        if abs(denominator) > 0.0000001 {
-            initialT = (start.y - control.y) / denominator
-        }
+        let initT = initialT(on: .vertical)
         
         var t: Double = 0
         var maxY = start.y
@@ -176,9 +172,9 @@ public struct QuadraticBezierCurve: BezierCurve {
             maxY = end.y
         }
         
-        if initialT > 0 && initialT < 1 {
-            if point(t: initialT).y > maxY {
-                t = initialT
+        if initT > 0 && initT < 1 {
+            if point(t: initT).y > maxY {
+                t = initT
             }
         }
         
@@ -256,6 +252,20 @@ public struct QuadraticBezierCurve: BezierCurve {
         let ts = solver.ts(y: y)
         return Set(ts.map(point).map { $0.x })
     }
+    
+    /// - returns: The `t` value at the given `bound`.
+    public  func t(at bound: Bound) -> Double {
+        switch bound {
+        case .minX:
+            return tAtMinX
+        case .maxX:
+            return tAtMaxX
+        case .minY:
+            return tAtMinY
+        case .maxY:
+            return tAtMaxY
+        }
+    }
 
     public func simplified(accuracy: Double) -> [Point] {
         fatalError("Not yet implemented!")
@@ -265,7 +275,7 @@ public struct QuadraticBezierCurve: BezierCurve {
 /// - returns: A `Set` of 0, 1, or 2 x-intercepts for the given coefficients.
 ///
 /// - TODO: Update in dn-m/ArithmeticTools
-public func quadratic (_ a: Double, _ b: Double, _ c: Double) -> Set<Double> {
+public func quadratic(_ a: Double, _ b: Double, _ c: Double) -> Set<Double> {
     
     let discriminant = pow(b,2) - (4 * a * c)
     
