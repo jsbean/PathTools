@@ -12,13 +12,17 @@ import GeometryTools
 
 public struct QuadraticBezierCurve: BezierCurve {
     
-    public enum Bound {
-        case minX
-        case maxX
-        case minY
-        case maxY
+    public enum Extremum {
+        case max
+        case min
     }
     
+    public enum Axis {
+        case vertical, horizontal
+    }
+    
+    public typealias Bound = (Extremum, Axis)
+
     private struct Solver {
         
         typealias Coefficient = (x: Double, y: Double)
@@ -64,9 +68,7 @@ public struct QuadraticBezierCurve: BezierCurve {
     
     private let solver: Solver
     
-    private enum Axis {
-        case vertical, horizontal
-    }
+    
 
     private func initialT(on axis: Axis) -> Double {
         
@@ -93,24 +95,58 @@ public struct QuadraticBezierCurve: BezierCurve {
         return abs(d) > 0.0000001 ? n / d : 0
     }
     
+//    private func initialValue(on axis: Axis) -> Double {
+//        switch axis {
+//        case .horizontal:
+//            return start.x
+//        case .vertical:
+//            return start.y
+//        }
+//    }
+    
+    private func startValue(on axis: Axis) -> Double {
+        switch axis {
+        case .horizontal:
+            return start.x
+        case .vertical:
+            return start.y
+        }
+    }
+    
+    private func endValue(on axis: Axis) -> Double {
+        switch axis {
+        case .horizontal:
+            return start.x
+        case .vertical:
+            return start.y
+        }
+    }
+    
+    func tAndPotentialValue(start: Double, end: Double, compare: (Double, Double) -> Bool)
+        -> (t: Double, value: Double)
+    {
+        return compare(end,start) ? (t: 1, value: end) : (t: 0, value: start)
+    }
+    
     /// - Returns: The `t` value at the point of the minimum `x` value.
     private var tAtMinX: Double {
 
         let initT = initialT(on: .horizontal)
+        let startVal = startValue(on: .horizontal)
+        let endVal = endValue(on: .horizontal)
+        let (t, potentialVal) = tAndPotentialValue(start: startVal, end: endVal, compare: <)
         
-        var t: Double = 0
-        var minX = start.x
-        
-        if end.x < minX {
-            t = 1
-            minX = end.x
+        // if init is in (0,1) && x[t] < initialValue: return initialT
+        // otherwise, return 1/0
+        if initT > 0 && initT < 1 && point(t: initT).x < potentialVal {
+            return initT
         }
         
-        if initT > 0 && initT < 1 {
-            if point(t: initT).x < minX {
-                t = initT
-            }
-        }
+        // Either returns:
+        // - 0: initialValue >= end.x, initT is NOT in (0,1), t[x] >= initialVlue
+        // - 1: initialValue >= end.x, initT is NOT in (0,1)
+        // - other:
+
         
         return t
     }
@@ -119,9 +155,8 @@ public struct QuadraticBezierCurve: BezierCurve {
     private var tAtMaxX: Double {
         
         let initT = initialT(on: .horizontal)
-        
+        var maxX = startValue(on: .horizontal)
         var t: Double = 0
-        var maxX = start.x
         
         if end.x > maxX {
             t = 1
@@ -142,8 +177,11 @@ public struct QuadraticBezierCurve: BezierCurve {
        
         let initT = initialT(on: .vertical)
         
+        
+        var minY = startValue(on: .vertical)
         var t: Double = 0
-        var minY = start.y
+        
+        
         
         if end.y < minY {
             t = 1
@@ -165,7 +203,7 @@ public struct QuadraticBezierCurve: BezierCurve {
         let initT = initialT(on: .vertical)
         
         var t: Double = 0
-        var maxY = start.y
+        var maxY = startValue(on: .vertical)
         
         if end.y > maxY {
             t = 1
@@ -256,13 +294,13 @@ public struct QuadraticBezierCurve: BezierCurve {
     /// - returns: The `t` value at the given `bound`.
     public  func t(at bound: Bound) -> Double {
         switch bound {
-        case .minX:
+        case (.min, .horizontal):
             return tAtMinX
-        case .maxX:
+        case (.max, .horizontal):
             return tAtMaxX
-        case .minY:
+        case (.min, .vertical):
             return tAtMinY
-        case .maxY:
+        case (.max, .vertical):
             return tAtMaxY
         }
     }
