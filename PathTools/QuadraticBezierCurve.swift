@@ -10,16 +10,18 @@ import Darwin
 import ArithmeticTools
 import GeometryTools
 
+public enum Extremum {
+    case max
+    case min
+}
+
+public enum Axis {
+    case vertical, horizontal
+}
+
 public struct QuadraticBezierCurve: BezierCurve {
     
-    public enum Extremum {
-        case max
-        case min
-    }
     
-    public enum Axis {
-        case vertical, horizontal
-    }
     
     public typealias Bound = (extremum: Extremum, axis: Axis)
 
@@ -66,9 +68,11 @@ public struct QuadraticBezierCurve: BezierCurve {
         }
     }
     
-    private let solver: Solver
+    private func position(for axis: Axis) -> (Point) -> Double {
+        return axis == .horizontal ? { $0.x } : { $0.y }
+    }
     
-
+    private let solver: Solver
     
     // MARK: - Instance Properties
     
@@ -142,84 +146,45 @@ public struct QuadraticBezierCurve: BezierCurve {
         return Set(ts.map(point).map { $0.x })
     }
     
-    private func initialT(for extremum: Extremum, on axis: Axis) -> Double {
-        
-        func denominator(on axis: Axis) -> Double {
-            // Use ternary
-            switch axis {
-            case .horizontal:
-                return start.x - 2 * control.x + end.x
-            case .vertical:
-                return start.y - 2 * control.y + end.y
-            }
-        }
-        
-        func numerator(on axis: Axis) -> Double {
-            // Use ternary
-            switch axis {
-            case .horizontal:
-                return start.x - control.x
-            case .vertical:
-                return start.y - control.y
-            }
-        }
-        
-        let n = numerator(on: axis)
-        let d = denominator(on: axis)
-        return abs(d) > 0.0000001 ? n / d : 0
-    }
-    
-    private func startValue(on axis: Axis) -> Double {
-        switch axis {
-        case .horizontal:
-            return start.x
-        case .vertical:
-            return start.y
-        }
-    }
-    
-    private func endValue(on axis: Axis) -> Double {
-        switch axis {
-        case .horizontal:
-            return end.x
-        case .vertical:
-            return end.y
-        }
-    }
-    
-    func tAndCompareValue(start: Double, end: Double, for extremum: Extremum)
-        -> (t: Double, value: Double)
-    {
-        let compare: (Double, Double) -> Bool = extremum == .min ? (<) : (>)
-        return compare(end, start) ? (t: 1, value: end) : (t: 0, value: start)
-    }
-    
-    func isValid(t: Double, given value: Double, on axis: Axis, for extremum: Extremum)
-        -> Bool
-    {
-        let compare: (Double, Double) -> Bool = extremum == .min ? (<) : (>)
-        switch axis {
-        case .horizontal:
-            return compare(point(t: t).x, value)
-        case .vertical:
-            return compare(point(t: t).y, value)
-        }
-    }
-    
     /// - returns: The `t` value at the given `bound`.
     public  func t(at bound: Bound) -> Double {
+        
+        func initialT(for extremum: Extremum, on axis: Axis) -> Double {
+            let numerator = start[axis] - 2 * control[axis] + end[axis]
+            let denominator = start[axis] - control[axis]
+            return abs(denominator) > 0.0000001 ? numerator / denominator : 0
+        }
+        
+        func tAndCompareValue(start: Double, end: Double, for extremum: Extremum)
+            -> (t: Double, value: Double)
+        {
+            let compare: (Double, Double) -> Bool = extremum == .min ? (<) : (>)
+            return compare(end, start) ? (t: 1, value: end) : (t: 0, value: start)
+        }
+        
+        func isValid(t: Double, given value: Double, on axis: Axis, for extremum: Extremum)
+            -> Bool
+        {
+            let compare: (Double, Double) -> Bool = extremum == .min ? (<) : (>)
+            return compare(point(t: t)[axis], value)
+        }
+        
         let (extremum, axis) = bound
-        let initT = initialT(for: extremum, on: axis)
-        let startVal = startValue(on: axis)
-        let endVal = endValue(on: axis)
-        let (t, compareVal) = tAndCompareValue(start: startVal, end: endVal, for: extremum)
+        let initT = initialT(for: extremum, on: axis)        
+        let (t, compareVal) = tAndCompareValue(start: start[axis], end: end[axis], for: extremum)
         let valid = isValid(t: initT, given: compareVal, on: axis, for: extremum)
         return (initT > 0 && initT < 1) && valid ? initT : t
-        
     }
 
     public func simplified(accuracy: Double) -> [Point] {
         fatalError("Not yet implemented!")
+    }
+}
+
+/// Move up to `dn-m/GeometryTools`.
+extension Point {
+    public subscript (axis: Axis) -> Double {
+        return axis == .horizontal ? x : y
     }
 }
 
