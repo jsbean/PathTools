@@ -15,11 +15,15 @@ public protocol BezierCurve {
     
     /// End point of Bézier curve.
     var end: Point { get }
-    
-    func x(t: Double) -> Double
-    
-    func y(t: Double) -> Double
-    
+
+    /// - Returns: The point at the given `t` value.
+    ///
+    /// - Note: Values contained within the curve itself are index by `t` values in [0,1].
+    /// If `t` values of less than 0 or greater than 1 will project the curve beyond its
+    /// `start` and `end` points.
+    ///
+    subscript (t: Double) -> Point { get }
+
     /// - returns: All y-values for a given `x`.
     func ys(x: Double) -> Set<Double>
     

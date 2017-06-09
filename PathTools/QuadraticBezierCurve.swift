@@ -58,52 +58,50 @@ public struct QuadraticBezierCurve: BezierCurve {
         self.control = control
         self.solver = Solver(start: start, end: end, control: control)
     }
-    
+
     /// - Returns: `Point` at the given `t` value.
-    public func point(t: Double) -> Point {
-        return Point(x: x(t: t), y: y(t: t))
+    public subscript (t: Double) -> Point {
+        return pow(1-t, 2) * start + 2 * (1-t) * t * control + pow(t,2) * end
     }
     
     /// - Returns: The horizontal position for the given `t` value.
     public func x(t: Double) -> Double {
-        // (1-t)^2 p0 + 2(1-t) * t * p1 + t^2 * p2
-        let (p0,p1,p2) = (start, control, end)
-        return pow(1-t, 2) * p0.x + 2 * (1-t) * t * p1.x + pow(t,2) * p2.x
+        return self[t][.horizontal]
     }
     
     /// - Returns: The vertical position for the given `t` value.
     public func y(t: Double) -> Double {
-        // (1-t)^2 p0 + 2(1-t) * t * p1 + t^2 * p2
-        let (p0,p1,p2) = (start, control, end)
-        return pow(1-t, 2) * p0.y + 2 * (1-t) * t * p1.y + pow(t,2) * p2.y
+        return self[t][.vertical]
     }
     
     /// - Returns: The vertical positions for the given `x` value.
     public func ys(x: Double) -> Set<Double> {
     
-        let xMin = point(t: t(at: (.min, .horizontal))).x
-        let xMax = point(t: t(at: (.max, .horizontal))).x
+        let xMin = self[t(at: (.min, .horizontal))][.horizontal]
+        let xMax = self[t(at: (.max, .horizontal))][.horizontal]
 
         guard (xMin...xMax).contains(x) else {
             return []
         }
         
         let ts = solver.ts(x: x)
-        return Set(ts.map(point).map { $0.y })
+        return Set(ts.map { self[$0][.vertical] })
+        
+        //return Set(ts.map(point).map { $0.y })
     }
     
     /// - Returns: The horizontal positions for the given `y` value.
     public func xs(y: Double) -> Set<Double> {
         
-        let yMin = point(t: t(at: (.min, .vertical))).y
-        let yMax = point(t: t(at: (.max, .vertical))).y
+        let yMin = self[t(at: (.min, .vertical))][.vertical]
+        let yMax = self[t(at: (.max, .vertical))][.vertical]
         
         guard (yMin...yMax).contains(y) else {
             return []
         }
         
         let ts = solver.ts(y: y)
-        return Set(ts.map(point).map { $0.x })
+        return Set(ts.map { self[$0][.horizontal] })
     }
     
     /// - returns: The `t` value at the given `bound`.
@@ -128,7 +126,7 @@ public struct QuadraticBezierCurve: BezierCurve {
             -> Bool
         {
             let compare: (Double, Double) -> Bool = extremum == .min ? (<) : (>)
-            return compare(point(t: t)[axis], value)
+            return compare(self[t][axis], value)
         }
         
         let (extremum, axis) = bound

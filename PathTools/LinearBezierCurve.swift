@@ -6,6 +6,7 @@
 //
 //
 
+import Darwin
 import GeometryTools
 
 // Straight line
@@ -19,14 +20,17 @@ public struct LinearBezierCurve: BezierCurve {
         self.end = end
     }
     
-    public func y(t: Double) -> Double {
-        fatalError()
+    public subscript (t: Double) -> Point {
+        let rise = (end - start).y
+        let run = (end - start).x
+        let slope = rise/run
+        let angle = tan(slope)
+        let length = hypot(rise, run) * t
+        let x = cos(angle) * length
+        let y = sin(angle) * length
+        return Point(x: x, y: y)
     }
-    
-    public func x(t: Double) -> Double {
-        fatalError()
-    }
-    
+
     public func ys(x: Double) -> Set<Double> {
         let verticalOffset = start.y
         let height = end.y - start.y

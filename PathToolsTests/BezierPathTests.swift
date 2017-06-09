@@ -81,7 +81,7 @@ class BezierPathTests: XCTestCase {
         
         stride(from: Double(0), to: 1, by: 0.1).forEach { t in
             
-            let point = slopeDown.point(t: t)
+            let point = slopeDown[t]
             let ys = slopeDown.ys(x: point.x)
             
             XCTAssertEqual(ys.count, 1)
@@ -99,7 +99,7 @@ class BezierPathTests: XCTestCase {
         
         stride(from: Double(0), to: 1, by: 0.1).forEach { t in
             
-            let point = slopeDown.point(t: t)
+            let point = slopeDown[t]
             let xs = slopeDown.xs(y: point.y)
             
             XCTAssertEqual(xs.count, 1)

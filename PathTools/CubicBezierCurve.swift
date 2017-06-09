@@ -6,76 +6,61 @@
 //
 //
 
+import Darwin
 import GeometryTools
 
 /// Model of a cubic bezier curve.
 public struct CubicBezierCurve: BezierCurve {
 
-    private struct CoefficientCollection {
+    private struct Solver {
         
-        typealias Coefficient = (x: Double, y: Double)
+        /// Coefficients.
+        let a,b,c,d: Point
         
-        let a: Coefficient
-        let b: Coefficient
-        let c: Coefficient
-        let d: Coefficient
-        
-        public init(start: Point, end: Point, controlPoint1: Point, controlPoint2: Point) {
-            // set coefficients
-            
-            self.a = (x: start.x, y: start.y)
-
-            self.b = (
-                x: 3 * (controlPoint1.x - start.x),
-                y: 3 * (controlPoint1.y - start.y))
-            
-            self.c = (
-                x: 3 * (controlPoint2.x - controlPoint1.x) - b.x,
-                y: 3 * (controlPoint2.y - controlPoint1.y) - b.y
-            )
-            
-            self.d = (x: end.x - start.x - c.x - b.x, y: end.y - start.y - c.y - b.y)
+        public init(start: Point, end: Point, control1: Point, control2: Point) {
+            self.d = start
+            self.c = 3 * (control1 - start)
+            self.b = 3 * (control2 - control1) - c
+            self.a = end - start - c - b
         }
     }
     
-    private let coefficients: CoefficientCollection
+    private let solver: Solver
     
+    /// Start point.
     public let start: Point
+    
+    /// End point.
     public let end: Point
-    public let controlPoint1: Point
-    public let controlPoint2: Point
+    
+    /// First control point.
+    public let control1: Point
+    
+    /// Second control point.
+    public let control2: Point
     
     // MARK: - Initializers
     
-    public init(start: Point, end: Point, controlPoint1: Point, controlPoint2: Point) {
+    /// Creates a `CubicBezierCurve` with the given `start`, `end`, and control points.
+    public init(start: Point, end: Point, control1: Point, control2: Point) {
         self.start = start
         self.end = end
-        self.controlPoint1 = controlPoint1
-        self.controlPoint2 = controlPoint2
-        self.coefficients = CoefficientCollection(
-            start: start,
-            end: end, 
-            controlPoint1: controlPoint1,
-            controlPoint2: controlPoint2
-        )
+        self.control1 = control1
+        self.control2 = control2
+        self.solver = Solver(start: start, end: end, control1: control1, control2: control2)
     }
     
-    public func point(t: Double) -> Point {
-        
-        //B(t) = (1-t)**3 p0 + 3(1 - t)**2 t P1 + 3(1-t)t**2 P2 + t**3 P3
-        
-//        x = (1-t)*(1-t)*(1-t)*p0x + 3*(1-t)*(1-t)*t*p1x + 3*(1-t)*t*t*p2x + t*t*t*p3x;
-//        y = (1-t)*(1-t)*(1-t)*p0y + 3*(1-t)*(1-t)*t*p1y + 3*(1-t)*t*t*p2y + t*t*t*p3y;
-        
-        fatalError()
+    //B(t) = (1-t)**3 p0 + 3(1 - t)**2 t P1 + 3(1-t)t**2 P2 + t**3 P3
+    public subscript (t: Double) -> Point {
+        return pow(1-t, 3) * start + 3 * pow(1-t, 2) * t * control1 + 3 * (1-t) * pow(t,2) * control1 + pow(t,3) * end
     }
     
     public func x(t: Double) -> Double {
-        fatalError()
+        return self[t][.horizontal]
     }
     
     public func y(t: Double) -> Double {
-        fatalError()
+        return self[t][.vertical]
     }
     
     public func ys(x: Double) -> Set<Double> {
