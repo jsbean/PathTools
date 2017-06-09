@@ -57,8 +57,29 @@ public struct QuadraticBezierCurve: BezierCurve {
     
     private let solver: Solver
     
+    public enum Bound {
+        case minX
+        case maxX
+        case minY
+        case maxY
+    }
+    
+    /// - returns: The `t` value at the given `bound`.
+    public  func t(at bound: Bound) -> Double {
+        switch bound {
+        case .minX:
+            return tAtMinX
+        case .maxX:
+            return tAtMaxX
+        case .minY:
+            return tAtMinY
+        case .maxY:
+            return tAtMaxY
+        }
+    }
+    
     /// - Returns: The `t` value at the point of the minimum `x` value.
-    public var tAtMinX: Double {
+    private var tAtMinX: Double {
         
         let denominator = start.x - 2 * control.x + end.x
         var initialT: Double = 0
@@ -85,7 +106,7 @@ public struct QuadraticBezierCurve: BezierCurve {
     }
     
     /// - Returns: The `t` value at the point of the maximum `x` value.
-    public var tAtMaxX: Double {
+    private var tAtMaxX: Double {
         
         let denominator = start.x - 2 * control.x + end.x
         var initialT: Double = 0
@@ -112,7 +133,7 @@ public struct QuadraticBezierCurve: BezierCurve {
     }
     
     /// - Returns: The `t` value at the point of the minimum `y` value.
-    public var tAtMinY: Double {
+    private var tAtMinY: Double {
         
         let denominator = start.y - 2 * control.y + end.y
         var initialT: Double = 0
@@ -138,7 +159,7 @@ public struct QuadraticBezierCurve: BezierCurve {
     }
     
     /// - Returns: The `t` value at the point of the maximum `y` value.
-    public var tAtMaxY: Double {
+    private var tAtMaxY: Double {
         
         let denominator = start.y - 2 * control.y + end.y
         var initialT: Double = 0
@@ -257,6 +278,7 @@ public func quadratic (_ a: Double, _ b: Double, _ c: Double) -> Set<Double> {
     
     var result: Set<Double> = []
     
+    // This differs from the more generic version. Find a way to do this cleansing after?
     if val0 <= 1 {
         result.insert(val0)
     }

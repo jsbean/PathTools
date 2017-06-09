@@ -35,7 +35,7 @@ class BezierPathTests: XCTestCase {
             control: Point(x: 0, y: 0)
         )
         
-        XCTAssertEqual(slopeDown.tAtMinX, 0)
+        XCTAssertEqual(slopeDown.t(at: .minX), 0)
     }
     
     public func testTAtMaxX() {
@@ -46,7 +46,7 @@ class BezierPathTests: XCTestCase {
             control: Point(x: 0, y: 0)
         )
         
-        XCTAssertEqual(slopeDown.tAtMaxX, 1)
+        XCTAssertEqual(slopeDown.t(at: .maxX), 1)
     }
     
     public func testTAtMinY() {
@@ -57,7 +57,7 @@ class BezierPathTests: XCTestCase {
             control: Point(x: 0, y: 0)
         )
         
-        XCTAssertEqual(slopeDown.tAtMinY, 1)
+        XCTAssertEqual(slopeDown.t(at: .minY), 1)
     }
     
     public func testTAtMaxY() {
@@ -68,7 +68,7 @@ class BezierPathTests: XCTestCase {
             control: Point(x: 0, y: 0)
         )
         
-        XCTAssertEqual(slopeDown.tAtMaxY, 0)
+        XCTAssertEqual(slopeDown.t(at: .maxY), 0)
     }
     
     public func testYsAtX() {
