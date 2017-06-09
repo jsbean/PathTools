@@ -50,9 +50,14 @@ public struct CubicBezierCurve: BezierCurve {
         self.solver = Solver(start: start, end: end, control1: control1, control2: control2)
     }
     
-    //B(t) = (1-t)**3 p0 + 3(1 - t)**2 t P1 + 3(1-t)t**2 P2 + t**3 P3
     public subscript (t: Double) -> Point {
-        return pow(1-t, 3) * start + 3 * pow(1-t, 2) * t * control1 + 3 * (1-t) * pow(t,2) * control1 + pow(t,3) * end
+        // B(t) = (1-t)**3 p0 + 3(1 - t)**2 t P1 + 3(1-t)t**2 P2 + t**3 P3
+        return (
+            start * pow(1-t, 3) +
+            control1 * 3 * pow(1-t, 2) * t +
+            control1 * 3 * (1-t) * pow(t,2) +
+            end * pow(t,3)
+        )
     }
     
     public func x(t: Double) -> Double {
@@ -65,12 +70,6 @@ public struct CubicBezierCurve: BezierCurve {
     
     public func ys(x: Double) -> Set<Double> {
         fatalError()
-//        let verticalOffset = start.y
-//        let height = end.y - start.y
-//        let horizontalOffset = x - start.x
-//        let width = end.x - start.x
-//        let y = verticalOffset + (horizontalOffset / width) * height
-//        return Set([y])
     }
     
     public func xs(y: Double) -> Set<Double> {
@@ -81,7 +80,6 @@ public struct CubicBezierCurve: BezierCurve {
         fatalError("Not yet implemented!")
     }
 }
-
 
 
 // Port of degrafa
@@ -273,21 +271,6 @@ public struct CubicBezierCurve: BezierCurve {
 //        return 0
 //    }
 //    
-//    public func isWithinBounds(x: Double) -> Bool {
-//        fatalError()
-//        // TODO: With T AT MIN X, MAX X
-////        let maxX = [start.x, end.x].maxElement()!
-////        let minX = [start.x, end.x].minElement()!
-////        return x >= minX && x <= maxX
-//    }
-//    
-//    public func isWithinBounds(y: Double) -> Bool {
-//        fatalError()
-//        // TODO: With T AT MIN Y, MAX Y
-////        let maxY = [start.y, end.y].max()!
-////        let minY = [start.y, end.y].min()!
-////        return y >= minY && y <= maxY
-//    }
 //    
 //    private func setCoefficients() {
 //        c0x = start.x
@@ -299,13 +282,6 @@ public struct CubicBezierCurve: BezierCurve {
 //        c3x = end.x - start.x - c2x - c1x
 //        c3y = end.y - start.y - c2y - c1y
 //    }
-////    
-////    private func getUIBezierPath() -> UIBezierPath {
-////        let path = UIBezierPath()
-////        path.moveToPoint(start)
-////        path.addCurveToPoint(end, controlPoint1: controlPoint1, controlPoint2: controlPoint2)
-////        return path
-////    }
 //}
 
 // SimpleRoot.swift - As straight a port as I could get my head around of Jim Armstrong's

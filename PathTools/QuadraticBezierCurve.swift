@@ -86,8 +86,6 @@ public struct QuadraticBezierCurve: BezierCurve {
         
         let ts = solver.ts(x: x)
         return Set(ts.map { self[$0][.vertical] })
-        
-        //return Set(ts.map(point).map { $0.y })
     }
     
     /// - Returns: The horizontal positions for the given `y` value.
