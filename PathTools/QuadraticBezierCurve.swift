@@ -16,39 +16,24 @@ public enum Extremum {
 }
 
 public enum Axis {
-    case vertical, horizontal
+    case vertical
+    case horizontal
 }
+
+public typealias Bound = (extremum: Extremum, axis: Axis)
 
 public struct QuadraticBezierCurve: BezierCurve {
     
-    
-    
-    public typealias Bound = (extremum: Extremum, axis: Axis)
-
     private struct Solver {
         
-        typealias Coefficient = (x: Double, y: Double)
+        let a,b,c: Point
         
-        let a: Coefficient
-        let b: Coefficient
-        let c: Coefficient
-        
-        fileprivate init(start: Point, end: Point, controlPoint: Point) {
-            
-            self.a = (
-                x: start.x - 2 * controlPoint.x + end.x,
-                y: start.y - 2 * controlPoint.y + end.y
-            )
-            
-            self.b = (
-                x: 2 * (controlPoint.x - start.x),
-                y: 2 * (controlPoint.y - start.y)
-            )
-            
-            self.c = (
-                x: start.x,
-                y: start.y
-            )
+        /// Creates a `QuadraticBezierCurve.Solver` with the given `start`, `end`, and 
+        /// `control` points.
+        init(start: Point, end: Point, control: Point) {
+            self.a = start - 2 * control + end
+            self.b = 2 * (control - start)
+            self.c = start
         }
 
         func ts(x: Double) -> Set<Double> {
@@ -66,10 +51,6 @@ public struct QuadraticBezierCurve: BezierCurve {
         func ys(x: Double) -> Set<Double> {
             return quadratic(a.x, b.x, c.x - x)
         }
-    }
-    
-    private func position(for axis: Axis) -> (Point) -> Double {
-        return axis == .horizontal ? { $0.x } : { $0.y }
     }
     
     private let solver: Solver
@@ -92,11 +73,7 @@ public struct QuadraticBezierCurve: BezierCurve {
         self.start = start
         self.end = end
         self.control = control
-        self.solver = Solver(
-            start: start,
-            end: end,
-            controlPoint: control
-        )
+        self.solver = Solver(start: start, end: end, control: control)
     }
     
     /// - Returns: `Point` at the given `t` value.
@@ -147,7 +124,7 @@ public struct QuadraticBezierCurve: BezierCurve {
     }
     
     /// - returns: The `t` value at the given `bound`.
-    public  func t(at bound: Bound) -> Double {
+    public func t(at bound: Bound) -> Double {
         
         func initialT(for extremum: Extremum, on axis: Axis) -> Double {
             let numerator = start[axis] - 2 * control[axis] + end[axis]
@@ -155,6 +132,7 @@ public struct QuadraticBezierCurve: BezierCurve {
             return abs(denominator) > 0.0000001 ? numerator / denominator : 0
         }
         
+        /// - TODO: Refactor
         func tAndCompareValue(start: Double, end: Double, for extremum: Extremum)
             -> (t: Double, value: Double)
         {
@@ -162,6 +140,7 @@ public struct QuadraticBezierCurve: BezierCurve {
             return compare(end, start) ? (t: 1, value: end) : (t: 0, value: start)
         }
         
+        /// - TODO: Refactor
         func isValid(t: Double, given value: Double, on axis: Axis, for extremum: Extremum)
             -> Bool
         {
@@ -170,7 +149,7 @@ public struct QuadraticBezierCurve: BezierCurve {
         }
         
         let (extremum, axis) = bound
-        let initT = initialT(for: extremum, on: axis)        
+        let initT = initialT(for: extremum, on: axis)
         let (t, compareVal) = tAndCompareValue(start: start[axis], end: end[axis], for: extremum)
         let valid = isValid(t: initT, given: compareVal, on: axis, for: extremum)
         return (initT > 0 && initT < 1) && valid ? initT : t
@@ -181,11 +160,43 @@ public struct QuadraticBezierCurve: BezierCurve {
     }
 }
 
-/// Move up to `dn-m/GeometryTools`.
+/// - TODO: Move up to `dn-m/GeometryTools`.
 extension Point {
+
+    /// - TODO: Move up to `dn-m/GeometryTools`.
+    public static func + (lhs: Point, rhs: Point) -> Point {
+        return Point(x: lhs.x + rhs.x, y: lhs.y + rhs.y)
+    }
+    
+    /// - TODO: Move up to `dn-m/GeometryTools`.
+    public static func - (lhs: Point, rhs: Point) -> Point {
+        return Point(x: lhs.x - rhs.x, y: lhs.y - rhs.y)
+    }
+    
+    /// - TODO: Move up to `dn-m/GeometryTools`.
     public subscript (axis: Axis) -> Double {
         return axis == .horizontal ? x : y
     }
+}
+
+/// - TODO: Move up to `dn-m/GeometryTools`.
+func * (point: Point, multiplier: Double) -> Point {
+    return Point(x: point.x * multiplier, y: point.y * multiplier)
+}
+
+/// - TODO: Move up to `dn-m/GeometryTools`.
+func * (multiplicand: Double, point: Point) -> Point {
+    return Point(x: point.x * multiplicand, y: point.y * multiplicand)
+}
+
+/// - TODO: Move up to `dn-m/GeometryTools`.
+func / (point: Point, multiplier: Double) -> Point {
+    return Point(x: point.x / multiplier, y: point.y / multiplier)
+}
+
+/// - TODO: Move up to `dn-m/GeometryTools`.
+func / (multiplicand: Double, point: Point) -> Point {
+    return Point(x: point.x / multiplicand, y: point.y / multiplicand)
 }
 
 /// - returns: A `Set` of 0, 1, or 2 x-intercepts for the given coefficients.
