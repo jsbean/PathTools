@@ -10,9 +10,15 @@ import Darwin
 import ArithmeticTools
 import GeometryTools
 
+extension Axis {
+    public static let x: Axis = .horizontal
+    public static let y: Axis = .vertical
+}
+
 public struct QuadraticBezierCurve: BezierCurve {
     
-    private struct Solver {
+    // make protocol for BezierCurveSolver
+    private struct Solver: BezierCurveSolver {
         
         /// Coefficients.
         let a,b,c: Point
@@ -20,19 +26,14 @@ public struct QuadraticBezierCurve: BezierCurve {
         /// Creates a `QuadraticBezierCurve.Solver` with the given `start`, `end`, and 
         /// `control` points.
         init(start: Point, end: Point, control: Point) {
-            self.a = start - 2 * control + end
-            self.b = 2 * (control - start)
             self.c = start
-        }
-
-        /// - Returns: All of the `t` values for the given `x`.
-        func ts(x: Double) -> Set<Double> {
-            return quadratic(a.x, b.x, c.x - x)
+            self.b = 2 * (control - start)
+            self.a = start - 2 * control + end
         }
         
-        /// - Returns: All of the `t` values for the given `y`.
-        func ts(y: Double) -> Set<Double> {
-            return quadratic(a.y, b.y, c.y - y)
+        /// Possible to return a richer value?
+        func ts(for value: Double, on axis: Axis) -> Set<Double> {
+            return quadratic(a[axis], b[axis], c[axis] - value)
         }
     }
     
@@ -61,17 +62,21 @@ public struct QuadraticBezierCurve: BezierCurve {
 
     /// - Returns: `Point` at the given `t` value.
     public subscript (t: Double) -> Point {
-        return pow(1-t, 2) * start + 2 * (1-t) * t * control + pow(t,2) * end
+        return (
+            start * pow(1-t, 2) +
+            control * 2 * (1-t) * t +
+            end * pow(t,2)
+        )
     }
     
     /// - Returns: The horizontal position for the given `t` value.
     public func x(t: Double) -> Double {
-        return self[t][.horizontal]
+        return self[t][.x]
     }
     
     /// - Returns: The vertical position for the given `t` value.
     public func y(t: Double) -> Double {
-        return self[t][.vertical]
+        return self[t][.y]
     }
     
     /// - Returns: The vertical positions for the given `x` value.
@@ -84,8 +89,7 @@ public struct QuadraticBezierCurve: BezierCurve {
             return []
         }
         
-        let ts = solver.ts(x: x)
-        return Set(ts.map { self[$0][.vertical] })
+        return Set(solver.ts(for: x, on: .horizontal).map { self[$0][.vertical] })
     }
     
     /// - Returns: The horizontal positions for the given `y` value.
@@ -97,9 +101,8 @@ public struct QuadraticBezierCurve: BezierCurve {
         guard (yMin...yMax).contains(y) else {
             return []
         }
-        
-        let ts = solver.ts(y: y)
-        return Set(ts.map { self[$0][.horizontal] })
+
+        return Set(solver.ts(for: y, on: .vertical).map { self[$0][.horizontal] })
     }
     
     /// - returns: The `t` value at the given `bound`.

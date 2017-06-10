@@ -1,5 +1,5 @@
 //
-//  BezierPathTests.swift
+//  QuadraticBezierCurveTests.swift
 //  PathTools
 //
 //  Created by James Bean on 6/8/17.
@@ -10,7 +10,7 @@ import XCTest
 import GeometryTools
 import PathTools
 
-class BezierPathTests: XCTestCase {
+class QuadraticBezierCurveTests: XCTestCase {
     
     func testLinear() {
         
@@ -27,7 +27,7 @@ class BezierPathTests: XCTestCase {
     
     // MARK: - Quadratic
     
-    public func testTAtMinX() {
+    func testTAtMinX() {
         
         let slopeDown = QuadraticBezierCurve(
             start: Point(x: 0, y: 1),
@@ -38,7 +38,7 @@ class BezierPathTests: XCTestCase {
         XCTAssertEqual(slopeDown.t(at: (.min, .horizontal)), 0)
     }
     
-    public func testTAtMaxX() {
+    func testTAtMaxX() {
         
         let slopeDown = QuadraticBezierCurve(
             start: Point(x: 0, y: 1),
@@ -49,7 +49,7 @@ class BezierPathTests: XCTestCase {
         XCTAssertEqual(slopeDown.t(at: (.max, .horizontal)), 1)
     }
     
-    public func testTAtMinY() {
+    func testTAtMinY() {
         
         let slopeDown = QuadraticBezierCurve(
             start: Point(x: 0, y: 1),
@@ -60,7 +60,7 @@ class BezierPathTests: XCTestCase {
         XCTAssertEqual(slopeDown.t(at: (.min, .vertical)), 1)
     }
     
-    public func testTAtMaxY() {
+    func testTAtMaxY() {
         
         let slopeDown = QuadraticBezierCurve(
             start: Point(x: 0, y: 1),
@@ -71,7 +71,7 @@ class BezierPathTests: XCTestCase {
         XCTAssertEqual(slopeDown.t(at: (.max, .vertical)), 0)
     }
     
-    public func testYsAtX() {
+    func testYsAtX() {
 
         let slopeDown = QuadraticBezierCurve(
             start: Point(x: 0, y: 1),
@@ -79,7 +79,7 @@ class BezierPathTests: XCTestCase {
             control: Point(x: 0, y: 0)
         )
         
-        stride(from: Double(0), to: 1, by: 0.1).forEach { t in
+        stride(from: Double(0), to: 1, by: 0.01).forEach { t in
             
             let point = slopeDown[t]
             let ys = slopeDown.ys(x: point.x)
@@ -89,7 +89,7 @@ class BezierPathTests: XCTestCase {
         }
     }
     
-    public func testXsAtY() {
+    func testXsAtY() {
         
         let slopeDown = QuadraticBezierCurve(
             start: Point(x: 0, y: 1),
@@ -97,7 +97,7 @@ class BezierPathTests: XCTestCase {
             control: Point(x: 0, y: 0)
         )
         
-        stride(from: Double(0), to: 1, by: 0.1).forEach { t in
+        stride(from: Double(0), to: 1, by: 0.01).forEach { t in
             
             let point = slopeDown[t]
             let xs = slopeDown.xs(y: point.y)
