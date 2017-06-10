@@ -114,9 +114,13 @@ func cubeRoot(_ value: Double) -> Double {
     return value > 0 ? pow(value, 1/3) : -pow(-value, 1/3)
 }
 
-/// - Author: http://jsbin.com/payifoxeho/edit?html,css,js
+/// - Returns: The `t` values intersecting where the given `curve` intersects the given line.
+///
+/// - Author: Pomax
+/// - See: http://jsbin.com/payifoxeho/edit?html,css,js
 /// - Note: Cardano's algorithm, based on
 /// http://www.trans4mind.com/personal_development/mathematics/polynomials/cubicAlgebra.htm.
+///
 func cardano(curve: CubicBezierCurve, line: Line) -> Set<Double> {
     
     func align(curve: CubicBezierCurve, with line: Line) -> CubicBezierCurve {

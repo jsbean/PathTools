@@ -48,5 +48,3 @@ public struct LinearBezierCurve: BezierCurve {
         fatalError("Not yet implemented!")
     }
 }
-
-
