@@ -178,7 +178,7 @@ func cardano(curve: CubicBezierCurve, line: Line) -> Set<Double> {
         let x2 = t1 * cos((phi + tau)/3) - a / 3;
         let x3 = t1 * cos((phi + 2 * tau) / 3) - a / 3;
         return [x1, x2, x3]
-    } else if(discriminant == 0) {
+    } else if discriminant == 0 {
         let u1 = q2 < 0 ? cubeRoot(-q2) : -cubeRoot(q2)
         let x1 = 2 * u1 - a / 3
         let x2 = -u1 - a / 3
