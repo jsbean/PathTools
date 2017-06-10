@@ -129,6 +129,9 @@ public struct CubicBezierCurve: BezierCurve {
 }
 
 /// - TODO: Move somewhere meaningful.
+let tau: Double = 2 * .pi
+
+/// - TODO: Move somewhere meaningful.
 func cubeRoot(_ value: Double) -> Double {
     return value > 0 ? pow(value, 1/3) : -pow(-value, 1/3)
 }
@@ -158,9 +161,7 @@ func cardano(curve: CubicBezierCurve, line: Line) -> Set<Double> {
             }
         )
     }
-    
-    let tau: Double = 2 * .pi
-    
+
     let aligned = align(curve: curve, with: line)
     
     let pa = aligned.start.y
