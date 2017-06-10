@@ -175,10 +175,10 @@ func cardano(curve: CubicBezierCurve, line: Line) -> Set<Double> {
     let a = (3 * pa - 6 * pb + 3 * pc) / d
     
     let p = (3 * b - a * a) / 3
-    let p3 = p/3
+    let p3 = p / 3
     let q = (2 * pow(a,3) - 9 * a * b + 27 * c) / 27
-    let q2 = q/2
-    let discriminant = pow(q2,2) + pow(p3,3)
+    let q2 = q / 2
+    let discriminant = pow(q2, 2) + pow(p3, 3)
     
     if discriminant < 0 {
         let mp3 = -p / 3
@@ -188,9 +188,9 @@ func cardano(curve: CubicBezierCurve, line: Line) -> Set<Double> {
         let cosphi = t < -1 ? -1 : t > 1 ? 1 : t
         let phi = acos(cosphi)
         let t1 = 2 * cubeRoot(r)
-        let x1 = t1 * cos(phi / 3) - a / 3;
-        let x2 = t1 * cos((phi + tau)/3) - a / 3;
-        let x3 = t1 * cos((phi + 2 * tau) / 3) - a / 3;
+        let x1 = t1 * cos(phi / 3) - a / 3
+        let x2 = t1 * cos((phi + tau)/3) - a / 3
+        let x3 = t1 * cos((phi + 2 * tau) / 3) - a / 3
         return [x1, x2, x3]
     } else if discriminant == 0 {
         let u1 = q2 < 0 ? cubeRoot(-q2) : -cubeRoot(q2)
