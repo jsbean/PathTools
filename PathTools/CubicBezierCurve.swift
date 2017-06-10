@@ -36,7 +36,7 @@ public struct CubicBezierCurve: BezierCurve {
         /// Coefficients.
         let a,b,c,d: Point
         
-        internal init(start: Point, end: Point, control1: Point, control2: Point) {
+        internal init(start: Point, control1: Point, control2: Point, end: Point) {
             self.d = start
             self.c = 3 * (control1 - start)
             self.b = 3 * (control2 - control1) - c
@@ -53,28 +53,46 @@ public struct CubicBezierCurve: BezierCurve {
     /// Start point.
     public let start: Point
     
-    /// End point.
-    public let end: Point
-    
     /// First control point.
     public let control1: Point
     
     /// Second control point.
     public let control2: Point
     
+    /// End point.
+    public let end: Point
+    
     // MARK: - Initializers
     
     /// Creates a `CubicBezierCurve` with the given `start`, `end`, and control points.
-    public init(start: Point, end: Point, control1: Point, control2: Point) {
+    public init(start: Point, control1: Point, control2: Point, end: Point) {
         self.start = start
-        self.end = end
         self.control1 = control1
         self.control2 = control2
-        self.solver = Solver(start: start, end: end, control1: control1, control2: control2)
+        self.end = end
+        self.solver = Solver(start: start, control1: control1, control2: control2, end: end)
     }
     
+    /// Creates a `CubicBezierCurve` with the given `points`.
+    ///
+    /// - Warning: Will crash if given greater or less than four points!
+    /// - TODO: Make `throw` (implement `BezierPathError`)
+    ///
+    public init(_ points: [Point]) {
+        
+        guard points.count == 4 else {
+            fatalError("A cubic bezier path must have four points!")
+        }
+        
+        self.start = points[0]
+        self.control1 = points[1]
+        self.control2 = points[2]
+        self.end = points[3]
+        self.solver = Solver(start: start, control1: control1, control2: control2, end: end)
+    }
+    
+    /// - Returns: `Point` at the given `t` value.
     public subscript (t: Double) -> Point {
-        // B(t) = (1-t)**3 p0 + 3(1 - t)**2 t P1 + 3(1-t)t**2 P2 + t**3 P3
         return (
             start * pow(1-t, 3) +
             control1 * 3 * pow(1-t, 2) * t +
@@ -110,6 +128,7 @@ public struct CubicBezierCurve: BezierCurve {
     }
 }
 
+/// - TODO: Move somewhere meaningful.
 func cubeRoot(_ value: Double) -> Double {
     return value > 0 ? pow(value, 1/3) : -pow(-value, 1/3)
 }
@@ -130,18 +149,13 @@ func cardano(curve: CubicBezierCurve, line: Line) -> Set<Double> {
         let ty = line.start.y
         let a = -atan2(line.end.y - ty, line.end.x - tx)
         
-        let alignedPoints = points.map { point in
-            Point(
-                x: (point.x - tx) * cos(a) - (point.y - ty) * sin(a),
-                y: (point.x - tx) * sin(a) + (point.y - ty) * cos(a)
-            )
-        }
-
         return CubicBezierCurve(
-            start: alignedPoints[0],
-            end: alignedPoints[3],
-            control1: alignedPoints[1],
-            control2: alignedPoints[2]
+            points.map { point in
+                Point(
+                    x: (point.x - tx) * cos(a) - (point.y - ty) * sin(a),
+                    y: (point.x - tx) * sin(a) + (point.y - ty) * cos(a)
+                )
+            }
         )
     }
     
@@ -155,9 +169,9 @@ func cardano(curve: CubicBezierCurve, line: Line) -> Set<Double> {
     let pd = aligned.end.y
     
     let d = (-pa + 3 * pb - 3 * pc + pd)
-    let a = (3 * pa - 6 * pb + 3 * pc) / d
-    let b = (-3 * pa + 3 * pb) / d
     let c = pa / d
+    let b = (-3 * pa + 3 * pb) / d
+    let a = (3 * pa - 6 * pb + 3 * pc) / d
     
     let p = (3 * b - a * a) / 3
     let p3 = p/3
@@ -166,14 +180,13 @@ func cardano(curve: CubicBezierCurve, line: Line) -> Set<Double> {
     let discriminant = pow(q2,2) + pow(p3,3)
     
     if discriminant < 0 {
-        let mp3 = -p/3
+        let mp3 = -p / 3
         let mp33 = pow(mp3,3)
         let r = sqrt(mp33)
-        let t = -q/(2*r)
+        let t = -q / (2 * r)
         let cosphi = t < -1 ? -1 : t > 1 ? 1 : t
         let phi = acos(cosphi)
-        let crtr = cubeRoot(r)
-        let t1 = 2 * crtr
+        let t1 = 2 * cubeRoot(r)
         let x1 = t1 * cos(phi / 3) - a / 3;
         let x2 = t1 * cos((phi + tau)/3) - a / 3;
         let x3 = t1 * cos((phi + 2 * tau) / 3) - a / 3;
@@ -182,12 +195,10 @@ func cardano(curve: CubicBezierCurve, line: Line) -> Set<Double> {
         let u1 = q2 < 0 ? cubeRoot(-q2) : -cubeRoot(q2)
         let x1 = 2 * u1 - a / 3
         let x2 = -u1 - a / 3
-        return [x1,x2]
+        return [x1, x2]
     } else {
         let sd = sqrt(discriminant)
-        let u1 = cubeRoot(-q2 + sd)
-        let v1 = cubeRoot(q2 + sd)
-        let x1 = u1 - v1 - a / 3
+        let x1 = cubeRoot(-q2 + sd) - cubeRoot(q2 + sd) - a / 3
         return [x1]
     }
 }

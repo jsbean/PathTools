@@ -16,8 +16,8 @@ class QuadraticBezierCurveTests: XCTestCase {
         
         let linear = QuadraticBezierCurve(
             start: Point(),
-            end: Point(x: 1, y: 1),
-            control: Point(x: 0.5, y: 0.5)
+            control: Point(x: 0.5, y: 0.5),
+            end: Point(x: 1, y: 1)
         )
     
         stride(from: Double(0), to: 1, by: 0.01).forEach { t in
@@ -31,8 +31,8 @@ class QuadraticBezierCurveTests: XCTestCase {
         
         let slopeDown = QuadraticBezierCurve(
             start: Point(x: 0, y: 1),
-            end: Point(x: 1, y: 0),
-            control: Point(x: 0, y: 0)
+            control: Point(x: 0, y: 0),
+            end: Point(x: 1, y: 0)
         )
         
         XCTAssertEqual(slopeDown.t(at: (.min, .horizontal)), 0)
@@ -42,8 +42,8 @@ class QuadraticBezierCurveTests: XCTestCase {
         
         let slopeDown = QuadraticBezierCurve(
             start: Point(x: 0, y: 1),
-            end: Point(x: 1, y: 0),
-            control: Point(x: 0, y: 0)
+            control: Point(x: 0, y: 0),
+            end: Point(x: 1, y: 0)
         )
         
         XCTAssertEqual(slopeDown.t(at: (.max, .horizontal)), 1)
@@ -53,8 +53,8 @@ class QuadraticBezierCurveTests: XCTestCase {
         
         let slopeDown = QuadraticBezierCurve(
             start: Point(x: 0, y: 1),
-            end: Point(x: 1, y: 0),
-            control: Point(x: 0, y: 0)
+            control: Point(x: 0, y: 0),
+            end: Point(x: 1, y: 0)
         )
         
         XCTAssertEqual(slopeDown.t(at: (.min, .vertical)), 1)
@@ -64,8 +64,8 @@ class QuadraticBezierCurveTests: XCTestCase {
         
         let slopeDown = QuadraticBezierCurve(
             start: Point(x: 0, y: 1),
-            end: Point(x: 1, y: 0),
-            control: Point(x: 0, y: 0)
+            control: Point(x: 0, y: 0),
+            end: Point(x: 1, y: 0)
         )
         
         XCTAssertEqual(slopeDown.t(at: (.max, .vertical)), 0)
@@ -75,8 +75,8 @@ class QuadraticBezierCurveTests: XCTestCase {
 
         let slopeDown = QuadraticBezierCurve(
             start: Point(x: 0, y: 1),
-            end: Point(x: 1, y: 0),
-            control: Point(x: 0, y: 0)
+            control: Point(x: 0, y: 0),
+            end: Point(x: 1, y: 0)
         )
         
         stride(from: Double(0), to: 1, by: 0.01).forEach { t in
@@ -93,8 +93,8 @@ class QuadraticBezierCurveTests: XCTestCase {
         
         let slopeDown = QuadraticBezierCurve(
             start: Point(x: 0, y: 1),
-            end: Point(x: 1, y: 0),
-            control: Point(x: 0, y: 0)
+            control: Point(x: 0, y: 0),
+            end: Point(x: 1, y: 0)
         )
         
         stride(from: Double(0), to: 1, by: 0.01).forEach { t in

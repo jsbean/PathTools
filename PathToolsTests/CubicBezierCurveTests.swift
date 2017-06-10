@@ -16,9 +16,9 @@ class CubicBezierCurveTests: XCTestCase {
 
         let upAndDown = CubicBezierCurve(
             start: Point(x: -1, y: 0),
-            end: Point(x: 1, y: 0),
             control1: Point(x: 0, y: 1),
-            control2: Point(x: 0, y: -1)
+            control2: Point(x: 0, y: -1),
+            end: Point(x: 1, y: 0)
         )
         
         stride(from: Double(0), through: 1.0, by: 0.1).forEach { t in
@@ -30,9 +30,9 @@ class CubicBezierCurveTests: XCTestCase {
         
         let slopeDown = CubicBezierCurve(
             start: Point(x: 0, y: 1),
-            end: Point(x: 1, y: 0),
             control1: Point(x: 0, y: 0),
-            control2: Point(x: 0, y: 0)
+            control2: Point(x: 0, y: 0),
+            end: Point(x: 1, y: 0)
         )
         
         XCTAssertEqual(slopeDown[0.5], Point(x: 0.125, y: 0.125))
@@ -42,9 +42,9 @@ class CubicBezierCurveTests: XCTestCase {
         
         let slopeDown = CubicBezierCurve(
             start: Point(x: 0, y: 0),
-            end: Point(x: 1, y: 1),
             control1: Point(x: 1, y: 0),
-            control2: Point(x: 1, y: 0)
+            control2: Point(x: 1, y: 0),
+            end: Point(x: 1, y: 1)
         )
         
         XCTAssertEqual(slopeDown[0.5], Point(x: 0.875, y: 0.125))
@@ -54,9 +54,9 @@ class CubicBezierCurveTests: XCTestCase {
         
         let upAndDown = CubicBezierCurve(
             start: Point(x: -1, y: 0),
-            end: Point(x: 1, y: 0),
             control1: Point(x: 0, y: 1),
-            control2: Point(x: 0, y: -1)
+            control2: Point(x: 0, y: -1),
+            end: Point(x: 1, y: 0)
         )
         
         stride(from: Double(0), to: 1, by: 0.01).forEach { t in
@@ -69,9 +69,9 @@ class CubicBezierCurveTests: XCTestCase {
         
         let upAndDown = CubicBezierCurve(
             start: Point(x: -1, y: 0),
-            end: Point(x: 1, y: 0),
             control1: Point(x: 0, y: 1),
-            control2: Point(x: 0, y: -1)
+            control2: Point(x: 0, y: -1),
+            end: Point(x: 1, y: 0)
         )
         
         stride(from: Double(0), to: 1, by: 0.01).forEach { t in

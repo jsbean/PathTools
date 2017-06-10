@@ -53,10 +53,22 @@ public struct QuadraticBezierCurve: BezierCurve {
     // MARK: - Initializers
     
     /// Creates a `QuadraticBezierCurve` with the given `start`, `end`, and `control` points.
-    public init(start: Point, end: Point, control: Point) {
+    public init(start: Point, control: Point, end: Point) {
         self.start = start
-        self.end = end
         self.control = control
+        self.end = end
+        self.solver = Solver(start: start, end: end, control: control)
+    }
+    
+    /// Creates a `QuadraticBezierCurve` with the given `points`.
+    ///
+    /// - Warning: Will crash if given greater or less than three points!
+    /// - TODO: Make `throw` (implement `BezierPathError`)
+    ///
+    public init(_ points: [Point]) {
+        self.start = points[0]
+        self.control = points[1]
+        self.end = points[3]
         self.solver = Solver(start: start, end: end, control: control)
     }
 
