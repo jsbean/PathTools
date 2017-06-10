@@ -472,7 +472,6 @@
 				"$(SRCROOT)/Carthage/Build/Mac/ArithmeticTools.framework",
 				"$(SRCROOT)/Carthage/Build/Mac/Collections.framework",
 				"$(SRCROOT)/Carthage/Build/Mac/GeometryTools.framework",
-				"$(SRCROOT)/Carthage/Build/Mac/PathTools.framework",
 			);
 			outputPaths = (
 			);
