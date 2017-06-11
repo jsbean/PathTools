@@ -14,7 +14,7 @@ extension Path {
     
     /// - Returns: `Path` with a rectangle shape defined by `rectangle`.
     public static func rectangle(_ rect: Rectangle) -> Path {
-        let builder = Path.Builder()
+        let builder = Path.builder
             .move(to: rect.origin)
             .addLine(to: Point(x: rect.maxX, y: rect.minY))
             .addLine(to: Point(x: rect.maxX, y: rect.maxY))

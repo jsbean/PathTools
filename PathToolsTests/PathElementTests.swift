@@ -33,7 +33,7 @@ class PathElementTests: XCTestCase {
             )
             let cgPath = bezierPath.cgPath
             let result = Path(cgPath)
-            let expected = Path.Builder()
+            let expected = Path.builder
                 .move(to: Point())
                 .addCurve(
                     to: Point(x: 1, y: 1),

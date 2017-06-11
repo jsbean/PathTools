@@ -10,12 +10,27 @@ import Collections
 import ArithmeticTools
 import GeometryTools
 
+public protocol ExposesMoveTo {
+    func move(to point: Point) -> ExposesAllElements
+}
+
+public protocol ExposesBuild {
+    func build() -> Path
+}
+
+public protocol ExposesAllElements: ExposesMoveTo, ExposesBuild {
+    func addLine(to point: Point) -> ExposesAllElements
+    func addQuadCurve(to point: Point, control: Point) -> ExposesAllElements
+    func addCurve(to point: Point, control1: Point, control2: Point) -> ExposesAllElements
+    func close() -> ExposesBuild & ExposesMoveTo
+}
+
 /// - TODO: Conform to `Collection` protocols
 public struct Path {
     
     // MARK: - Nested Types
     
-    public final class Builder {
+    public final class Builder: ExposesAllElements {
         
         private var elements: [PathElement] = []
         
@@ -30,7 +45,7 @@ public struct Path {
         ///
         /// - returns: `self`
         @discardableResult
-        public func move(to point: Point) -> Builder {
+        public func move(to point: Point) -> ExposesAllElements {
             elements.append(.move(point))
             return self
         }
@@ -39,7 +54,7 @@ public struct Path {
         ///
         /// - returns: `self`.
         @discardableResult
-        public func addLine(to point: Point) -> Builder {
+        public func addLine(to point: Point) -> ExposesAllElements {
             elements.append(.line(point))
             return self
         }
@@ -48,7 +63,7 @@ public struct Path {
         ///
         /// - returns: `self`.
         @discardableResult
-        public func addQuadCurve(to point: Point, control: Point) -> Builder {
+        public func addQuadCurve(to point: Point, control: Point) -> ExposesAllElements {
             elements.append(.quadCurve(point, control))
             return self
         }
@@ -57,7 +72,7 @@ public struct Path {
         ///
         /// - returns: `self`.
         @discardableResult
-        public func addCurve(to point: Point, control1: Point, control2: Point) -> Builder {
+        public func addCurve(to point: Point, control1: Point, control2: Point) -> ExposesAllElements {
             elements.append(.curve(point, control1, control2))
             return self
         }
@@ -66,7 +81,7 @@ public struct Path {
         ///
         /// - returns: `self`.
         @discardableResult
-        public func close() -> Builder {
+        public func close() -> ExposesBuild & ExposesMoveTo {
             elements.append(.close)
             return self
         }
@@ -76,6 +91,14 @@ public struct Path {
         public func build() -> Path {
             return Path(elements)
         }
+    }
+    
+    // MARK: - Type Properties
+    
+    /// - Returns: `Builder` object that only exposes the `move(to:)` method, as it is a
+    /// required first element for a `Path`.
+    public static var builder: ExposesMoveTo {
+        return Builder()
     }
     
     // MARK: - Instance Properties
