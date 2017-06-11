@@ -12,26 +12,17 @@ import GeometryTools
 
 class PathTests: XCTestCase {
 
-    func testInit() {
-        let _ = Path()
-    }
-    
     func testMoveTo() {
-        let path = Path()
-            .move(to: Point())
+        let path = Path.Builder().move(to: Point()).build()
         XCTAssertEqual(path.count, 1)
     }
     
     func testMoveToLineTo() {
-        let path = Path()
+        let path = Path.Builder()
             .move(to: Point())
             .addLine(to: Point())
+            .build()
         XCTAssertEqual(path.count, 2)
-    }
-    
-    func testCGPathInit() {
-        let path = Path()
-        let _ = path.cgPath
     }
     
     func testInitWithCGRect() {
@@ -41,15 +32,16 @@ class PathTests: XCTestCase {
     
     func testCustomStringConvertible() {
         
-        let path = Path()
+        let builder = Path.Builder()
             .move(to: Point(x: 100, y: 100))
             .addLine(to: Point(x: 200, y: 200))
-            .addQuadCurve(to: Point(x: 300, y: 0), controlPoint: Point(x: 200, y: 100))
+            .addQuadCurve(to: Point(x: 300, y: 0), control: Point(x: 200, y: 100))
             .addCurve(
                 to: Point(x: 200, y: 150),
                 control1: Point(x: 400, y: 200),
                 control2: Point(x: 100, y: 200)
             )
+        let path = builder.build()
         
         print(path)
     }
