@@ -151,6 +151,7 @@ extension Path: CustomStringConvertible {
     
     // MARK: - `CustomStringConvertible`
     
+    /// Printed description.
     public var description: String {
         return elements.map { "\($0)" }.joined(separator: "\n")
     }
