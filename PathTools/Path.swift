@@ -10,14 +10,17 @@ import Collections
 import ArithmeticTools
 import GeometryTools
 
+/// Interface exposed upon beginning the `Path` step-building patter.
 public protocol ExposesMoveTo {
     func move(to point: Point) -> ExposesAllElements
 }
 
+/// Interface exposed (along with `ExposesMoveTo`) after adding a `close()` element.
 public protocol ExposesBuild {
     func build() -> Path
 }
 
+/// Interface exposing all possible path element build steps.
 public protocol ExposesAllElements: ExposesMoveTo, ExposesBuild {
     func addLine(to point: Point) -> ExposesAllElements
     func addQuadCurve(to point: Point, control: Point) -> ExposesAllElements
@@ -30,7 +33,7 @@ public struct Path {
     
     // MARK: - Nested Types
     
-    public final class Builder: ExposesAllElements {
+    private final class Builder: ExposesAllElements {
         
         private var elements: [PathElement] = []
         
