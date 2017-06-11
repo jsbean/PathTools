@@ -19,6 +19,11 @@ public struct Path {
         
         private var elements: [PathElement] = []
         
+        // MARK: - Initializers
+        
+        /// Creates a `Path.Builder` ready to build a `Path`.
+        public init() { }
+        
         // MARK: - Instance Methods
         
         /// Move to `point`.
