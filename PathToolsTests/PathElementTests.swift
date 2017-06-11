@@ -54,7 +54,7 @@ class PathElementTests: XCTestCase {
             bezierPath.addQuadCurve(to: CGPoint(x: 1, y: 1), controlPoint: CGPoint(x: 1, y: 0))
             let cgPath = bezierPath.cgPath
             let result = Path(cgPath)
-            let expected = Path.Builder()
+            let expected = Path.builder
                 .move(to: Point())
                 .addQuadCurve(to: Point(x: 1, y: 1), control: Point(x: 1, y: 0))
                 .build()

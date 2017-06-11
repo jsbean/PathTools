@@ -46,7 +46,7 @@ public struct Path {
         
         /// Move to `point`.
         ///
-        /// - returns: `self`
+        /// - returns: `self`.
         @discardableResult
         public func move(to point: Point) -> ExposesAllElements {
             elements.append(.move(point))
