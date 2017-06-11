@@ -35,12 +35,12 @@ public struct Path {
     
     private final class Builder: ExposesAllElements {
         
-        private var elements: [PathElement] = []
+        var elements: [PathElement] = []
         
         // MARK: - Initializers
         
         /// Creates a `Path.Builder` ready to build a `Path`.
-        public init() { }
+        init() { }
         
         // MARK: - Instance Methods
         
@@ -48,7 +48,7 @@ public struct Path {
         ///
         /// - returns: `self`.
         @discardableResult
-        public func move(to point: Point) -> ExposesAllElements {
+        func move(to point: Point) -> ExposesAllElements {
             elements.append(.move(point))
             return self
         }
@@ -57,7 +57,7 @@ public struct Path {
         ///
         /// - returns: `self`.
         @discardableResult
-        public func addLine(to point: Point) -> ExposesAllElements {
+        func addLine(to point: Point) -> ExposesAllElements {
             elements.append(.line(point))
             return self
         }
@@ -66,7 +66,7 @@ public struct Path {
         ///
         /// - returns: `self`.
         @discardableResult
-        public func addQuadCurve(to point: Point, control: Point) -> ExposesAllElements {
+        func addQuadCurve(to point: Point, control: Point) -> ExposesAllElements {
             elements.append(.quadCurve(point, control))
             return self
         }
@@ -75,7 +75,7 @@ public struct Path {
         ///
         /// - returns: `self`.
         @discardableResult
-        public func addCurve(to point: Point, control1: Point, control2: Point) -> ExposesAllElements {
+        func addCurve(to point: Point, control1: Point, control2: Point) -> ExposesAllElements {
             elements.append(.curve(point, control1, control2))
             return self
         }
@@ -84,13 +84,13 @@ public struct Path {
         ///
         /// - returns: `self`.
         @discardableResult
-        public func close() -> ExposesBuild & ExposesMoveTo {
+        func close() -> ExposesBuild & ExposesMoveTo {
             elements.append(.close)
             return self
         }
 
         /// - Returns: `Path` value with the elements constructed thus far.
-        public func build() -> Path {
+        func build() -> Path {
             return Path(elements)
         }
     }
@@ -126,9 +126,12 @@ public struct Path {
     }
 }
 
-/// - returns: New `Path` with elements of two paths.
-public func + (lhs: Path, rhs: Path) -> Path {
-    return Path(lhs.elements + rhs.elements)
+extension Path {
+
+    /// - Returns: New `Path` with elements of two paths.
+    public static func + (lhs: Path, rhs: Path) -> Path {
+        return Path(lhs.elements + rhs.elements)
+    }
 }
 
 extension Path: AnyCollectionWrapping {
