@@ -47,8 +47,8 @@ class PathTests: XCTestCase {
             .addQuadCurve(to: Point(x: 300, y: 0), controlPoint: Point(x: 200, y: 100))
             .addCurve(
                 to: Point(x: 200, y: 150),
-                controlPoint1: Point(x: 400, y: 200),
-                controlPoint2: Point(x: 100, y: 200)
+                control1: Point(x: 400, y: 200),
+                control2: Point(x: 100, y: 200)
             )
         
         print(path)

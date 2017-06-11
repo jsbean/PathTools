@@ -71,11 +71,11 @@ public class Path {
     @discardableResult
     public func addCurve(
         to point: Point,
-        controlPoint1: Point,
-        controlPoint2: Point
+        control1: Point,
+        control2: Point
     ) -> Path
     {
-        elements.append(.curve(point, controlPoint1, controlPoint2))
+        elements.append(.curve(point, control1, control2))
         return self
     }
     
