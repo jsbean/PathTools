@@ -46,6 +46,29 @@ class PathTests: XCTestCase {
         print(path)
     }
     
+    func testAddCurve() {
+        
+        let curve = CubicBezierCurve(
+            start: Point(),
+            control1: Point(x: 1, y: 0),
+            control2: Point(x: 1, y: 0),
+            end: Point(x: 1, y: 1)
+        )
+        
+        let path = Path.builder.addCurve(curve).build()
+        
+        let expected = Path.builder
+            .move(to: Point())
+            .addCurve(
+                to: Point(x: 1, y: 1),
+                control1: Point(x: 1, y: 0),
+                control2: Point(x: 1, y: 0)
+            )
+            .build()
+        
+        XCTAssertEqual(path, expected)
+    }
+    
 //    func testFluentInterface() {
 //        let _ = Path()
 //            .move(to: CGPoint.zero)

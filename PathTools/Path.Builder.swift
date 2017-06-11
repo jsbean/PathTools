@@ -11,6 +11,8 @@ import GeometryTools
 /// Interface exposed upon beginning the `Path` step-building patter.
 public protocol AllowingMoveTo {
     func move(to point: Point) -> AllowingAllPathElements
+    func addQuadCurve(_ curve: QuadraticBezierCurve) -> AllowingAllPathElements
+    func addCurve(_ curve: CubicBezierCurve) -> AllowingAllPathElements
 }
 
 /// Interface exposed (along with `ExposesMoveTo`) after adding a `close()` element.
@@ -64,6 +66,38 @@ extension Path {
         func addQuadCurve(to point: Point, control: Point) -> AllowingAllPathElements {
             elements.append(.quadCurve(point, control))
             return self
+        }
+        
+        /// Adds the given `curve` to the `Path` being built.
+        ///
+        /// - Returns: `self`.
+        @discardableResult
+        func addQuadCurve(_ curve: QuadraticBezierCurve) -> AllowingAllPathElements {
+
+            if let lastPoint = elements.last?.point, lastPoint == curve.start {
+                return addQuadCurve(to: curve.end, control: curve.control)
+            }
+            
+            move(to: curve.start)
+            return addQuadCurve(to: curve.end, control: curve.control)
+        }
+        
+        /// Adds the given `curve` to the `Path` being built.
+        ///
+        /// - Returns: `self`.
+        @discardableResult
+        func addCurve(_ curve: CubicBezierCurve) -> AllowingAllPathElements {
+            
+            if let lastPoint = elements.last?.point, lastPoint == curve.start {
+                return addCurve(
+                    to: curve.end,
+                    control1: curve.control1,
+                    control2: curve.control2
+                )
+            }
+            
+            move(to: curve.start)
+            return addCurve(to: curve.end, control1: curve.control1, control2: curve.control2)
         }
         
         /// Add curve to `point`, with two control points.
