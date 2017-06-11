@@ -89,7 +89,6 @@ public struct Path {
             return self
         }
 
-        
         /// - Returns: `Path` value with the elements constructed thus far.
         public func build() -> Path {
             return Path(elements)
