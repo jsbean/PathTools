@@ -7,17 +7,16 @@
 //
 
 import QuartzCore
+import GeometryTools
 
 extension Path {
     
     // MARK: - Ellipse
 
     /// - returns: `Path` with an ellipse shape within the given `rectangle`.
+    ///
+    /// - TODO: Implement arcs properly.
     public static func ellipse(in rect: Rectangle) -> Path {
-        let cgPath = CGPath(ellipseIn: CGRect(rect), transform: nil)
-        print("cg path: \(cgPath)")
-        let path = Path(cgPath)
-        print("path: \(path)")
-        return path
+        return Path(CGPath(ellipseIn: CGRect(rect), transform: nil))
     }
 }

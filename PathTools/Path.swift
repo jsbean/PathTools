@@ -8,10 +8,15 @@
 
 import Collections
 import ArithmeticTools
+import GeometryTools
 
 public class Path {
     
     // MARK: - Instance Properties
+    
+    public var isShape: Bool {
+        return elements.allSatisfy { $0.isVertex }
+    }
     
     /// - Returns: `true` if there are no non-`.close` elements contained herein. Otherwise,
     /// `false`.

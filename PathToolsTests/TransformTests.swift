@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import GeometryTools
 import PathTools
 
 class TransformTests: XCTestCase {

@@ -7,6 +7,7 @@
 //
 
 import QuartzCore
+import GeometryTools
 
 extension Path {
     
@@ -15,7 +16,7 @@ extension Path {
     /// - returns: `Path` that is rotated by the given `degrees`, around the given `point`.
     ///
     /// - note: If `point` is `nil`, the center of the the bounding box is chosen.
-    public func rotated(by degrees: Degrees, around point: CGPoint? = nil) -> Path {
+    public func rotated(by angle: Angle, around point: CGPoint? = nil) -> Path {
         
         var pointRef: CGPoint {
             var bounds: CGRect { return cgPath.boundingBox }
@@ -24,7 +25,7 @@ extension Path {
         
         var transform = CGAffineTransform.identity
         transform = transform.translatedBy(x: pointRef.x, y: pointRef.y)
-        transform = transform.rotated(by: radians(from: degrees))
+        transform = transform.rotated(by: CGFloat(angle.radians))
         transform = transform.translatedBy(x: -pointRef.x, y: -pointRef.y)
         return Path(cgPath.copy(using: &transform)!)
     }

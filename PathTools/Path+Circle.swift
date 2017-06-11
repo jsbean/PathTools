@@ -7,6 +7,7 @@
 //
 
 import Darwin
+import GeometryTools
 
 extension Path {
     
