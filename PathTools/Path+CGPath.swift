@@ -39,7 +39,7 @@ extension Path {
 
     
     /// Creates a `Path` with a `CGPath`.
-    public convenience init(_ cgPath: CGPath?) {
+    public init(_ cgPath: CGPath?) {
         var pathElements: [PathElement] = []
         withUnsafeMutablePointer(to: &pathElements) { elementsPointer in
             cgPath?.apply(info: elementsPointer) { (userInfo, nextElementPointer) in

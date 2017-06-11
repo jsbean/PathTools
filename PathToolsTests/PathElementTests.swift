@@ -33,14 +33,14 @@ class PathElementTests: XCTestCase {
             )
             let cgPath = bezierPath.cgPath
             let result = Path(cgPath)
-            let expected = Path()
+            let expected = Path.builder
                 .move(to: Point())
                 .addCurve(
                     to: Point(x: 1, y: 1),
-                    controlPoint1: Point(x: 0.5, y: 0),
-                    controlPoint2: Point(x: 1, y: 0.5)
+                    control1: Point(x: 0.5, y: 0),
+                    control2: Point(x: 1, y: 0.5)
                 )
-            
+                .build()
             XCTAssertEqual(result, expected)
             
         #endif
@@ -54,9 +54,10 @@ class PathElementTests: XCTestCase {
             bezierPath.addQuadCurve(to: CGPoint(x: 1, y: 1), controlPoint: CGPoint(x: 1, y: 0))
             let cgPath = bezierPath.cgPath
             let result = Path(cgPath)
-            let expected = Path()
+            let expected = Path.builder
                 .move(to: Point())
-                .addQuadCurve(to: Point(x: 1, y: 1), controlPoint: Point(x: 1, y: 0))
+                .addQuadCurve(to: Point(x: 1, y: 1), control: Point(x: 1, y: 0))
+                .build()
             
             XCTAssertEqual(result, expected)
             

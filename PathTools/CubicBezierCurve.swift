@@ -129,6 +129,9 @@ public struct CubicBezierCurve: BezierCurve {
 }
 
 /// - TODO: Move somewhere meaningful.
+let tau: Double = 2 * .pi
+
+/// - TODO: Move somewhere meaningful.
 func cubeRoot(_ value: Double) -> Double {
     return value > 0 ? pow(value, 1/3) : -pow(-value, 1/3)
 }
@@ -145,22 +148,18 @@ func cardano(curve: CubicBezierCurve, line: Line) -> Set<Double> {
     func align(curve: CubicBezierCurve, with line: Line) -> CubicBezierCurve {
         
         let points = [curve.start, curve.control1, curve.control2, curve.end]
-        let tx = line.start.x
-        let ty = line.start.y
-        let a = -atan2(line.end.y - ty, line.end.x - tx)
+        let a = -atan2(line.end.y - line.start.y, line.end.x - line.start.x)
         
         return CubicBezierCurve(
             points.map { point in
                 Point(
-                    x: (point.x - tx) * cos(a) - (point.y - ty) * sin(a),
-                    y: (point.x - tx) * sin(a) + (point.y - ty) * cos(a)
+                    x: (point.x - line.start.x) * cos(a) - (point.y - line.start.y) * sin(a),
+                    y: (point.x - line.start.x) * sin(a) + (point.y - line.start.y) * cos(a)
                 )
             }
         )
     }
-    
-    let tau: Double = 2 * .pi
-    
+
     let aligned = align(curve: curve, with: line)
     
     let pa = aligned.start.y
@@ -174,10 +173,10 @@ func cardano(curve: CubicBezierCurve, line: Line) -> Set<Double> {
     let a = (3 * pa - 6 * pb + 3 * pc) / d
     
     let p = (3 * b - a * a) / 3
-    let p3 = p/3
+    let p3 = p / 3
     let q = (2 * pow(a,3) - 9 * a * b + 27 * c) / 27
-    let q2 = q/2
-    let discriminant = pow(q2,2) + pow(p3,3)
+    let q2 = q / 2
+    let discriminant = pow(q2, 2) + pow(p3, 3)
     
     if discriminant < 0 {
         let mp3 = -p / 3
@@ -187,9 +186,9 @@ func cardano(curve: CubicBezierCurve, line: Line) -> Set<Double> {
         let cosphi = t < -1 ? -1 : t > 1 ? 1 : t
         let phi = acos(cosphi)
         let t1 = 2 * cubeRoot(r)
-        let x1 = t1 * cos(phi / 3) - a / 3;
-        let x2 = t1 * cos((phi + tau)/3) - a / 3;
-        let x3 = t1 * cos((phi + 2 * tau) / 3) - a / 3;
+        let x1 = t1 * cos(phi / 3) - a / 3
+        let x2 = t1 * cos((phi + tau) / 3) - a / 3
+        let x3 = t1 * cos((phi + 2 * tau) / 3) - a / 3
         return [x1, x2, x3]
     } else if discriminant == 0 {
         let u1 = q2 < 0 ? cubeRoot(-q2) : -cubeRoot(q2)

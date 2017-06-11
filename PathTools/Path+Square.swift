@@ -14,11 +14,12 @@ extension Path {
     
     public static func square(center: Point, width: Double) -> Path {
         let origin = Point(x: center.x - 0.5 * width, y: center.y - 0.5 * width)
-        return Path()
+        let builder = Path.builder
             .move(to: origin)
             .addLine(to: Point(x: origin.x + width, y: origin.y))
             .addLine(to: Point(x: origin.x + width, y: origin.y + width))
             .addLine(to: Point(x: origin.x, y: origin.y + width))
             .close()
+        return builder.build()
     }
 }
