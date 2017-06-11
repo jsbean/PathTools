@@ -148,15 +148,13 @@ func cardano(curve: CubicBezierCurve, line: Line) -> Set<Double> {
     func align(curve: CubicBezierCurve, with line: Line) -> CubicBezierCurve {
         
         let points = [curve.start, curve.control1, curve.control2, curve.end]
-        let tx = line.start.x
-        let ty = line.start.y
-        let a = -atan2(line.end.y - ty, line.end.x - tx)
+        let a = -atan2(line.end.y - line.start.y, line.end.x - line.start.x)
         
         return CubicBezierCurve(
             points.map { point in
                 Point(
-                    x: (point.x - tx) * cos(a) - (point.y - ty) * sin(a),
-                    y: (point.x - tx) * sin(a) + (point.y - ty) * cos(a)
+                    x: (point.x - line.start.x) * cos(a) - (point.y - line.start.y) * sin(a),
+                    y: (point.x - line.start.x) * sin(a) + (point.y - line.start.y) * cos(a)
                 )
             }
         )
