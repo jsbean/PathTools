@@ -48,14 +48,14 @@ class PathTests: XCTestCase {
     
     func testAddCurve() {
         
-        let curve = CubicBezierCurve(
+        let curve = BezierCurve(
             start: Point(),
             control1: Point(x: 1, y: 0),
             control2: Point(x: 1, y: 0),
             end: Point(x: 1, y: 1)
         )
         
-        let path = Path.builder.addCurve(.cubic(curve)).build()
+        let path = Path.builder.addCurve(curve).build()
         
         let expected = Path.builder
             .move(to: Point())

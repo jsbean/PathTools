@@ -14,7 +14,7 @@ class CubicBezierCurveTests: XCTestCase {
     
     func testUpAndDown() {
 
-        let upAndDown = CubicBezierCurve(
+        let upAndDown = BezierCurve(
             start: Point(x: -1, y: 0),
             control1: Point(x: 0, y: 1),
             control2: Point(x: 0, y: -1),
@@ -28,7 +28,7 @@ class CubicBezierCurveTests: XCTestCase {
     
     func testSlopeDown() {
         
-        let slopeDown = CubicBezierCurve(
+        let slopeDown = BezierCurve(
             start: Point(x: 0, y: 1),
             control1: Point(x: 0, y: 0),
             control2: Point(x: 0, y: 0),
@@ -40,7 +40,7 @@ class CubicBezierCurveTests: XCTestCase {
     
     func testSlopeUp() {
         
-        let slopeDown = CubicBezierCurve(
+        let slopeDown = BezierCurve(
             start: Point(x: 0, y: 0),
             control1: Point(x: 1, y: 0),
             control2: Point(x: 1, y: 0),
@@ -52,7 +52,7 @@ class CubicBezierCurveTests: XCTestCase {
     
     func testYsAtX() {
         
-        let upAndDown = CubicBezierCurve(
+        let upAndDown = BezierCurve(
             start: Point(x: -1, y: 0),
             control1: Point(x: 0, y: 1),
             control2: Point(x: 0, y: -1),
@@ -67,7 +67,7 @@ class CubicBezierCurveTests: XCTestCase {
     }
     func testXsAtY() {
         
-        let upAndDown = CubicBezierCurve(
+        let upAndDown = BezierCurve(
             start: Point(x: -1, y: 0),
             control1: Point(x: 0, y: 1),
             control2: Point(x: 0, y: -1),
@@ -83,14 +83,37 @@ class CubicBezierCurveTests: XCTestCase {
     
     func testLength() {
         
-        let upAndDown = CubicBezierCurve(
+        let upAndDown = BezierCurve(
             start: Point(x: -1, y: 0),
             control1: Point(x: 0, y: 1),
             control2: Point(x: 0, y: -1),
             end: Point(x: 1, y: 0)
         )
         
-        let l = upAndDown.length
+        _ = upAndDown.length
+    }
+    
+    func testSplit() {
+        
+        let upAndDown = BezierCurve(
+            start: Point(x: -1, y: 0),
+            control1: Point(x: 0, y: 1),
+            control2: Point(x: 0, y: -1),
+            end: Point(x: 1, y: 0)
+        )
+        
+        let split = upAndDown.split(t: 0.5)
+        
+        let expectedLeft = BezierCurve(
+            [(-1.0,0.0), (-0.5,0.5), (-0.25,0.25), (0.0,0.0)].map(Point.init)
+        )
+        
+        let expectedRight = BezierCurve(
+            [(1.0,0.0), (0.5,-0.5), (0.25,-0.25), (0.0,0.0)].map(Point.init)
+        )
+        
+        XCTAssertEqual(split.0, expectedLeft)
+        XCTAssertEqual(split.1, expectedRight)
     }
 }
 

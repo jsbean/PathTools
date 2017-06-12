@@ -31,43 +31,35 @@ extension Path {
         return Path([
             
             // top center -> right
-            .cubic(
-                CubicBezierCurve(
-                    start: Point(x: x, y: top),
-                    control1: Point(x: x + ax, y: top),
-                    control2: Point(x: right, y: y + ay),
-                    end: Point(x: right, y: y)
-                )
+            BezierCurve(
+                start: Point(x: x, y: top),
+                control1: Point(x: x + ax, y: top),
+                control2: Point(x: right, y: y + ay),
+                end: Point(x: right, y: y)
             ),
             
             // right -> bottom center
-            .cubic(
-                CubicBezierCurve(
-                    start: Point(x: right, y: y),
-                    control1: Point(x: right, y: y - ay),
-                    control2: Point(x: x + ax, y: bottom),
-                    end: Point(x: x, y: bottom)
-                )
+            BezierCurve(
+                start: Point(x: right, y: y),
+                control1: Point(x: right, y: y - ay),
+                control2: Point(x: x + ax, y: bottom),
+                end: Point(x: x, y: bottom)
             ),
             
             // bottom center -> left
-            .cubic(
-                CubicBezierCurve(
-                    start: Point(x: x, y: bottom),
-                    control1: Point(x: x - ax, y: bottom),
-                    control2: Point(x: left, y: y - ay),
-                    end: Point(x: left, y: y)
-                )
+            BezierCurve(
+                start: Point(x: x, y: bottom),
+                control1: Point(x: x - ax, y: bottom),
+                control2: Point(x: left, y: y - ay),
+                end: Point(x: left, y: y)
             ),
             
             // left -> top center
-            .cubic(
-                CubicBezierCurve(
-                    start: Point(x: left, y: y),
-                    control1: Point(x: left, y: y + ay),
-                    control2: Point(x: x - ax, y: top),
-                    end: Point(x: x, y: top)
-                )
+            BezierCurve(
+                start: Point(x: left, y: y),
+                control1: Point(x: left, y: y + ay),
+                control2: Point(x: x - ax, y: top),
+                end: Point(x: x, y: top)
             )
         ])
     }

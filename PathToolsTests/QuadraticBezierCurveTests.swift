@@ -12,68 +12,55 @@ import PathTools
 
 class QuadraticBezierCurveTests: XCTestCase {
     
-    func testLinear() {
-        
-        let linear = QuadraticBezierCurve(
-            start: Point(),
-            control: Point(x: 0.5, y: 0.5),
-            end: Point(x: 1, y: 1)
-        )
-    
-        stride(from: Double(0), to: 1, by: 0.01).forEach { t in
-            XCTAssertEqualWithAccuracy(linear.x(t: t), t, accuracy: 0.000001)
-        }
-    }
-    
     // MARK: - Quadratic
     
-    func testTAtMinX() {
-        
-        let slopeDown = QuadraticBezierCurve(
-            start: Point(x: 0, y: 1),
-            control: Point(x: 0, y: 0),
-            end: Point(x: 1, y: 0)
-        )
-        
-        XCTAssertEqual(slopeDown.t(at: (.min, .horizontal)), 0)
-    }
-    
-    func testTAtMaxX() {
-        
-        let slopeDown = QuadraticBezierCurve(
-            start: Point(x: 0, y: 1),
-            control: Point(x: 0, y: 0),
-            end: Point(x: 1, y: 0)
-        )
-        
-        XCTAssertEqual(slopeDown.t(at: (.max, .horizontal)), 1)
-    }
-    
-    func testTAtMinY() {
-        
-        let slopeDown = QuadraticBezierCurve(
-            start: Point(x: 0, y: 1),
-            control: Point(x: 0, y: 0),
-            end: Point(x: 1, y: 0)
-        )
-        
-        XCTAssertEqual(slopeDown.t(at: (.min, .vertical)), 1)
-    }
-    
-    func testTAtMaxY() {
-        
-        let slopeDown = QuadraticBezierCurve(
-            start: Point(x: 0, y: 1),
-            control: Point(x: 0, y: 0),
-            end: Point(x: 1, y: 0)
-        )
-        
-        XCTAssertEqual(slopeDown.t(at: (.max, .vertical)), 0)
-    }
+//    func testTAtMinX() {
+//        
+//        let slopeDown = BezierCurve(
+//            start: Point(x: 0, y: 1),
+//            control: Point(x: 0, y: 0),
+//            end: Point(x: 1, y: 0)
+//        )
+//        
+//        XCTAssertEqual(slopeDown.t(at: (.min, .horizontal)), 0)
+//    }
+//    
+//    func testTAtMaxX() {
+//        
+//        let slopeDown = BezierCurve(
+//            start: Point(x: 0, y: 1),
+//            control: Point(x: 0, y: 0),
+//            end: Point(x: 1, y: 0)
+//        )
+//        
+//        XCTAssertEqual(slopeDown.t(at: (.max, .horizontal)), 1)
+//    }
+//    
+//    func testTAtMinY() {
+//        
+//        let slopeDown = BezierCurve(
+//            start: Point(x: 0, y: 1),
+//            control: Point(x: 0, y: 0),
+//            end: Point(x: 1, y: 0)
+//        )
+//        
+//        XCTAssertEqual(slopeDown.t(at: (.min, .vertical)), 1)
+//    }
+//    
+//    func testTAtMaxY() {
+//        
+//        let slopeDown = BezierCurve(
+//            start: Point(x: 0, y: 1),
+//            control: Point(x: 0, y: 0),
+//            end: Point(x: 1, y: 0)
+//        )
+//        
+//        XCTAssertEqual(slopeDown.t(at: (.max, .vertical)), 0)
+//    }
     
     func testYsAtX() {
 
-        let slopeDown = QuadraticBezierCurve(
+        let slopeDown = BezierCurve(
             start: Point(x: 0, y: 1),
             control: Point(x: 0, y: 0),
             end: Point(x: 1, y: 0)
@@ -91,7 +78,7 @@ class QuadraticBezierCurveTests: XCTestCase {
     
     func testXsAtY() {
         
-        let slopeDown = QuadraticBezierCurve(
+        let slopeDown = BezierCurve(
             start: Point(x: 0, y: 1),
             control: Point(x: 0, y: 0),
             end: Point(x: 1, y: 0)

@@ -13,12 +13,12 @@ import PathTools
 class LinearBezierCurveTests: XCTestCase {
     
     func testInit() {
-        _ = LinearBezierCurve(start: Point(), end: Point(x: 1, y: 1))
+        _ = BezierCurve(start: Point(), end: Point(x: 1, y: 1))
     }
     
     func testPointAtT() {
         
-        let linear = LinearBezierCurve(start: Point(), end: Point(x: 1, y: 1))
+        let linear = BezierCurve(start: Point(), end: Point(x: 1, y: 1))
         let points = stride(from: 0, through: 1, by: 0.25).map { t in linear[t] }
         
         let expected = [
@@ -34,7 +34,7 @@ class LinearBezierCurveTests: XCTestCase {
     
     func testXsAtY() {
 
-        let linear = LinearBezierCurve(start: Point(), end: Point(x: 1, y: 1))
+        let linear = BezierCurve(start: Point(), end: Point(x: 1, y: 1))
         let xs = stride(from: 0, through: 1, by: 0.25).map { t in linear[t].x }
         let ys = xs.map { x in linear.ys(x: x) }
         let expected = xs.map { x in Set([x]) }
@@ -44,7 +44,7 @@ class LinearBezierCurveTests: XCTestCase {
     
     func testYsAtX() {
         
-        let linear = LinearBezierCurve(start: Point(), end: Point(x: 1, y: 1))
+        let linear = BezierCurve(start: Point(), end: Point(x: 1, y: 1))
         let ys = stride(from: 0, through: 1, by: 0.25).map { t in linear[t].y }
         let xs = ys.map { y in linear.xs(y: y) }
         let expected = ys.map { y in Set([y]) }

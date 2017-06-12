@@ -6,126 +6,197 @@
 //
 //
 
+import Darwin
+import Collections
 import GeometryTools
 
-public protocol BezierCurveProtocol: Equatable {
- 
-    /// Length of Bézier curve.
-    var length: Double { get }
+/// Model of a Bézier curve.
+public struct BezierCurve {
     
-    /// Start point of Bézier curve.
-    var start: Point { get }
+    // MARK: - Nested Types
     
-    /// End point of Bézier curve.
-    var end: Point { get }
-
-    /// - Returns: The point at the given `t` value.
-    ///
-    /// - Note: Values contained within the curve itself are index by `t` values in [0,1].
-    /// If `t` values of less than 0 or greater than 1 will project the curve beyond its
-    /// `start` and `end` points.
-    ///
-    subscript (t: Double) -> Point { get }
-
-    /// - returns: All y-values for a given `x`.
-    func ys(x: Double) -> Set<Double>
-    
-    /// - returns: The x-value for a given `y`.
-    func xs(y: Double) -> Set<Double>
-    
-    func translatedBy(x: Double, y: Double) -> Self
-
-    func simplified(accuracy: Double) -> [Point]
-}
-
-public enum BezierCurve {
+    /// Order of `BezierCurve`.
+    public enum Order {
+        case linear
+        case quadratic
+        case cubic
+    }
     
     // MARK: - Instance Properties
     
-    public var length: Double {
-        switch self {
-        case let .linear(linear):
-            return linear.length
-        case let .quadratic(quad):
-            return quad.length
-        case let .cubic(cubic):
-            return cubic.length
+    /// Order of `BezierCurve`.
+    public var order: Order {
+        switch points.count {
+        case 2:
+            return .linear
+        case 3:
+            return .quadratic
+        case 4:
+            return .cubic
+        default:
+            fatalError()
         }
     }
     
-    /// Start point of Bézier curve.
+    /// Start point.
     public var start: Point {
-        switch self {
-        case let .linear(linear):
-            return linear.start
-        case let .quadratic(quad):
-            return quad.start
-        case let .cubic(cubic):
-            return cubic.start
-        }
+        return points.first!
     }
     
-    /// End point of Bézier curve.
+    /// End point.
     public var end: Point {
-        switch self {
-        case let .linear(linear):
-            return linear.end
-        case let .quadratic(quadratic):
-            return quadratic.end
-        case let .cubic(cubic):
-            return cubic.end
+        return points.last!
+    }
+    
+    /// Arc length of `BezierCurve`.
+    ///
+    /// - TODO: Add customizability to accuracy.
+    ///
+    public var length: Double {
+        switch points.count {
+        case 2:
+            return Line(points: points).length
+        case 3, 4:
+            let points = stride(from: 0, through: 1, by: 0.01).map { t in self[t] }
+            let lines = points.adjacentPairs().map(Line.init)
+            return lines.map { $0.length }.sum
+        default:
+            fatalError("Bézier curves with \(points.count) control points not supported!")
         }
     }
     
-    // MARK: - Cases
-    
-    case linear(LinearBezierCurve)
-    case quadratic(QuadraticBezierCurve)
-    case cubic(CubicBezierCurve)
+    internal let points: [Point]
     
     // MARK: - Initializers
-
-    /// Creates a linear Bézier curve.
+    
+    /// Creates a linear `BezierCurve` with the given `start` and `end` points.
     public init(start: Point, end: Point) {
-        self = .linear(LinearBezierCurve(start: start, end: end))
+        self.points = [start, end]
     }
     
-    /// Creates a quadratic Bézier curve.
+    /// Creates a quadratic `BezierCurve` with the given `start`, `control` and `end` points.
     public init(start: Point, control: Point, end: Point) {
-        self = .quadratic(QuadraticBezierCurve(start: start, control: control, end: end))
+        self.points = [start, control, end]
     }
     
-    /// Creates a cubic Bézier curve.
+    /// Creates a cubic `BezierCurve` with the given `start`, control and `end` points.
     public init(start: Point, control1: Point, control2: Point, end: Point) {
-        self = .cubic(
-            CubicBezierCurve(start: start, control1: control1, control2: control2, end: end)
-        )
+        self.points = [start, control1, control2, end]
     }
     
-    // MARK: - Subscripts
+    /// Creates a `BezierCurve` with the given points.
+    internal init(_ points: [Point]) {
+        
+        guard (2...4).contains(points.count) else {
+            fatalError("Bézier curves with \(points.count) control points not supported!")
+        }
+        
+        self.points = points
+    }
     
+    // MARK: - Subscript
+    
+    /// - Returns: `Point` at the given `t` value.
     public subscript (t: Double) -> Point {
-        switch self {
-        case let .linear(linear):
-            return linear[t]
-        case let .quadratic(quadratic):
-            return quadratic[t]
-        case let .cubic(cubic):
-            return cubic[t]
+        switch points.count {
+        case 2:
+            return t * (end - start) + start
+        case 3:
+            let control = points[1]
+            return start * pow(1-t, 2) + control * 2 * (1-t) * t + end * pow(t,2)
+        case 4:
+            let control1 = points[1]
+            let control2 = points[2]
+            return (
+                start * pow(1-t, 3) +
+                control1 * 3 * pow(1-t, 2) * t +
+                control2 * 3 * (1-t) * pow(t,2) +
+                end * pow(t,3)
+            )
+        default:
+            fatalError("Bézier curves with \(points.count) control points not supported!")
         }
     }
     
-    // MARK: - Instance Methods
-    
-    public func translatedBy(x: Double, y: Double) -> BezierCurve {
-        switch self {
-        case let .linear(linear):
-            return .linear(linear.translatedBy(x: x, y: y))
-        case let .quadratic(quadratic):
-            return .quadratic(quadratic.translatedBy(x: x, y: y))
-        case let .cubic(cubic):
-            return .cubic(cubic.translatedBy(x: x, y: y))
+    /// - Returns: `t` values for the given `x`.
+    public func ts(x: Double) -> Set<Double> {
+        switch points.count {
+        case 2:
+            return [(x - start.x) * (end.x - start.x)]
+        case 3:
+            let c = start
+            let b = 2 * (points[1] - start)
+            let a = start - 2 * points[1] + end
+            return quadratic(a.x, b.x, c.x)
+        case 4:
+            return cardano(points: points, line: Line.vertical(at: x))
+        default:
+            fatalError("Bézier curves with \(points.count) control points not supported!")
         }
+    }
+    
+    /// - Returns: `t` values for the given `y`.
+    public func ts(y: Double) -> Set<Double> {
+        switch points.count {
+        case 2:
+            return [(y - start.y) * (end.y - start.y)]
+        case 3:
+            let c = start
+            let b = 2 * (points[1] - start)
+            let a = start - 2 * points[1] + end
+            return quadratic(a.y, b.y, c.y)
+        case 4:
+            return cardano(points: points, line: .horizontal(at: y))
+        default:
+            fatalError("Bézier curves with \(points.count) control points not supported!")
+        }
+    }
+    
+    /// - Returns: Vertical positions for the given `x`.
+    public func ys(x: Double) -> Set<Double> {
+        switch points.count {
+        case 2:
+            return [start.y + ((x - start.x) / (end.x - start.x)) * (end.y - start.y)]
+        case 3:
+            let control = points[1]
+            let c = start
+            let b = 2 * (control - start)
+            let a = start - 2 * control + end
+            return Set(quadratic(a.x, b.x, c.x - x).map { self[$0].y })
+        case 4:
+            return Set(ts(x: x).map { t in self[t].y })
+        default:
+            fatalError("Bézier curves with \(points.count) control points not supported!")
+        }
+    }
+    
+    /// - Returns: Horizontal positions for the given `y`.
+    public func xs(y: Double) -> Set<Double> {
+        switch points.count {
+        case 2:
+            return [start.x + ((y - start.y) / (end.y - start.y)) * (end.x - start.x)]
+        case 3:
+            let control = points[1]
+            let c = start
+            let b = 2 * (control - start)
+            let a = start - 2 * control + end
+            return Set(quadratic(a.y, b.y, c.y - y).map { self[$0].x })
+        case 4:
+            return Set(ts(y: y).map { t in self[t].x })
+        default:
+            fatalError("Bézier curves with \(points.count) control points not supported!")
+        }
+    }
+    
+    /// - Returns: `BezierCurve` translated by the given `x` and `y` values.
+    public func translatedBy(x: Double, y: Double) -> BezierCurve {
+        return BezierCurve(points.map { $0.translatedBy(x: x, y: y) })
+    }
+    
+    /// - Returns: Two `BezierCurve` values of the same order as `self`, split at the given `t`
+    /// value.
+    public func split(t: Double) -> (BezierCurve, BezierCurve) {
+        return map(PathTools.split(controlPoints: points, at: t)) { BezierCurve($0) }
     }
 }
 
@@ -133,16 +204,126 @@ extension BezierCurve: Equatable {
     
     // MARK: - Equatable
     
+    /// - Returns: `true` if both `BezierCurve` values are equivalent. Otherwise `false`.
     public static func == (lhs: BezierCurve, rhs: BezierCurve) -> Bool {
-        switch (lhs, rhs) {
-        case let (.linear(a), .linear(b)):
-            return a == b
-        case let (.quadratic(a), .quadratic(b)):
-            return a == b
-        case let (.cubic(a), .cubic(b)):
-            return a == b
-        default:
-            return false
+        return lhs.points == rhs.points
+    }
+}
+
+/// - Returns: Splits an arbitrarily-highly-ordered at the given `t` value into two Bézier 
+/// paths of the same order.
+public func split(controlPoints: [Point], at t: Double) -> ([Point], [Point]) {
+    
+    func split(points: [Point], at t: Double, into left: [Point], and right: [Point])
+        -> ([Point], [Point])
+    {
+        
+        guard points.count > 1 else {
+            return (left + points.first!, right + points.first!)
         }
+        
+        let left = left + points.first!
+        let right = right + points.last!
+        let points = points.adjacentPairs().map { (a,b) in (1-t) * a + t * b }
+        return split(points: points, at: t, into: left, and: right)
+    }
+    
+    return split(points: controlPoints, at: t, into: [], and: [])
+}
+
+/// - returns: A `Set` of 0, 1, or 2 x-intercepts for the given coefficients.
+///
+/// - TODO: Update in dn-m/ArithmeticTools
+public func quadratic(_ a: Double, _ b: Double, _ c: Double) -> Set<Double> {
+    
+    let discriminant = pow(b,2) - (4 * a * c)
+    
+    guard discriminant >= 0 else {
+        return Set()
+    }
+    
+    let val0 = (-b + sqrt(discriminant)) / (2 * a)
+    let val1 = (-b - sqrt(discriminant)) / (2 * a)
+    
+    var result: Set<Double> = []
+    
+    // This differs from the more generic version. Find a way to do this cleansing after?
+    if val0 <= 1 {
+        result.insert(val0)
+    }
+    
+    if (0...1).contains(val1) {
+        result.insert(val1)
+    }
+    
+    return result
+}
+
+/// - TODO: Move somewhere meaningful.
+let tau: Double = 2 * .pi
+
+/// - TODO: Move somewhere meaningful.
+func cubeRoot(_ value: Double) -> Double {
+    return value > 0 ? pow(value, 1/3) : -pow(-value, 1/3)
+}
+
+/// - Returns: The `t` values intersecting where the given `curve` intersects the given line.
+///
+/// - Author: Pomax
+/// - See: http://jsbin.com/payifoxeho/edit?html,css,js
+/// - Note: Cardano's algorithm, based on
+/// http://www.trans4mind.com/personal_development/mathematics/polynomials/cubicAlgebra.htm.
+///
+func cardano(points: [Point], line: Line) -> Set<Double> {
+    
+    func align(points: [Point], with line: Line) -> [Point] {
+        let a = -atan2(line.end.y - line.start.y, line.end.x - line.start.x)
+        return points.map { point in
+            Point(
+                x: (point.x - line.start.x) * cos(a) - (point.y - line.start.y) * sin(a),
+                y: (point.x - line.start.x) * sin(a) + (point.y - line.start.y) * cos(a)
+            )
+        }
+    }
+    
+    let aligned = align(points: points, with: line)
+    
+    let pa = aligned[0].y
+    let pb = aligned[1].y
+    let pc = aligned[2].y
+    let pd = aligned[3].y
+    
+    let d = (-pa + 3 * pb - 3 * pc + pd)
+    let c = pa / d
+    let b = (-3 * pa + 3 * pb) / d
+    let a = (3 * pa - 6 * pb + 3 * pc) / d
+    
+    let p = (3 * b - a * a) / 3
+    let p3 = p / 3
+    let q = (2 * pow(a,3) - 9 * a * b + 27 * c) / 27
+    let q2 = q / 2
+    let discriminant = pow(q2, 2) + pow(p3, 3)
+    
+    if discriminant < 0 {
+        let mp3 = -p / 3
+        let mp33 = pow(mp3,3)
+        let r = sqrt(mp33)
+        let t = -q / (2 * r)
+        let cosphi = t < -1 ? -1 : t > 1 ? 1 : t
+        let phi = acos(cosphi)
+        let t1 = 2 * cubeRoot(r)
+        let x1 = t1 * cos(phi / 3) - a / 3
+        let x2 = t1 * cos((phi + tau) / 3) - a / 3
+        let x3 = t1 * cos((phi + 2 * tau) / 3) - a / 3
+        return [x1, x2, x3]
+    } else if discriminant == 0 {
+        let u1 = q2 < 0 ? cubeRoot(-q2) : -cubeRoot(q2)
+        let x1 = 2 * u1 - a / 3
+        let x2 = -u1 - a / 3
+        return [x1, x2]
+    } else {
+        let sd = sqrt(discriminant)
+        let x1 = cubeRoot(-q2 + sd) - cubeRoot(q2 + sd) - a / 3
+        return [x1]
     }
 }
