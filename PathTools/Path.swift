@@ -24,7 +24,14 @@ public struct Path {
     // MARK: - Instance Properties
     
     public var isShape: Bool {
-        return curves.all { $0 is LinearBezierCurve }
+        return curves.all { curve in
+            switch curve {
+            case .linear:
+                return true
+            default:
+                return false
+            }
+        }
     }
     
     /// - Returns: `true` if there are no non-`.close` elements contained herein. Otherwise,

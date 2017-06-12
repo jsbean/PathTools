@@ -9,10 +9,10 @@
 import QuartzCore
 import GeometryTools
 
-//extension Path {
-//    
-//    /// - warning: Not yet implemented!
-//    public var boundingBox: Path {
-//        return Path.rectangle(Rectangle(cgPath.boundingBoxOfPath))
-//    }
-//}
+extension Path {
+    
+    /// - warning: Not yet implemented!
+    public var boundingBox: Path {
+        return Path.rectangle(Rectangle(cgPath.boundingBoxOfPath))
+    }
+}
