@@ -7,6 +7,7 @@
 //
 
 import Darwin
+import Collections
 import GeometryTools
 
 /// - TODO: Move to `dn-m/GeometryTools`
@@ -140,6 +141,27 @@ public struct CubicBezierCurve: BezierCurveProtocol {
     public func xs(y: Double) -> Set<Double> {
         let ts = cardano(curve: self, line: .horizontal(at: y))
         return Set(ts.map { t in self[t].x })
+    }
+    
+    /// - TODO: Generalize out de casteljau algo
+    public func split(at t: Double) -> (CubicBezierCurve, CubicBezierCurve) {
+
+        func split(points: [Point], at t: Double, into left: [Point], and right: [Point])
+            -> ([Point], [Point])
+        {
+
+            guard points.count > 1 else {
+                return (left + points[0], right + points[0])
+            }
+
+            let left = left + points.first!
+            let right = right + points.last!
+            let points = points.adjacentPairs().map { (a,b) in (1-t) * a + t * b }
+            return split(points: points, at: t, into: left, and: right)
+        }
+        
+        let (a,b) = split(points: [start, control1, control2, end], at: t, into: [], and: [])
+        return (CubicBezierCurve(a), CubicBezierCurve(b))
     }
     
     public func simplified(accuracy: Double) -> [Point] {

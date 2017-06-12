@@ -34,6 +34,8 @@ public protocol BezierCurveProtocol: Equatable {
     func xs(y: Double) -> Set<Double>
     
     func translatedBy(x: Double, y: Double) -> Self
+    
+    func split(at t: Double) -> (Self, Self)
 
     func simplified(accuracy: Double) -> [Point]
 }

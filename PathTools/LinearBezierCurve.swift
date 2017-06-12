@@ -59,6 +59,10 @@ public struct LinearBezierCurve: BezierCurveProtocol {
         return [start.x + ((y - start.y) / (end.y - start.y)) * (end.x - start.x)]
     }
     
+    public func split(at t: Double) -> (LinearBezierCurve, LinearBezierCurve) {
+        fatalError()
+    }
+    
     public func simplified(accuracy: Double) -> [Point] {
         fatalError("Not yet implemented!")
     }

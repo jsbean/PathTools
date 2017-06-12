@@ -90,7 +90,19 @@ class CubicBezierCurveTests: XCTestCase {
             end: Point(x: 1, y: 0)
         )
         
-        let l = upAndDown.length
+        _ = upAndDown.length
+    }
+    
+    func testSplit() {
+        
+        let upAndDown = CubicBezierCurve(
+            start: Point(x: -1, y: 0),
+            control1: Point(x: 0, y: 1),
+            control2: Point(x: 0, y: -1),
+            end: Point(x: 1, y: 0)
+        )
+        
+        _ = upAndDown.split(at: 0.5)
     }
 }
 

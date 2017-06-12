@@ -167,6 +167,10 @@ public struct QuadraticBezierCurve: BezierCurveProtocol {
         let valid = isValid(t: initT, given: compareVal, on: axis, for: extremum)
         return (initT > 0 && initT < 1) && valid ? initT : t
     }
+    
+    public func split(at t: Double) -> (QuadraticBezierCurve, QuadraticBezierCurve) {
+        fatalError()
+    }
 
     public func simplified(accuracy: Double) -> [Point] {
         fatalError("Not yet implemented!")
