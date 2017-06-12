@@ -65,6 +65,20 @@ public enum BezierCurve {
     case quadratic(QuadraticBezierCurve)
     case cubic(CubicBezierCurve)
     
+    public init(start: Point, end: Point) {
+        self = .linear(LinearBezierCurve(start: start, end: end))
+    }
+    
+    public init(start: Point, control: Point, end: Point) {
+        self = .quadratic(QuadraticBezierCurve(start: start, control: control, end: end))
+    }
+    
+    public init(start: Point, control1: Point, control2: Point, end: Point) {
+        self = .cubic(
+            CubicBezierCurve(start: start, control1: control1, control2: control2, end: end)
+        )
+    }
+    
     public func translatedBy(x: Double, y: Double) -> BezierCurve {
         switch self {
         case let .linear(linear):
