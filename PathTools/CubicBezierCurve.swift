@@ -99,7 +99,6 @@ public struct CubicBezierCurve: BezierCurveProtocol {
         )
     }
     
-    
     /// - Returns: `Point` at the given `t` value.
     public subscript (t: Double) -> Point {
         return (
