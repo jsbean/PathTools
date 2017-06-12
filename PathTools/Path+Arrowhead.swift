@@ -20,20 +20,20 @@ extension Path {
         rotation: Angle = .zero
     ) -> Path
     {
-        let path = Path(
-            [
-                .move(Point(x: 0.5 * width, y: 0)),
-                .line(Point(x: width, y: height)),
-                .line(Point(x: 0.5 * width, y: height - (barbProportion * height))),
-                .line(Point(x: 0, y: height)),
-                .close
-            ]
-        )
         
-        if rotation == .zero {
-            return path
+        let builder = Path.builder
+            .move(to: Point(x: 0.5 * width, y: 0))
+            .addLine(to: Point(x: width, y: height))
+            .addLine(to: Point(x: 0.5 * width, y: height - (barbProportion * height)))
+            .addLine(to: Point(x: 0, y: height))
+            .close()
+        
+        let path = builder.build()
+        
+        guard rotation == .zero else {
+            return path.rotated(by: rotation)
         }
-        
-        return path.rotated(by: rotation)
+
+        return path
     }
 }

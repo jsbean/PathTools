@@ -28,9 +28,8 @@ extension Line {
 }
 
 /// Model of a cubic bezier curve.
-public struct CubicBezierCurve: BezierCurve {
+public struct CubicBezierCurve: BezierCurveProtocol {
 
-    
     internal final class Solver: BezierCurveSolver {
         
         /// Coefficients.
@@ -91,6 +90,15 @@ public struct CubicBezierCurve: BezierCurve {
         self.solver = Solver(start: start, control1: control1, control2: control2, end: end)
     }
     
+    public func translatedBy(x: Double, y: Double) -> CubicBezierCurve {
+        return CubicBezierCurve(
+            start: start.translatedBy(x: x, y: y),
+            control1: control1.translatedBy(x: x, y: y),
+            control2: control2.translatedBy(x: x, y: y),
+            end: end.translatedBy(x: x, y: y)
+        )
+    }
+    
     /// - Returns: `Point` at the given `t` value.
     public subscript (t: Double) -> Point {
         return (
@@ -125,6 +133,18 @@ public struct CubicBezierCurve: BezierCurve {
     
     public func simplified(accuracy: Double) -> [Point] {
         fatalError("Not yet implemented!")
+    }
+}
+
+extension CubicBezierCurve: Equatable {
+    
+    public static func == (lhs: CubicBezierCurve, rhs: CubicBezierCurve) -> Bool {
+        return (
+            lhs.start == rhs.start &&
+            lhs.control1 == rhs.control1 &&
+            lhs.control2 == rhs.control2 &&
+            lhs.end == rhs.end
+        )
     }
 }
 

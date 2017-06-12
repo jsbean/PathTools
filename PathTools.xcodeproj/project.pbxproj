@@ -21,8 +21,12 @@
 		07088AC61D0AE8A600004FB2 /* Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07088AC41D0AE8A600004FB2 /* Path.swift */; };
 		07226BAD1EEAFDC600A1E3D2 /* CubicBezierCurveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07226BAC1EEAFDC600A1E3D2 /* CubicBezierCurveTests.swift */; };
 		07226BAE1EEAFDC600A1E3D2 /* CubicBezierCurveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07226BAC1EEAFDC600A1E3D2 /* CubicBezierCurveTests.swift */; };
+		0728B9941EEDA89200A8E727 /* Path.Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0728B9931EEDA89200A8E727 /* Path.Builder.swift */; };
+		0728B9951EEDA89200A8E727 /* Path.Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0728B9931EEDA89200A8E727 /* Path.Builder.swift */; };
 		07305A341D0F3F7F006E4085 /* Path+Square.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07305A331D0F3F7F006E4085 /* Path+Square.swift */; };
 		07305A351D0F3F7F006E4085 /* Path+Square.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07305A331D0F3F7F006E4085 /* Path+Square.swift */; };
+		074C230C1EEE612E002C187B /* LinearBezierCurveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074C230B1EEE612E002C187B /* LinearBezierCurveTests.swift */; };
+		074C230D1EEE612E002C187B /* LinearBezierCurveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074C230B1EEE612E002C187B /* LinearBezierCurveTests.swift */; };
 		0759A4781E3015B000E2E40C /* PathElement+CGPathElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0759A4771E3015B000E2E40C /* PathElement+CGPathElement.swift */; };
 		0759A4791E3015B000E2E40C /* PathElement+CGPathElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0759A4771E3015B000E2E40C /* PathElement+CGPathElement.swift */; };
 		0759A47B1E3015F100E2E40C /* PathElementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0759A47A1E3015F100E2E40C /* PathElementTests.swift */; };
@@ -119,7 +123,9 @@
 		0701A8A01EE3376800900B3F /* TransformTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TransformTests.swift; path = PathToolsTests/TransformTests.swift; sourceTree = "<group>"; };
 		07088AC41D0AE8A600004FB2 /* Path.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Path.swift; path = PathTools/Path.swift; sourceTree = "<group>"; };
 		07226BAC1EEAFDC600A1E3D2 /* CubicBezierCurveTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CubicBezierCurveTests.swift; path = PathToolsTests/CubicBezierCurveTests.swift; sourceTree = "<group>"; };
+		0728B9931EEDA89200A8E727 /* Path.Builder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Path.Builder.swift; path = PathTools/Path.Builder.swift; sourceTree = "<group>"; };
 		07305A331D0F3F7F006E4085 /* Path+Square.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Path+Square.swift"; path = "PathTools/Path+Square.swift"; sourceTree = "<group>"; };
+		074C230B1EEE612E002C187B /* LinearBezierCurveTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LinearBezierCurveTests.swift; path = PathToolsTests/LinearBezierCurveTests.swift; sourceTree = "<group>"; };
 		0759A4771E3015B000E2E40C /* PathElement+CGPathElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PathElement+CGPathElement.swift"; path = "PathTools/PathElement+CGPathElement.swift"; sourceTree = "<group>"; };
 		0759A47A1E3015F100E2E40C /* PathElementTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PathElementTests.swift; path = PathToolsTests/PathElementTests.swift; sourceTree = "<group>"; };
 		07600F9A1EE47B410049E8B2 /* Path+CAShapeLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Path+CAShapeLayer.swift"; path = "PathTools/Path+CAShapeLayer.swift"; sourceTree = "<group>"; };
@@ -201,6 +207,7 @@
 				07C1F8671D0C517400541ED5 /* Path+Arrowhead.swift */,
 				07EC99221D0AF7C8002414A4 /* PathElement.swift */,
 				07088AC41D0AE8A600004FB2 /* Path.swift */,
+				0728B9931EEDA89200A8E727 /* Path.Builder.swift */,
 			);
 			name = Path;
 			sourceTree = "<group>";
@@ -281,6 +288,7 @@
 				0701A8A01EE3376800900B3F /* TransformTests.swift */,
 				07600F9D1EE489E90049E8B2 /* EllipseTests.swift */,
 				07EC99251D0AFC54002414A4 /* PathTests.swift */,
+				074C230B1EEE612E002C187B /* LinearBezierCurveTests.swift */,
 				078EA3D81EE9A9E4000EEB38 /* QuadraticBezierCurveTests.swift */,
 				07226BAC1EEAFDC600A1E3D2 /* CubicBezierCurveTests.swift */,
 			);
@@ -505,6 +513,7 @@
 				07EC99241D0AF7C8002414A4 /* PathElement.swift in Sources */,
 				0701A88E1EE310A500900B3F /* Rectangle+CGRect.swift in Sources */,
 				078590491DE7626A00FF1645 /* QuadraticBezierCurve.swift in Sources */,
+				0728B9951EEDA89200A8E727 /* Path.Builder.swift in Sources */,
 				0785904C1DE7627800FF1645 /* CubicBezierCurve.swift in Sources */,
 				07C1F8691D0C517400541ED5 /* Path+Arrowhead.swift in Sources */,
 			);
@@ -533,6 +542,7 @@
 				07EC99231D0AF7C8002414A4 /* PathElement.swift in Sources */,
 				0701A88D1EE310A500900B3F /* Rectangle+CGRect.swift in Sources */,
 				078590481DE7626A00FF1645 /* QuadraticBezierCurve.swift in Sources */,
+				0728B9941EEDA89200A8E727 /* Path.Builder.swift in Sources */,
 				0785904B1DE7627800FF1645 /* CubicBezierCurve.swift in Sources */,
 				07C1F8681D0C517400541ED5 /* Path+Arrowhead.swift in Sources */,
 			);
@@ -548,6 +558,7 @@
 				07226BAD1EEAFDC600A1E3D2 /* CubicBezierCurveTests.swift in Sources */,
 				07600F9E1EE489E90049E8B2 /* EllipseTests.swift in Sources */,
 				0701A8A11EE3376800900B3F /* TransformTests.swift in Sources */,
+				074C230C1EEE612E002C187B /* LinearBezierCurveTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -561,6 +572,7 @@
 				07226BAE1EEAFDC600A1E3D2 /* CubicBezierCurveTests.swift in Sources */,
 				07600F9F1EE489E90049E8B2 /* EllipseTests.swift in Sources */,
 				0701A8A21EE3376800900B3F /* TransformTests.swift in Sources */,
+				074C230D1EEE612E002C187B /* LinearBezierCurveTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

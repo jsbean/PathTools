@@ -14,7 +14,7 @@ class PathTests: XCTestCase {
 
     func testMoveTo() {
         let path = Path.builder.move(to: Point()).build()
-        XCTAssertEqual(path.count, 1)
+        XCTAssertEqual(path.count, 0)
     }
     
     func testMoveToLineTo() {
@@ -22,7 +22,7 @@ class PathTests: XCTestCase {
             .move(to: Point())
             .addLine(to: Point())
             .build()
-        XCTAssertEqual(path.count, 2)
+        XCTAssertEqual(path.count, 1)
     }
     
     func testInitWithCGRect() {
@@ -44,6 +44,29 @@ class PathTests: XCTestCase {
         let path = builder.build()
         
         print(path)
+    }
+    
+    func testAddCurve() {
+        
+        let curve = CubicBezierCurve(
+            start: Point(),
+            control1: Point(x: 1, y: 0),
+            control2: Point(x: 1, y: 0),
+            end: Point(x: 1, y: 1)
+        )
+        
+        let path = Path.builder.addCurve(.cubic(curve)).build()
+        
+        let expected = Path.builder
+            .move(to: Point())
+            .addCurve(
+                to: Point(x: 1, y: 1),
+                control1: Point(x: 1, y: 0),
+                control2: Point(x: 1, y: 0)
+            )
+            .build()
+        
+        XCTAssertEqual(path, expected)
     }
     
 //    func testFluentInterface() {
