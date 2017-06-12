@@ -8,11 +8,11 @@
 
 import QuartzCore
 
-//extension CAShapeLayer {
-//    
-//    /// Creates a `CAShapeLayer` with the given `path`.
-//    public convenience init(_ path: Path) {
-//        self.init()
-//        self.path = path.cgPath
-//    }
-//}
+extension CAShapeLayer {
+    
+    /// Creates a `CAShapeLayer` with the given `path`.
+    public convenience init(_ path: Path) {
+        self.init()
+        self.path = path.cgPath
+    }
+}
