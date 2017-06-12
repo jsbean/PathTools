@@ -30,7 +30,6 @@ extension Line {
 /// Model of a cubic bezier curve.
 public struct CubicBezierCurve: BezierCurve {
 
-    
     internal final class Solver: BezierCurveSolver {
         
         /// Coefficients.
