@@ -60,6 +60,7 @@ extension Path {
         func addLine(to point: Point) -> AllowingAllPathElements {
             let curve = BezierCurve(start: last, end: point)
             curves.append(curve)
+            last = point
             return self
         }
         
@@ -70,6 +71,7 @@ extension Path {
         func addQuadCurve(to point: Point, control: Point) -> AllowingAllPathElements {
             let curve = BezierCurve(start: last, control: control, end: point)
             curves.append(curve)
+            last = point
             return self
         }
         
@@ -87,6 +89,7 @@ extension Path {
                 end: point
             )
             curves.append(curve)
+            last = point
             return self
         }
         
@@ -96,6 +99,7 @@ extension Path {
         @discardableResult
         func addCurve(_ curve: BezierCurve) -> AllowingAllPathElements {
             curves.append(curve)
+            last = curve.end
             return self
         }
         
@@ -106,6 +110,7 @@ extension Path {
         func close() -> AllowingBuild & AllowingMoveTo {
             let curve = BezierCurve(start: last, end: subPathFirst)
             curves.append(curve)
+            last = curve.end
             return self
         }
         
@@ -118,33 +123,6 @@ extension Path {
         /// a `quadCurve` or `curve` element. This is ensured by the step-builder interface.
         func build() -> Path {
             return Path(curves)
-            
-//            guard
-//                let (head, tail) = elements.destructured, case let .move(start) = head
-//            else {
-//                return Path([])
-//            }
-//            
-//            var curves: [BezierCurve] = []
-//            var last = start
-//            for element in tail {
-//                switch element {
-//                case .move(let point):
-//                    last = point
-//                case .line(let point):
-//                    let curve = LinearBezierCurve(start: last, end: point)
-//                    curves.append(curve)
-//                case .quadCurve(let point, let control):
-//                    let curve = QuadraticBezierCurve(start: last, control: control, end: point)
-//                case .curve(let point, let control1, let control2):
-//                    break
-//                case .close:
-//                    break
-//                }
-//            }
-//            
-//            fatalError()
-//            //return Path(elements)
         }
     }
 }

@@ -182,6 +182,17 @@ public struct BezierCurve {
     public func split(t: Double) -> (BezierCurve, BezierCurve) {
         return map(PathTools.split(controlPoints: points, at: t)) { BezierCurve($0) }
     }
+    
+    /// - Returns: Array of `Point` values.
+    public func simplified(segmentCount: Int) -> [Point] {
+        
+        if order == .linear {
+            return [start, end]
+        }
+        
+        let segment = 1 / Double(segmentCount)
+        return stride(from: 0, through: 1, by: segment).map { t in self[t] }
+    }
 }
 
 extension BezierCurve: Equatable {

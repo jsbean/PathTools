@@ -35,10 +35,14 @@ public struct Path {
     
     internal let curves: [BezierCurve]
     
+    // MARK: - Initializers
+    
+    /// Create a `Path` with the given `curves`.
     public init(_ curves: [BezierCurve]) {
         self.curves = curves
     }
     
+    /// Create a `Path` with the given `pathElements`.
     internal init(pathElements: [PathElement]) {
         
         guard
@@ -66,6 +70,22 @@ public struct Path {
         }
         
         self = builder.build()
+    }
+    
+    // MARK: - Instance Methods
+    
+    /// - Returns: Polygonal representation of the `Path`.
+    public func simplified(segmentCount: Int) -> Polygon {
+        
+        let vertices = curves.map { $0.simplified(segmentCount: segmentCount) }
+        let (most, last) = vertices.split(at: vertices.count - 1)!
+        let merged = most.flatMap { $0.dropLast() } + last[0]
+        
+        if merged.count == 2 {
+            return Polygon(vertices: merged + merged[0])
+        }
+        
+        return Polygon(vertices: merged)
     }
 }
 
