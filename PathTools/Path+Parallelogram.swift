@@ -27,23 +27,24 @@ extension Path {
         slope: Double
     ) -> Path
     {
-        let left: Double = center.x - 0.5 * width
-        let right: Double = left + width
         
         func y(at x: Double) -> Double {
             return center.y - slope * (x - 0.5 * width)
         }
         
-        let y_topLeft: Double = y(at: left) - 0.5 * height
-        let y_topRight: Double = y(at: right) - 0.5 * height
-        let y_bottomRight: Double = y(at: right) + 0.5 * height
-        let y_bottomLeft: Double = y(at: left) + 0.5 * height
+        let left: Double = center.x - 0.5 * width
+        let right: Double = left + width
+        
+        let topLeftY: Double = y(at: left) - 0.5 * height
+        let topRightY: Double = y(at: right) - 0.5 * height
+        let bottomRightY: Double = y(at: right) + 0.5 * height
+        let bottomLeftY: Double = y(at: left) + 0.5 * height
         
         let builder = Path.builder
-            .move(to: Point(x: left, y: y_topLeft))
-            .addLine(to: Point(x: right, y: y_topRight))
-            .addLine(to: Point(x: right, y: y_bottomRight))
-            .addLine(to: Point(x: left, y: y_bottomLeft))
+            .move(to: Point(x: left, y: topLeftY))
+            .addLine(to: Point(x: right, y: topRightY))
+            .addLine(to: Point(x: right, y: bottomRightY))
+            .addLine(to: Point(x: left, y: bottomLeftY))
             .close()
         
         return builder.build()
