@@ -21,14 +21,7 @@ public struct LinearBezierCurve: BezierCurve {
     }
     
     public subscript (t: Double) -> Point {
-        let rise = (end - start).y
-        let run = (end - start).x
-        let slope = rise/run
-        let angle = tan(slope)
-        let length = hypot(rise, run) * t
-        let x = cos(angle) * length
-        let y = sin(angle) * length
-        return Point(x: x, y: y)
+        return (end - start) * t + start
     }
 
     public func ys(x: Double) -> Set<Double> {
