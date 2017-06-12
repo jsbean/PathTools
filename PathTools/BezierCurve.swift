@@ -10,6 +10,9 @@ import GeometryTools
 
 public protocol BezierCurveProtocol: Equatable {
  
+    /// Length of Bézier curve.
+    var length: Double { get }
+    
     /// Start point of Bézier curve.
     var start: Point { get }
     
@@ -37,8 +40,21 @@ public protocol BezierCurveProtocol: Equatable {
 
 public enum BezierCurve {
     
+    // MARK: - Instance Properties
+    
+    public var length: Double {
+        switch self {
+        case let .linear(linear):
+            return linear.length
+        case let .quadratic(quad):
+            return quad.length
+        case let .cubic(cubic):
+            return cubic.length
+        }
+    }
+    
     /// Start point of Bézier curve.
-    var start: Point {
+    public var start: Point {
         switch self {
         case let .linear(linear):
             return linear.start
@@ -50,7 +66,7 @@ public enum BezierCurve {
     }
     
     /// End point of Bézier curve.
-    var end: Point {
+    public var end: Point {
         switch self {
         case let .linear(linear):
             return linear.end
@@ -61,23 +77,45 @@ public enum BezierCurve {
         }
     }
     
+    // MARK: - Cases
+    
     case linear(LinearBezierCurve)
     case quadratic(QuadraticBezierCurve)
     case cubic(CubicBezierCurve)
     
+    // MARK: - Initializers
+
+    /// Creates a linear Bézier curve.
     public init(start: Point, end: Point) {
         self = .linear(LinearBezierCurve(start: start, end: end))
     }
     
+    /// Creates a quadratic Bézier curve.
     public init(start: Point, control: Point, end: Point) {
         self = .quadratic(QuadraticBezierCurve(start: start, control: control, end: end))
     }
     
+    /// Creates a cubic Bézier curve.
     public init(start: Point, control1: Point, control2: Point, end: Point) {
         self = .cubic(
             CubicBezierCurve(start: start, control1: control1, control2: control2, end: end)
         )
     }
+    
+    // MARK: - Subscripts
+    
+    public subscript (t: Double) -> Point {
+        switch self {
+        case let .linear(linear):
+            return linear[t]
+        case let .quadratic(quadratic):
+            return quadratic[t]
+        case let .cubic(cubic):
+            return cubic[t]
+        }
+    }
+    
+    // MARK: - Instance Methods
     
     public func translatedBy(x: Double, y: Double) -> BezierCurve {
         switch self {
@@ -92,6 +130,9 @@ public enum BezierCurve {
 }
 
 extension BezierCurve: Equatable {
+    
+    // MARK: - Equatable
+    
     public static func == (lhs: BezierCurve, rhs: BezierCurve) -> Bool {
         switch (lhs, rhs) {
         case let (.linear(a), .linear(b)):
