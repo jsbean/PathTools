@@ -141,7 +141,7 @@ extension CubicBezierCurve: Equatable {
     public static func == (lhs: CubicBezierCurve, rhs: CubicBezierCurve) -> Bool {
         return (
             lhs.start == rhs.start &&
-            lhs.control1 == rhs.control2 &&
+            lhs.control1 == rhs.control1 &&
             lhs.control2 == rhs.control2 &&
             lhs.end == rhs.end
         )
