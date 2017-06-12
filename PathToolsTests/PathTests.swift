@@ -14,7 +14,7 @@ class PathTests: XCTestCase {
 
     func testMoveTo() {
         let path = Path.builder.move(to: Point()).build()
-        XCTAssertEqual(path.count, 1)
+        XCTAssertEqual(path.count, 0)
     }
     
     func testMoveToLineTo() {
@@ -22,7 +22,7 @@ class PathTests: XCTestCase {
             .move(to: Point())
             .addLine(to: Point())
             .build()
-        XCTAssertEqual(path.count, 2)
+        XCTAssertEqual(path.count, 1)
     }
     
     func testInitWithCGRect() {
@@ -55,7 +55,7 @@ class PathTests: XCTestCase {
             end: Point(x: 1, y: 1)
         )
         
-        let path = Path.builder.addCurve(curve).build()
+        let path = Path.builder.addCurve(.cubic(curve)).build()
         
         let expected = Path.builder
             .move(to: Point())

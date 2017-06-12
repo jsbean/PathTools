@@ -15,7 +15,7 @@ extension Axis {
     public static let y: Axis = .vertical
 }
 
-public struct QuadraticBezierCurve: BezierCurve {
+public struct QuadraticBezierCurve: BezierCurveProtocol {
     
     // make protocol for BezierCurveSolver
     private struct Solver: BezierCurveSolver {
@@ -70,6 +70,14 @@ public struct QuadraticBezierCurve: BezierCurve {
         self.control = points[1]
         self.end = points[3]
         self.solver = Solver(start: start, end: end, control: control)
+    }
+    
+    public func translatedBy(x: Double, y: Double) -> QuadraticBezierCurve {
+        return QuadraticBezierCurve(
+            start: start.translatedBy(x: x, y: y),
+            control: control.translatedBy(x: x, y: y),
+            end: end.translatedBy(x: x, y: y)
+        )
     }
 
     /// - Returns: `Point` at the given `t` value.
@@ -151,6 +159,17 @@ public struct QuadraticBezierCurve: BezierCurve {
 
     public func simplified(accuracy: Double) -> [Point] {
         fatalError("Not yet implemented!")
+    }
+}
+
+extension QuadraticBezierCurve: Equatable {
+    
+    public static func == (lhs: QuadraticBezierCurve, rhs: QuadraticBezierCurve) -> Bool {
+        return (
+            lhs.start == rhs.start &&
+            lhs.control == rhs.control &&
+            lhs.end == rhs.end
+        )
     }
 }
 

@@ -8,7 +8,7 @@
 
 import GeometryTools
 
-public protocol BezierCurve {
+public protocol BezierCurveProtocol: Equatable {
  
     /// Start point of Bézier curve.
     var start: Point { get }
@@ -29,6 +29,65 @@ public protocol BezierCurve {
     
     /// - returns: The x-value for a given `y`.
     func xs(y: Double) -> Set<Double>
+    
+    func translatedBy(x: Double, y: Double) -> Self
 
     func simplified(accuracy: Double) -> [Point]
+}
+
+public enum BezierCurve {
+    
+    /// Start point of Bézier curve.
+    var start: Point {
+        switch self {
+        case let .linear(linear):
+            return linear.start
+        case let .quadratic(quad):
+            return quad.start
+        case let .cubic(cubic):
+            return cubic.start
+        }
+    }
+    
+    /// End point of Bézier curve.
+    var end: Point {
+        switch self {
+        case let .linear(linear):
+            return linear.end
+        case let .quadratic(quadratic):
+            return quadratic.end
+        case let .cubic(cubic):
+            return cubic.end
+        }
+    }
+    
+    case linear(LinearBezierCurve)
+    case quadratic(QuadraticBezierCurve)
+    case cubic(CubicBezierCurve)
+    
+    public func translatedBy(x: Double, y: Double) -> BezierCurve {
+        switch self {
+        case let .linear(linear):
+            return .linear(linear.translatedBy(x: x, y: y))
+        case let .quadratic(quadratic):
+            return .quadratic(quadratic.translatedBy(x: x, y: y))
+        case let .cubic(cubic):
+            return .cubic(cubic.translatedBy(x: x, y: y))
+        }
+    }
+}
+
+extension BezierCurve: Equatable {
+    public static func == (lhs: BezierCurve, rhs: BezierCurve) -> Bool {
+        switch (lhs, rhs) {
+        case let (.linear(a), .linear(b)):
+            return a == b
+        case let (.quadratic(a), .quadratic(b)):
+            return a == b
+        case let (.cubic(a), .cubic(b)):
+            return a == b
+        default:
+            return false
+        }
+    }
 }

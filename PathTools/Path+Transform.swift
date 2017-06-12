@@ -33,6 +33,7 @@ extension Path {
     /// - returns: `Path` that is scaled by the given `amount`.
     ///
     /// - TODO: Do this without copies!
+    /// - TODO: Do this without dipping into `Quartz` territory!
     public func scaled(by amount: CGFloat) -> Path {
         var scale = CGAffineTransform(scaleX: amount, y: amount)
         let beforeBounds = cgPath.boundingBox
@@ -48,7 +49,7 @@ extension Path {
     
     /// - returns: `Path` translated by the given amounts.
     public func translatedBy(x: Double = 0, y: Double = 0) -> Path {
-        return Path(elements.map { $0.translatedBy(x: x, y: y) })
+        return Path(curves.map { $0.translatedBy(x: x, y: y) })
     }
 
     /// - returns: `Path` that is mirrored over the y-axis.
@@ -65,7 +66,7 @@ extension Path {
     }
 }
 
-//
+
 //public func mirror() {
 //    let mirrorOverXOrigin = CGAffineTransformMakeScale(-1, 1)
 //    let translate = CGAffineTransformMakeTranslation(bounds.width, 0)

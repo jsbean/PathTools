@@ -12,31 +12,36 @@ extension Path {
     
     /// `CGPath` representation of `Path`.
     ///
-    /// > Use this as the `path` property for a `CAShapeLayer`.
-    ///
     public var cgPath: CGPath {
+        
         let path = CGMutablePath()
-        for element in elements {
-            switch element {
-            case .move(let point):
-                path.move(to: CGPoint(point))
-            case .line(let point):
-                path.addLine(to: CGPoint(point))
-            case .quadCurve(let point, let controlPoint):
-                path.addQuadCurve(to: CGPoint(point), control: CGPoint(controlPoint))
-            case .curve(let point, let controlPoint1, let controlPoint2):
-                path.addCurve(
-                    to: CGPoint(point),
-                    control1: CGPoint(controlPoint1),
-                    control2: CGPoint(controlPoint2)
+        
+        guard let (head, tail) = curves.destructured else {
+            return path
+        }
+        
+        path.move(to: CGPoint(head.start))
+        
+        for curve in tail {
+            switch curve {
+            case let .linear(linear):
+                path.addLine(to: CGPoint(linear.end))
+            case let .quadratic(quadratic):
+                path.addQuadCurve(
+                    to: CGPoint(quadratic.end),
+                    control: CGPoint(quadratic.control)
                 )
-            case .close:
-                path.closeSubpath()
+            case let .cubic(cubic):
+                path.addCurve(
+                    to: CGPoint(cubic.end),
+                    control1: CGPoint(cubic.control1),
+                    control2: CGPoint(cubic.control2)
+                )
             }
         }
+        
         return path.copy()!
     }
-
     
     /// Creates a `Path` with a `CGPath`.
     public init(_ cgPath: CGPath?) {
@@ -48,6 +53,6 @@ extension Path {
                 elementsPointer.pointee.append(nextElement)
             }
         }
-        self.init(pathElements)
+        self.init(pathElements: pathElements)
     }
 }

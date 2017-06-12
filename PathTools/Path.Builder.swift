@@ -8,11 +8,11 @@
 
 import GeometryTools
 
-/// Interface exposed upon beginning the `Path` step-building patter.
+/// Interface exposed upon beginning the `Path` step-building pattern, or after a subPath has
+/// been closed.
 public protocol AllowingMoveTo {
     func move(to point: Point) -> AllowingAllPathElements
-    func addQuadCurve(_ curve: QuadraticBezierCurve) -> AllowingAllPathElements
-    func addCurve(_ curve: CubicBezierCurve) -> AllowingAllPathElements
+    func addCurve(_ curve: BezierCurve) -> AllowingAllPathElements
 }
 
 /// Interface exposed (along with `ExposesMoveTo`) after adding a `close()` element.
@@ -32,7 +32,9 @@ extension Path {
     
     internal final class Builder: AllowingAllPathElements {
         
-        var elements: [PathElement] = []
+        var subPathFirst: Point!
+        var last: Point!
+        var curves: [BezierCurve] = []
         
         // MARK: - Initializers
         
@@ -43,19 +45,21 @@ extension Path {
         
         /// Move to `point`.
         ///
-        /// - returns: `self`.
+        /// - Returns: `self`.
         @discardableResult
         func move(to point: Point) -> AllowingAllPathElements {
-            elements.append(.move(point))
+            last = point
+            subPathFirst = point
             return self
         }
         
         /// Add line to `point`.
         ///
-        /// - returns: `self`.
+        /// - Returns: `self`.
         @discardableResult
         func addLine(to point: Point) -> AllowingAllPathElements {
-            elements.append(.line(point))
+            let curve = LinearBezierCurve(start: last, end: point)
+            curves.append(.linear(curve))
             return self
         }
         
@@ -64,7 +68,25 @@ extension Path {
         /// - returns: `self`.
         @discardableResult
         func addQuadCurve(to point: Point, control: Point) -> AllowingAllPathElements {
-            elements.append(.quadCurve(point, control))
+            let curve = QuadraticBezierCurve(start: last, control: control, end: point)
+            curves.append(.quadratic(curve))
+            return self
+        }
+        
+        /// Add curve to `point`, with two control points.
+        ///
+        /// - Returns: `self`.
+        @discardableResult
+        func addCurve(to point: Point, control1: Point, control2: Point)
+            -> AllowingAllPathElements
+        {
+            let curve = CubicBezierCurve(
+                start: last,
+                control1: control1,
+                control2: control2,
+                end: point
+            )
+            curves.append(.cubic(curve))
             return self
         }
         
@@ -72,40 +94,8 @@ extension Path {
         ///
         /// - Returns: `self`.
         @discardableResult
-        func addQuadCurve(_ curve: QuadraticBezierCurve) -> AllowingAllPathElements {
-
-            if let lastPoint = elements.last?.point, lastPoint == curve.start {
-                return addQuadCurve(to: curve.end, control: curve.control)
-            }
-            
-            move(to: curve.start)
-            return addQuadCurve(to: curve.end, control: curve.control)
-        }
-        
-        /// Adds the given `curve` to the `Path` being built.
-        ///
-        /// - Returns: `self`.
-        @discardableResult
-        func addCurve(_ curve: CubicBezierCurve) -> AllowingAllPathElements {
-            
-            if let lastPoint = elements.last?.point, lastPoint == curve.start {
-                return addCurve(
-                    to: curve.end,
-                    control1: curve.control1,
-                    control2: curve.control2
-                )
-            }
-            
-            move(to: curve.start)
-            return addCurve(to: curve.end, control1: curve.control1, control2: curve.control2)
-        }
-        
-        /// Add curve to `point`, with two control points.
-        ///
-        /// - returns: `self`.
-        @discardableResult
-        func addCurve(to point: Point, control1: Point, control2: Point) -> AllowingAllPathElements {
-            elements.append(.curve(point, control1, control2))
+        func addCurve(_ curve: BezierCurve) -> AllowingAllPathElements {
+            curves.append(curve)
             return self
         }
         
@@ -114,13 +104,47 @@ extension Path {
         /// - returns: `self`.
         @discardableResult
         func close() -> AllowingBuild & AllowingMoveTo {
-            elements.append(.close)
+            let curve = LinearBezierCurve(start: last, end: subPathFirst)
+            curves.append(.linear(curve))
             return self
         }
         
         /// - Returns: `Path` value with the elements constructed thus far.
+        ///
+        /// - Invariant: The first element must be a `move(Point)` element. This is ensured
+        /// by the step-builder interface).
+        ///
+        /// - Invariant: `close` elements must be followed by a `move(Point)` element, or by
+        /// a `quadCurve` or `curve` element. This is ensured by the step-builder interface.
         func build() -> Path {
-            return Path(elements)
+            return Path(curves)
+            
+//            guard
+//                let (head, tail) = elements.destructured, case let .move(start) = head
+//            else {
+//                return Path([])
+//            }
+//            
+//            var curves: [BezierCurve] = []
+//            var last = start
+//            for element in tail {
+//                switch element {
+//                case .move(let point):
+//                    last = point
+//                case .line(let point):
+//                    let curve = LinearBezierCurve(start: last, end: point)
+//                    curves.append(curve)
+//                case .quadCurve(let point, let control):
+//                    let curve = QuadraticBezierCurve(start: last, control: control, end: point)
+//                case .curve(let point, let control1, let control2):
+//                    break
+//                case .close:
+//                    break
+//                }
+//            }
+//            
+//            fatalError()
+//            //return Path(elements)
         }
     }
 }
