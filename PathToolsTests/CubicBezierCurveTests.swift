@@ -80,6 +80,18 @@ class CubicBezierCurveTests: XCTestCase {
             XCTAssert(xs.contains(point.x, accuracy: 0.0000001))
         }
     }
+    
+    func testLength() {
+        
+        let upAndDown = CubicBezierCurve(
+            start: Point(x: -1, y: 0),
+            control1: Point(x: 0, y: 1),
+            control2: Point(x: 0, y: -1),
+            end: Point(x: 1, y: 0)
+        )
+        
+        let l = upAndDown.length
+    }
 }
 
 /// - TODO: Move to `dn-m/ArithmeticTools`.

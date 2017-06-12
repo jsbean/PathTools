@@ -14,6 +14,11 @@ public struct LinearBezierCurve: BezierCurveProtocol {
     
     // MARK: - Instance Properties
     
+    /// Length of `LinearBezierCurve`.
+    public var length: Double {
+        return Line(start: start, end: end).length
+    }
+    
     /// Start point.
     public let start: Point
     

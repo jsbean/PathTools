@@ -41,6 +41,17 @@ public struct QuadraticBezierCurve: BezierCurveProtocol {
     
     // MARK: - Instance Properties
     
+    /// Length of `QuadraticBezierCurve`.
+    ///
+    /// - TODO: Add customizable accuracy.
+    ///
+    public var length: Double {
+        let points = stride(from: 0, through: 1, by: 0.01).map { t in self[t] }
+        let lines = points.adjacentPairs().map(Line.init)
+        let length = lines.map { $0.length }.sum
+        return length
+    }
+    
     /// Start.
     public let start: Point
     
