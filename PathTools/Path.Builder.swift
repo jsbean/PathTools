@@ -58,8 +58,8 @@ extension Path {
         /// - Returns: `self`.
         @discardableResult
         func addLine(to point: Point) -> AllowingAllPathElements {
-            let curve = LinearBezierCurve(start: last, end: point)
-            curves.append(.linear(curve))
+            let curve = BezierCurve(start: last, end: point)
+            curves.append(curve)
             return self
         }
         
@@ -68,8 +68,8 @@ extension Path {
         /// - returns: `self`.
         @discardableResult
         func addQuadCurve(to point: Point, control: Point) -> AllowingAllPathElements {
-            let curve = QuadraticBezierCurve(start: last, control: control, end: point)
-            curves.append(.quadratic(curve))
+            let curve = BezierCurve(start: last, control: control, end: point)
+            curves.append(curve)
             return self
         }
         
@@ -80,13 +80,13 @@ extension Path {
         func addCurve(to point: Point, control1: Point, control2: Point)
             -> AllowingAllPathElements
         {
-            let curve = CubicBezierCurve(
+            let curve = BezierCurve(
                 start: last,
                 control1: control1,
                 control2: control2,
                 end: point
             )
-            curves.append(.cubic(curve))
+            curves.append(curve)
             return self
         }
         
@@ -104,8 +104,8 @@ extension Path {
         /// - returns: `self`.
         @discardableResult
         func close() -> AllowingBuild & AllowingMoveTo {
-            let curve = LinearBezierCurve(start: last, end: subPathFirst)
-            curves.append(.linear(curve))
+            let curve = BezierCurve(start: last, end: subPathFirst)
+            curves.append(curve)
             return self
         }
         

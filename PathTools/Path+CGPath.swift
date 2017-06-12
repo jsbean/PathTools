@@ -23,21 +23,38 @@ extension Path {
         path.move(to: CGPoint(head.start))
         
         for curve in tail {
-            switch curve {
-            case let .linear(linear):
-                path.addLine(to: CGPoint(linear.end))
-            case let .quadratic(quadratic):
-                path.addQuadCurve(
-                    to: CGPoint(quadratic.end),
-                    control: CGPoint(quadratic.control)
-                )
-            case let .cubic(cubic):
+            switch curve.points.count {
+            case 2:
+                path.addLine(to: CGPoint(curve.points[1]))
+            case 3:
+                path.addQuadCurve(to: CGPoint(curve.end), control: CGPoint(curve.points[1]))
+            case 4:
                 path.addCurve(
-                    to: CGPoint(cubic.end),
-                    control1: CGPoint(cubic.control1),
-                    control2: CGPoint(cubic.control2)
+                    to: CGPoint(curve.end),
+                    control1: CGPoint(curve.points[1]),
+                    control2: CGPoint(curve.points[2])
+                )
+            default:
+                fatalError(
+                    "Bézier curves with \(curve.points.count) control points not supported!"
                 )
             }
+            
+//            switch curve {
+//            case let .linear(linear):
+//                path.addLine(to: CGPoint(linear.end))
+//            case let .quadratic(quadratic):
+//                path.addQuadCurve(
+//                    to: CGPoint(quadratic.end),
+//                    control: CGPoint(quadratic.control)
+//                )
+//            case let .cubic(cubic):
+//                path.addCurve(
+//                    to: CGPoint(cubic.end),
+//                    control1: CGPoint(cubic.control1),
+//                    control2: CGPoint(cubic.control2)
+//                )
+//            }
         }
         
         return path.copy()!

@@ -24,14 +24,7 @@ public struct Path {
     // MARK: - Instance Properties
     
     public var isShape: Bool {
-        return curves.all { curve in
-            switch curve {
-            case .linear:
-                return true
-            default:
-                return false
-            }
-        }
+        return curves.all { curve in curve.order == .linear }
     }
     
     /// - Returns: `true` if there are no non-`.close` elements contained herein. Otherwise,
@@ -60,15 +53,15 @@ public struct Path {
         for element in tail {
             switch element {
             case .move(let point):
-                builder.move(to: point)
+                _ = builder.move(to: point)
             case .line(let point):
-                builder.addLine(to: point)
+                _ = builder.addLine(to: point)
             case .quadCurve(let point, let control):
-                builder.addQuadCurve(to: point, control: control)
+                _ = builder.addQuadCurve(to: point, control: control)
             case .curve(let point, let control1, let control2):
-                builder.addCurve(to: point, control1: control1, control2: control2)
+                _ = builder.addCurve(to: point, control1: control1, control2: control2)
             case .close:
-                builder.close()
+                _ = builder.close()
             }
         }
         
@@ -80,14 +73,13 @@ extension Path {
 
     /// - Returns: New `Path` with elements of two paths.
     public static func + (lhs: Path, rhs: Path) -> Path {
-        fatalError()
-        //return Path(lhs.elements + rhs.elements)
+        return Path(lhs.curves + rhs.curves)
     }
 }
 
 extension Path: AnyCollectionWrapping {
 
-    // MARK: - `AnyCollectionWrapping`
+    // MARK: - AnyCollectionWrapping
     
     public var collection: AnyCollection<BezierCurve> {
         return AnyCollection(curves)
@@ -96,6 +88,8 @@ extension Path: AnyCollectionWrapping {
 
 extension Path: Equatable {
     
+    // MARK: - Equatable
+    
     public static func == (lhs: Path, rhs: Path) -> Bool {
         return lhs.curves == rhs.curves
     }
@@ -103,17 +97,10 @@ extension Path: Equatable {
 
 extension Path: CustomStringConvertible {
     
-    // MARK: - `CustomStringConvertible`
+    // MARK: - CustomStringConvertible
     
     /// Printed description.
     public var description: String {
         return curves.map { "\($0)" }.joined(separator: "\n")
-    }
-}
-
-extension Array {
-    
-    public func appending(contentsOf other: Array) -> Array {
-        return self + other
     }
 }
