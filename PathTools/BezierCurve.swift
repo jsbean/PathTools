@@ -16,26 +16,22 @@ public struct BezierCurve {
     // MARK: - Nested Types
     
     /// Order of `BezierCurve`.
-    public enum Order {
-        case linear
-        case quadratic
-        case cubic
+    public enum Order: Int {
+        case linear = 2
+        case quadratic = 3
+        case cubic = 4
     }
     
     // MARK: - Instance Properties
     
     /// Order of `BezierCurve`.
     public var order: Order {
-        switch points.count {
-        case 2:
-            return .linear
-        case 3:
-            return .quadratic
-        case 4:
-            return .cubic
-        default:
-            fatalError()
+        
+        guard let order = Order(rawValue: points.count) else {
+            fatalError("Somehow you have managed to create an unsupported Bézier curve!")
         }
+        
+        return order
     }
     
     /// Start point.
@@ -53,15 +49,13 @@ public struct BezierCurve {
     /// - TODO: Add customizability to accuracy.
     ///
     public var length: Double {
-        switch points.count {
-        case 2:
+        switch order {
+        case .linear:
             return Line(points: points).length
-        case 3, 4:
+        case .quadratic, .cubic:
             let points = stride(from: 0, through: 1, by: 0.01).map { t in self[t] }
             let lines = points.adjacentPairs().map(Line.init)
             return lines.map { $0.length }.sum
-        default:
-            fatalError("Bézier curves with \(points.count) control points not supported!")
         }
     }
     
@@ -98,13 +92,13 @@ public struct BezierCurve {
     
     /// - Returns: `Point` at the given `t` value.
     public subscript (t: Double) -> Point {
-        switch points.count {
-        case 2:
+        switch order {
+        case .linear:
             return t * (end - start) + start
-        case 3:
+        case .quadratic:
             let control = points[1]
             return start * pow(1-t, 2) + control * 2 * (1-t) * t + end * pow(t,2)
-        case 4:
+        case .cubic:
             let control1 = points[1]
             let control2 = points[2]
             return (
@@ -113,78 +107,68 @@ public struct BezierCurve {
                 control2 * 3 * (1-t) * pow(t,2) +
                 end * pow(t,3)
             )
-        default:
-            fatalError("Bézier curves with \(points.count) control points not supported!")
         }
     }
     
     /// - Returns: `t` values for the given `x`.
     public func ts(x: Double) -> Set<Double> {
-        switch points.count {
-        case 2:
+        switch order {
+        case .linear:
             return [(x - start.x) * (end.x - start.x)]
-        case 3:
+        case .quadratic:
             let c = start
             let b = 2 * (points[1] - start)
             let a = start - 2 * points[1] + end
             return quadratic(a.x, b.x, c.x)
-        case 4:
+        case .cubic:
             return cardano(points: points, line: Line.vertical(at: x))
-        default:
-            fatalError("Bézier curves with \(points.count) control points not supported!")
         }
     }
     
     /// - Returns: `t` values for the given `y`.
     public func ts(y: Double) -> Set<Double> {
-        switch points.count {
-        case 2:
+        switch order {
+        case .linear:
             return [(y - start.y) * (end.y - start.y)]
-        case 3:
+        case .quadratic:
             let c = start
             let b = 2 * (points[1] - start)
             let a = start - 2 * points[1] + end
             return quadratic(a.y, b.y, c.y)
-        case 4:
+        case .cubic:
             return cardano(points: points, line: .horizontal(at: y))
-        default:
-            fatalError("Bézier curves with \(points.count) control points not supported!")
         }
     }
     
     /// - Returns: Vertical positions for the given `x`.
     public func ys(x: Double) -> Set<Double> {
-        switch points.count {
-        case 2:
+        switch order {
+        case .linear:
             return [start.y + ((x - start.x) / (end.x - start.x)) * (end.y - start.y)]
-        case 3:
+        case .quadratic:
             let control = points[1]
             let c = start
             let b = 2 * (control - start)
             let a = start - 2 * control + end
             return Set(quadratic(a.x, b.x, c.x - x).map { self[$0].y })
-        case 4:
+        case .cubic:
             return Set(ts(x: x).map { t in self[t].y })
-        default:
-            fatalError("Bézier curves with \(points.count) control points not supported!")
         }
     }
     
     /// - Returns: Horizontal positions for the given `y`.
     public func xs(y: Double) -> Set<Double> {
-        switch points.count {
-        case 2:
+        switch order {
+        case .linear:
             return [start.x + ((y - start.y) / (end.y - start.y)) * (end.x - start.x)]
-        case 3:
+        case .quadratic:
             let control = points[1]
             let c = start
             let b = 2 * (control - start)
             let a = start - 2 * control + end
             return Set(quadratic(a.y, b.y, c.y - y).map { self[$0].x })
-        case 4:
+        case .cubic:
             return Set(ts(y: y).map { t in self[t].x })
-        default:
-            fatalError("Bézier curves with \(points.count) control points not supported!")
         }
     }
     
@@ -197,6 +181,17 @@ public struct BezierCurve {
     /// value.
     public func split(t: Double) -> (BezierCurve, BezierCurve) {
         return map(PathTools.split(controlPoints: points, at: t)) { BezierCurve($0) }
+    }
+    
+    /// - Returns: Array of `Point` values.
+    public func simplified(segmentCount: Int) -> [Point] {
+        
+        if order == .linear {
+            return [start, end]
+        }
+        
+        let segment = 1 / Double(segmentCount)
+        return stride(from: 0, through: 1, by: segment).map { t in self[t] }
     }
 }
 

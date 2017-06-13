@@ -115,6 +115,19 @@ class CubicBezierCurveTests: XCTestCase {
         XCTAssertEqual(split.0, expectedLeft)
         XCTAssertEqual(split.1, expectedRight)
     }
+    
+    func testSimplify() {
+        
+        let upAndDown = BezierCurve(
+            start: Point(x: -1, y: 0),
+            control1: Point(x: 0, y: 1),
+            control2: Point(x: 0, y: -1),
+            end: Point(x: 1, y: 0)
+        )
+        
+        let simple = upAndDown.simplified(segmentCount: 100)
+        print(simple)
+    }
 }
 
 /// - TODO: Move to `dn-m/ArithmeticTools`.
