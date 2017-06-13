@@ -14,8 +14,6 @@ extension Path {
     // MARK: - Ellipse
 
     /// - returns: `Path` with an ellipse shape within the given `rectangle`.
-    ///
-    /// - TODO: Implement arcs properly.
     public static func ellipse(in rect: Rectangle) -> Path {
         
         let left = rect.minX
@@ -23,12 +21,12 @@ extension Path {
         let top = rect.maxY
         let bottom = rect.minY
         
-        let (x,y) = (rect.minX, rect.maxY)
+        let (x,y) = (rect.midX, rect.midY)
         let (w,h) = (rect.size.width, rect.size.height)
         let ax = (4 * (sqrt(2.0) - 1) / 3) * (w / 2)
         let ay = (4 * (sqrt(2.0) - 1) / 3) * (h / 2)
         
-        return Path([
+        let curves = [
             
             // top center -> right
             BezierCurve(
@@ -61,6 +59,12 @@ extension Path {
                 control2: Point(x: x - ax, y: top),
                 end: Point(x: x, y: top)
             )
-        ])
+        ]
+        
+        curves.forEach {
+            print($0)
+        }
+        
+        return Path(curves)
     }
 }
