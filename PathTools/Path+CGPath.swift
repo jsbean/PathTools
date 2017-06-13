@@ -21,7 +21,14 @@ extension Path {
         
         path.move(to: CGPoint(head.start))
 
-        for curve in curves {
+        for (c, curve) in curves.enumerated() {
+
+            // Mange closed subpatch
+            if c == curves.count - 1, curve.order == .linear, curve.end == head.start {
+                path.closeSubpath()
+                continue
+            }
+            
             switch curve.order {
             case .linear:
                 path.addLine(to: CGPoint(curve.points[1]))
