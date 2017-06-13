@@ -97,7 +97,7 @@ class PathTests: XCTestCase {
             BezierCurve(start: Point(x: 0, y: 50), end: Point(x: 50, y: 50)),
             BezierCurve(start: Point(x: 50, y: 50), end: Point(x: 50, y: 100)),
             BezierCurve(start: Point(x: 50, y: 100), end: Point(x: 0, y: 100)),
-            BezierCurve(start: Point(x: 0, y: 100), end: Point(x: 0, y: 50)),
+            BezierCurve(start: Point(x: 0, y: 100), end: Point(x: 0, y: 50))
         ]
         XCTAssertEqual(square, Path(expectedCurves))
         XCTAssertEqual(square, Path(square.cgPath))
