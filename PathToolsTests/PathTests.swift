@@ -102,4 +102,10 @@ class PathTests: XCTestCase {
         XCTAssertEqual(square, Path(expectedCurves))
         XCTAssertEqual(square, Path(square.cgPath))
     }
+    
+    func testEllipse() {
+        let rect = Rectangle(x: 0, y: 0, width: 200, height: 50)
+        let ellipse = Path.ellipse(in: rect)
+        
+    }
 }

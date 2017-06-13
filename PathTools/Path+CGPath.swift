@@ -25,6 +25,7 @@ extension Path {
 
             // Mange closed subpatch
             if c == curves.count - 1, curve.order == .linear, curve.end == head.start {
+                print("close subpath")
                 path.closeSubpath()
                 continue
             }
