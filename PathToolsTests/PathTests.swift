@@ -85,7 +85,21 @@ class PathTests: XCTestCase {
             .build()
         
         let simplified = path.simplified(segmentCount: 50)
-        print("simplified path: \(simplified)")
         
+        // TODO: Add assertion
+    }
+    
+    // MARK: - Factory Methods
+    
+    func testSquare() {
+        let square = Path.square(center: Point(x: 25, y: 75), width: 50)
+        let expectedCurves = [
+            BezierCurve(start: Point(x: 0, y: 50), end: Point(x: 50, y: 50)),
+            BezierCurve(start: Point(x: 50, y: 50), end: Point(x: 50, y: 100)),
+            BezierCurve(start: Point(x: 50, y: 100), end: Point(x: 0, y: 100)),
+            BezierCurve(start: Point(x: 0, y: 100), end: Point(x: 0, y: 50))
+        ]
+        XCTAssertEqual(square, Path(expectedCurves))
+        XCTAssertEqual(square, Path(square.cgPath))
     }
 }
