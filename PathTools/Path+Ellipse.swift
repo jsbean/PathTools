@@ -61,10 +61,6 @@ extension Path {
             )
         ]
         
-        curves.forEach {
-            print($0)
-        }
-        
         return Path(curves)
     }
 }

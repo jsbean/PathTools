@@ -13,14 +13,6 @@ import GeometryTools
 /// - TODO: Conform to `Collection` protocols (parameterized over `BezierCurve`)
 public struct Path {
     
-    // MARK: - Type Properties
-    
-    /// - Returns: `Builder` object that only exposes the `move(to:)` method, as it is a
-    /// required first element for a `Path`.
-    public static var builder: AllowingMoveTo {
-        return Builder()
-    }
-    
     // MARK: - Instance Properties
     
     public var isShape: Bool {
@@ -89,8 +81,11 @@ public struct Path {
     }
 }
 
-extension Path {
+extension Path: Monoid {
 
+    /// Empty path.
+    public static let unit = Path([])
+    
     /// - Returns: New `Path` with elements of two paths.
     public static func + (lhs: Path, rhs: Path) -> Path {
         return Path(lhs.curves + rhs.curves)

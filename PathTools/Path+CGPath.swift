@@ -15,24 +15,30 @@ extension Path {
         
         let path = CGMutablePath()
         
-        guard let head = curves.first else {
+        guard let firstCurve = curves.first else {
             return path
         }
         
-        path.move(to: CGPoint(head.start))
+        var last = firstCurve.start
+        
+        path.move(to: CGPoint(last))
 
         for (c, curve) in curves.enumerated() {
 
-            // Mange closed subpatch
-            if c == curves.count - 1, curve.order == .linear, curve.end == head.start {
-                print("close subpath")
+            // Manage closed subpatch
+            if c == curves.count - 1, curve.order == .linear, curve.end == last {
                 path.closeSubpath()
                 continue
             }
             
+            if curve.start != last {
+                path.move(to: CGPoint(curve.start))
+                last = curve.start
+            }
+            
             switch curve.order {
             case .linear:
-                path.addLine(to: CGPoint(curve.points[1]))
+                path.addLine(to: CGPoint(curve.end))
             case .quadratic:
                 path.addQuadCurve(to: CGPoint(curve.end), control: CGPoint(curve.points[1]))
             case .cubic:
