@@ -50,7 +50,7 @@ public struct Path {
         for element in tail {
             switch element {
             case .move(let point):
-                _ = builder.move(to: point)
+                builder.move(to: point)
                 last = point
             case .line(let point):
                 point == last ? builder.close() : builder.addLine(to: point)
