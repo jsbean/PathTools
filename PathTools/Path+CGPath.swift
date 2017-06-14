@@ -25,7 +25,7 @@ extension Path {
 
         for (c, curve) in curves.enumerated() {
 
-            // Manage closed subpatch
+            // Manage closed subpath
             if c == curves.count - 1, curve.order == .linear, curve.end == last {
                 path.closeSubpath()
                 continue
