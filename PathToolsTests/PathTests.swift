@@ -146,4 +146,10 @@ class PathTests: XCTestCase {
         
         XCTAssertEqual(path, Path(path.cgPath))
     }
+    
+    func testParallelograms() {
+        let path = Path.parallelogram(center: Point(), height: 30, width: 100, slope: 0.5)
+        path.curves.forEach { print($0) }
+        XCTAssertEqual(path, Path(path.cgPath))
+    }
 }

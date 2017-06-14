@@ -45,19 +45,21 @@ public struct Path {
         }
         
         let builder = Path.builder.move(to: start)
+        var last = start
         
         for element in tail {
             switch element {
             case .move(let point):
                 _ = builder.move(to: point)
+                last = point
             case .line(let point):
-                _ = builder.addLine(to: point)
+                point == last ? builder.close() : builder.addLine(to: point)
             case .quadCurve(let point, let control):
-                _ = builder.addQuadCurve(to: point, control: control)
+                builder.addQuadCurve(to: point, control: control)
             case .curve(let point, let control1, let control2):
-                _ = builder.addCurve(to: point, control1: control1, control2: control2)
+                builder.addCurve(to: point, control1: control1, control2: control2)
             case .close:
-                _ = builder.close()
+                builder.close()
             }
         }
         

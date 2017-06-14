@@ -15,27 +15,29 @@ extension Path {
         
         let path = CGMutablePath()
         
-        guard let firstCurve = curves.first else {
+        guard let first = curves.first?.start else {
             return path
         }
         
-        var last = firstCurve.start
-        
+        var subpathFirst = first
+        var last = first
         path.move(to: CGPoint(last))
 
-        for (c, curve) in curves.enumerated() {
-
+        for curve in curves {
+            
             // Manage closed subpath
-            if c == curves.count - 1, curve.order == .linear, curve.end == last {
+            if curve.order == .linear, curve.end == subpathFirst {
                 path.closeSubpath()
                 continue
             }
             
+            // Manage discontinuity
             if curve.start != last {
                 path.move(to: CGPoint(curve.start))
-                last = curve.start
+                subpathFirst = curve.start
             }
             
+            // Otherwise, add curve
             switch curve.order {
             case .linear:
                 path.addLine(to: CGPoint(curve.end))
@@ -48,6 +50,9 @@ extension Path {
                     control2: CGPoint(curve.points[2])
                 )
             }
+            
+            // Store previous end point
+            last = curve.end
         }
         
         return path.copy()!
