@@ -30,7 +30,15 @@ public protocol AllowingAllPathElements: AllowingMoveTo, AllowingBuild {
 
 extension Path {
     
-    internal final class Builder: AllowingAllPathElements {
+    // MARK: - Type Properties
+    
+    /// - Returns: `Builder` object that only exposes the `move(to:)` method, as it is a
+    /// required first element for a `Path`.
+    public static var builder: AllowingMoveTo {
+        return Builder()
+    }
+    
+    private final class Builder: AllowingAllPathElements {
         
         var subPathFirst: Point!
         var last: Point!
