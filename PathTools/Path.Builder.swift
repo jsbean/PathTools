@@ -11,20 +11,34 @@ import GeometryTools
 /// Interface exposed upon beginning the `Path` step-building pattern, or after a subPath has
 /// been closed.
 public protocol AllowingMoveTo {
+    
+    @discardableResult
     func move(to point: Point) -> AllowingAllPathElements
+    
+    @discardableResult
     func addCurve(_ curve: BezierCurve) -> AllowingAllPathElements
 }
 
 /// Interface exposed (along with `ExposesMoveTo`) after adding a `close()` element.
 public protocol AllowingBuild {
+    
+    @discardableResult
     func build() -> Path
 }
 
 /// Interface exposing all possible path element build steps.
 public protocol AllowingAllPathElements: AllowingMoveTo, AllowingBuild {
+    
+    @discardableResult
     func addLine(to point: Point) -> AllowingAllPathElements
+    
+    @discardableResult
     func addQuadCurve(to point: Point, control: Point) -> AllowingAllPathElements
+    
+    @discardableResult
     func addCurve(to point: Point, control1: Point, control2: Point) -> AllowingAllPathElements
+    
+    @discardableResult
     func close() -> AllowingBuild & AllowingMoveTo
 }
 
