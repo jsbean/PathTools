@@ -68,6 +68,11 @@ public struct BezierCurve {
         self.points = [start, end]
     }
     
+    /// Creates a linear `BezierCurve` with the given `line`.
+    public init(_ line: Line) {
+        self.init(start: line.start, end: line.end)
+    }
+    
     /// Creates a quadratic `BezierCurve` with the given `start`, `control` and `end` points.
     public init(start: Point, control: Point, end: Point) {
         self.points = [start, control, end]
