@@ -196,13 +196,13 @@ public struct BezierCurve {
     
     /// - Returns: `BezierCurve` which is scaled by the given `amount` from the given 
     /// `reference` point.
-    public func scaled(by amount: Double, from reference: Point) -> BezierCurve {
+    public func scaled(by amount: Double, from reference: Point = Point()) -> BezierCurve {
         return BezierCurve(points.map { $0.scaled(by: amount, from: reference) })
     }
     
     /// - Returns: `BezierCurve` which is rotated by the given `angle` around the given
     /// `reference` point.
-    public func rotated(by angle: Angle, around reference: Point) -> BezierCurve {
+    public func rotated(by angle: Angle, around reference: Point = Point()) -> BezierCurve {
         return BezierCurve(points.map { $0.rotated(by: angle, around: reference) })
     }
 }

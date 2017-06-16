@@ -12,77 +12,19 @@ import GeometryTools
 extension Path {
     
     // MARK: - Transforms
-    
-    /// - returns: `Path` that is rotated by the given `degrees`, around the given `point`.
-    ///
-    /// - note: If `point` is `nil`, the center of the the bounding box is chosen.
-    public func rotated(by angle: Angle, around point: CGPoint? = nil) -> Path {
-        
-        var pointRef: CGPoint {
-            var bounds: CGRect { return cgPath.boundingBox }
-            return point ?? CGPoint(x: bounds.midX, y: bounds.midY)
-        }
-        
-        var transform = CGAffineTransform.identity
-        transform = transform.translatedBy(x: pointRef.x, y: pointRef.y)
-        transform = transform.rotated(by: CGFloat(angle.radians))
-        transform = transform.translatedBy(x: -pointRef.x, y: -pointRef.y)
-        return Path(cgPath.copy(using: &transform)!)
+
+    /// - Returns: `Path` scaled by the given `amount` from the given `reference` point.
+    public func scaled(by amount: Double, from reference: Point = Point()) -> Path {
+        return Path(curves.map { $0.scaled(by: amount, from: reference) })
     }
     
-    /// - returns: `Path` that is scaled by the given `amount`.
-    ///
-    /// - TODO: Do this without copies!
-    /// - TODO: Do this without dipping into `Quartz` territory!
-    public func scaled(by amount: CGFloat) -> Path {
-        var scale = CGAffineTransform(scaleX: amount, y: amount)
-        let beforeBounds = cgPath.boundingBox
-        let beforeCenter = CGPoint(x: beforeBounds.midX, y: beforeBounds.midY)
-        let newPath = cgPath.copy(using: &scale)
-        let afterBounds = cgPath.boundingBox
-        let afterCenter = CGPoint(x: afterBounds.midX, y: afterBounds.midY)
-        let ΔY: CGFloat = -(afterCenter.y - beforeCenter.y)
-        let ΔX: CGFloat = -(afterCenter.x - beforeCenter.x)
-        var backToCenter = CGAffineTransform(translationX: ΔX, y: ΔY)
-        return Path(newPath!.copy(using: &backToCenter))
+    /// - Returns: `Path` rotated by the given `angle` around the given `reference` point.
+    public func rotated(by angle: Angle, around reference: Point = Point()) -> Path {
+        return Path(curves.map { $0.rotated(by: angle, around: reference) })
     }
     
     /// - returns: `Path` translated by the given amounts.
     public func translatedBy(x: Double = 0, y: Double = 0) -> Path {
         return Path(curves.map { $0.translatedBy(x: x, y: y) })
     }
-
-    /// - returns: `Path` that is mirrored over the y-axis.
-    public func mirroredVertical() -> Path {
-        var transform = CGAffineTransform.identity
-        transform = CGAffineTransform(scaleX: -1, y: 1)
-        transform = CGAffineTransform(translationX: cgPath.boundingBox.width, y: 0)
-        return Path(cgPath.copy(using: &transform))
-    }
-    
-    /// - warning: Not yet implemented!
-    public func mirroredHorizontal() -> Path {
-        fatalError()
-    }
 }
-
-
-//public func mirror() {
-//    let mirrorOverXOrigin = CGAffineTransformMakeScale(-1, 1)
-//    let translate = CGAffineTransformMakeTranslation(bounds.width, 0)
-//    self.applyTransform(mirrorOverXOrigin)
-//    self.applyTransform(translate)
-//}
-//
-//public func scale(sx: CGFloat, sy: CGFloat) {
-//    let scale = CGAffineTransformMakeScale(sx, sy)
-//    let beforeBounds = CGPathGetBoundingBox(self.CGPath)
-//    let beforeCenter = CGPointMake(CGRectGetMidX(beforeBounds), CGRectGetMidY(beforeBounds))
-//    self.applyTransform(scale)
-//    let afterBounds = CGPathGetBoundingBox(self.CGPath)
-//    let afterCenter = CGPointMake(CGRectGetMidX(afterBounds), CGRectGetMidY(afterBounds))
-//    let ΔY: CGFloat = -(afterCenter.y - beforeCenter.y)
-//    let ΔX: CGFloat = -(afterCenter.x - beforeCenter.x)
-//    let backToCenter = CGAffineTransformMakeTranslation(ΔX, ΔY)
-//    self.applyTransform(backToCenter)
-//}
