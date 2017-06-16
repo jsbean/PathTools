@@ -68,6 +68,11 @@ public struct BezierCurve {
         self.points = [start, end]
     }
     
+    /// Creates a linear `BezierCurve` with the given `line`.
+    public init(_ line: Line) {
+        self.init(start: line.start, end: line.end)
+    }
+    
     /// Creates a quadratic `BezierCurve` with the given `start`, `control` and `end` points.
     public init(start: Point, control: Point, end: Point) {
         self.points = [start, control, end]
@@ -192,6 +197,18 @@ public struct BezierCurve {
         
         let segment = 1 / Double(segmentCount)
         return stride(from: 0, through: 1, by: segment).map { t in self[t] }
+    }
+    
+    /// - Returns: `BezierCurve` which is scaled by the given `amount` from the given 
+    /// `reference` point.
+    public func scaled(by amount: Double, from reference: Point = Point()) -> BezierCurve {
+        return BezierCurve(points.map { $0.scaled(by: amount, from: reference) })
+    }
+    
+    /// - Returns: `BezierCurve` which is rotated by the given `angle` around the given
+    /// `reference` point.
+    public func rotated(by angle: Angle, around reference: Point = Point()) -> BezierCurve {
+        return BezierCurve(points.map { $0.rotated(by: angle, around: reference) })
     }
 }
 

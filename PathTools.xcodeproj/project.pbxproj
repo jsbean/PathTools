@@ -213,14 +213,6 @@
 			name = CoreGraphics;
 			sourceTree = "<group>";
 		};
-		078590401DE761D100FF1645 /* BezierCurve */ = {
-			isa = PBXGroup;
-			children = (
-				078590411DE7624300FF1645 /* BezierCurve.swift */,
-			);
-			name = BezierCurve;
-			sourceTree = "<group>";
-		};
 		133469E3C4CD1699B566343A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -243,7 +235,6 @@
 				23D4DDB9DE2A8A418DC2235A /* Supporting Files */,
 				07600F991EE47AE80049E8B2 /* CoreGraphics */,
 				0701A8781EE3055700900B3F /* Path */,
-				078590401DE761D100FF1645 /* BezierCurve */,
 			);
 			name = PathTools;
 			sourceTree = "<group>";
@@ -285,6 +276,7 @@
 				B99C7DA1B4109BA5DD7F4967 /* Products */,
 				B2A6D35F674F655A87A1B843 /* Frameworks */,
 				2524A3D044065BEA12A73E66 /* PathTools */,
+				078590411DE7624300FF1645 /* BezierCurve.swift */,
 				746C966B00551867158755BC /* PathToolsTests */,
 				2DD49210EE192148DBAB072B /* PathTools.h */,
 			);
