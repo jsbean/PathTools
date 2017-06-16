@@ -66,6 +66,11 @@ public struct Path {
         self = builder.build()
     }
     
+    /// Creates a `Path` with the given `line`.
+    public init(_ line: Line) {
+        self.init([BezierCurve(line)])
+    }
+    
     // MARK: - Instance Methods
     
     /// - Returns: Polygonal representation of the `Path`.
