@@ -71,6 +71,11 @@ public struct Path {
         self.init([BezierCurve(line)])
     }
     
+    /// Creates a `Path` with the given `polygon`.
+    public init <P: PolygonProtocol> (_ polygon: P) {
+        self.init(polygon.edges.map(BezierCurve.init))
+    }
+    
     // MARK: - Instance Methods
     
     /// - Returns: Polygonal representation of the `Path`.
