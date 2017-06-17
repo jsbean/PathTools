@@ -57,6 +57,8 @@
 		07D3A0EB1EF581E400641D15 /* Path+Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D3A0E91EF581E400641D15 /* Path+Line.swift */; };
 		07D3A0ED1EF5821500641D15 /* Path+PolygonProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D3A0EC1EF5821500641D15 /* Path+PolygonProtocol.swift */; };
 		07D3A0EE1EF5821500641D15 /* Path+PolygonProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D3A0EC1EF5821500641D15 /* Path+PolygonProtocol.swift */; };
+		07D3A0F31EF585ED00641D15 /* Path+Polyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D3A0F21EF585ED00641D15 /* Path+Polyline.swift */; };
+		07D3A0F41EF585ED00641D15 /* Path+Polyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D3A0F21EF585ED00641D15 /* Path+Polyline.swift */; };
 		07EC99231D0AF7C8002414A4 /* PathElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07EC99221D0AF7C8002414A4 /* PathElement.swift */; };
 		07EC99241D0AF7C8002414A4 /* PathElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07EC99221D0AF7C8002414A4 /* PathElement.swift */; };
 		07EC99261D0AFC54002414A4 /* PathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07EC99251D0AFC54002414A4 /* PathTests.swift */; };
@@ -137,6 +139,7 @@
 		07C1F86A1D0C537300541ED5 /* Path+BoundingBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Path+BoundingBox.swift"; path = "PathTools/Path+BoundingBox.swift"; sourceTree = "<group>"; };
 		07D3A0E91EF581E400641D15 /* Path+Line.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Path+Line.swift"; path = "PathTools/Path+Line.swift"; sourceTree = "<group>"; };
 		07D3A0EC1EF5821500641D15 /* Path+PolygonProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Path+PolygonProtocol.swift"; path = "PathTools/Path+PolygonProtocol.swift"; sourceTree = "<group>"; };
+		07D3A0F21EF585ED00641D15 /* Path+Polyline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Path+Polyline.swift"; path = "PathTools/Path+Polyline.swift"; sourceTree = "<group>"; };
 		07EC99221D0AF7C8002414A4 /* PathElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PathElement.swift; path = PathTools/PathElement.swift; sourceTree = "<group>"; };
 		07EC99251D0AFC54002414A4 /* PathTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PathTests.swift; path = PathToolsTests/PathTests.swift; sourceTree = "<group>"; };
 		2DD49210EE192148DBAB072B /* PathTools.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PathTools.h; path = PathTools/PathTools.h; sourceTree = "<group>"; };
@@ -202,6 +205,7 @@
 				07EC99221D0AF7C8002414A4 /* PathElement.swift */,
 				07088AC41D0AE8A600004FB2 /* Path.swift */,
 				07D3A0E91EF581E400641D15 /* Path+Line.swift */,
+				07D3A0F21EF585ED00641D15 /* Path+Polyline.swift */,
 				07D3A0EC1EF5821500641D15 /* Path+PolygonProtocol.swift */,
 				0728B9931EEDA89200A8E727 /* Path.Builder.swift */,
 			);
@@ -479,6 +483,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0701A88B1EE3104F00900B3F /* Point+CGPoint.swift in Sources */,
+				07D3A0F41EF585ED00641D15 /* Path+Polyline.swift in Sources */,
 				07D3A0EB1EF581E400641D15 /* Path+Line.swift in Sources */,
 				078590431DE7624300FF1645 /* BezierCurve.swift in Sources */,
 				07C1F86C1D0C537300541ED5 /* Path+BoundingBox.swift in Sources */,
@@ -506,6 +511,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0701A88A1EE3104F00900B3F /* Point+CGPoint.swift in Sources */,
+				07D3A0F31EF585ED00641D15 /* Path+Polyline.swift in Sources */,
 				07D3A0EA1EF581E400641D15 /* Path+Line.swift in Sources */,
 				078590421DE7624300FF1645 /* BezierCurve.swift in Sources */,
 				07C1F86B1D0C537300541ED5 /* Path+BoundingBox.swift in Sources */,
