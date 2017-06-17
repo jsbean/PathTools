@@ -35,7 +35,7 @@ public struct Path {
     }
     
     /// Create a `Path` with the given `pathElements`.
-    internal init(pathElements: [PathElement]) {
+    public init(pathElements: [PathElement]) {
         
         guard
             let (head, tail) = pathElements.destructured, case let .move(start) = head
