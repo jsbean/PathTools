@@ -8,10 +8,8 @@
 
 import GeometryTools
 
-extension Path {
- 
-    /// Creates a `Path` with the given `line`.
-    public init(_ line: Line) {
-        self.init([BezierCurve(line)])
+extension Line: PathRepresentable {
+    public var path: Path {
+        return Path([BezierCurve(self)])
     }
 }

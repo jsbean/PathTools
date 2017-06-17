@@ -8,14 +8,10 @@
 
 import GeometryTools
 
-extension Path {
-    
-    public init(_ polyline: Polyline) {
-        
-        let curves = polyline.points.adjacentPairs().map { start, end in
-            BezierCurve(start: start, end: end)
-        }
-        
-        self.init(curves)
+extension Polyline: PathRepresentable {
+    public var path: Path {
+        return Path(
+            points.adjacentPairs().map { start, end in BezierCurve(start: start, end: end) }
+        )
     }
 }
