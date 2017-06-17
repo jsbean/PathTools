@@ -11,7 +11,7 @@ import GeometryTools
 /// Element within a `Path`.
 public enum PathElement {
     
-    var isVertex: Bool {
+    public var isVertex: Bool {
         switch self {
         case .move, .line:
             return true
@@ -20,7 +20,8 @@ public enum PathElement {
         }
     }
     
-    var point: Point? {
+    /// - Returns: The destination point of `PathElement`.
+    public var point: Point? {
         switch self {
         case .move(let point), .line(let point):
             return point
