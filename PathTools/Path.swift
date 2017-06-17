@@ -35,7 +35,7 @@ public struct Path {
     }
     
     /// Create a `Path` with the given `pathElements`.
-    internal init(pathElements: [PathElement]) {
+    public init(pathElements: [PathElement]) {
         
         guard
             let (head, tail) = pathElements.destructured, case let .move(start) = head
@@ -65,17 +65,7 @@ public struct Path {
         
         self = builder.build()
     }
-    
-    /// Creates a `Path` with the given `line`.
-    public init(_ line: Line) {
-        self.init([BezierCurve(line)])
-    }
-    
-    /// Creates a `Path` with the given `polygon`.
-    public init <P: PolygonProtocol> (_ polygon: P) {
-        self.init(polygon.edges.map(BezierCurve.init))
-    }
-    
+
     // MARK: - Instance Methods
     
     /// - Returns: Polygonal representation of the `Path`.
