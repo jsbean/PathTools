@@ -12,21 +12,19 @@ extension Path {
     
     // MARK: - Rectangle
     
+    /// Creates a `Path` with the given `rectangle`.
+    public init(_ rectangle: Rectangle) {
+        self.init(rectangle.edges.map(BezierCurve.init))
+    }
+    
     /// - Returns: `Path` with a rectangle shape defined by `rectangle`.
     public static func rectangle(_ rect: Rectangle) -> Path {
-        let builder = Path.builder
-            .move(to: rect.origin)
-            .addLine(to: Point(x: rect.maxX, y: rect.minY))
-            .addLine(to: Point(x: rect.maxX, y: rect.maxY))
-            .addLine(to: Point(x: rect.minX, y: rect.maxY))
-            .close()
-        return builder.build()
+        return Path(rect)
     }
 
     /// - Returns: `Path` with a rectangle shape with the given `origin` and `size`.
     public static func rectangle(origin: Point, size: Size) -> Path {
-        let rect = Rectangle(origin: origin, size: size)
-        return rectangle(rect)
+        return Path(Rectangle(origin: origin, size: size))
     }
     
     /// - Returns: `Path` with a rectangle shape with the given `x`, `y`, `width`, and `height`
@@ -34,7 +32,6 @@ extension Path {
     public static func rectangle(x: Double, y: Double, width: Double, height: Double)
         -> Path
     {
-        let rect = Rectangle(x: x, y: y, width: width, height: height)
-        return rectangle(rect)
+        return Path(Rectangle(x: x, y: y, width: width, height: height))
     }
 }
