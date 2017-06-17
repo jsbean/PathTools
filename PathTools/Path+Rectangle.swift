@@ -12,11 +12,6 @@ extension Path {
     
     // MARK: - Rectangle
     
-    /// Creates a `Path` with the given `rectangle`.
-    public init(_ rectangle: Rectangle) {
-        self.init(rectangle.edges.map(BezierCurve.init))
-    }
-    
     /// - Returns: `Path` with a rectangle shape defined by `rectangle`.
     public static func rectangle(_ rect: Rectangle) -> Path {
         return Path(rect)
@@ -33,5 +28,12 @@ extension Path {
         -> Path
     {
         return Path(Rectangle(x: x, y: y, width: width, height: height))
+    }
+}
+
+extension Rectangle: PathRepresentable {
+    
+    public var path: Path {
+        return Path(edges.map(BezierCurve.init))
     }
 }

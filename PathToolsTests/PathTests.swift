@@ -127,7 +127,6 @@ class PathTests: XCTestCase {
             .addLine(to: Point(x: 1000, y: 1000))
             .addLine(to: Point(x: 1002, y: 1000))
             .addLine(to: Point(x: 1002, y: 1001))
-            
             .close()
             
             .build()

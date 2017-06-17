@@ -9,19 +9,17 @@
 import QuartzCore
 import GeometryTools
 
-extension Path {
+extension Ellipse: PathRepresentable {
     
-    // MARK: - Ellipse
-    
-    public init(_ ellipse: Ellipse) {
+    public var path: Path {
         
-        let left = ellipse.center.x - 0.5 * ellipse.size.width
-        let right = ellipse.center.x + 0.5 * ellipse.size.width
-        let top = ellipse.center.y + 0.5 * ellipse.size.height
-        let bottom = ellipse.center.y - 0.5 * ellipse.size.height
+        let left = center.x - 0.5 * size.width
+        let right = center.x + 0.5 * size.width
+        let top = center.y + 0.5 * size.height
+        let bottom = center.y - 0.5 * size.height
         
-        let (x,y) = (ellipse.center.x, ellipse.center.y)
-        let (w,h) = (ellipse.size.width, ellipse.size.height)
+        let (x,y) = (center.x, center.y)
+        let (w,h) = (size.width, size.height)
         
         // Distance from each point to its neighboring control points
         let ax = (4 * (sqrt(2.0) - 1) / 3) * (w / 2)
@@ -62,11 +60,16 @@ extension Path {
             )
         ]
         
-        self.init(curves)
+        return Path(curves)
     }
+}
+
+extension Path {
+    
+    // MARK: - Ellipse
 
     /// - returns: `Path` with an ellipse shape within the given `rectangle`.
     public static func ellipse(in rect: Rectangle) -> Path {
-        return Path(Ellipse(center: Point(x: rect.midX, y: rect.midY), size: rect.size))
+        return Ellipse(center: Point(x: rect.midX, y: rect.midY), size: rect.size).path
     }
 }

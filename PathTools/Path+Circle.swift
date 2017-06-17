@@ -9,14 +9,11 @@
 import Darwin
 import GeometryTools
 
-extension Path {
+extension Circle: PathRepresentable {
     
-    // MARK: - Circle
-    
-    /// Creates a `Path` with the given `circle`.
-    public init(_ circle: Circle) {
+    public var path: Path {
         
-        let (x,y,r) = (circle.center.x, circle.center.y, circle.radius)
+        let (x,y,r) = (center.x, center.y, radius)
         let left = x - r
         let right = x + r
         let top = y + r
@@ -58,11 +55,16 @@ extension Path {
             )
         ]
         
-        self.init(curves)
+        return Path(curves)
     }
+}
+
+extension Path {
     
+    // MARK: - Circle
+
     /// - returns: `Path` with a circle shape with the given `radius` and `center`.
     public static func circle(center: Point, radius: Double) -> Path {
-        return Path(Circle(center: center, radius: radius))
+        return Circle(center: center, radius: radius).path
     }
 }
