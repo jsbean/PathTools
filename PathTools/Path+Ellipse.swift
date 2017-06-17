@@ -12,17 +12,18 @@ import GeometryTools
 extension Path {
     
     // MARK: - Ellipse
-
-    /// - returns: `Path` with an ellipse shape within the given `rectangle`.
-    public static func ellipse(in rect: Rectangle) -> Path {
+    
+    public init(_ ellipse: Ellipse) {
         
-        let left = rect.minX
-        let right = rect.maxX
-        let top = rect.maxY
-        let bottom = rect.minY
+        let left = ellipse.center.x - 0.5 * ellipse.size.width
+        let right = ellipse.center.x + 0.5 * ellipse.size.width
+        let top = ellipse.center.y + 0.5 * ellipse.size.height
+        let bottom = ellipse.center.y - 0.5 * ellipse.size.height
         
-        let (x,y) = (rect.midX, rect.midY)
-        let (w,h) = (rect.size.width, rect.size.height)
+        let (x,y) = (ellipse.center.x, ellipse.center.y)
+        let (w,h) = (ellipse.size.width, ellipse.size.height)
+        
+        // Distance from each point to its neighboring control points
         let ax = (4 * (sqrt(2.0) - 1) / 3) * (w / 2)
         let ay = (4 * (sqrt(2.0) - 1) / 3) * (h / 2)
         
@@ -61,6 +62,11 @@ extension Path {
             )
         ]
         
-        return Path(curves)
+        self.init(curves)
+    }
+
+    /// - returns: `Path` with an ellipse shape within the given `rectangle`.
+    public static func ellipse(in rect: Rectangle) -> Path {
+        return Path(Ellipse(center: Point(x: rect.midX, y: rect.midY), size: rect.size))
     }
 }

@@ -25,12 +25,13 @@ extension Path {
         // Distance from each point to its neighboring control points
         let a = (4 * (sqrt(2.0) - 1) / 3) * r
         
-        self.init([
+        let curves = [
             
-            BezierCurve(start: Point(x: x, y: top),
-                        control1: Point(x: x + a, y: top),
-                        control2: Point(x: right, y: y + a),
-                        end: Point(x: right, y: y)
+            BezierCurve(
+                start: Point(x: x, y: top),
+                control1: Point(x: x + a, y: top),
+                control2: Point(x: right, y: y + a),
+                end: Point(x: right, y: y)
             ),
             
             BezierCurve(
@@ -55,7 +56,9 @@ extension Path {
                 control2: Point(x: x - a, y: top),
                 end: Point(x: x, y: top)
             )
-        ])
+        ]
+        
+        self.init(curves)
     }
     
     /// - returns: `Path` with a circle shape with the given `radius` and `center`.
