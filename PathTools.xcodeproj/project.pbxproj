@@ -194,6 +194,8 @@
 		0701A8781EE3055700900B3F /* Path */ = {
 			isa = PBXGroup;
 			children = (
+				07088AC41D0AE8A600004FB2 /* Path.swift */,
+				07EC99221D0AF7C8002414A4 /* PathElement.swift */,
 				07305A331D0F3F7F006E4085 /* Path+Square.swift */,
 				07C1F8611D0C4EA900541ED5 /* Path+Transform.swift */,
 				07C1F86A1D0C537300541ED5 /* Path+BoundingBox.swift */,
@@ -202,8 +204,6 @@
 				0765472E1D0C861C008038B5 /* Path+Ellipse.swift */,
 				07C1F8641D0C513900541ED5 /* Path+Parallelogram.swift */,
 				07C1F8671D0C517400541ED5 /* Path+Arrowhead.swift */,
-				07EC99221D0AF7C8002414A4 /* PathElement.swift */,
-				07088AC41D0AE8A600004FB2 /* Path.swift */,
 				07D3A0E91EF581E400641D15 /* Path+Line.swift */,
 				07D3A0F21EF585ED00641D15 /* Path+Polyline.swift */,
 				07D3A0EC1EF5821500641D15 /* Path+PolygonProtocol.swift */,
