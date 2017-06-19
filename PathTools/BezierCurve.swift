@@ -51,10 +51,10 @@ public struct BezierCurve {
     public var length: Double {
         switch order {
         case .linear:
-            return Line(points: points).length
+            return Line.Segment(points: points).length
         case .quadratic, .cubic:
             let points = stride(from: 0, through: 1, by: 0.01).map { t in self[t] }
-            let lines = points.adjacentPairs().map(Line.init)
+            let lines = points.adjacentPairs().map(Line.Segment.init)
             return lines.map { $0.length }.sum
         }
     }
@@ -69,7 +69,7 @@ public struct BezierCurve {
     }
     
     /// Creates a linear `BezierCurve` with the given `line`.
-    public init(_ line: Line) {
+    public init(_ line: Line.Segment) {
         self.init(start: line.start, end: line.end)
     }
     
@@ -126,7 +126,7 @@ public struct BezierCurve {
             let a = start - 2 * points[1] + end
             return quadratic(a.x, b.x, c.x)
         case .cubic:
-            return cardano(points: points, line: Line.vertical(at: x))
+            return cardano(points: points, line: .vertical(at: x))
         }
     }
     
@@ -286,9 +286,11 @@ func cubeRoot(_ value: Double) -> Double {
 /// - Note: Cardano's algorithm, based on
 /// http://www.trans4mind.com/personal_development/mathematics/polynomials/cubicAlgebra.htm.
 ///
-func cardano(points: [Point], line: Line) -> Set<Double> {
+///
+/// - TODO: Use `Line` instead of `Line.Segment`.
+func cardano(points: [Point], line: Line.Segment) -> Set<Double> {
     
-    func align(points: [Point], with line: Line) -> [Point] {
+    func align(points: [Point], with line: Line.Segment) -> [Point] {
         let a = -atan2(line.end.y - line.start.y, line.end.x - line.start.x)
         return points.map { point in
             Point(
