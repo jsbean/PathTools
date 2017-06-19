@@ -55,8 +55,8 @@
 		07C1F8691D0C517400541ED5 /* Path+Arrowhead.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C1F8671D0C517400541ED5 /* Path+Arrowhead.swift */; };
 		07C1F86B1D0C537300541ED5 /* Path+BoundingBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C1F86A1D0C537300541ED5 /* Path+BoundingBox.swift */; };
 		07C1F86C1D0C537300541ED5 /* Path+BoundingBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C1F86A1D0C537300541ED5 /* Path+BoundingBox.swift */; };
-		07D3A0EA1EF581E400641D15 /* Path+Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D3A0E91EF581E400641D15 /* Path+Line.swift */; };
-		07D3A0EB1EF581E400641D15 /* Path+Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D3A0E91EF581E400641D15 /* Path+Line.swift */; };
+		07D3A0EA1EF581E400641D15 /* Path+Line.Segment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D3A0E91EF581E400641D15 /* Path+Line.Segment.swift */; };
+		07D3A0EB1EF581E400641D15 /* Path+Line.Segment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D3A0E91EF581E400641D15 /* Path+Line.Segment.swift */; };
 		07D3A0ED1EF5821500641D15 /* Path+PolygonProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D3A0EC1EF5821500641D15 /* Path+PolygonProtocol.swift */; };
 		07D3A0EE1EF5821500641D15 /* Path+PolygonProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D3A0EC1EF5821500641D15 /* Path+PolygonProtocol.swift */; };
 		07D3A0F31EF585ED00641D15 /* Path+Polyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D3A0F21EF585ED00641D15 /* Path+Polyline.swift */; };
@@ -140,7 +140,7 @@
 		07C1F8641D0C513900541ED5 /* Path+Parallelogram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Path+Parallelogram.swift"; path = "PathTools/Path+Parallelogram.swift"; sourceTree = "<group>"; };
 		07C1F8671D0C517400541ED5 /* Path+Arrowhead.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Path+Arrowhead.swift"; path = "PathTools/Path+Arrowhead.swift"; sourceTree = "<group>"; };
 		07C1F86A1D0C537300541ED5 /* Path+BoundingBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Path+BoundingBox.swift"; path = "PathTools/Path+BoundingBox.swift"; sourceTree = "<group>"; };
-		07D3A0E91EF581E400641D15 /* Path+Line.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Path+Line.swift"; path = "PathTools/Path+Line.swift"; sourceTree = "<group>"; };
+		07D3A0E91EF581E400641D15 /* Path+Line.Segment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Path+Line.Segment.swift"; path = "PathTools/Path+Line.Segment.swift"; sourceTree = "<group>"; };
 		07D3A0EC1EF5821500641D15 /* Path+PolygonProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Path+PolygonProtocol.swift"; path = "PathTools/Path+PolygonProtocol.swift"; sourceTree = "<group>"; };
 		07D3A0F21EF585ED00641D15 /* Path+Polyline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Path+Polyline.swift"; path = "PathTools/Path+Polyline.swift"; sourceTree = "<group>"; };
 		07EC99221D0AF7C8002414A4 /* PathElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PathElement.swift; path = PathTools/PathElement.swift; sourceTree = "<group>"; };
@@ -208,7 +208,7 @@
 				0765472E1D0C861C008038B5 /* Path+Ellipse.swift */,
 				07C1F8641D0C513900541ED5 /* Path+Parallelogram.swift */,
 				07C1F8671D0C517400541ED5 /* Path+Arrowhead.swift */,
-				07D3A0E91EF581E400641D15 /* Path+Line.swift */,
+				07D3A0E91EF581E400641D15 /* Path+Line.Segment.swift */,
 				07D3A0F21EF585ED00641D15 /* Path+Polyline.swift */,
 				07D3A0EC1EF5821500641D15 /* Path+PolygonProtocol.swift */,
 				0728B9931EEDA89200A8E727 /* Path.Builder.swift */,
@@ -488,7 +488,7 @@
 			files = (
 				0701A88B1EE3104F00900B3F /* Point+CGPoint.swift in Sources */,
 				07D3A0F41EF585ED00641D15 /* Path+Polyline.swift in Sources */,
-				07D3A0EB1EF581E400641D15 /* Path+Line.swift in Sources */,
+				07D3A0EB1EF581E400641D15 /* Path+Line.Segment.swift in Sources */,
 				078590431DE7624300FF1645 /* BezierCurve.swift in Sources */,
 				07C1F86C1D0C537300541ED5 /* Path+BoundingBox.swift in Sources */,
 				0759A4791E3015B000E2E40C /* PathElement+CGPathElement.swift in Sources */,
@@ -517,7 +517,7 @@
 			files = (
 				0701A88A1EE3104F00900B3F /* Point+CGPoint.swift in Sources */,
 				07D3A0F31EF585ED00641D15 /* Path+Polyline.swift in Sources */,
-				07D3A0EA1EF581E400641D15 /* Path+Line.swift in Sources */,
+				07D3A0EA1EF581E400641D15 /* Path+Line.Segment.swift in Sources */,
 				078590421DE7624300FF1645 /* BezierCurve.swift in Sources */,
 				07C1F86B1D0C537300541ED5 /* Path+BoundingBox.swift in Sources */,
 				0759A4781E3015B000E2E40C /* PathElement+CGPathElement.swift in Sources */,
