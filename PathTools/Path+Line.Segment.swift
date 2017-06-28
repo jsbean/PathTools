@@ -17,7 +17,7 @@ extension Line.Segment: PathRepresentable {
 
 extension Path {
     
-    public func line(from start: Point, to end: Point) -> Path {
+    public static func line(from start: Point, to end: Point) -> Path {
         return Line.Segment(start: start, end: end).path
     }
 }
