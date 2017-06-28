@@ -9,7 +9,15 @@
 import GeometryTools
 
 extension Line.Segment: PathRepresentable {
+    
     public var path: Path {
         return Path([BezierCurve(self)])
+    }
+}
+
+extension Path {
+    
+    public func line(from start: Point, to end: Point) -> Path {
+        return Line.Segment(start: start, end: end).path
     }
 }
