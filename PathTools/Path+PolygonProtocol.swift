@@ -18,7 +18,7 @@ extension Path {
 
 extension Path {
     
-    init(vertices: [Point]) {
+    public init(vertices: [Point]) {
         switch vertices.count {
         case 0:
             self.init([])
