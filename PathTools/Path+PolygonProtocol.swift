@@ -15,3 +15,20 @@ extension Path {
         self.init(polygon.edges.map(BezierCurve.init))
     }
 }
+
+extension Path {
+    
+    init(vertices: [Point]) {
+        switch vertices.count {
+        case 0:
+            self.init([])
+        case 1:
+            self.init([BezierCurve(start: vertices[0], end: vertices[0])])
+        case 2:
+            self.init([BezierCurve(start: vertices[0], end: vertices[1])])
+        default:
+            let polygon = Polygon(vertices: vertices)
+            self.init(polygon)
+        }
+    }
+}
