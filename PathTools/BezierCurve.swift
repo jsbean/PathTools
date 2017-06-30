@@ -271,7 +271,7 @@ public func quadratic(_ a: Double, _ b: Double, _ c: Double) -> Set<Double> {
     return result
 }
 
-/// - TODO: Move somewhere meaningful.
+/// - TODO: Move somewhere meaningful, perhaps in a `Constant` enum.
 let tau: Double = 2 * .pi
 
 /// - TODO: Move somewhere meaningful.
@@ -288,6 +288,7 @@ func cubeRoot(_ value: Double) -> Double {
 ///
 ///
 /// - TODO: Use `Line` instead of `Line.Segment`.
+///
 func cardano(points: [Point], line: Line.Segment) -> Set<Double> {
     
     func align(points: [Point], with line: Line.Segment) -> [Point] {
