@@ -24,6 +24,15 @@ public struct Path {
         return curves.isEmpty
     }
     
+    /// - Returns: The axis-aligned bounding box for `Path`.
+    ///
+    /// - Warning: This uses a simplification technique for calculateing the bounding boxes of
+    /// quadratic and cubic Bézier curves, which may result in some inaccuracy for whacky curves.
+    ///
+    public var axisAlignedBoundingBox: Rectangle {
+        return curves.map { $0.axisAlignedBoundingBox }.sum
+    }
+    
     internal let curves: [BezierCurve]
     
     // MARK: - Initializers
