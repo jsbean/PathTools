@@ -8,6 +8,7 @@
 
 import Darwin
 import Collections
+import ArithmeticTools
 import GeometryTools
 
 /// Model of a Bézier curve.
@@ -23,6 +24,38 @@ public struct BezierCurve {
     }
     
     // MARK: - Instance Properties
+    
+    /// - TODO: Consider making `func` with `accuracy` parameter.
+    public var axisAlignedBoundingBox: Rectangle {
+        
+        switch order {
+            
+        case .linear:
+            let minX = lesserOf(points[0].x, points[1].x)
+            let minY = lesserOf(points[0].y, points[1].y)
+            let maxX = greaterOf(points[0].x, points[1].x)
+            let maxY = greaterOf(points[0].y, points[1].y)
+            let width = maxX - minX
+            let height = maxY - minY
+            return Rectangle(x: minX, y: minY, width: width, height: height)
+            
+        default:
+            let (first,rest) = simplified(segmentCount: 10).destructured!
+            var minX = first.x
+            var minY = first.y
+            var maxX = first.x
+            var maxY = first.y
+            for point in rest {
+                if point.x < minX { minX = point.x }
+                if point.x > maxX { maxX = point.x }
+                if point.y < minY { minY = point.y }
+                if point.y > maxY { maxY = point.y }
+            }
+            let width = maxX - minX
+            let height = maxY - minY
+            return Rectangle(x: minX, y: minY, width: width, height: height)
+        }
+    }
     
     /// Order of `BezierCurve`.
     public var order: Order {
@@ -271,7 +304,7 @@ public func quadratic(_ a: Double, _ b: Double, _ c: Double) -> Set<Double> {
     return result
 }
 
-/// - TODO: Move somewhere meaningful.
+/// - TODO: Move somewhere meaningful, perhaps in a `Constant` enum.
 let tau: Double = 2 * .pi
 
 /// - TODO: Move somewhere meaningful.
@@ -288,6 +321,7 @@ func cubeRoot(_ value: Double) -> Double {
 ///
 ///
 /// - TODO: Use `Line` instead of `Line.Segment`.
+///
 func cardano(points: [Point], line: Line.Segment) -> Set<Double> {
     
     func align(points: [Point], with line: Line.Segment) -> [Point] {
