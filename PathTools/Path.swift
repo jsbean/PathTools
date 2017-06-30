@@ -10,7 +10,6 @@ import Collections
 import ArithmeticTools
 import GeometryTools
 
-/// - TODO: Conform to `Collection` protocols (parameterized over `BezierCurve`)
 public struct Path {
     
     // MARK: - Instance Properties
