@@ -209,10 +209,15 @@ public struct BezierCurve {
             return Set(ts(y: y).map { t in self[t].x })
         }
     }
+
+    /// - Returns: `BezierCurve` translated by the given `point`.
+    public func translated(by point: Point) -> BezierCurve {
+        return BezierCurve(points.map { $0.translated(by: point) })
+    }
     
     /// - Returns: `BezierCurve` translated by the given `x` and `y` values.
-    public func translatedBy(x: Double, y: Double) -> BezierCurve {
-        return BezierCurve(points.map { $0.translatedBy(x: x, y: y) })
+    public func translatedBy(x: Double = 0, y: Double = 0) -> BezierCurve {
+        return translated(by: Point(x: x, y: y))
     }
     
     /// - Returns: Two `BezierCurve` values of the same order as `self`, split at the given `t`
