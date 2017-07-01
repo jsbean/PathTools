@@ -22,9 +22,14 @@ extension Path {
     public func rotated(by angle: Angle, around reference: Point = Point()) -> Path {
         return Path(curves.map { $0.rotated(by: angle, around: reference) })
     }
-    
-    /// - returns: `Path` translated by the given amounts.
-    public func translatedBy(x: Double = 0, y: Double = 0) -> Path {
-        return Path(curves.map { $0.translatedBy(x: x, y: y) })
+
+    /// - Returns: `Path` translated by the given `point`.
+    public func translated(by point: Point) -> Path {
+        return Path(curves.map { $0.translated(by: point) })
+    }
+
+    /// - Returns: `Path` translated by the given `x` and `y` values.
+    public func translatedBy(x: Double, y: Double) -> Path {
+        return translated(by: Point(x: x, y: y))
     }
 }
