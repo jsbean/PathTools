@@ -380,3 +380,17 @@ func cardano(points: [Point], line: Line.Segment) -> Set<Double> {
         return [x1]
     }
 }
+
+extension BezierCurve: CustomStringConvertible {
+
+    public var description: String {
+        switch order {
+        case .linear:
+            return "Line: \(points[0]) -> \(points[1])"
+        case .quadratic:
+            return "Quad: \(points[0]) -> \(points[1]) -> \(points[2]))"
+        case .cubic:
+            return "Cube: \(points[0]) -> \(points[1]) -> \(points[2]) -> \(points[3]))"
+        }
+    }
+}

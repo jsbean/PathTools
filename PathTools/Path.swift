@@ -126,6 +126,8 @@ extension Path: CustomStringConvertible {
     
     /// Printed description.
     public var description: String {
-        return curves.map { "\($0)" }.joined(separator: "\n")
+        var result = "Path:\n"
+        result += curves.map { "  - \($0)" }.joined(separator: "\n")
+        return result
     }
 }
