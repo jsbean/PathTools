@@ -449,6 +449,7 @@
 			files = (
 			);
 			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Algebra.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ArithmeticTools.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Collections.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/GeometryTools.framework",
@@ -465,6 +466,7 @@
 			files = (
 			);
 			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/Mac/Algebra.framework",
 				"$(SRCROOT)/Carthage/Build/Mac/ArithmeticTools.framework",
 				"$(SRCROOT)/Carthage/Build/Mac/Collections.framework",
 				"$(SRCROOT)/Carthage/Build/Mac/GeometryTools.framework",

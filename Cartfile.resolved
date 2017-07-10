@@ -1,3 +1,4 @@
+github "dn-m/Algebra" "0.1"
 github "dn-m/Collections" "2.1"
 github "dn-m/ArithmeticTools" "0.15"
 github "dn-m/GeometryTools" "0.8"
