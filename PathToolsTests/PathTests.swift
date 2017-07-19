@@ -7,6 +7,9 @@
 //
 
 import XCTest
+import Algebra
+import Collections
+import ArithmeticTools
 import GeometryTools
 @testable import PathTools
 
@@ -142,7 +145,7 @@ class PathTests: XCTestCase {
         let path: Path = [(0,0),(100,100),(200,200)]
             .map(Point.init)
             .map { point in Path.square(center: point, width: 20) }
-            .reduce(.unit, +)
+            .sum
         
         XCTAssertEqual(path, Path(path.cgPath))
     }

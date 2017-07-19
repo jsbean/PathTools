@@ -110,15 +110,6 @@ extension Path: Additive {
     }
 }
 
-//extension Path: AnyCollectionWrapping {
-//
-//    // MARK: - AnyCollectionWrapping
-//    
-//    public var collection: AnyCollection<BezierCurve> {
-//        return AnyCollection(curves)
-//    }
-//}
-
 extension Path: Equatable {
     
     // MARK: - Equatable

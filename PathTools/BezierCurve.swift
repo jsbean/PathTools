@@ -31,10 +31,10 @@ public struct BezierCurve {
         switch order {
             
         case .linear:
-            let minX = lesserOf(points[0].x, points[1].x)
-            let minY = lesserOf(points[0].y, points[1].y)
-            let maxX = greaterOf(points[0].x, points[1].x)
-            let maxY = greaterOf(points[0].y, points[1].y)
+            let minX = min(points[0].x, points[1].x)
+            let minY = min(points[0].y, points[1].y)
+            let maxX = max(points[0].x, points[1].x)
+            let maxY = max(points[0].y, points[1].y)
             let width = maxX - minX
             let height = maxY - minY
             return Rectangle(x: minX, y: minY, width: width, height: height)
@@ -87,7 +87,7 @@ public struct BezierCurve {
             return Line.Segment(points: points).length
         case .quadratic, .cubic:
             let points = stride(from: 0, through: 1, by: 0.01).map { t in self[t] }
-            let lines = points.adjacentPairs().map(Line.Segment.init)
+            let lines = points.pairs.map(Line.Segment.init)
             return lines.map { $0.length }.sum
         }
     }
@@ -274,7 +274,7 @@ public func split(controlPoints: [Point], at t: Double) -> ([Point], [Point]) {
         
         let left = left + points.first!
         let right = right + points.last!
-        let points = points.adjacentPairs().map { (a,b) in (1-t) * a + t * b }
+        let points = points.pairs.map { (a,b) in (1-t) * a + t * b }
         return split(points: points, at: t, into: left, and: right)
     }
     

@@ -10,8 +10,6 @@ import GeometryTools
 
 extension Polyline: PathRepresentable {
     public var path: Path {
-        return Path(
-            points.adjacentPairs().map { start, end in BezierCurve(start: start, end: end) }
-        )
+        return Path(points.pairs.map { start, end in BezierCurve(start: start, end: end) })
     }
 }
