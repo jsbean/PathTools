@@ -6,6 +6,7 @@
 //
 //
 
+import Algebra
 import Collections
 import ArithmeticTools
 import GeometryTools
@@ -30,7 +31,7 @@ public struct Path {
     /// quadratic and cubic Bézier curves, which may result in some inaccuracy for whacky curves.
     ///
     public var axisAlignedBoundingBox: Rectangle {
-        return curves.map { $0.axisAlignedBoundingBox }.sum
+        return curves.map { $0.axisAlignedBoundingBox }.nonEmptySum ?? .zero
     }
     
     internal let curves: [BezierCurve]
@@ -91,25 +92,32 @@ public struct Path {
     }
 }
 
-extension Path: Monoid {
+extension Path: CollectionWrapping {
+
+    public var base: [BezierCurve] {
+        return curves
+    }
+}
+
+extension Path: Additive {
 
     /// Empty path.
-    public static let unit = Path([])
-    
+    public static let zero = Path([])
+
     /// - Returns: New `Path` with elements of two paths.
     public static func + (lhs: Path, rhs: Path) -> Path {
         return Path(lhs.curves + rhs.curves)
     }
 }
 
-extension Path: AnyCollectionWrapping {
-
-    // MARK: - AnyCollectionWrapping
-    
-    public var collection: AnyCollection<BezierCurve> {
-        return AnyCollection(curves)
-    }
-}
+//extension Path: AnyCollectionWrapping {
+//
+//    // MARK: - AnyCollectionWrapping
+//    
+//    public var collection: AnyCollection<BezierCurve> {
+//        return AnyCollection(curves)
+//    }
+//}
 
 extension Path: Equatable {
     
